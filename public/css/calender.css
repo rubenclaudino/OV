@@ -1,0 +1,15 @@
+.calender{
+	width: 90%;
+	left: auto;
+	background-color: #FFF;
+}
+.calender_table{
+	width: 95%;
+	height: auto;
+}
+.calender td{
+	width: 12%;
+	height: 25px;
+	border: 1px solid #a1a1a1;
+	padding: 2px;
+}

@@ -1,0 +1,1064 @@
+@extends('layouts.page')
+@section('content')
+
+    <!-- start: MAIN CONTENT -->
+    <div class="main-content" ng-controller="PatientController">
+
+        <!-- start: SUBVIEW -->
+        <div class="subviews">
+            <div class="subviews-container"></div>
+        </div>
+        <!-- start: END -->
+
+        <!-- Start: CONTAINER -->
+        <div class="container">
+
+            <!-- start: HEADER INFORMATION -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px;margin-bottom: 15px">
+                <!-- start: 2st ROW -->
+                <div class="row">
+
+                    <!-- start: PATIENT INFO RIGHT -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel panel-white">
+
+                        <!-- start: MAIN INFO TAB -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding"
+                             style="border-radius: 3px;background:#fff;">
+
+                            <!-- start: PHOTO AREA -->
+                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 nopadding">
+                                <div class="center">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="user-image">
+                                            <div class="fileupload-new thumbnail"
+                                                 style="border: white 1px solid;border-radius: 1px;height: 165px;padding-top:15px">
+                                                @if($patient->profile_url != '')
+                                                    <img src="{{ url('/')}}/{{$patient->profile_url }}"
+                                                         alt="{{ $patient->first_name }} {{ $patient->last_name }}">
+                                                @else
+                                                    <img src="http://placehold.it/130xx130"
+                                                         style="border-radius:100px;">
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end: PHOTO AREA -->
+
+                            <!-- start: PATIENT MAIN INFO -->
+                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 nopadding">
+
+                                <!-- start: QUICK INFO PANEL -->
+                                <div class="panel panel-white">
+
+                                    <!-- start: PATIENT NAME -->
+                                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                        <h2 class="light_black"
+                                            style="margin-top:10px;margin-bottom:5px;font-weight: lighter;opacity: 0.8;text-align:left;float:left;">
+                                            {{ $patient->first_name }} {{ $patient->last_name}}&nbsp;
+                                        </h2>
+                                        <!-- start: SPECIAL NOTATIONS -->
+                                        @if($patient->vip == 1)<label class="label label-warning"
+                                                                      style="opacity: 0.7;text-align:left;float:left;margin-top:18px;padding: 5px !important;margin-right: 5px">VIP</label>@endif
+                                        @if($patient->wheel_chair == 1)<label class="label label-info"
+                                                                              style="opacity: 0.7;text-align:left;float:left;margin-top:18px;padding: 5px !important;"><i
+                                                    class="fa fa-wheelchair"></i></label>@endif
+                                    <!-- end: SPECIAL NOTATIONS -->
+                                    </div>
+                                    <!-- end: PATIENT NAME -->
+
+                                    <!-- start: PATIENT OPTIONS BUTTON -->
+                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
+                                        <div class="btn-group pull-right" style="margin-top:10px;">
+                                            <button class="btn dropdown-toggle btn-squared" data-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                    style="border-radius: 1px;background: #dddddd">
+                                                Opções &nbsp; <span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ URL::route('patients.edit', $patient->id) }}"><i
+                                                                class="fa fa-pencil fa-fw text-info"
+                                                                style="color: #404040"></i>&nbsp;&nbsp;Editar</a></li>
+                                                <li><a href="#"><i class="fa fa-money fa-fw text-info"
+                                                                   style="color: #404040"></i>&nbsp; Pagamento</a></li>
+                                                <li><a href="#"><i class="fa fa-print fa-fw text-info"
+                                                                   style="color: #404040"></i>&nbsp; Imprimir</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end: PATIENT OPTIONS BUTTON -->
+
+                                    <!-- start: PATIENT DATA -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                        <hr style="margin:4px 0 10px;">
+
+                                        <!-- start: SPEACIAL TAGS INFO -->
+                                    <!-- @if($patient->sms_confirmation == 1)<label class="label label-success">SMS</label>@endif -->
+                                        <p>
+                                            @if($patient->speciality)
+                                                @foreach($patient->speciality as $d)
+                                                    <label class="label label-warning"
+                                                           style="background: #{{$d->color_code}} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $d->title }}</label>
+                                                @endforeach
+                                            @else
+                                                <label class="label label-warning"
+                                                       style="background: brown !important;opacity: 0.7;letter-spacing: 1px !important;">Clínica
+                                                    Geral</label>
+                                            @endif
+                                        </p>
+                                        <!-- start: SPEACIAL TAGS INFO -->
+
+                                        <h5>
+                                            <i class="fa fa-birthday-cake fa-fw"></i> &nbsp;
+                                            <?php
+                                            $from = new DateTime(str_replace('/', '-', $patient->DOB));
+                                            $to = new DateTime('today');
+                                            echo $from->diff($to)->y;?> anos</h5>
+                                        <h5>@if($patient->address->street_address)<i class="fa fa-map-marker fa-fw"></i>
+                                            &nbsp; {{ $patient->address->street_address }}   {{ $patient->address->number }}
+                                            @else <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5> @endif
+                                        </h5>
+                                        <h5>
+                                            @if ($patient->contact->phone_landline)<i class="fa fa-phone fa-fw"></i>
+                                            &nbsp;&nbsp;&nbsp;{{ $patient->contact->phone_landline }}&nbsp;
+                                            &nbsp; @else () @endif
+                                            @if ($patient->contact->celular_1)<i class="fa fa-mobile fa-fw"></i>&nbsp;
+                                            &nbsp;&nbsp;{{ $patient->contact->celular_1 }}&nbsp;&nbsp; @else () @endif
+                                            @if ($patient->contact->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>
+                                            &nbsp;&nbsp;{{ $patient->contact->whatsapp_number }} @else @endif
+                                        </h5>
+
+                                    </div>
+                                    <!-- end: PATIENT DATA -->
+
+                                </div>
+                                <!-- end: QUICK INFO PANEL -->
+
+                            </div>
+                            <!-- end: PATIENT MAIN INFO -->
+
+                            <!-- start: QUICK STATS -->
+                            <div class="col-lg-3 col-md-3" style="margin-top: 13px;opacity:1">
+                     <span class="pull-right">
+
+                     <!-- start: USED PER WEEK -->
+                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
+                             style="padding: 8px;border-radius: 2px;border: transparent;margin-bottom: 7px;opacity: 0.6">
+                           <span class="pull-left">
+                              <i class="fa fa-check fa-fw"></i>
+                              &nbsp;Confiabilidade &nbsp;&nbsp;&nbsp;</span>
+                           <span class="pull-right" style="color: white;padding-right: 5px"><strong>0  %</strong></span>
+                     </button>
+                         <!-- end: USED PER WEEK -->
+
+                         <!-- start: USED PER WEEK -->
+                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
+                             style="padding: 8px;border-radius: 2px;border: transparent;margin: 7px 0px;opacity: 0.6">
+                           <span class="pull-left">
+                              <i class="fa fa-calendar-o fa-fw"></i>
+                                       &nbsp;Agendamentos</span>
+                           <span class="pull-right"
+                                 style="color: white;padding-right: 5px"><strong>{{ count($appointments) }}</strong></span>
+                     </button>
+                         <!-- end: USED PER WEEK -->
+
+                         <!-- start: USED PER MONTH -->
+                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
+                             style="padding: 8px;border-radius: 2px;border: transparent;margin: 7px 0px;opacity: 0.6">
+                           <span class="pull-left">
+                              <i class="fa fa-folder-o fa-fw"></i>&nbsp;@if($patient->has_dental_plan == 1)
+                                   Particular @endif
+                               @if($patient->has_dental_plan == 0)Convênio @endif </span>
+                     </button>
+                         <!-- end: USED PER MONTH -->
+
+                         <!-- start: RANKING BETWEEN TREATMENTS -->
+                         <!-- <button type="button" class="btn btn-info btn-md btn-block panel-azure" style="padding: 8px;border-radius: 2px;border: transparent;margin-top: 7px">
+                                <span class="pull-left">
+                                </span>
+                          </button> -->
+                         <!-- end: RANKING BETWEEN TREATMENTS -->
+
+                  </span>
+                            </div>
+                            <!-- end: QUICK STATS -->
+
+                        </div>
+                        <!-- end: MAIN INFO TAB -->
+
+                    </div>
+                    <!-- end: PATIENT INFO RIGHT -->
+
+                </div>
+                <!-- end: 2st ROW -->
+
+            </div>
+            <!-- end: HEADER INFORMATION -->
+
+            <!-- start: PATIENT INFORMATION -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <!-- start: ROW -->
+                <div class="row">
+
+                    <!-- start: TABS -->
+                    <ul class="nav nav-tabs" style="font-size: 1.1em">
+                        <li class="active">
+                            <a data-toggle="tab" href="#personal_details">
+                                <strong>Detalhes</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#appointments">
+                                <strong>Agendamentos</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#exam">
+                                <strong>Exames</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#health">
+                                <strong>Anamnese</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#orto">
+                                <strong>Ortodontia</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#prosthesis">
+                                <strong>Prótese</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#stats">
+                                <strong>Estatísticas</strong>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- end: TABS -->
+
+                    <!-- start: TAB CONTENT -->
+                    <div class="tab-content panel" style="border-radius: 1px">
+
+                        <!-- start: PERSONAL DETAILS -->
+                        <div id="personal_details" class="tab-pane fade active in">
+
+                            <!-- start: ROW -->
+                            <div class="row" style="background:#fff;;padding: 15px">
+
+                                <style>
+                                    .table th, .table td {
+                                        border-top: none !important;
+                                    }
+                                </style>
+
+                                <!-- start: LEFT SIDE INFO -->
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Data de Nascimento
+                                            </td>
+                                            <td style="font-size:1.1em">{{ $patient->DOB }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                CPF
+                                            </td>
+                                            <td style="font-size:1.1em">{{ $patient->CPF }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                RG
+                                            </td>
+                                            <td style="font-size:1.1em">{{ $patient->RG }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Profissão
+                                            </td>
+                                            <td style="font-size:1.1em"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Estado Civil
+                                            </td>
+                                            <td style="font-size:1.1em">@if($patient->maritial_status == 1)Married @else
+                                                    Unmarried @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Email
+                                            </td>
+                                            <td style="font-size:1.1em">{{ $patient->email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Nacionalidade
+                                            </td>
+                                            <td style="font-size:1.1em">{{ $patient->nationality }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- end: LEFT SIDE INFO -->
+
+                                <!-- start: RIGHT SIDE INFO -->
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+
+                                    <!-- start: DENTAL PLAN INFO -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+                                        <div class="panel panel-white accepted_plan">
+                                            <div class="panel-body" style="">
+                                                <table class="table table-condensed ">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                            Convênio
+                                                        </td>
+                                                        <td style="font-size:1.1em">-</td>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Código
+                                                            ANS
+                                                        </td>
+                                                        <td style="font-size:1.1em">-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Número
+                                                            Cartão
+                                                        </td>
+                                                        <td style="font-size:1.1em">-</td>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                            Titular
+                                                        </td>
+                                                        <td style="font-size:1.1em">-</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end: DENTAL PLAN INFO -->
+
+                                    <!-- start: DEMOGRAPHICS -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+                                        <div class="panel panel-white accepted_plan">
+                                            <div class="panel-body" style="">
+                                                <table class="table table-condensed">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                            Profissional
+                                                        </td>
+                                                        <td style="font-size:1.1em">@if ($patient->professional->gender == 0)
+                                                                <small>Dr.</small> @else
+                                                                <small>Dra.
+                                                                </small> @endif {{ $patient->professional->first_name }} {{ $patient->professional->last_name }}
+                                                        </td>
+                                                    <tr>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                            Indicação
+                                                        </td>
+                                                        <td style="font-size:1.1em">
+                                                            @if(isset($patient->indication))
+                                                                @if($patient->indication == '0') Conhecido @endif
+                                                                @if($patient->indication == '1') TV @endif
+                                                                @if($patient->indication == '2') Rádio @endif
+                                                                @if($patient->indication == '3') Local @endif
+                                                                @if($patient->indication == '4') Outdoor @endif
+                                                                @if($patient->indication == '5') Profissional @endif
+                                                                @if($patient->indication == '6') Internet @endif
+                                                                @if($patient->indication == '7') Lista Telefonica @endif
+
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end: DEMOGRAPHICS -->
+
+                                    <!-- start: CONTACTS -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+                                        <div class="panel panel-white accepted_plan">
+                                            <div class="panel-body" style="">
+                                                <table class="table table-condensed ">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Nome
+                                                            Mãe
+                                                        </td>
+                                                        <td style="font-size:1.1em;width: 25%">-</td>
+                                                        <td class="hidden-xs"
+                                                            style="font-weight:bold;font-size:1.1em;width: 25%">Telefone
+                                                        </td>
+                                                        <td class="hidden-xs" style="font-size:1.1em;width: 25%">-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Nome
+                                                            Pai
+                                                        </td>
+                                                        <td style="font-size:1.1em;width: 25%">-</td>
+                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                            Telefone
+                                                        </td>
+                                                        <td class="hidden-xs" style="font-size:1.1em;width: 25%">-</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end: CONTACTS -->
+
+                                </div>
+                                <!-- end: RIGHT SIDE INFO -->
+
+                            </div>
+                            <!-- end: ROW -->
+
+                        </div>
+                        <!-- end: PERSONAL DETAILS -->
+
+                        <!-- start: APPOINTMENTS -->
+                        <div id="appointments" class="tab-pane fade"
+                             style="overflow-x:auto;max-height:292px;padding: 30px;">
+                            <table class="table table-striped table-hover" id="sample-table-2">
+                                <thead>
+                                <tr>
+                                    <th style="font-size:1.1em">Data</th>
+                                    <th class="hidden-xs" style="font-size:1.1em">Horário</th>
+                                    <th class="hidden-xs" style="font-size:1.1em">Profissional</th>
+                                    <th style="font-size:1.1em">Especialidade</th>
+                                    <th style="font-size:1.1em">R$</th>
+                                    <th class="center" style="font-size:1.1em"></th>
+                                    <th class="center hidden-xs" style="font-size:1.1em"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($appointments as $data)
+                                    <tr>
+                                        <td style="font-size:1.1em">{{ $data->startdate }}</td>
+                                        <td style="font-size:1.1em">{{ date('H:i', strtotime($data->appointment_starttime)) }}</td>
+                                        <td class="hidden-xs"
+                                            style="font-size:1.1em">@if ($data->dentist[0]->gender == 0)
+                                                <small>Dr.</small> @else
+                                                <small>Dra.
+                                                </small> @endif {{ $data->dentist[0]->first_name }} {{ $data->dentist[0]->last_name }}
+                                        </td>
+                                        <td style="font-size:1.1em">-</td>
+                                        <td style="font-size:1.1em">
+                                            @if(isset($data->treatment[0]))
+                                                R$ {{ $data->treatment[0]->amount }}
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td class="center" style="font-size:1.1em">
+                                            <a ng-click="myData.show({{ $data->id }},$event)" href="#appointment_model"
+                                               class="view_patient_appointment" data-toggle="modal" class="demo"
+                                               data="{{ $data->id }}">
+                                                <i class="fa fa-calendar"></i>
+                                            </a>
+                                        </td>
+                                        <td class="center hidden-xs" style="font-size:1.1em"><a><i
+                                                        class="fa fa-info"
+                                                        data-text="{{$data->appointment_observation}}"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="{{$data->appointment_observation}}"></i></a></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- end: APPOINTMENTS -->
+
+                        <!-- start: EXAMS -->
+                        <div id="exam" class="tab-pane fade">
+                            <div class="panel panel-white">
+                                <div class="panel-body">
+                                    <ul id="Grid" class="list-unstyled">
+                                        <li style="display: inline-block;"
+                                            class="col-md-3 col-sm-6 col-xs-12 mix category_1 gallery-img" data-cat="1">
+                                            <div class="portfolio-item">
+                                                <a class="thumb-info" href="images/patient_uploads/"
+                                                   data-lightbox="gallery" data-title="">
+                                                    <img src="images/patient_uploads/" class="img-responsive" alt="">
+                                                    <span class="thumb-info-title"></span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end: EXAMS -->
+
+                        <!-- start: HEALTH TAB -->
+                        <div id="health" class="tab-pane fade">
+                            <div class="row" style="background:#fff;padding: 18px">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <table class="table table-striped" style="font-size:1.1em;">
+                                        <tbody>
+                                        <tr>
+                                            <td style="color: #3d3d3d;font-weight:bold;line-height:30px;">
+                                                Está tomando medicamentos
+                                            </td>
+                                            <td>@if($patient->take_drugs == 1) Sim @else Não @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Anomalias congénitas
+                                            </td>
+                                            <td>@if($patient->has_birth_defect == 1) Sim @else Não @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Estágio de desenvolvimento ósseo
+                                            </td>
+                                            <td>@if($patient->bone_dev_stage == 1) - @else - @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Utiliza algum anticoncepcional
+                                            </td>
+                                            <td>@if($patient->take_preg_pills == 1) Sim @else Não @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Teve alguma operação grave
+                                            </td>
+                                            <td>@if($patient->has_prev_surgeries == 1) Sim @else Não @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Estado de Saúde
+                                            </td>
+                                            <td>@if($patient->current_health == 1) - @else - @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Biotipo
+                                            </td>
+                                            <td>
+                                                @if(isset($patient->bodyType))
+                                                    {{ $patient->bodyType->title }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Altura
+                                            </td>
+                                            <td>@if($patient->height){{ $patient->height }} Cm @else - @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Peso
+                                            </td>
+                                            <td>@if($patient->weight){{ $patient->weight }} Kg @else - @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Cadeirante
+                                            </td>
+                                            <td>@if($patient->wheel_chair == 1) Sim @else Não @endif</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- start: HEALTH CHECKLIST -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    @if(!empty($patient->diseases))
+                                        @foreach($patient->diseases as $da)
+                                            <label style="padding:7px 10px;background: whitesmoke;margin: 5px 10px"><strong>{{ $da->title }}</strong></label>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <!-- end: HEALTH CHECKLIST -->
+
+                            </div>
+                        </div>
+                        <!-- end: HEALTH TAB -->
+
+                        <!-- start: ORTO TAB -->
+                        <div id="orto" class="tab-pane fade">
+
+                            <!-- start: ROW -->
+                            <div class="row" style="background:#fff;padding: 18px">
+
+                                <style>
+                                    .table th, .table td {
+                                        border-top: none !important;
+                                    }
+                                </style>
+
+                                <!-- start: LEFTSIDE -->
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+
+                                    <!-- start: TABLE -->
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em;width:60%">
+                                                Duração do Tratamento
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                N&deg; Agendamentos
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                N&deg; Faltas
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                N&deg; de Recolagem do Braquete
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Valor Aparelho
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Manutenção
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Total de Manutenção
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Custo Reparo Negociado
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Total do Tratamento
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end: TABLE -->
+
+                                </div>
+                                <!-- end: LEFTSIDE -->
+
+                                <!-- start: RIGHTSIDE -->
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+
+                                    <!-- start: PANEL -->
+                                    <div class="panel panel-white accepted_plan">
+
+                                        <!-- start: PANEL BODY -->
+                                        <div class="panel-body" style="">
+
+                                            <style>
+                                                .table th, .table td {
+                                                    border-top: none !important;
+                                                }
+                                            </style>
+
+                                            <!-- start: TABLE -->
+                                            <table class="table">
+                                                <tbody>
+                                                <tr style="">
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                        Data Início
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                        Razão do tratamento
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                        Nível de motivação
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                        Já usou aparelho antes
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                        Tipo Aparelho
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                        Especialista
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                        Status do Tratamento
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- end: TABLE -->
+
+                                        </div>
+                                        <!-- end: PANEL BODY -->
+
+                                    </div>
+                                    <!-- end: PANEL -->
+
+                                </div>
+                                <!-- end: RIGHTSIDE -->
+
+                                <!-- start: BUTTON BEFORE AND AFTER -->
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top: 10px">
+                                    <a href="#BnA" data-toggle="modal" class="demo btn btn-block btn-info btn-squared"
+                                       style="border-radius:1px;opacity: 0.8">
+                                        Antes & Depois
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top: 10px">
+                                    <a href="#planingNotes" data-toggle="modal"
+                                       class="btn btn-block btn-info btn-squared"
+                                       style="border-radius:1px;opacity: 0.8">
+                                        Planejamento
+                                    </a>
+                                </div>
+                                <!-- end: BUTTON BEFORE AND AFTER -->
+
+                            </div>
+                            <!-- end: ROW -->
+
+                        </div>
+                        <!-- end: ORTO TAB -->
+
+                        <!-- start: PROT TAB -->
+                        <div id="prosthesis" class="tab-pane fade">
+
+                            <!-- start: ROW -->
+                            <div class="row" style="background:#fff;">
+
+                                <style>
+                                    .table th, .table td {
+                                        border-top: none !important;
+                                    }
+                                </style>
+
+                                <!-- start: LEFTSIDE -->
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+
+                                    <!-- start: TABLE -->
+                                    <table class="table table-condensed">
+                                        <tbody>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                Data de fixação
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Tipo de Cimento
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Tipo de Prótese
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Região do Implante
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Material usado
+                                            </td>
+                                            <td style="font-size:1.1em">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                                Total do tratamento
+                                            </td>
+                                            <td style="font-size:1.1em">
+                                                <strong>-</strong>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- end: TABLE -->
+
+                                </div>
+                                <!-- end: LEFTSIDE -->
+
+                                <!-- start: RIGHTSIDE -->
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+
+                                    <!-- start: PANEL -->
+                                    <div class="panel panel-white accepted_plan">
+                                        <div class="panel-body">
+
+                                            <style>
+                                                .table th, .table td {
+                                                    border-top: none !important;
+                                                }
+                                            </style>
+
+                                            <!-- start: TABLE -->
+                                            <table class="table table-condensed">
+                                                <tbody>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
+                                                        Já usou Prótese antes
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em">
+                                                        Razão do tratamento
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em">
+                                                        Limitações
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em">
+                                                        Especialista
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight:bold;line-height:30px;font-size:1.1em">
+                                                        Status do Tratamento
+                                                    </td>
+                                                    <td style="font-size:1.1em">-</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <!-- end: TABLE -->
+
+                                        </div>
+                                    </div>
+                                    <!-- end: PANEL -->
+
+                                </div>
+                                <!-- end: RIGHTSIDE -->
+
+                                <!-- start: BUTTON BEFORE AND AFTER -->
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top: 10px">
+                                    <a href="#BnA" data-toggle="modal" class="demo btn btn-block btn-info btn-squared"
+                                       style="border-radius:1px;opacity: 0.8">
+                                        Antes & Depois
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top: 10px">
+                                    <a href="#planingNotes" data-toggle="modal"
+                                       class="btn btn-block btn-info btn-squared"
+                                       style="border-radius:1px;opacity: 0.8">
+                                        Planejamento
+                                    </a>
+                                </div>
+                                <!-- end: BUTTON BEFORE AND AFTER -->
+
+                            </div>
+                            <!-- end: ROW -->
+
+                        </div>
+                        <!-- end: PROSTH TAB -->
+
+                        <!-- start: STATS -->
+                        <div id="stats" class="tab-pane fade">
+
+                            <!-- start: ROW -->
+                            <div class="row" style="background:#fff;">
+
+                                <style>
+                                    .table th, .table td {
+                                        border-top: none !important;
+                                    }
+                                </style>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding: 25px;">
+                                    <table class="table table-condensed" style="font-size:1.1em">
+                                        <tbody>
+                                        <!-- DATE REGISTERED -->
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Data Cadastrado
+                                            </td>
+                                            <td>{{ $patient->created_at }}</td>
+                                        </tr>
+                                        <!-- USER WHO REGISTERED PATIENT -->
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Cadastrado por
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        <!-- APPOINTMENT COUNT -->
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                N&deg; Agendamentos
+                                            </td>
+                                            <td>{{ count($appointments)}}</td>
+                                        </tr>
+                                        <!-- APPOINTMENTS MISSED -->
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                N&deg; Faltas
+                                            </td>
+                                            <td>{{ $missedAppointments }}</td>
+                                        </tr>
+                                        <!-- IS OUT PATIENT FOR X MANY DAYS -->
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                È nosso paciente á
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        <!-- DAYS TILL NEXT TEETH CLEANING PERMITTED -->
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Dias até próxima limpeza
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        <!-- DAYS SINCE LAST APPOINTMENT -->
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Ùltimo agendamento á
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        <!-- MONEY EARNED FROM PATIENT -->
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">Retorno
+                                                Gerado
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="panel panel-white accepted_plan">
+                                        <div class="panel-body">
+
+                                            <!-- start: GRAPH 1 -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="convas-container">
+                                                    <canvas id="treatment"></canvas>
+                                                </div>
+                                                <div id="js-legend1" class="chart-legend"></div>
+                                                <hr style="color:#fff;">
+                                            </div>
+                                            <!-- end: GRAPH 1 -->
+
+                                            <!-- start: GRAPH 2 -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="convas-container">
+                                                    <canvas id="dplan"></canvas>
+                                                </div>
+                                                <div id="js-legend2" class="chart-legend">
+
+                                                </div>
+                                            </div>
+                                            <!-- end: GRAPH 2 -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end: ROW -->
+
+                        </div>
+                        <!-- end: STATS -->
+
+                    </div>
+                    <!-- end: TAB CONTENT -->
+
+                </div>
+                <!-- end: ROW -->
+
+            </div>
+            <!-- end: PATIENT INFORMATION -->
+
+            <!-- start: MODAL -->
+            <div id="appointment_modal" style="display:none;">
+                <div class="col-md-12">
+                    <h3>Appointment Details
+                        <button class="btn btn-primary pull-right close_subview"><i class="fa fa-times"></i></button>
+                    </h3>
+                    <hr>
+                    <table class="table">
+                        <tr>
+                            <td>#</td>
+                            <td>{! myData.patient.id !}</td>
+                        </tr>
+                        <tr>
+                            <td>Patient Name</td>
+                            <td>{! myData.patient.patient.first_name !} {! myData.patient.patient.last_name !}</td>
+                        </tr>
+                        <tr>
+                            <td>Dentist Name</td>
+                            <td>{! myData.patient.dentist[0].first_name !} {! myData.patient.dentist[0].last_name !}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Appointment Observation</td>
+                            <td>{! myData.patient.appointment_observation !}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- end: MODAL -->
+
+        </div>
+        <!-- end: MAIN CONTAINER -->
+
+    </div>
+    <!-- end: MAIN CONTENT -->
+
+@endsection

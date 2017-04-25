@@ -1,0 +1,4 @@
+.form-group,
+.form-group label,
+.form-group input { display:inline!important; }
+.form-group { margin-right:5px!important;}
