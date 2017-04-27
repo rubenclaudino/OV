@@ -196,14 +196,9 @@ class CalendarController extends Controller
             'holidays'));
     }
 
-    /* public function create()
-     {
-         //
-     }
 
      public function store(Request $request)
      {
-         //
          $clinic_id = Auth::user()->clinic_id;
 
          $appointment = Appointment::create([
@@ -228,7 +223,7 @@ class CalendarController extends Controller
              return response()->json(['status' => 'success', 'message' => 'Some Error Occured']);
          }
      }
-
+/*
      public function show($id)
      {
          $user = Auth::user();

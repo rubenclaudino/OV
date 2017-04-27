@@ -402,9 +402,9 @@ class PatientsController extends Controller
             $patients[$i]->address = $data->address;
 
             $patients[$i]->speciality =
-                DB::select("SELECT `specialities`.*, `patient_speciality`.`patient_id` from `specialities`
-                inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id`
-                where `patient_speciality`.`patient_id` ='" . $data->id . "'");
+                DB::select("SELECT `specialties`.*, `patient_specialty`.`patient_id` from `specialties`
+                inner join `patient_specialty` on `patient_specialty`.`specialty_id` = `specialties`.`id`
+                where `patient_specialty`.`patient_id` ='" . $data->id . "'");
 
             $k = 0;
             foreach ($data->appointments as $v) {

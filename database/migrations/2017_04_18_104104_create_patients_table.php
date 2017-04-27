@@ -17,8 +17,7 @@ class CreatePatientsTable extends Migration
             $table->increments('id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
-            $table->string('email', 100)->unique();
-            $table->string('password', 50);
+            $table->string('email', 100)->nullable();
             $table->string('patient_profile_image')->nullable();
 
             $table->string('country', 50)->nullable();
@@ -123,11 +122,11 @@ class CreatePatientsTable extends Migration
 
             $table->string('profession')->nullable();
 
-            $table->integer('referral_id')->unsigned();
+            $table->integer('referral_id')->unsigned()->nullable();
             $table->foreign('referral_id')->references('id')->on('referrals')->onDelete('cascade');
             $table->integer('clinic_id')->unsigned();
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();

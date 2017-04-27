@@ -86,11 +86,11 @@ $(document).ready(function(){
                $html = "<ul class='patient_dropdown'>";
                $html += "<li><a href='javascript:void(0)' data-id='0' data-toggle='modal' data-target='#patientModal'>Cadastrar novo paciente</a></li>";
                for($i=0;$i< data.length;$i++){
-                  $phone = data[$i].contact.celular_1;
+                  $phone = data[$i].phone_1;
                   if($phone == ''){
                      $phone = 'Não foi encontrado número de contato!';
                   }
-                  $html += "<li data-json='"+JSON.stringify(data[$i])+"' data-id='"+data[$i].id+"' data-telephone='"+data[$i].contact.phone_landline+"'  data-mobile='"+data[$i].contact.celular_1+"' data-observation='"+data[$i].patient_observation+"' data-name='"+data[$i].first_name+" "+data[$i].last_name+"'>"+data[$i].first_name+" "+data[$i].last_name+" <small>("+$phone+")</small></li>";
+                  $html += "<li data-json='"+JSON.stringify(data[$i])+"' data-id='"+data[$i].id+"' data-telephone='"+data[$i].phone_landline+"'  data-mobile='"+data[$i].phone_1+"' data-observation='"+data[$i].patient_observation+"' data-name='"+data[$i].first_name+" "+data[$i].last_name+"'>"+data[$i].first_name+" "+data[$i].last_name+" <small>("+$phone+")</small></li>";
                }
                $html += "</ul>";
                $thisVar.parent().parent().children('ul').remove();
@@ -98,7 +98,7 @@ $(document).ready(function(){
             }else {
                $html = "<ul class='patient_dropdown'>";
                for($i=0;$i< data.length;$i++){
-                  $phone = data[$i].contact.celular_1;
+                  $phone = data[$i].phone_1;
                   if($phone == ''){
                      $phone = 'Não foi encontrado número de contato!';
                   }
@@ -209,7 +209,7 @@ $(document).ready(function(){
                      $html += "<div class='call_block'><div class='col-md-7'><h3>"+$appointments[$i].patient.first_name+" "+$appointments[$i].patient.last_name+"</h3>";
                      $html += "<div class='information'><p><i class='fa fa-clock-o'></i> "+new Date($appointments[$i].appointment_starttime).toString('h:mm tt') +" </p>";
                      $html += "<p><i class='fa fa-phone'></i> "+$appointments[$i].patient.contact.phone_landline+" </p>";
-                     $html += "<p><i class='fa fa-mobile'></i> "+$appointments[$i].patient.contact.celular_1+" </p>";
+                     $html += "<p><i class='fa fa-mobile'></i> "+$appointments[$i].patient.contact.phone_1+" </p>";
                      $html += "</div></div><div class='col-md-5'><select class='form-control selectpicker' data-selected='"+$appointments[$i].status+"' data-id = '"+$appointments[$i].id+"'><option value='1' selected='selected'>Agendado</option><option value='2'>Confirmado</option><option value='3'>Desmarcado</option><option value='4'>Falta</option><option value='5'>Finalizado</option></select></div><div class='clearfix'></div></div>";
 
                      //console.log($html);
@@ -367,7 +367,7 @@ $(document).ready(function(){
       rules: {
          first_name:{required:true},
          last_name:{required:true},
-         celular_1:{required:true,number:true}
+         phone_1:{required:true,number:true}
       },
       submitHandler: function(form) {
          var formData = $('#addQuickPatient').serializeObject();

@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <input class="form-control" id="" name="celular_1" required type="text"
+                                    <input class="form-control" id="" name="phone_1" required type="text"
                                            placeholder="Telefone">
                                 </div>
                             </div>
