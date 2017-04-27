@@ -16,28 +16,21 @@
     </style>
 
     <div class="main-content">
-
         <div class="container" style="min-height: 580px">
 
             <!-- start: MAIN INFO PANEL -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel" style="background: white;margin-top: 10px">
-
                 <!-- start: TABLE HEADER -->
                 <div class="panel-heading header_t1" style="background: whitesmoke;padding: 0px !important;">
-
                     <div class="toolbar row" style="min-height: 100px;background: whitesmoke;border: none;opacity:0.8;">
-
                         <div class="col-sm-6 hidden-xs">
-
                             <div class="table-header">
                                 <h2 style="font-weight: lighter">{{ $title }}</h2>
                                 <p style="font-size: large;">Busca de pacientes</p>
                             </div>
-
                         </div>
 
                         <div class="col-sm-6 col-xs-12">
-
                             <div class="toolbar-tools pull-right" style="padding-top: 10px;">
                                 <!-- start: TOP NAVIGATION MENU -->
                                 <ul class="nav navbar-right" style="opacity: 1">
@@ -54,11 +47,8 @@
                                 </ul>
                                 <!-- end: TOP NAVIGATION MENU -->
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
                 <!-- end: TABLE HEADER -->
 
@@ -87,46 +77,50 @@
                         <!-- start: ROW INFORMATION -->
                         <tbody>
                         <?php
-                        if(!empty($users)){
-                        foreach($users as $data){
+                        if(!empty($patients)){
+                        foreach($patients as $patient){
                         ?>
                         <tr>
                             <!-- ID -->
-                            <td>{{ $data->id }}</td>
+                            <td>{{ $patient->id }}</td>
                             <!-- PROFILE PICTURE -->
                             <td>
                                 <div class="image_cont hidden-print" style="opacity: 0.8">
-                                    @if($data->profile_url != '')
-                                        {{ HTML::image(url('/').'/'.$data->profile_url) }}
+                                    @if($patient->profile_url != '')
+                                        {{ Html::image(url('/').'/'.$patient->profile_url) }}
                                     @else
-                                        @if($data->gender == '1') {{ HTML::image(url('/')."/images/user/female.png") }} @else {{ HTML::image(url('/')."/images/user/male.png") }}  @endif
+                                        @if($patient->gender == '1')
+                                            {{ Html::image(url('/')."/images/user/female.png") }}
+                                        @else
+                                            {{ Html::image(url('/')."/images/user/male.png") }}
+                                        @endif
                                     @endif
                                 </div>
                             </td>
                             <!-- FULL NAME -->
                             <td>
-                                {{ $data->first_name }} {{ $data->last_name }}
+                                {{ $patient->first_name }} {{ $patient->last_name }}
                             </td>
                             <!-- PHONE NUMBER -->
-                            <td>{{ $data->contact->celular_1 }}</td>
+                            <td>{{ $patient->phone_1 }}</td>
                             <!-- PROFESSIONAL - DENTIST -->
                             <td>
-                                @if(isset($data->professional))
-                                    @if($data->professional->gender == 0)
+                                @if(isset($patient->user))
+                                    @if($patient->user->gender == 0)
                                         Dr.
                                     @else
                                         Dra.
                                     @endif
-                                    {{ $data->professional->first_name }}
-                                    {{ $data->professional->last_name }}
+                                    {{ $patient->user->first_name }}
+                                    {{ $patient->user->last_name }}
                                 @else
                                     -
                                 @endif
                             </td>
                             <!-- SPECIALTIES -->
                             <td>
-                                @if($data->speciality)
-                                    @foreach($data->speciality as $d)
+                                @if($patient->speciality)
+                                    @foreach($patient->speciality as $d)
                                         <label class="label label-warning"
                                                style="background: #{{$d->color_code}} !important;opacity: 0.7;">{{ $d->title }}</label>
                                     @endforeach
@@ -138,7 +132,7 @@
                             <!-- DENTAL PLAN -->
                             <td>
                                 <small>
-                                    <?php if ($data->has_dental_plan == '1') {
+                                    <?php if ($patient->has_dental_plan == '1') {
                                         echo 'Convênio';
                                     } else {
                                         echo 'Particular';
@@ -147,10 +141,10 @@
                             </td>
                             <!-- VIP / WHEELCHAIR -->
                             <td>
-                                @if($data->vip == 1)<label class="label label-warning tooltips"
+                                @if($patient->vip == 1)<label class="label label-warning tooltips"
                                                            data-title="Paciente Importante" data-placement="bottom"
                                                            style="background: gold !important;opacity: 0.6;letter-spacing: 1px">VIP</label>@endif
-                                @if($data->wheel_chair == 1)<label class="label label-info tooltips hidden-print"
+                                @if($patient->wheel_chair == 1)<label class="label label-info tooltips hidden-print"
                                                                    data-title="Paciente Cadeirante"
                                                                    data-placement="bottom" style="opacity: 0.6;"><i
                                             class="fa fa-wheelchair"></i></label>@endif
@@ -164,14 +158,14 @@
                                         Opções &nbsp;<span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                        <li><a href="{{ URL::route('patients.show', $data->id) }}">
+                                        <li><a href="{{ URL::route('patients.show', $patient->id) }}">
                                                 <small><i class="fa fa-user fa-fw"></i> &nbsp;Perfil</small>
                                             </a></li>
-                                        <li><a href="{{ URL::route('patients.edit', $data->id) }}">
+                                        <li><a href="{{ URL::route('patients.edit', $patient->id) }}">
                                                 <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
                                             </a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#" data-id="{{ $data->id }}" class="deletePatient">
+                                        <li><a href="#" data-id="{{ $patient->id }}" class="deletePatient">
                                                 <small><i class="fa fa-ban fa-fw"></i> &nbsp;Excluír</small>
                                             </a></li>
                                     </ul>

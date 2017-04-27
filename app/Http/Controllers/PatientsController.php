@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Clinic;
 use App\Disease;
 use App\Patient;
+use App\Referral;
 use App\Specialty;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,29 +16,25 @@ class PatientsController extends Controller
 {
     public function index()
     {
-        //
         $title = "Pacientes";
         $subtitle = 'Informações dos Pacientes';
         $activeClass = "patients";
         $user = Auth::user();
 
-        // getting users
-        $pUsers = array();
+        // TODO: based on roles, filter out patients by clinic
+        $patients = Patient::all();
 
-        $users = Patient::all();
+       /* if ($user->isAdmin() || $user->hasRole('receptionist')) {
+            $users = Patient::where('clinic_id', $user->clinic_id)->get();
+        }*/
 
-        if ($user->isAdmin() || $user->hasRole('receptionist')) {
-            $users = Patient::where('clinic_id', '=', $user->clinic_id)->get();
-        }
-
-        $i = 0;
+       /* $i = 0;
         foreach ($users as $data) {
-            $users[$i]->speciality = DB::select("SELECT `specialities`.*, `patient_speciality`.`patient_id` from `specialities` inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id` where `patient_speciality`.`patient_id` ='" . $data->id . "'");
+            $users[$i]->speciality = DB::select("SELECT `specialties`.*, `patient_speciality`.`patient_id` from `specialties` inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id` where `patient_speciality`.`patient_id` ='" . $data->id . "'");
             $i++;
-        }
+        }*/
 
-        // getting all roles
-        return view('patients.index', compact('title', 'subtitle', 'users', 'activeClass'));
+        return view('patients.index', compact('title', 'subtitle', 'patients', 'activeClass'));
     }
 
     public function create()
@@ -66,11 +62,11 @@ class PatientsController extends Controller
             $professionals[$data->id] = $name;
         }
 
-        // getting treatment types
         $treatments = Specialty::pluck('name', 'id');
+        $referrals = Referral::pluck('name', 'id');
 
         $clinics = Clinic::pluck('name', 'id');
-        return view('patients.create', compact('title', 'subtitle', 'activeClass', 'clinics', 'disease', 'professionals', 'treatments'));
+        return view('patients.create', compact('title', 'subtitle', 'activeClass', 'clinics', 'disease', 'professionals', 'treatments', 'referrals'));
     }
 
     public function store(Request $request)
@@ -81,78 +77,77 @@ class PatientsController extends Controller
 
         // adding patient
         $patient = Patient::create($input);
-        if ($patient->id) {
-
-            // uploading profile image
-            if (isset($input['patient_profile_image'])) {
-                if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
-                    mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
-                }
-                if (!file_exists('uploads/' . Auth::user()->clinic_id . "/patients/profile/" . $patient->id)) {
-                    mkdir('uploads/' . $patient->clinic_id . "/patients/profile/" . $patient->id, 0755, true);
-                }
-                $url = $this->upload($input['patient_profile_image'], Auth::user()->clinic_id . "/patients/profile/" . $patient->id);
-                $patient->profile_url = $url;
-                $patient->save();
-            }
-
-            // adding patient address
-
-            $address = Address::create($input);
-            if ($address) {
-                $patient = $patient::find($patient->id);
-                $patient->address_id = $address->id;
-                $patient->save();
-            }
-
-            // adding patient contact
-
-            $contact = Contact::create($input);
-            if ($contact) {
-                $patient = $patient::find($patient->id);
-                $patient->contact_id = $contact->id;
-                $patient->save();
-            }
-
-            // saving patient disease
-            if (isset($request->diseases)) {
-                $diseases = json_decode($request->diseases);
-                foreach ($diseases as $key => $val) {
-                    $u = PatientDisease::create([
-                        'patient_id' => $patient->id,
-                        'disease_id' => $key,
-                        'status'     => $val
-                    ]);
-                }
-            }
-
-            // adding patient speciality
-
-            if (isset($input['speciality'])) {
-                $speciality = $input['speciality'];
-                foreach ($speciality as $d) {
-                    $check = PatientSpeciality::where([['patient_id', '=', $patient->id], ['speciality_id', '=', $d]])->count();
-                    if ($check > 0) {
-                    } else {
-                        PatientSpeciality::create([
-                            'patient_id'    => $patient->id,
-                            'speciality_id' => $d,
-                        ]);
-                    }
-                }
-            }
-
-            // getting patient
-
-            $p = Patient::find($patient->id);
-            $p->contact = Contact::find($p->contact_id);
-            $p->address = Address::find($p->address_id);
-
-            return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!", 'json' => $p]);
-        } else {
+        if (!$patient->id)
             return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
+
+
+        // uploading profile image
+        if (isset($input['patient_profile_image'])) {
+            if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
+                mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
+            }
+            if (!file_exists('uploads/' . Auth::user()->clinic_id . "/patients/profile/" . $patient->id)) {
+                mkdir('uploads/' . $patient->clinic_id . "/patients/profile/" . $patient->id, 0755, true);
+            }
+            $url = $this->upload($input['patient_profile_image'], Auth::user()->clinic_id . "/patients/profile/" . $patient->id);
+            $patient->patient_profile_image = $url;
+            $patient->save();
         }
 
+        // adding patient address
+        /*
+                    $address = Address::create($input);
+                    if ($address) {
+                        $patient = $patient::find($patient->id);
+                        $patient->address_id = $address->id;
+                        $patient->save();
+                    }
+        */
+        // adding patient contact
+        /*
+                    $contact = Contact::create($input);
+                    if ($contact) {
+                        $patient = $patient::find($patient->id);
+                        $patient->contact_id = $contact->id;
+                        $patient->save();
+                    }*/
+
+        // saving patient disease
+        /*if (isset($request->diseases)) {
+            $diseases = json_decode($request->diseases);
+            foreach ($diseases as $key => $val) {
+                $u = PatientDisease::create([
+                    'patient_id' => $patient->id,
+                    'disease_id' => $key,
+                    'status'     => $val
+                ]);
+            }
+        }*/
+
+        // adding patient speciality
+        // TODO: adding dynamic tabs on specialty select
+        /*
+                    if (isset($input['speciality'])) {
+                        $speciality = $input['speciality'];
+                        foreach ($speciality as $d) {
+                            $check = PatientSpeciality::where([['patient_id', '=', $patient->id], ['speciality_id', '=', $d]])->count();
+                            if ($check > 0) {
+                            } else {
+                                PatientSpeciality::create([
+                                    'patient_id'    => $patient->id,
+                                    'speciality_id' => $d,
+                                ]);
+                            }
+                        }
+                    }
+        */
+        // getting patient
+
+        $p = Patient::find($patient->id);
+        //$p->contact = Contact::find($p->contact_id);
+        //$p->address = Address::find($p->address_id);
+
+        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!", 'json' => $p]);
     }
 
     public function show($id)
@@ -258,7 +253,7 @@ class PatientsController extends Controller
                         if ($check > 0) {
                         } else {
                             PatientSpeciality::create([
-                                'patient_id'    => $patient->id,
+                                'patient_id' => $patient->id,
                                 'speciality_id' => $d,
                             ]);
                         }
@@ -315,7 +310,7 @@ class PatientsController extends Controller
                         $u = PatientDisease::create([
                             'patient_id' => $patient->id,
                             'disease_id' => $key,
-                            'status'     => $val
+                            'status' => $val
                         ]);
                     }
                 }

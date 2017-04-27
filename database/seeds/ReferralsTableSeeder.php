@@ -12,10 +12,14 @@ class ReferralsTableSeeder extends Seeder
     public function run()
     {
         DB::table('referrals')->insert([
-            ['name' => 'Internet search'],
-            ['name' => 'Newspaper'],
-            ['name' => 'Website'],
-            ['name' => 'By recommendation'],
+            ['name' => 'Conhecido'],
+            ['name' => 'TV'],
+            ['name' => 'Rádio'],
+            ['name' => 'Local'],
+            ['name' => 'Outdoor'],
+            ['name' => 'Professional'],
+            ['name' => 'Internet'],
+            ['name' => 'Lista Telefonica']
         ]);
     }
 }
