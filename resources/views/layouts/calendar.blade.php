@@ -47,7 +47,7 @@
     </script>
     <!-- Scripts -->
     <script type="text/javascript">
-        window.Laravel = '<?php echo json_encode(['csrfToken' => csrf_token(), ]); ?>';
+        window.Laravel = '<?php echo json_encode(['csrfToken' => csrf_token(),]); ?>';
         var csrf_token = '{{ csrf_token() }}';
         var APP_URL = '{{ url('/') }}';
     </script>
@@ -69,20 +69,20 @@
 
 <!-- start: CALENDER RIGHT CONTEXT MENU -->
 <ul id="contentAppointmentRightMenu" class="dropdown-menu" aria-labelledby="dropdownMenu2" style="display:none;">
-    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#5bc0de;"></i><a href="#" data-id="1"
-                                                                                                  style="color: #737373">Agendado</a></span>
+    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#5bc0de;"></i>
+            <a href="#" data-id="1" style="color: #737373">Agendado</a></span>
     </li>
-    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#5cb85c;"></i><a href="#" data-id="2"
-                                                                                                  style="color: #737373">Confirmado</a></span>
+    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#5cb85c;"></i>
+            <a href="#" data-id="2" style="color: #737373">Confirmado</a></span>
     </li>
-    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#f0ad4e;"></i><a href="#" data-id="3"
-                                                                                                  style="color: #737373">Desmarcado</a></span>
+    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#f0ad4e;"></i>
+            <a href="#" data-id="3" style="color: #737373">Desmarcado</a></span>
     </li>
-    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#d9534f;"></i><a href="#" data-id="4"
-                                                                                                  style="color: #737373">Falta</a></span>
+    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#d9534f;"></i>
+            <a href="#" data-id="4" style="color: #737373">Falta</a></span>
     </li>
-    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#5e5e5e;"></i><a href="#" data-id="5"
-                                                                                                  style="color: #737373">Finalizado</a></span>
+    <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#5e5e5e;"></i>
+            <a href="#" data-id="5" style="color: #737373">Finalizado</a></span>
     </li>
 </ul>
 <!-- end: CALENDER RIGHT CONTEXT MENU -->
@@ -270,7 +270,7 @@
             var y = date.getFullYear();
             var calEventDiff = 60;
             @if(isset($agendaSettings))
-                    calEventDiff = {{ $agendaSettings->interval }};
+                calEventDiff = {{ $agendaSettings->interval }};
             @else
                 calEventDiff = 15;
             @endif;
@@ -350,7 +350,7 @@
                     defaultRange.start = moment(start);
 
                     @if(isset($agendaSettings))
-                        if (dDiff > {{ $agendaSettings->interval }}) {
+                    if (dDiff > {{ $agendaSettings->interval }}) {
                         defaultRange.end = moment(end);
                     } else {
                         defaultRange.end = moment(start).add({{ $agendaSettings->interval }}, 'minutes');
@@ -358,7 +358,7 @@
                     @else
                         defaultRange.end = moment(end);
                     @endif
-                $.subview({
+$.subview({
                         content: "#newFullEvent",
                         onShow: function () {
                             editFullEvent();
@@ -439,10 +439,10 @@
                                 data: {
                                     "appointment_type_id": event.appointment_type_id,
                                     "speciality_id": event.speciality_id,
-                                    "appointment_observation": event.appointment_observation,
+                                    "observation": event.observation,
                                     "starttimestamp": event.starttimestamp,
                                     "endtimestamp": event.endtimestamp,
-                                    "status": event.status,
+                                    "appointment_status_id": event.appointment_status_id,
                                     "start": new Date(event.start),
                                     "startdate": new Date(event.start).toString('yyyy-M-dd'),
                                     "end": new Date(event.end),
@@ -520,10 +520,10 @@
                                 data: {
                                     "appointment_type_id": event.appointment_type_id,
                                     "speciality_id": event.speciality_id,
-                                    "appointment_observation": event.appointment_observation,
+                                    "aobservation": event.observation,
                                     "starttimestamp": event.starttimestamp,
                                     "endtimestamp": event.endtimestamp,
-                                    "status": event.status,
+                                    "appointment_status_id": event.appointment_status_id,
                                     "start": new Date(event.start),
                                     "startdate": new Date(event.start).toString('yyyy-M-dd'),
                                     "end": new Date(event.end),
@@ -550,7 +550,7 @@
                     }
                 },
                 @if(isset($agendaSettings))
-                    eventConstraint: "businessHours",
+                eventConstraint: "businessHours",
                 selectConstraint: "businessHours",
                 businessHours: [
                     {
@@ -561,17 +561,16 @@
                         @else
                         dow: ["1", "2", "3", "4", "5", "6", "0"]
                         @endif
-
                     }
                 ],
                 scrollTime: '{{ $agendaSettings->start }}',
                 minTime: "{{ $agendaSettings->start }}",
                 maxTime: "{{ $agendaSettings->end }}",
                 @if(isset($agendaSettings->days))
-                    hiddenDays: [{{ implode(',', array_diff(array(1,2,3,4,5,6,0),$agendaSettings->days)) }}],
+                hiddenDays: [{{ implode(',', array_diff(array(1,2,3,4,5,6,0),$agendaSettings->days)) }}],
                 @endif
-            @endif
-        allDaySlot: false,
+                        @endif
+                allDaySlot: false,
                 eventRender: function (event, element, view) {
 
                     var calendar = $('#full-calendar').fullCalendar('getCalendar');
@@ -703,19 +702,19 @@
                 $(".form-full-event .event-end-date").val(defaultRange.end);
 
                 $('.form-full-event .no-all-day-range .event-range-date').val(moment(defaultRange.start).format('MM/DD/YYYY h:mm A') + ' - ' + moment(defaultRange.end).format('MM/DD/YYYY h:mm A'))
-                        .daterangepicker({
-                            startDate: defaultRange.start,
-                            endDate: defaultRange.end,
-                            timePicker: true,
-                            timePickerIncrement: 15,
-                            format: 'MM/DD/YYYY h:mm A'
-                        });
+                    .daterangepicker({
+                        startDate: defaultRange.start,
+                        endDate: defaultRange.end,
+                        timePicker: true,
+                        timePickerIncrement: 15,
+                        format: 'MM/DD/YYYY h:mm A'
+                    });
 
                 $('.form-full-event .all-day-range .event-range-date').val(moment(defaultRange.start).format('MM/DD/YYYY') + ' - ' + moment(defaultRange.end).format('MM/DD/YYYY'))
-                        .daterangepicker({
-                            startDate: defaultRange.start,
-                            endDate: defaultRange.end
-                        });
+                    .daterangepicker({
+                        startDate: defaultRange.start,
+                        endDate: defaultRange.end
+                    });
 
                 $('.form-full-event .event-categories option').filter(function () {
                     return ($(this).text() == "Generic");
@@ -760,25 +759,25 @@
                         $(".form-full-event .event-end-date").val(moment(demoCalendar[i].end));
                         if (typeof $('.form-full-event .no-all-day-range .event-range-date').data('daterangepicker') == "undefined") {
                             $('.form-full-event .no-all-day-range .event-range-date').val(moment(demoCalendar[i].start).format('MM/DD/YYYY h:mm A') + ' - ' + moment(demoCalendar[i].end).format('MM/DD/YYYY h:mm A'))
-                                    .daterangepicker({
-                                        startDate: moment(moment(demoCalendar[i].start)),
-                                        endDate: moment(moment(demoCalendar[i].end)),
-                                        timePicker: true,
-                                        timePickerIncrement: 10,
-                                        format: 'MM/DD/YYYY h:mm A'
-                                    });
+                                .daterangepicker({
+                                    startDate: moment(moment(demoCalendar[i].start)),
+                                    endDate: moment(moment(demoCalendar[i].end)),
+                                    timePicker: true,
+                                    timePickerIncrement: 10,
+                                    format: 'MM/DD/YYYY h:mm A'
+                                });
 
                             $('.form-full-event .all-day-range .event-range-date').val(moment(demoCalendar[i].start).format('MM/DD/YYYY') + ' - ' + moment(demoCalendar[i].end).format('MM/DD/YYYY'))
-                                    .daterangepicker({
-                                        startDate: moment(demoCalendar[i].start),
-                                        endDate: moment(demoCalendar[i].end)
-                                    });
+                                .daterangepicker({
+                                    startDate: moment(demoCalendar[i].start),
+                                    endDate: moment(demoCalendar[i].end)
+                                });
                         } else {
                             $('.form-full-event .no-all-day-range .event-range-date').val(moment(demoCalendar[i].start).format('MM/DD/YYYY h:mm A') + ' - ' + moment(demoCalendar[i].end).format('MM/DD/YYYY h:mm A'))
-                                    .data('daterangepicker').setStartDate(moment(moment(demoCalendar[i].start)));
+                                .data('daterangepicker').setStartDate(moment(moment(demoCalendar[i].start)));
                             $('.form-full-event .no-all-day-range .event-range-date').data('daterangepicker').setEndDate(moment(moment(demoCalendar[i].end)));
                             $('.form-full-event .all-day-range .event-range-date').val(moment(demoCalendar[i].start).format('MM/DD/YYYY') + ' - ' + moment(demoCalendar[i].end).format('MM/DD/YYYY'))
-                                    .data('daterangepicker').setStartDate(demoCalendar[i].start);
+                                .data('daterangepicker').setStartDate(demoCalendar[i].start);
                             $('.form-full-event .all-day-range .event-range-date').data('daterangepicker').setEndDate(demoCalendar[i].end);
                         }
 
@@ -801,14 +800,14 @@
                         // selecting appointment ID
                         $('.form-full-event .appointment_type').val(demoCalendar[i].appointment_type_id);
                         // selecting treatment_type ID
-                        $('.form-full-event .treatment_type').val(demoCalendar[i].speciality_id);
+                        $('.form-full-event .treatment_type').val(demoCalendar[i].specialty_id);
                         // selecting appointment status
-                        $('.form-full-event .appointment_type_status').val(demoCalendar[i].status);
+                        $('.form-full-event .appointment_type_status').val(demoCalendar[i].appointment_status_id);
 
                         $('.form-full-event').find('.selectpicker').selectpicker('refresh');
 
                         // adding appointment observation and patient
-                        $('.form-full-event .appointmentObservation').val(demoCalendar[i].appointment_observation);
+                        $('.form-full-event .appointmentObservation').val(demoCalendar[i].observation);
                         $('.form-full-event .patientObservation').val(demoCalendar[i].patient_observation);
 
                         // appointment treatment block
@@ -929,10 +928,10 @@
                     }
 
                     $("#readFullEvent .event-category")
-                            .empty()
-                            .removeAttr("class")
-                            .addClass("event-category " + eventClass)
-                            .text(demoCalendar[i].treatmentType);
+                        .empty()
+                        .removeAttr("class")
+                        .addClass("event-category " + eventClass)
+                        .text(demoCalendar[i].treatmentType);
                     if (demoCalendar[i].allDay) {
                         $("#readFullEvent .event-allday").show();
                         $("#readFullEvent .event-start").empty().html("<p>Start:</p> <div class='event-day'><h2>" + moment(demoCalendar[i].start).format('DD') + "</h2></div><div class='event-date'><h3>" + moment(demoCalendar[i].start).format('dddd') + "</h3><h4>" + moment(demoCalendar[i].start).format('MMMM YYYY') + "</h4></div>");
@@ -1044,18 +1043,18 @@
                     newEvent.className = formD.appointment_status;
                     newEvent.overlap = false;
                     newEvent.category = $(".form-full-event .event-categories option:checked").text();
-                    newEvent.treatmentType = $(".form-full-event .treatment_type option:checked").text();
-                    newEvent.appointment_observation = $('.form-full-event .appointmentObservation').val();
+                    newEvent.specialty = $(".form-full-event .treatment_type option:checked").text();
+                    newEvent.observation = $('.form-full-event .appointmentObservation').val();
                     newEvent.content = $('.form-full-event .appointmentObservation').val();
                     newEvent.appointment_type_id = formD.appointment_type_id;
                     newEvent.speciality_id = formD.speciality_id;
                     newEvent.dental_plan_id = formD.dental_plan_id;
-                    newEvent.dentist_id = <?php echo $dentist_id;?>;
-                    newEvent.status = formD.appointment_status;
+                    newEvent.user_id = <?php echo $dentist_id;?>;
+                    newEvent.appointment_status_id = formD.appointment_status_id;
                     newEvent.startdate = new Date($('.form-full-event .event-start-date').val()).toString('yyyy-M-dd');
 
                     newEvent._token = csrf_token,
-                            newEvent._method = "POST";
+                        newEvent._method = "POST";
 
                     if (newEvent.className == '1') {
                         newEvent.className = "appointment-status-booked";

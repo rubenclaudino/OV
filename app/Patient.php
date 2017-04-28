@@ -67,4 +67,9 @@ class Patient extends Model
     {
         return $this->hasOne('App\ImplantDetail');
     }
+
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
 }

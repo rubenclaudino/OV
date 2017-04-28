@@ -15,18 +15,28 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('call_type');
+            $table->string('title');
+            //$table->string('call_type');
             $table->string('description');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('status');
-            $table->string('observation');
+            // TODO: convert to carbon and clean up
+            $table->string('starttimestamp');
+            $table->string('endtimestamp');
+            $table->string('start');
+            $table->string('startdate');
+            $table->string('end');
+
+            $table->string('observation')->nullable();
+            $table->string('content')->nullable();
 
             $table->boolean('is_completed');
 
             $table->integer('specialty');
-            $table->integer('dental_plan');
-            
+            $table->integer('dental_plan')->nullable();
+
+            // TODO: why do we need this
+            $table->boolean('allDay');
+            $table->boolean('overlap');
+            $table->string('category')->nullable();
 
             $table->integer('patient_id')->unsigned();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');

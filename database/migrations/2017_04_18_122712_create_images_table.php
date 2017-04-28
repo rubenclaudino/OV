@@ -17,6 +17,8 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('title');
 
+            $table->integer('patient_id')->unsigned();
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->integer('appointment_id')->unsigned();
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
             $table->timestamps();

@@ -408,8 +408,9 @@ class PatientsController extends Controller
 
             $k = 0;
             foreach ($data->appointments as $v) {
-                $dentist = Dentist::where('user_id', '=', $v->dentist_id)->select('first_name', 'last_name')->first();
+                $dentist = User::where('id', $v->dentist_id)->select('first_name', 'last_name')->first();
                 $data->appointments[$k]->dentist = $dentist;
+                $s="";
                 if ($data->appointments[$k]->status == '1') {
                     $s = "Booked";
                 }

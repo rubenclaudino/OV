@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     protected $guarded = ['id'];
+    /*protected $fillable = [
+        'appointment_status_id',
+        'patient_id',
+        'clinic_id',
+        'user_id'
+    ];*/
 
     public function user()
     {
@@ -28,8 +34,10 @@ class Appointment extends Model
         return $this->hasMany('App\Procedure');
     }
 
-    public function images()
+    public function status()
     {
-        return $this->hasMany('App\Image');
+        return $this->belongsTo('App\AppointmentStatus');
     }
+
+
 }
