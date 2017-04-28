@@ -7,12 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     protected $guarded = ['id'];
-    /*protected $fillable = [
-        'appointment_status_id',
-        'patient_id',
-        'clinic_id',
-        'user_id'
-    ];*/
 
     public function user()
     {
@@ -36,7 +30,7 @@ class Appointment extends Model
 
     public function status()
     {
-        return $this->belongsTo('App\AppointmentStatus');
+        return $this->belongsTo('App\AppointmentStatus', 'appointment_status_id', 'id');
     }
 
 

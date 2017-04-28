@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Procedure;
+use App\Specialty;
 use Illuminate\Http\Request;
-use App\TreatmentType;
 use App\Patient;
 use App\Appointment;
-use App\Treatment;
 use App\Payment;
 use App\Clinic;
-use Auth;
 use App\DentalPlan;
+use Illuminate\Support\Facades\Auth;
 
 class TreatmentController extends Controller
 {
 
     public function index()
     {
-        $title = "Treatments";
+        $title = "Procedures";
         $subtitle = 'Informações detalhadas de todos tratamentos';
         $activeClass = "treatments";
         $user = Auth::user();
@@ -56,19 +56,18 @@ class TreatmentController extends Controller
             ]);
             if ($payment->id) {
                 // adding treatment
-                $u = Treatment::create([
+                $u = Procedure::create([
                     'treatment_type_id' => $request->treatment_type_id,
                     'patient_id' => $request->patient_id,
                     'start_date' => date('Y-m-d'),
                     'dentist_id' => $request->dentist_id,
                     'appointment_id' => $request->appointment_id,
                     'observation' => $request->observation,
-                    'patient_id' => $request->patient_id,
                     'payment_id' => $payment->id,
                 ]);
 
                 if ($u->id) {
-                    $treatments = $this->getPatientTreatment($request);
+                    $treatments = $this->getPatientProcedure($request);
                     return $treatments;
                 }
             }
@@ -79,9 +78,8 @@ class TreatmentController extends Controller
 
     public function show($id)
     {
-        $treatment = Treatment::find($id);
+        $treatment = Procedure::find($id);
         if ($treatment->id) {
-            $treatment->payment = $treatment->payment;
             return response()->json(['status' => 'success', 'message' => $treatment]);
         } else {
             return response()->json(['status' => 'error', 'message' => "Some Error Occured!"]);
@@ -104,7 +102,7 @@ class TreatmentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $treatment = Treatment::find($id);
+        $treatment = Procedure::find($id);
         if ($treatment->id) {
             $input = $request->all();
             $treatment->fill($input)->save();
@@ -113,7 +111,7 @@ class TreatmentController extends Controller
             $payment->fill($input)->save();
 
             $request->appointment_id = $treatment->appointment_id;
-            $treatments = $this->getPatientTreatment($request);
+            $treatments = $this->getPatientProcedure($request);
 
             return $treatments;
         } else {
@@ -123,14 +121,8 @@ class TreatmentController extends Controller
 
     public function destroy($id)
     {
-        $treatment = Treatment::find($id);
-
-        if ($treatment->id) {
-            $treatment->delete();
-            return response()->json(['status' => 'success', 'message' => 'Treatment Deleted!']);
-        } else {
-            return response()->json(['status' => 'error', 'message' => 'Some Error Occured!']);
-        }
+        Procedure::destroy($id);
+        return response()->json(['status' => 'success', 'message' => 'Procedure Deleted!']);
     }
 
     /**
@@ -138,22 +130,22 @@ class TreatmentController extends Controller
      */
     public function treatmentTypes()
     {
-        $title = "Treatment Type";
-        $subtitle = "Treatment Types List";
+        $title = "Procedure Type";
+        $subtitle = "Procedure Types List";
         $activeClass = "treatments";
-        $types = TreatmentType::all();
+        $types = Specialty::all();
         $dental_plans = DentalPlan::pluck('title', 'id');
         return view('treatments.types', compact('title', 'subtitle', 'activeClass', 'types', 'dental_plans'));
     }
 
-    public function addTreatmentTypes(Request $request)
+    public function addSpecialtys(Request $request)
     {
-        $type = TreatmentType::create([
+        $type = Specialty::create([
             'title' => $request->title,
             'price' => $request->price,
         ]);
         if ($type) {
-            return response()->json(['status' => 'success', 'message' => 'Treatment Type Added!']);
+            return response()->json(['status' => 'success', 'message' => 'Procedure Type Added!']);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Some Error Occured!']);
         }
@@ -164,7 +156,7 @@ class TreatmentController extends Controller
      */
     public function getPatientTreatment(Request $request)
     {
-        $treatments = Treatment::where('appointment_id', '=', $request->appointment_id)->get();
+        $treatments = Procedure::where('appointment_id', '=', $request->appointment_id)->get();
         $i = 0;
         foreach ($treatments as $data) {
             $treatments[$i]->amount = $data->payment->amount;

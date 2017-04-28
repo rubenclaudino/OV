@@ -64,7 +64,7 @@ class CalendarController extends Controller
         if (!empty($appointments)) {
             foreach ($appointments as $data) {
                 $tempArray = new \stdClass();
-                $className = $data->status;
+                $className = $data->status->class_name;
 
                 $tempArray->id = $data->id;
                 $tempArray->title = $data->patient->first_name . " " . $data->patient->last_name;
@@ -94,10 +94,10 @@ class CalendarController extends Controller
                 $tempArray->patient->appointments = $data->patient->appointments;
                 $tempArray->patient->contact = $data->patient->contact;
                 $tempArray->patient->address = $data->patient->address;
-                $tempArray->start = $data->starttimestamp;
-                $tempArray->end = $data->endtimestamp;
-                $tempArray->starttimestamp = $data->start;
-                $tempArray->endtimestamp = $data->end;
+                $tempArray->starttimestamp = $data->starttimestamp;
+                $tempArray->endtimestamp = $data->endtimestamp;
+                $tempArray->start = $data->start;
+                $tempArray->end = $data->end;
                 $tempArray->allDay = false;
                 $tempArray->className = $className;
                 $tempArray->overlap = false;
@@ -112,9 +112,9 @@ class CalendarController extends Controller
                 $tempArray->appointment_observation = $data->appointment_observation;
 
                 $tempArray->patient->specialty = $data->patient->specialty;
-                   /* DB::select("SELECT `specialties`.*, `treatment_specialties`.`treatment_type_id` from `specialties`
-                    inner join `treatment_specialties` on `treatment_specialties`.`specialty_id` = `specialties`.`id` 
-                    where `treatment_specialties`.`treatment_type_id` = '" . $data->treatment_type_id . "'");*/
+                /* DB::select("SELECT `specialties`.*, `treatment_specialties`.`treatment_type_id` from `specialties`
+                 inner join `treatment_specialties` on `treatment_specialties`.`specialty_id` = `specialties`.`id`
+                 where `treatment_specialties`.`treatment_type_id` = '" . $data->treatment_type_id . "'");*/
 
                 if ($data->created_by != '') {
                     $use = User::find($data->created_by);
@@ -129,7 +129,7 @@ class CalendarController extends Controller
                 array_push($calendarArray, $tempArray);
             }
         }
-//return $calendarArray;
+
         // get holidays
         $holidays = UserHoliday::where('user_id', $id)->get();
         foreach ($holidays as $data) {
@@ -194,25 +194,8 @@ class CalendarController extends Controller
 
     public function update(Request $request, $id)
     {
-        /*Appointment::find($id)->update($request->all());
-        return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);*/
-        $appointment = Appointment::find($id);
-        if ($appointment) {
-            $appointment->appointment_type_id = $request->appointment_type_id;
-            $appointment->specialty = $request->specialty;
-            $appointment->dental_plan_id = $request->dental_plan_id;
-            $appointment->appointment_starttime = $request->start;
-            $appointment->appointment_endtime = $request->end;
-            $appointment->appointment_observation = $request->appointment_observation;
-            $appointment->starttimestamp = $request->starttimestamp;
-            $appointment->endtimestamp = $request->endtimestamp;
-            $appointment->appointment_status_id = $request->appointment_status_id;
-            $appointment->save();
-
-            return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);
-        } else {
-            return response()->json(['status' => 'success', 'message' => 'Some Error Occured']);
-        }
+        Appointment::find($id)->update($request->all());
+        return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);
     }
 
     public function updateStatus(Request $request, $id)
@@ -447,10 +430,9 @@ class CalendarController extends Controller
         return response()->json(['status' => 'success', 'message' => $appointment]);
     }
 
-     public function appointmentdetails($id)
-     {
-         $appointment = Appointment::find($id)->first();
-         return $appointment;
-     }
+    public function appointmentdetails($id)
+    {
+        return Appointment::find($id)->first();
+    }
 
 }
