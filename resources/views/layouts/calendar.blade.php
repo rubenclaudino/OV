@@ -317,13 +317,11 @@
                     // retrieve the dropped element's stored Event Object
                     var originalEventObject = $(this).data('eventObject');
 
-
                     var $categoryClass = $(this).attr('data-class');
                     var $category = $categoryClass.replace("event-", "").toLowerCase().replace(/\b[a-z]/g, function (letter) {
                         return letter.toUpperCase();
                     });
                     // we need to copy it, so that multiple events don't have a reference to the same object
-
 
                     var newEvent = new Object;
                     newEvent.title = originalEventObject.title;
@@ -414,7 +412,10 @@ $.subview({
                             if (event.id == array[i].id) {
                             }
                             else {
-                                if ((array[i].starttimestamp < eventStart && eventStart < array[i].endtimestamp) || (array[i].starttimestamp < eventEnd && eventEnd < array[i].endtimestamp)) {
+                                if ((array[i].starttimestamp < eventStart
+                                    && eventStart < array[i].endtimestamp)
+                                    || (array[i].starttimestamp < eventEnd
+                                    && eventEnd < array[i].endtimestamp)) {
                                     return true;
                                 }
                             }
@@ -520,7 +521,7 @@ $.subview({
                                 data: {
                                     "appointment_type_id": event.appointment_type_id,
                                     "speciality_id": event.speciality_id,
-                                    "aobservation": event.observation,
+                                    "observation": event.observation,
                                     "starttimestamp": event.starttimestamp,
                                     "endtimestamp": event.endtimestamp,
                                     "appointment_status_id": event.appointment_status_id,
@@ -1040,7 +1041,7 @@ $.subview({
                     newEvent.starttimestamp = timestamp1;
                     newEvent.endtimestamp = timestamp2;
                     newEvent.allDay = false;
-                    newEvent.className = formD.appointment_status;
+                    newEvent.className = formD.appointment_status_id;
                     newEvent.overlap = false;
                     newEvent.category = $(".form-full-event .event-categories option:checked").text();
                     newEvent.specialty = $(".form-full-event .treatment_type option:checked").text();

@@ -25,6 +25,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('startdate');
             $table->string('end');
 
+            $table->string('className');
             $table->string('observation')->nullable();
             $table->string('content')->nullable();
 

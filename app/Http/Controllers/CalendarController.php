@@ -168,7 +168,6 @@ class CalendarController extends Controller
             'holidays', 'appointment_statuses'));
     }
 
-
     public function store(Request $request)
     {
         $request['clinic_id'] = Auth::user()->clinic_id;
@@ -195,8 +194,25 @@ class CalendarController extends Controller
 
     public function update(Request $request, $id)
     {
-        Appointment::find($id)->update($request->all());
-        return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);
+        /*Appointment::find($id)->update($request->all());
+        return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);*/
+        $appointment = Appointment::find($id);
+        if ($appointment) {
+            $appointment->appointment_type_id = $request->appointment_type_id;
+            $appointment->specialty = $request->specialty;
+            $appointment->dental_plan_id = $request->dental_plan_id;
+            $appointment->appointment_starttime = $request->start;
+            $appointment->appointment_endtime = $request->end;
+            $appointment->appointment_observation = $request->appointment_observation;
+            $appointment->starttimestamp = $request->starttimestamp;
+            $appointment->endtimestamp = $request->endtimestamp;
+            $appointment->appointment_status_id = $request->appointment_status_id;
+            $appointment->save();
+
+            return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);
+        } else {
+            return response()->json(['status' => 'success', 'message' => 'Some Error Occured']);
+        }
     }
 
     public function updateStatus(Request $request, $id)
