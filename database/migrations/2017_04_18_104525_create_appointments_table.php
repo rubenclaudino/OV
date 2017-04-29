@@ -17,7 +17,7 @@ class CreateAppointmentsTable extends Migration
             $table->increments('id');
             $table->string('title');
             //$table->string('call_type');
-            $table->string('description');
+            //$table->string('description');
             // TODO: convert to carbon and clean up
             $table->string('starttimestamp');
             $table->string('endtimestamp');
@@ -27,11 +27,10 @@ class CreateAppointmentsTable extends Migration
 
             $table->string('className');
             $table->string('observation')->nullable();
-            $table->string('content')->nullable();
 
             $table->boolean('is_completed');
 
-            $table->integer('specialty');
+            //$table->integer('specialty');
             $table->integer('dental_plan')->nullable();
 
             // TODO: why do we need this
@@ -45,6 +44,10 @@ class CreateAppointmentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('clinic_id')->unsigned();
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
+            $table->integer('specialty_id')->unsigned();
+            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
+            $table->integer('dental_plan_id')->unsigned()->nullable();
+            $table->foreign('dental_plan_id')->references('id')->on('dental_plans')->onDelete('cascade');
 
             $table->timestamps();
         });

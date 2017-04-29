@@ -12,4 +12,14 @@ class Specialty extends Model
     {
         return $this->belongsToMany('App\User');
     }
+
+    public function patients()
+    {
+        return $this->belongsToMany('App\Patient');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany('App\Appointment');
+    }
 }

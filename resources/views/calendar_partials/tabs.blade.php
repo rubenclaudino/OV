@@ -85,17 +85,19 @@
                                         </div>
                                         <div class="form-group">
                                             <!-- <label>Treatment Type</label> -->
-                                            {!! Form::select('speciality', $specialities, 'Treatment Type',['class' => 'form-control selectpicker treatment_type']) !!}
+                                            {!! Form::select('specialty_id', $specialties, 'Treatment Type',['class' => 'form-control selectpicker treatment_type']) !!}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label>Appointment Type</label> -->
-                                            {!! Form::select('appointment_type', $types, 'Appointment Type',['class' => 'form-control selectpicker appointment_type']) !!}
+                                            {!! Form::select('appointment_type_id', $types, 'Appointment Type',['class' => 'form-control selectpicker appointment_type']) !!}
                                         </div>
                                         <div class="form-group">
                                             <!-- <label>Dental Plan</label> -->
-                                            {!! Form::select('dental_plan', $dentalPlans, 'Dental Plan',['class' => 'form-control selectpicker dental_plan']) !!}
+                                            {!! Form::select('dental_plan_id', $dentalPlans, 'Dental Plan',['class' => 'form-control selectpicker dental_plan',
+                                            'disabled' => ($dentalPlans->count() <= 0)]) !!}
+
                                         </div>
                                     </div>
                                 </div>

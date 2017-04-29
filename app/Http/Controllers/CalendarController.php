@@ -52,66 +52,52 @@ class CalendarController extends Controller
         $user = User::find($id);
         $types = AppointmentType::pluck('name', 'id');
         $treatmentTypes = Specialty::pluck('name', 'id'); //TreatmentType::pluck('title', 'id');
-        $dentalPlans = DentalPlan::pluck('name', 'id');
         $treatments = Specialty::pluck('name', 'id')->toJson(); //TreatmentType::pluck('price', 'id')->toJson();
-        $appointments = Appointment::where('user_id', $id)->where('clinic_id', $user->clinic_id)->get();
         $treatmentTypesWithPrice = Specialty::all(); // TreatmentType::all();
+        $dentalPlans = DentalPlan::pluck('name', 'id');
+        $appointments = Appointment::where('user_id', $id)->where('clinic_id', $user->clinic_id)->get();
         $report_models = CustomReport::pluck('name', 'id');
-        $specialities = Specialty::pluck('name', 'id');
+        $specialties = Specialty::pluck('name', 'id');
         $appointment_statuses = AppointmentStatus::pluck('name', 'id');
 
         $calendarArray = array();
         if (!empty($appointments)) {
             foreach ($appointments as $data) {
-                $tempArray = new \stdClass();
-                $className = $data->status->class_name;
+                $data->title = $data->patient->first_name . " " . $data->patient->last_name;
 
-                $tempArray->id = $data->id;
-                $tempArray->title = $data->patient->first_name . " " . $data->patient->last_name;
-                //$tempArray->dentist_id = $data->dentist_id;
-                $tempArray->patient_id = $data->patient->id;
+                $data->phone_landline = $data->patient->phone_landline;
+                $data->phone_1 = $data->patient->phone_1;
+                $data->patient_observation = $data->patient->observation;
+                $data->date_of_birth = $data->patient->date_of_birth;
 
-                $tempArray->patient_telephone = $data->patient->phone_landline;
-                $tempArray->patient_mobile = $data->patient->phone_1;
-                $tempArray->patient_observation = $data->patient->observation;
-                $tempArray->dob = $data->patient->date_of_birth;
-
-                $i = 0;
                 foreach ($data->patient->appointments as $v) {
                     $dentist = User::where('id', $v->dentist_id)->select('first_name', 'last_name')->first();
                     $v->dentist = $dentist;
-                    $i++;
                 }
-                $tempArray->patient = new \StdClass;
-                $tempArray->patient->id = $data->patient->id;
-                $tempArray->patient->first_name = $data->patient->first_name;
-                $tempArray->patient->last_name = $data->patient->last_name;
-                $tempArray->patient->vip = $data->patient->vip;
-                $tempArray->patient->profile_url = $data->patient->profile_url;
-                $tempArray->patient->contact = $data->patient->contact;
-                $tempArray->patient->address = $data->patient->address;
-                $tempArray->patient->speciality = $data->speciality;
-                $tempArray->patient->appointments = $data->patient->appointments;
-                $tempArray->patient->contact = $data->patient->contact;
-                $tempArray->patient->address = $data->patient->address;
-                $tempArray->starttimestamp = $data->starttimestamp;
-                $tempArray->endtimestamp = $data->endtimestamp;
-                $tempArray->start = $data->start;
-                $tempArray->end = $data->end;
-                $tempArray->allDay = false;
-                $tempArray->className = $className;
-                $tempArray->overlap = false;
-                $tempArray->category = $data->treatment_type_id;
-                $tempArray->treatmentType = '';
-                $tempArray->speciality = "Speciality";
-                $tempArray->content = $data->appointment_observation;
-                $tempArray->status = $data->status;
-                $tempArray->appointment_type_id = $data->appointment_type_id;
-                $tempArray->specialty_id = $data->specialty_id;
-                $tempArray->dental_plan_id = $data->dental_plan_id;
-                $tempArray->appointment_observation = $data->appointment_observation;
+                //$data->patient = new \StdClass;
+                //$data['patient'] = $data->patient;
+                /*$data->patient->first_name = $data->patient->first_name;
+                $data->patient->last_name = $data->patient->last_name;
+                $data->patient->vip = $data->patient->vip;
+                $data->patient->patient_profile_image = $data->patient->patient_profile_image;
+                $data->patient->contact = $data->patient->contact;
+                $data->patient->address = $data->patient->address;
+                $data->patient->specialty = $data->specialty;
+                $data->patient->appointments = $data->patient->appointments;
+                $data->patient->contact = $data->patient->contact;
+                $data->patient->address = $data->patient->address;*/
 
-                $tempArray->patient->specialty = $data->patient->specialty;
+                //$data->category = $data->treatment_type_id;
+                //$data->treatmentType = '';
+                /*$data['specialty'] = "Specialty";
+                $data->content = $data->appointment_observation;
+                $data->status = $data->status;
+                $data->appointment_type_id = $data->appointment_type_id;
+                $data->specialty_id = $data->specialty_id;
+                $data->dental_plan_id = $data->dental_plan_id;
+                $data->appointment_observation = $data->appointment_observation;*/
+
+                //$data->patient->specialty = $data->patient->specialty;
                 /* DB::select("SELECT `specialties`.*, `treatment_specialties`.`treatment_type_id` from `specialties`
                  inner join `treatment_specialties` on `treatment_specialties`.`specialty_id` = `specialties`.`id`
                  where `treatment_specialties`.`treatment_type_id` = '" . $data->treatment_type_id . "'");*/
@@ -119,26 +105,26 @@ class CalendarController extends Controller
                 if ($data->created_by != '') {
                     $use = User::find($data->created_by);
                     if ($use->hasRole('receptionist')) {
-                        $tempArray->booked_by = 'receptionist';
+                        $data->booked_by = 'receptionist';
                     } else {
-                        $tempArray->booked_by = 'dentist';
+                        $data->booked_by = 'dentist';
                     }
                 } else {
-                    $tempArray->booked_by = 'dentist';
+                    $data->booked_by = 'dentist';
                 }
-                array_push($calendarArray, $tempArray);
+                array_push($calendarArray, $data);
             }
         }
 
         // get holidays
         $holidays = UserHoliday::where('user_id', $id)->get();
         foreach ($holidays as $data) {
-            $hol = new \stdClass();
+            $hol = new $data;
             $hol->title = "Holiday";
-            $hol->start = $data->starttimestamp;
-            $hol->end = $data->endtimestamp;
-            $hol->starttimestamp = $data->starttimestamp;
-            $hol->endtimestamp = $data->endtimestamp;
+            $hol->start = $data->start_date;
+            $hol->end = $data->end_date;
+            //$hol->starttimestamp = $data->starttimestamp;
+            //$hol->endtimestamp = $data->endtimestamp;
             $hol->className = "holiday_event";
             array_push($calendarArray, $hol);
         }
@@ -153,43 +139,31 @@ class CalendarController extends Controller
         // getting current clinic dentists
         $dentist = Role::where('name', 'Dentist')->first()->users()->where('clinic_id', $user->clinic_id)->get();
 
-        //$dentist = Dentist::where('clinic_id', '=', $user->clinic_id)->select("id", "first_name", "last_name", "user_id")->get();
-        //print_r($dentist);
-        /*foreach ($dentist as $d) {
+        foreach ($dentist as $d) {
             $name = $d->first_name . " " . $d->last_name;
-            $professionals[$d->user->id] = $name;
-        }*/
-
+            $d->name = $name;
+        }
         $professionals = $dentist->pluck('name', 'id');
+
         $dentist_id = $user->id;
 
         return view('calendar', compact('title', 'subtitle', 'activeClass', 'types', 'treatmentTypes', 'dentalPlans',
-            'calendarArray', 'professionals', 'dentist_id', 'treatmentTypesWithPrice', 'report_models', 'treatments', 'agendaSettings', 'specialities',
+            'calendarArray', 'professionals', 'dentist_id', 'treatmentTypesWithPrice', 'report_models', 'treatments', 'agendaSettings', 'specialties',
             'holidays', 'appointment_statuses'));
     }
 
     public function store(Request $request)
     {
         $request['clinic_id'] = Auth::user()->clinic_id;
-        $appointment = Appointment::create($request->except('patient', 'patient_observation'));
-
-        if ($appointment->id) {
-            return response()->json(['status' => 'success', 'message' => 'Appointment Saved!', 'id' => $appointment->id]);
-        } else {
-            return response()->json(['status' => 'success', 'message' => 'Some Error Occured']);
-        }
+        $appointment = Appointment::create($request->all());
+        return response()->json(['status' => 'success', 'message' => 'Appointment Saved!', 'id' => $appointment->id]);
     }
 
     public function show($id)
     {
         $user = Auth::user();
-        //
-        if ($user->hasRole('dentistadmin') || $user->hasRole('receptionist')) {
+        if ($user->isAdmin() || $user->hasRole('Local Admin') || $user->hasRole('receptionist'))
             return $this->userAppointments($id);
-        } else {
-            //# code...
-            abort(404);
-        }
     }
 
     public function update(Request $request, $id)
@@ -200,14 +174,9 @@ class CalendarController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
-        $appointment = Appointment::find($id);
-        if ($appointment) {
-            $input = $request->all();
-            $appointment->fill($input)->save();
-            return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);
-        } else {
-            return response()->json(['status' => 'success', 'message' => 'Some Error Occured']);
-        }
+        $status = AppointmentStatus::find($request->status);
+        Appointment::find($id)->update(['appointment_status_id' => $status->id, 'className' => $status->class_name]);
+        return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);
     }
 
     public function destroy($id)

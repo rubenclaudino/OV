@@ -9,7 +9,7 @@
         <!-- start: PATIENT FOTO -->
         <div class="patient_avatar" ng-if="patient">
             <div ng-if="patient.profile_url">
-                <img src="{{ url('/') }}/{[{ patient.profile_url }]}" alt="Patient Image">
+                <img src="{{ url('/') }}/{[{ patient.patient_profile_image }]}" alt="Patient Image">
             </div>
             <div ng-if="!patient.profile_url">
                 <img src="{{ url('/') }}/images/anonymous.png" alt="Patient Image">
@@ -38,7 +38,7 @@
             <!-- start: SPECIALTY -->
             <div class="patient_speciality">
                     <span class="label label-default" ng-repeat="speciality in patient.speciality"
-                          style="background: #{[{ speciality.color_code }]} !important;opacity: 0.7;letter-spacing: 1px !important;margin-right: 5px;">{[{ speciality.name }]}</span>
+                          style="background: #{[{ speciality.color_code }]} !important;opacity: 0.7;letter-spacing: 1px !important;margin-right: 5px;">{[{ specialty.name }]}</span>
                 <br>
             </div>
             <!-- end: SPECIALTY -->

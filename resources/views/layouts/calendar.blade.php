@@ -47,7 +47,7 @@
     </script>
     <!-- Scripts -->
     <script type="text/javascript">
-        window.Laravel = '<?php echo json_encode(['csrfToken' => csrf_token(),]); ?>';
+        window.Laravel = '<?php use Illuminate\Support\Facades\Auth;echo json_encode(['csrfToken' => csrf_token(),]); ?>';
         var csrf_token = '{{ csrf_token() }}';
         var APP_URL = '{{ url('/') }}';
     </script>
@@ -439,7 +439,7 @@ $.subview({
                                 url: APP_URL + '/calendar/' + event.id,
                                 data: {
                                     "appointment_type_id": event.appointment_type_id,
-                                    "speciality_id": event.speciality_id,
+                                    "specialty_id": event.specialty_id,
                                     "observation": event.observation,
                                     "starttimestamp": event.starttimestamp,
                                     "endtimestamp": event.endtimestamp,
@@ -520,7 +520,7 @@ $.subview({
                                 url: APP_URL + '/calendar/' + event.id,
                                 data: {
                                     "appointment_type_id": event.appointment_type_id,
-                                    "speciality_id": event.speciality_id,
+                                    "specialty_id": event.specialty_id,
                                     "observation": event.observation,
                                     "starttimestamp": event.starttimestamp,
                                     "endtimestamp": event.endtimestamp,
@@ -754,7 +754,7 @@ $.subview({
                         $(".form-full-event .all-day").bootstrapSwitch('state', demoCalendar[i].allDay);
                         $(".form-full-event .patient_telephone").val(demoCalendar[i].patient_telephone);
                         $(".form-full-event .patient_mobile").val(demoCalendar[i].patient_mobile);
-                        //$(".form-full-event .patientObservation").val(demoCalendar[i].patient_observation);
+                        $(".form-full-event .patientObservation").val(demoCalendar[i].patient_observation);
                         $(".form-full-event .all-day").bootstrapSwitch('state', demoCalendar[i].allDay);
                         $(".form-full-event .event-start-date").val(moment(demoCalendar[i].start));
                         $(".form-full-event .event-end-date").val(moment(demoCalendar[i].end));
@@ -1034,25 +1034,23 @@ $.subview({
 
                     var newEvent = new Object;
                     newEvent.title = $(".form-full-event .event-name ").val();
-
                     newEvent.start = new Date($('.form-full-event .event-start-date').val());
                     newEvent.end = new Date($('.form-full-event .event-end-date').val());
-
+                    newEvent.startdate = new Date($('.form-full-event .event-start-date').val()).toString('yyyy-M-dd');
                     newEvent.starttimestamp = timestamp1;
                     newEvent.endtimestamp = timestamp2;
                     newEvent.allDay = false;
-                    newEvent.className = formD.appointment_status_id;
                     newEvent.overlap = false;
-                    newEvent.category = $(".form-full-event .event-categories option:checked").text();
-                    newEvent.specialty = $(".form-full-event .treatment_type option:checked").text();
-                    newEvent.observation = $('.form-full-event .appointmentObservation').val();
-                    newEvent.content = $('.form-full-event .appointmentObservation').val();
-                    newEvent.appointment_type_id = formD.appointment_type_id;
-                    newEvent.speciality_id = formD.speciality_id;
-                    newEvent.dental_plan_id = formD.dental_plan_id;
-                    newEvent.user_id = <?php echo $dentist_id;?>;
+                    newEvent.className = formD.appointment_status_id;
                     newEvent.appointment_status_id = formD.appointment_status_id;
-                    newEvent.startdate = new Date($('.form-full-event .event-start-date').val()).toString('yyyy-M-dd');
+                    newEvent.appointment_type_id = formD.appointment_type_id;
+                    newEvent.dental_plan_id = formD.dental_plan_id;
+                    newEvent.specialty_id = formD.specialty_id;
+                    newEvent.category = $(".form-full-event .event-categories option:checked").text();
+                    //newEvent.specialty = $(".form-full-event .treatment_type option:checked").text();
+                    //newEvent.observation = $('.form-full-event .appointmentObservation').val();
+                    newEvent.observation = $('.form-full-event .appointmentObservation').val();
+                    newEvent.user_id = <?php echo $dentist_id;?>;
 
                     newEvent._token = csrf_token,
                         newEvent._method = "POST";
@@ -1088,12 +1086,12 @@ $.subview({
                             }
                         }
                     } else {
-                        newEvent.id = el;
+                        //newEvent.id = el;
                         newEvent.patient_id = formD.patient_id;
-                        newEvent.patient = $.parseJSON($('#patient_json').val());
+                        /*newEvent.patient = $.parseJSON($('#patient_json').val());
                         newEvent.patient_telephone = $('.form-full-event .patient_telephone').val();
                         newEvent.patient_mobile = $('.form-full-event .patient_mobile').val();
-                        newEvent.patient_observation = $('.form-full-event .patientObservation').val();
+                        newEvent.patient_observation = $('.form-full-event .patientObservation').val();*/
                     }
                     $.blockUI({
                         message: '<i class="fa fa-spinner fa-spin"></i> Saving Appointment ...'

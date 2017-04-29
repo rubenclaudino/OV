@@ -33,5 +33,8 @@ class Appointment extends Model
         return $this->belongsTo('App\AppointmentStatus', 'appointment_status_id', 'id');
     }
 
-
+    public function specialty()
+    {
+        return $this->belongsTo('App\Specialty');
+    }
 }

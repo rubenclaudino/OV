@@ -1,1390 +1,489 @@
 <!DOCTYPE html>
-<html class=" js no-touch csstransitions" lang="pt-br">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title style="font-variant:small-caps">Odontovision</title>
-    <meta charset="utf-8">
-    <meta name="description" content="Odontovision">
-    <meta name="author" content="Ruben Matos">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="{{ url('/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="Odontovision_files/font-awesome.css" rel="stylesheet">
-
-    <style>
-        /* Author:WebThemez
-     * Author URI:http://webthemez.com
-     * License: Creative Commons Attribution 3.0 License (https://creativecommons.org/licenses/by/3.0/)
-     */
-        @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,400,700);
-        @import url(http://fonts.googleapis.com/css?family=Raleway:700,400,300);
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .brand {
-            font-family: 'Raleway', sans-serif;
-        }
-
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            font-size: 15px;
-            line-height: 1.50;
-            color: #333333;
-            background-color: #ffffff;
-            position: relative;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: #333333;
-        }
-
-        h1 {
-            font-size: 22px;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            font-size: 22px;
-        }
-
-        h4 {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        h5 {
-            font-size: 16px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        h6 {
-            font-weight: 700;
-        }
-
-        h1 span,
-        h2 span,
-        h3 span,
-        h4 span {
-            color: #3399FF;
-        }
-
-        .colored {
-            color: #3399FF;
-        }
-
-        a {
-            color: #55acee;
-        }
-
-        a:hover {
-            color: #7fb0d5;
-        }
-
-        a:focus,
-        a:active {
-            outline: none;
-        }
-
-        .large {
-            font-size: 18px;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-        .list-unstyled li {
-            padding: 5px 0;
-        }
-
-        .list-horizontal {
-            padding: 15px 0;
-        }
-
-        .list-horizontal-item img {
-            display: block;
-            margin: 0 auto;
-        }
-
-        .list-icons {
-            padding: 0;
-            margin: 20px 0;
-            list-style: none;
-            font-size: 18px;
-        }
-
-        .list-icons li {
-            padding: 0 0 15px 0;
-        }
-
-        blockquote {
-            border-left: none;
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .title {
-            margin-top: 0;
-        }
-
-        /* Layout
-        ----------------------------------------------------------------------------- */
-        .header {
-            color: #ffffff;
-            background-color: rgba(0, 0, 0, 1);
-            padding: 10px 0;
-            -webkit-transition: all 0.2s ease-in-out;
-            -moz-transition: all 0.2s ease-in-out;
-            -o-transition: all 0.2s ease-in-out;
-            -ms-transition: all 0.2s ease-in-out;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .banner {
-            width: 100%;
-            height: 100%;
-            min-height: 100%;
-            position: relative;
-        }
-
-        .banner:after {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            content: "";
-            /* Button Color */
-            /*background: linear-gradient(#1FAECE , #35B6D2);*/
-            /* Azure Color */
-            /*background: linear-gradient(to bottom, #00d5e6 0px, #00bdcc 100%);*/
-            /* Blue Color 8cd3ff */
-            /*background: linear-gradient(to bottom, #0099cc 0px, #0099cc 100%)*/
-            /* Blue Web Preset */
-            background: linear-gradient(to bottom, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
-            /* Blue Modern  , #97CDEF */
-            /*background: linear-gradient(#5DC1FF , #53ADE5 , #5DC1FF);*/
-        }
-
-        .banner-caption {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            z-index: 2;
-        }
-
-        .subfooter {
-            background-color: #3399FF;
-            padding: 40px 0;
-        }
-
-        .subfooter a {
-            color: #3399FF;
-        }
-
-        .section {
-            background-color: #ffffff;
-            padding: 80px 0;
-        }
-
-        /* Backgrounds
-        ----------------------------------------------------------------------------- */
-        .default-bg {
-            background-color: #222222;
-            color: #ffffff;
-        }
-
-        .default-bg.blue {
-            background-color: #55acee;
-        }
-
-        .btn-primary {
-            color: #fff;
-            background-color: #3399FF;
-            border: 0px;
-        }
-
-        .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-            color: #fff;
-            background-color: #3399FF;
-            border: 0px;
-        }
-
-        .transprant-bg {
-            color: #ffffff;
-        }
-
-        .default-bg h1,
-        .default-bg h2,
-        .default-bg h3,
-        .default-bg h4,
-        .default-bg h5,
-        .default-bg h6,
-        .transprant-bg h1,
-        .transprant-bg h2,
-        .transprant-bg h3,
-        .transprant-bg h4,
-        .transprant-bg h5,
-        .transprant-bg h6 {
-            color: #ffffff;
-        }
-
-        .default-bg blockquote footer,
-        .transprant-bg blockquote footer {
-            color: #cccccc;
-        }
-
-        .default-bg a,
-        .transprant-bg a {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        .default-bg a:hover,
-        .transprant-bg a:hover {
-            text-decoration: none;
-        }
-
-        .transprant-bg {
-            -webkit-background-size: cover !important;
-            -moz-background-size: cover !important;
-            -o-background-size: cover !important;
-            background-size: cover !important;
-            background-position: 50% 0;
-            background-repeat: no-repeat;
-            z-index: 1;
-            position: relative;
-            background: #fff;
-        }
-
-        .transprant-bg .transprant-bg {
-            margin-top: 80px;
-            z-index: 3;
-        }
-
-        .transprant-bg:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            width: 100%;
-            height: 100%;
-            background-color: #3399FF;
-        }
-
-        .transprant-bg.blue:after {
-            background-color: rgba(85, 172, 238, 0.7);
-        }
-
-        .transprant-bg .container {
-            z-index: 3;
-            position: relative;
-        }
-
-        .bg-image-1 {
-            background: url("../images/bg-image-1.jpg") 50% 0px no-repeat;
-        }
-
-        .bg-image-2 {
-        }
-
-        .caption-data {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            z-index: 20;
-            text-align: center;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
-
-        .caption-data h1 {
-            text-transform: uppercase;
-        }
-
-        .caption-data h1 span {
-            font-size: inherit;
-            line-height: inherit;
-            font-weight: inherit;
-        }
-
-        .caption-data h3 {
-            line-height: 34px;
-        }
-
-        button.cta-button.btn-light, button.cta-button.btn-dark, .contact-form button.cta-button, button.cta-button.btn-default {
-            background: transparent;
-        }
-
-        button.cta-button {
-            font-size: 16px;
-            line-height: 16px;
-            border: 1px solid #fff;
-            padding: 20px 42px;
-            border-radius: 4px;
-            font-family: 'Raleway';
-            font-weight: 600;
-            transition: background 0.3s, border-color 0.3s;
-            margin-top: 20px;
-        }
-
-        button.cta-button:hover {
-            background: #fff;
-            color: #000;
-        }
-
-        /* Misc
-        ----------------------------------------------------------------------------- */
-        .no-view {
-            opacity: 0;
-            filter: alpha(opacity=0);
-        }
-
-        .object-visible,
-        .touch .no-view {
-            opacity: 1 !important;
-            filter: alpha(opacity=100) !important;
-        }
-
-        /* Targeting only Firefox for smoothest animations */
-        @-moz-document url-prefix() {
-            .object-visible,
-            .touch .no-view {
-                -webkit-transition: opacity 0.6s ease-in-out;
-                -moz-transition: opacity 0.6s ease-in-out;
-                -o-transition: opacity 0.6s ease-in-out;
-                -ms-transition: opacity 0.6s ease-in-out;
-                transition: opacity 0.6s ease-in-out;
-            }
-        }
-
-        .space {
-            padding: 20px 0;
-        }
-
-        .pr-10 {
-            padding-right: 10px;
-        }
-
-        .pl-10 {
-            padding-left: 10px;
-        }
-
-        .pclear {
-            padding-bottom: 0;
-        }
-
-        .secPadding {
-            padding: 70px 0;
-        }
-
-        /* Sections
-        ----------------------------------------------------------------------------- */
-        .banner-caption h1,
-        .banner-caption h2,
-        .banner-caption h3,
-        .banner-caption h4,
-        .banner-caption h5,
-        .banner-caption h6 {
-            color: #ffffff;
-        }
-
-        .banner-caption h1 {
-            font-size: 42px;
-        }
-
-        .footer h1 {
-            color: #fff;
-        }
-
-        .footer.section {
-            background: whitesmoke;
-            color: #949494;
-        }
-
-        .subfooter p {
-            margin-bottom: 0;
-            color: #fff;
-        }
-
-        .hero-caption {
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .hero-caption h2 {
-            text-align: center;
-        }
-
-        .hero-caption p {
-
-        }
-
-        /* Template Components
-        ----------------------------------------------------------------------------- */
-        /* Buttons
-        ---------------------------------- */
-        .btn {
-            padding: 8px 15px;
-            font-size: 22px;
-            line-height: 1.42857143;
-            min-width: 160px;
-            text-align: center;
-            border-radius: 0;
-            text-transform: uppercase;
-            -webkit-transition: all 0.2s ease-in-out;
-            -moz-transition: all 0.2s ease-in-out;
-            -ms-transition: all 0.2s ease-in-out;
-            -o-transition: all 0.2s ease-in-out;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .btn-default {
-            color: #FFFFFF;
-            background: #3399FF;
-            border: 0;
-        }
-
-        .btn-default:hover {
-            color: #ffffff;
-            background-color: #3399FF;
-            border: 0;
-        }
-
-        .btn-xl {
-            color: #FFFFFF;
-            background: #3399FF;
-            border: 0;
-        }
-
-        .btn-xl:hover {
-            color: #ffffff;
-            background-color: #3399FF;
-            border: 0;
-        }
-
-        /* Collapse
-        ---------------------------------- */
-        .panel-group .panel {
-            -webkit-border-radius: 0px;
-            -moz-border-radius: 0px;
-            border-radius: 0px;
-            border: none;
-        }
-
-        .panel-default > .panel-heading {
-            padding: 0;
-            outline: none;
-            border: none;
-            -webkit-border-radius: 0;
-            -moz-border-radius: 0;
-            -o-border-radius: 0;
-            border-radius: 0;
-            width: 100%;
-        }
-
-        .panel-default > .panel-heading + .panel-collapse > .panel-body {
-            border: 1px solid #f0f0f0;
-            border-top: none;
-            background-color: #fafafa
-        }
-
-        .panel-heading a {
-            font-weight: 400;
-            padding: 12px 35px 12px 15px;
-            display: inline-block;
-            width: 100%;
-            background-color: #fff;
-            color: #3399FF;
-            position: relative;
-            text-decoration: none;
-            border: #ECECEC 1px solid;
-        }
-
-        .panel-heading a.collapsed {
-            color: #333333;
-            background-color: #FAFAFA;
-        }
-
-        .panel-heading a:after {
-            font-family: "FontAwesome";
-            content: "\f147";
-            position: absolute;
-            right: 15px;
-            font-size: 14px;
-            font-weight: 300;
-            top: 50%;
-            line-height: 1;
-            margin-top: -7px;
-        }
-
-        .panel-heading a.collapsed:after {
-            content: "\f196";
-        }
-
-        .panel-heading a:hover {
-            text-decoration: none;
-            background-color: #FFFFFF;
-            color: #3399FF;
-        }
-
-        .panel-title a i {
-            padding-right: 10px;
-            font-size: 20px;
-        }
-
-        /* Pills
-        ---------------------------------- */
-        .nav-pills > li.active > a,
-        .nav-pills > li.active > a:hover,
-        .nav-pills > li.active > a:focus,
-        .nav-pills > li > a:hover {
-            background-color: #3399FF;
-            border-color: #3399FF;
-            color: #ffffff;
-        }
-
-        .nav-pills > li > a {
-            border-radius: 0;
-            padding: 8px 20px;
-            border: 1px solid #cacaca;
-            color: #666666;
-            font-size: 12px;
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-
-        /* Forms
-        ---------------------------------- */
-        .form-control {
-            height: 45px;
-            -webkit-border-radius: 0px;
-            -moz-border-radius: 0px;
-            border-radius: 0px;
-        }
-
-        .form-control-feedback {
-            color: #cccccc;
-        }
-
-        .has-feedback label.sr-only ~ .form-control-feedback {
-            top: 15px;
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        .price-table .panel-heading {
-            padding: 10px 0;
-        }
-
-        /* Modals
-        ---------------------------------- */
-        .modal-content {
-            -webkit-border-radius: 0px;
-            -moz-border-radius: 0px;
-            border-radius: 0px;
-        }
-
-        .modal-header {
-            background-color: #626262;
-            color: #ffffff;
-        }
-
-        .modal-header h4 {
-            color: #ffffff;
-        }
-
-        .modal-header .close {
-            font-weight: 300;
-            color: #FFFFFF;
-            text-shadow: none;
-            filter: alpha(opacity=100);
-            opacity: 1;
-        }
-
-        @media (min-width: 1200px) {
-            .modal-lg {
-                width: 1140px;
-            }
-        }
-
-        /* Media
-        ---------------------------------- */
-        .media .fa {
-            font-size: 24px;
-            width: 40px;
-            height: 25px;
-            line-height: 25px;
-            padding: 0 5px;
-            text-align: center;
-        }
-
-        /* Navigations
-        ----------------------------------------------------------------------------- */
-        .header .navbar {
-            margin-bottom: 0;
-        }
-
-        .main-navigation .navbar-default {
-            background-color: transparent;
-            border: none;
-        }
-
-        .main-navigation .navbar-default .navbar-nav > li > a {
-            color: #fff;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: 400;
-        }
-
-        .main-navigation .navbar-default .navbar-nav > li.active > a {
-            background-color: transparent;
-            color: #3399FF;
-        }
-
-        .main-navigation .navbar-default .navbar-nav > li > a:hover,
-        .main-navigation .navbar-default .navbar-nav > li.active > a:hover {
-            color: #3399FF;
-        }
-
-        /* carousel */
-        #quote-carousel {
-            padding: 0 10px 30px 10px;
-            margin-top: 30px;
-        }
-
-        /* Control buttons  */
-        #quote-carousel .carousel-control {
-            background: none;
-            color: #222;
-            font-size: 2.3em;
-            text-shadow: none;
-            margin-top: 30px;
-        }
-
-        /* Previous button  */
-        #quote-carousel .carousel-control.left {
-            left: -12px;
-        }
-
-        /* Next button  */
-        #quote-carousel .carousel-control.right {
-            right: -12px !important;
-        }
-
-        /* Changes the position of the indicators */
-        #quote-carousel .carousel-indicators {
-            right: 50%;
-            top: auto;
-            bottom: 0px;
-            margin-right: -19px;
-        }
-
-        /* Changes the color of the indicators */
-        #quote-carousel .carousel-indicators li {
-            background: #c0c0c0;
-        }
-
-        #quote-carousel .carousel-indicators .active {
-            background: #333333;
-        }
-
-        #quote-carousel img {
-            width: 250px;
-            height: 100px
-        }
-
-        /* End carousel */
-
-        .item blockquote {
-            border-left: none;
-            margin: 0;
-        }
-
-        .item blockquote img {
-            margin-bottom: 10px;
-        }
-
-        .item blockquote p:before {
-            content: "\f10d";
-            font-family: 'Fontawesome';
-            float: left;
-            margin-right: 10px;
-        }
-
-        /**
-          MEDIA QUERIES
-        */
-
-        /* Small devices (tablets, 768px and up) */
-        @media (min-width: 768px) {
-            #quote-carousel {
-                margin-bottom: 0;
-                padding: 0 40px 30px 40px;
-            }
-
-        }
-
-        /* Small devices (tablets, up to 768px) */
-        @media (max-width: 768px) {
-
-            /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
-            #quote-carousel .carousel-indicators {
-                bottom: -20px !important;
-            }
-
-            #quote-carousel .carousel-indicators li {
-                display: inline-block;
-                margin: 0px 5px;
-                width: 15px;
-                height: 15px;
-            }
-
-            #quote-carousel .carousel-indicators li.active {
-                margin: 0px 5px;
-                width: 20px;
-                height: 20px;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .main-navigation .navbar-default .navbar-nav > li > a {
-                padding-top: 30px;
-                padding-bottom: 30px;
-                -webkit-transition: all 0.3s ease-in-out;
-                -moz-transition: all 0.3s ease-in-out;
-                -o-transition: all 0.3s ease-in-out;
-                -ms-transition: all 0.3s ease-in-out;
-                transition: all 0.3s ease-in-out;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 991px) {
-            .main-navigation .container-fluid {
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .navbar-nav {
-                float: left !important;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .header.navbar-fixed-top {
-                position: absolute;
-            }
-        }
-
-        /* Fixed Header
-        ----------------------------------------------------------------------------- */
-        .fixed-header-on .header {
-            background-color: rgba(0, 0, 0, 0.95);
-            padding: 5px 0;
-        }
-
-        .fixed-header-on .brand {
-            font-size: 24px;
-        }
-
-        .fixed-header-on .logo {
-            -webkit-transform: scale(0.8);
-            transform: scale(0.8);
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-
-        @media (min-width: 768px) {
-            .fixed-header-on .navbar-default .navbar-nav > li > a {
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .fixed-header-on .logo,
-            .fixed-header-on .brand,
-            .fixed-header-on .site-slogan {
-                display: none;
-            }
-        }
-
-        /* Blocks/Widgets
-        ----------------------------------------------------------------------------- */
-        /* Logo, Site Name, Site Slogan
-        ---------------------------------- */
-        .logo {
-            margin: 10px 0px 10px 0;
-            -webkit-transition: all 0.3s ease-in-out;
-            -moz-transition: all 0.3s ease-in-out;
-            -o-transition: all 0.3s ease-in-out;
-            -ms-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .logo,
-        .logo-section {
-            float: left;
-        }
-
-        .brand {
-            font-size: 38px;
-            -webkit-transition: all 0.3s ease-in-out;
-            -moz-transition: all 0.3s ease-in-out;
-            -o-transition: all 0.3s ease-in-out;
-            -ms-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-            padding: 10px 0;
-        }
-
-        .brand a {
-            color: #ffffff;
-        }
-
-        .brand a:hover {
-            text-decoration: none;
-        }
-
-        .site-slogan {
-            font-size: 12px;
-        }
-
-        /* block-lists
-        ---------------------------------- */
-        .block-list .media-left {
-            width: 60px;
-        }
-
-        .block-list p {
-            font-size: 16px;
-        }
-
-        .block-list .fa {
-            border: 1px solid #fff;
-            padding: 20px;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-        }
-
-        /* Social Links
-        ---------------------------------- */
-        .social-links {
-            padding: 0;
-            list-style: none;
-            margin: 15px 0;
-        }
-
-        .social-links li {
-            margin: 10px 10px 10px 0;
-            display: inline-block;
-            font-size: 36px;
-        }
-
-        .social-links li a {
-            color: #BBBBBB;
-            -webkit-transition: all 0.2s ease-in-out;
-            -moz-transition: all 0.2s ease-in-out;
-            -o-transition: all 0.2s ease-in-out;
-            -ms-transition: all 0.2s ease-in-out;
-            transition: all 0.2s ease-in-out;
-            border: 1px solid #D0D0D0;
-            width: 52px;
-            height: 52px;
-            display: inline-block;
-            border-radius: 50%;
-            font-size: 26px;
-            text-align: center;
-            padding: 4px;
-        }
-
-        .social-links li.twitter a:hover {
-            color: #55acee;
-        }
-
-        .social-links li.skype a:hover {
-            color: #00aff0;
-        }
-
-        .social-links li.linkedin a:hover {
-            color: #0976b4;
-        }
-
-        .social-links li.googleplus a:hover {
-            color: #dd4b39;
-        }
-
-        .social-links li.youtube a:hover {
-            color: #b31217;
-        }
-
-        .social-links li.flickr a:hover {
-            color: #ff0084;
-        }
-
-        .social-links li.facebook a:hover {
-            color: #3b5998;
-        }
-
-        .social-links li.pinterest a:hover {
-            color: #cb2027;
-        }
-
-        /* Isotope Items
-        ---------------------------------- */
-        .filters {
-            margin: 0 0 30px 0;
-        }
-
-        .filters .nav-pills > li {
-            margin-right: 2px;
-            margin-bottom: 2px;
-        }
-
-        .filters .nav-pills > li + li {
-            margin-left: 0px;
-        }
-
-        .text-center.filters .nav-pills > li {
-            margin-right: 2px;
-            margin-left: 2px;
-            margin-bottom: 2px;
-            display: inline-block;
-            float: none;
-        }
-
-        .isotope-container {
-            overflow: hidden;
-        }
-
-        .isotope-item {
-            margin-bottom: 20px;
-        }
-
-        .isotope-item .btn-default .btn-xl {
-            color: #FFFFFF;
-            background: rgba(245, 255, 6, 0.69);
-            margin-top: -36px;
-            z-index: 2;
-            position: relative;
-            border: 0;
-        }
-
-        .isotope-item .btn-default:hover .btn-xl {
-            color: #ffffff;
-        }
-
-        @media (max-width: 480px) {
-            .filters .nav-pills > li {
-                width: 100%;
-                display: block;
-            }
-        }
-
-        /* Images Overlay
-        ----------------------------------------------------------------------------- */
-        .overlay-container {
-            position: relative;
-            display: block;
-            overflow: hidden;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            bottom: -1px;
-            left: 0;
-            right: -1px;
-            background-color: rgba(206, 219, 10, 0.78);
-            cursor: pointer;
-            overflow: hidden;
-            opacity: 0;
-            filter: alpha(opacity=0);
-            -webkit-transform: scale(0.8);
-            transform: scale(0.8);
-            -webkit-transition: all linear 0.2s;
-            -moz-transition: all linear 0.2s;
-            -ms-transition: all linear 0.2s;
-            -o-transition: all linear 0.2s;
-            transition: all linear 0.2s;
-        }
-
-        .overlay:hover {
-            text-decoration: none;
-        }
-
-        .overlay span {
-            position: absolute;
-            display: block;
-            bottom: 10px;
-            text-align: center;
-            width: 100%;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 300;
-        }
-
-        .overlay i {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            font-size: 18px;
-            line-height: 1px;
-            color: #ffffff;
-            margin-top: -8px;
-            margin-left: -8px;
-            text-align: center;
-        }
-
-        .overlay-container:hover .overlay {
-            opacity: 1;
-            filter: alpha(opacity=100);
-            -webkit-transform: scale(1);
-            transform: scale(1);
-        }
-
-        #contact {
-            color: #3399FF;
-            font-size: 40px
-        }
-
-        .myHoverDiv {
-            position: absolute;
-            z-index: 3001;
-            opacity: 0.95;
-            margin-top: 70px;
-            left: 10%;
-            right: 10%;
-            visibility: hidden;
-            background: #e7e7e7;
-            width: 80%;
-            height: 150px;
-        }
-
-        .myInnner {
-            position: relative;
-            opacity: 0.80;
-            padding: 50px;
-            margin-left: 10%;
-            margin-right: 10%;
-        }
-
-        .myButtonSet {
-            border-radius: 0px;
-            font-size: 20px;
-            margin: 15px;
-        }
-
-        .myHoverDiv:after {
-            opacity: 0.5;
-            content: '';
-            font-size: 5px;
-            position: absolute;
-            top: -13px;
-            left: 78%;
-            right: 0;
-            margin: 0 auto;
-            width: 0;
-            height: 0;
-            border-bottom: solid 15px #e7e7e7;
-            border-left: solid 15px transparent;
-            border-right: solid 15px transparent;
-        }
-
-        @media screen and (max-width: 480px) {
-            .myInnner {
-                position: relative;
-                opacity: 0.7;
-                padding: 10px;
-                font-size: 10px;
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-
-            .myButtonSet {
-                border-radius: 0px;
-                font-size: 15px;
-                opacity: 1;
-            }
-
-            .myHoverDiv:after {
-                content: '';
-                opacity: 0.5;
-                font-size: 5px;
-                position: absolute;
-                top: -8px;
-                left: 0;
-                right: 0;
-                margin: 0 auto;
-                width: 0;
-                height: 0;
-                border-bottom: solid 15px #e7e7e7;
-                border-left: solid 15px transparent;
-                border-right: solid 15px transparent;
-            }
-        }
-
-    </style>
-
-    <!--<link href="css/custom.css" rel="stylesheet">-->
-
-<body class="no-trans scroll-spy">
-<!-- start : SCROLLTOTOP -->
-<div class="scrollToTop"><i class="icon-up-open-big"></i>
-</div>
-<!-- end : SCROLLTOTOP -->
-
-<!-- start : BANNER -->
-<div id="banner" class="banner">
-    <div class="myHoverDiv arrow_box">
-        <div class="myInnner">
-            <center>
-                <a href="http://odontovision.com/clinic/clinic_register.php" class="btn btn-success myButtonSet">As an
-                    Individual</a>
-                <a href="http://odontovision.com/clinic/clinic_register.php" class="btn btn-success myButtonSet">As a
-                    Clinic</a>
-            </center>
-        </div>
-    </div>
-    <!-- end : HOOVER OPTIONS -->
-
-    <div class="banner-caption">
-        <div class="container">
-            <div class="row">
-                <div class="caption-data col-sm-12 col-xs-12 col-md-12 col-lg-12 animated object-visible fadeIn"
-                     style="margin-top: 0px; opacity: 1;" data-animation-effect="fadeIn">
-                    <!--<h2>Em breve..</h2>
-                    <h1 style="letter-spacing:2px;">Odontovision</h1>
-                    <h3 class="padding-top30">Revolucionando a forma de gerenciar a sua clínica.</h3>-->
-                    <a href="{{ url('/')}}"><img src="{{ url('/images/logox.png') }}" style="margin:auto" width="250px"
-                                                 height="250px"></a>
-
-                    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                        <h3>Revolucionando a forma de gerenciar a sua clínica.</h3>
-                    </div>
-                    <div class="contact-form scrollspy smooth-scroll" style="margin-top:80px">
-                        <a class="btn btn-squared btn-xl" href="#contact"
-                           style="opacity:1;background-color:whitesmoke;color:#53ADE5">Saiba mais</a>
-                        @if (Route::has('login'))
-                            <a class="btn btn-default" href="{{ url('/login') }}"
-                               style="opacity:1;background-color:whitesmoke;color:#53ADE5">Login</a>
-                            <a class="btn btn-default" href="{{ url('/register') }}"
-                               style="opacity:1;background-color:whitesmoke;color:#53ADE5">Register</a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-<!-- end : BANNER -->
-
-<!-- start : FOOTER -->
-<footer id="footer">
-    <!-- .footer start -->
-    <div class="footer section">
-        <div class="container">
-            <h2 class="title text-center" id="contact">Entre em Contato</h2>
-
-            <div class="space"></div>
-            <div class="row">
-
-                <div class="col-sm-6">
-                    <div class="footer-content">
-                        <form role="form" id="contactForm" method="POST" name="sendMessage"
-                              action="mail/contact_me.php">
-                            <div class="form-group has-feedback">
-                                <label class="sr-only">Nome</label>
-                                <input class="form-control" id="name" placeholder="Nome" name="iname" required=""
-                                       type="text">
-                                <i class="fa fa-user  form-control-feedback"></i>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label class="sr-only">Email</label>
-                                <input class="form-control" id="email" placeholder="Email" name="iemail" required=""
-                                       type="email">
-                                <i class="fa fa-envelope form-control-feedback"></i>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label class="sr-only">Telefone</label>
-                                <input class="form-control" id="phone" placeholder="Telefone" name="iphone" required=""
-                                       type="text">
-                                <i class="fa fa-phone form-control-feedback"></i>
-                            </div>
-                            <div id="success"></div>
-                            <input value="Enviar" class="btn btn-default" type="submit">
-                        </form>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="footer-content">
-                        <aside>
-                            <div class="widget-content">
-                                <p style="font-size: 23px">Detalhes</p><br>
-
-                                <p class="contacts"><i class="fa fa-fw fa-map-marker" style="margin: 5px"></i>
-                                    Uberlândia
-                                </p>
-
-                                <p class="contacts"><i class="fa fa-fw fa-phone" style="margin: 5px"></i> (34) 99642
-                                    -7629
-                                </p>
-
-                                <p class="contacts"><i class="fa fa-fw fa-envelope" style="margin: 5px"></i>
-                                    contato@odontovision.com
-                                </p>
-
-                            </div>
-                        </aside>
-                        <ul class="social-links">
-                            <li class="facebook"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li class="twitter"><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="skype"><a target="_blank" href="#"><i class="fa fa-skype"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- .footer end -->
-</footer>
-<!-- end : FOOTER -->
-
-<!-- start : JAVASCRIPT -->
-<script type="text/javascript" src="Odontovision_files/jquery_002.js"></script>
-<script type="text/javascript">
-    $(function () {
-        //alert("Hellow");
-        $('#reg').on('click', function () {
-            if ($('.myHoverDiv').css('visibility') == 'hidden') {
-                $('.myHoverDiv').css('visibility', 'visible').fadeIn();
-            }
-            else {
-                $('.myHoverDiv').css('visibility', 'hidden').fadeOut();
-            }
-        });
-    });
-</script>
-<!-- end : JAVASCRIPT -->
-
-
-</body>
-</html>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Odontovision</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <title>Laravel</title>
+    <!-- Favicons
+        ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="font/font-awesome/css/font-awesome.css">
 
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
-            height: 100vh;
-            margin: 0;
-        }
+    <!-- Slider
+        ================================================== -->
+    <link href="css/owl.carousel.css" rel="stylesheet" media="screen">
+    <link href="css/owl.theme.css" rel="stylesheet" media="screen">
 
-        .full-height {
-            height: 100vh;
-        }
+    <!-- Stylesheet
+        ================================================== -->
+    <link rel="stylesheet" href="css/jquery.fancybox.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-progressbar-3.3.4.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slick.css"/>
+    <link rel="stylesheet" type="text/css"  href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
 
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            <a href="{{ url('/login') }}">Login</a>
-            <a href="{{ url('/register') }}">Register</a>
-        </div>
-    @endif
+<!-- Navigation
+    ==========================================-->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand" href="index.html">ODONTOVISION<strong><span class="color">.COM</span></strong></a> </div>
 
-    <div class="content">
-        <div class="title m-b-md">
-            Laravel
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#services-section" class="page-scroll">Recursos</a></li>
+                <li><a href="#service" class="page-scroll">Segurança</a></li>
+                <li><a href="#team-section" class="page-scroll">7 Razões</a></li>
+                <!-- <li><a href="#para-quem" class="page-scroll">Para quem Serve</a></li> -->
+                <li><a href="#para-quem" class="page-scroll">Público Alvo</a></li>
+                <li><a href="#about-section" class="page-scroll">Planos</a></li>
+                <li><a href="#contact-section" class="page-scroll">Contato</a></li>
+                <li><a href="http://odontovision.com/csystem/odontovision/public/login" class="page-scroll">Consultoria</a></li>
+                <li><a href="{{url('login')}}" class="page-scroll" style="color: #737373;"><strong>Acessar</strong></a></li>
+            </ul>
         </div>
-
-        <div class="links">
-            <a href="https://laravel.com/docs">Documentation</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!-- LANDING PAGE -->
+<header class="text-center" name="home">
+    <div class="intro-text">
+        <!-- <h1 style="color: whitesmoke">Em Breve...</h1> -->
+        <img src="img/logox.png" height="150" width="250"/>
+        <h1 style="color: white;padding: 15px"><strong><span >Revolucionando</span></strong> a forma de gerenciar a sua clínica</h1>
+        <!-- <a href="#services-section" class="fa fa-angle-down page-scroll"></a> </div> -->
+    </div>
+</header>
+<!-- FRASE 1-->
+<div class="text-center center" style="background-color: white;padding-top: 20px">
+    <hr style="padding: 0px; width: 45px">
+    <hr style="padding: 0px; width: 45px">
+    <h1>Sistema <strong style="color: #53cbf1">Inteligente</strong> com <strong style="color: #53cbf1">flexibilidade</strong> e facilidade de uso inigualável.</h1>
+    <hr style="padding: 0px; width: 45px">
+    <hr style="padding: 0px; width: 45px">
+</div>
+<!-- RECURSOS -->
+<div id="services-section" class="text-center">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Nossos <strong style="color: #53cbf1">Recursos</strong></h2>
+            <hr>
+            <div class="clearfix"></div>
+            <p> Os nossos recursos oferecem flexibilidade e facilidade de uso inigualável com soluções facilitadas.
+            </p>
+        </div>
+        <div class="space"></div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 service"> <i class="fa fa-calendar"></i>
+                <h4><strong>Agenda</strong></h4>
+                <p>Acesse a sua agenda a partir de qualquer dispositivo.</p>
+            </div>
+            <div class="col-md-3 col-sm-6 service"> <i class="fa fa-money"></i>
+                <h4><strong>Financeiro</strong></h4>
+                <p>Controle os seus gastos e saiba toda a sua movimentação.</p>
+            </div>
+            <div class="col-md-3 col-sm-6 service"> <i class="fa fa-building"></i>
+                <h4><strong>Consultoria</strong></h4>
+                <p>Use a nossa consultoria para acabar com todas suas duvidas e casos mais complicados.</p>
+            </div>
+            <div class="col-md-3 col-sm-6 service"> <i class="fa fa-wrench"></i>
+                <h4><strong>Manutenção</strong></h4>
+                <p>A gente trabalha para deixar tudo sem falhas e você não ser prejuicado.</p><!-- ALTERAR -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 service"> <i class="fa fa-tasks"></i>
+                <h4><strong>Controle de estoque</strong></h4>
+                <p>Controle seu estoque visando a enconomia de tempo.</p>
+            </div>
+            <div class="col-md-3 col-sm-6 service"> <i class="fa fa-line-chart"></i>
+                <h4><strong>Dados Analíticos</strong></h4>
+                <p>Tenha em mãos dados sobre todos os aspectos relacionados á clínica.</p>
+            </div>
+            <div class="col-md-3 col-sm-6 service"> <i class="fa fa-file-text-o"></i>
+                <h4><strong>Documentos Customizados</strong></h4>
+                <p>Tenha disponível nossos documentos padrões ou crie o seu.</p>
+            </div>
+            <div class="col-md-3 col-sm-6 service"> <i class="fa fa-gear"></i>
+                <h4><strong>Controles Administrativos</strong></h4>
+                <p>Tenha total controle, desde preços, cobranças e dados acessados.</p>
+            </div>
         </div>
     </div>
 </div>
+<!-- SEGURANÇA -->
+<section id="service" class="text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title center">
+                    <h2><strong style="color: #53cbf1">Segurança </strong>e Privacidade</h2>
+                    <hr>
+                    <div class="clearfix"></div>
+                    <p> Sua segurança e privacidade são sempre nossas prioridades.
+                        Visamos a segurança dos seus dados e tomamos todas a providências
+                        para que apenas você tenha acesso a eles. Entendemos que quando se
+                        trabalha na Internet, você espera canais de dados seguros e privacidade.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-12" >
+                <div class="service-content">
+                    <div class="row">
+                        <!-- Assinatura de codigo -->
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-service wow zoomIn text-left" style="visibility: visible; animation-name: zoomIn;">
+                                <i class="fa fa-key service-icon"></i>
+                                <h4 class="service-title">Assinatura de código</h4>
+                                <p>Pagamentos são faceis e seguros de realizar</p>
+                            </div>
+                        </div>
+                        <!-- Assinatura de codigo -->
+                        <!-- VeriSign -->
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-service wow zoomIn text-left" style="visibility: visible; animation-name: zoomIn;">
+                                <i class="fa fa-pencil service-icon"></i>
+                                <h4 class="service-title">VeriSign</h4>
+                                <p>Todos os nossos programas estão marcados com o VeriSign Code Signing. Isto permite que você verifique a origem dos executáveis que recebeu.</p>
+                            </div>
+                        </div>
+                        <!-- VeriSign -->
+                        <!-- Certificado Comodo -->
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-service wow zoomIn text-left" style="visibility: visible; animation-name: zoomIn;">
+                                <i class="fa fa-globe service-icon"></i>
+                                <h4 class="service-title">Certificado Comodo</h4>
+                                <p>Todas suas atividades protegidas</p>
+                            </div>
+                        </div>
+                        <!-- Certificado Comodo -->
+                    </div>
+                    <div class="row">
+                        <!-- Back Ups -->
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-service wow zoomIn text-left" style="visibility: visible; animation-name: zoomIn;">
+                                <i class="fa fa-save service-icon"></i>
+                                <h4 class="service-title">Backups Automatizados</h4>
+                                <p>Todos os seus dados salvos na nossa nuvem de dados.</p>
+                            </div>
+                        </div>
+                        <!-- Back Ups -->
+                        <!-- Criptografia -->
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-service wow zoomIn text-left" style="visibility: visible; animation-name: zoomIn;">
+                                <i class="fa fa-lock service-icon"></i>
+                                <h4 class="service-title">Criptografia</h4>
+                                <p>Todas as suas atividades protegidas pelo nossa modulo criptografico.</p>
+                            </div>
+                        </div>
+                        <!-- Criptografia -->
+                        <!-- Auditoria -->
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-service wow zoomIn text-left" style="visibility: visible; animation-name: zoomIn;">
+                                <i class="fa fa-binoculars service-icon"></i>
+                                <h4 class="service-title">Auditoria</h4>
+                                <p>Tenha fácil acesso para gerenciar cada usuário de maneira individual.</p>
+                            </div>
+                        </div>
+                        <!-- Auditoria -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section></div>
+<!-- FRASE 2-->
+<div class="text-center center" style="background-color: #ededed;padding-top: 20px">
+    <hr style="padding: 0px; width: 45px">
+    <hr style="padding: 0px; width: 45px">
+    <h1>Aumente sua <strong style="color: #53cbf1;">Produtividade</strong></h1>
+    <hr style="padding: 0px; width: 45px">
+    <hr style="padding: 0px; width: 45px">
+</div>
+<!-- 8 RAZÔES -->
+<div id="team-section">
+    <div class="container">
+        <div class="section-title text-center center">
+            <h2>Descubra por que <strong style="color: #53cbf1">Odontovision</strong> é o sistema certo para você.</h2>
+            <hr>
+            <div class="clearfix"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"> <img src="img/aboutOV.png" class="img-responsive"> </div>
+            <div class="col-md-6">
+                <div class="about-text">
+                    <hr>
+                    <p style="font-size: larger"><i class="fa fa-check-square-o" style="color: #5cb85c; font-size: x-large"></i>  Controle sua agenda a qualquer hora e de qualquer lugar.</p>
+                    <p style="font-size: larger"><i class="fa fa-check-square-o" style="color: #5cb85c; font-size: x-large"></i>  Gerencie sua clinica e tenha acesso ao seu financeiro a todo momento.</p>
+                    <p style="font-size: larger"><i class="fa fa-check-square-o" style="color: #5cb85c; font-size: x-large"></i>  Comunique com toda sua equipe de maneira instantânea.</p>
+                    <p style="font-size: larger"><i class="fa fa-check-square-o" style="color: #5cb85c; font-size: x-large"></i>  Tenha o controle do seu estoque em mãos.</p>
+                    <p style="font-size: larger"><i class="fa fa-check-square-o" style="color: #5cb85c; font-size: x-large"></i>  Consulte professores altamente capacitados para discussão de casos clinicos.</p>
+                    <p style="font-size: larger"><i class="fa fa-check-square-o" style="color: #5cb85c; font-size: x-large"></i>  Odontovision é o sistema certo para você que precisa de um programa completo e facil de usar.</p>
+                    <p style="font-size: larger"><i class="fa fa-check-square-o" style="color: #5cb85c; font-size: x-large"></i>  <strong>Tudo isso atraves do seu smartphone ou tablet.</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- QUEM SERVE -->
+<div id="para-quem" style="background-color: #ededed;padding-top: 20px;padding-bottom: 40px">
+    <div class="container text-center center">
+        <div class="section-title text-center center">
+            <h2>Para quem serve o <strong style="color: #53cbf1">Odontovision</strong>?</h2>
+            <hr>
+            <div class="clearfix"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="about-text" style="background-color: white; padding: 30px; height: 230px">
+                    <i class="fa fa-user service" style="font-size: 400%;color: #53cbf1;"></i>
+                    <hr style="background-color: #ededed; padding: 1px">
+                    <p>Para o professional que gerência o seu próprio consultorio.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="about-text" style="background-color: white; padding: 30px; height: 230px">
+                    <i class="fa fa-users service" style="font-size: 400%;color: #53cbf1;"></i>
+                    <hr style="background-color: #ededed; padding: 1px">
+                    <p>Para o professional que trabalha em pequenas clínicas formadas por equipes reduzidas.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="about-text" style="background-color: white; padding: 30px; height: 230px">
+                    <i class="fa fa-building service" style="font-size: 400%;color: #53cbf1;"></i>
+                    <hr style="background-color: #ededed; padding: 1px">
+                    <p>Para clinica de grande porte.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- OBJETIVOS -->
+<div>
+    <div class="container" style="padding-bottom: 25px">
+        <div class="section-title text-center center">
+            <h2>Nossos <strong style="color: #53cbf1">Objetivos</strong></h2>
+            <hr>
+            <div class="clearfix"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3">
+                <div class="about-text text-justify text-center ">
+                    <p style="font-size: 18px"><i class="fa fa-check" style="color: #5cb85c;font-size: 25px;"></i>  Criar opções que sejam fáceis de entender.</p>
+                    <p style="font-size: 18px"><i class="fa fa-check" style="color: #5cb85c;font-size: 25px;"></i>  Buscar sempre melhorar e inovar.</p>
+                    <p style="font-size: 18px"><i class="fa fa-check" style="color: #5cb85c;font-size: 25px;"></i>  Fazer que você otimize sua producão e utilize melhor o seu tempo.</p>
+                    <p style="font-size: 18px"><i class="fa fa-check" style="color: #5cb85c;font-size: 25px;"></i>  Oferecer uma interface simples e fácil de usar.</p>
+                    <!-- <p style="font-size: 18px"><i class="fa fa-check" style="color: #5cb85c;font-size: 25px;"></i>  Unir os nossos recursos do nosso sistema com as dentais e laboratórios.</p> -->
+                    <p style="font-size: 18px"><i class="fa fa-check" style="color: #5cb85c;font-size: 25px;"></i>  Oferecer uma experiência de fácil aprendizado.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PLANOS -->
+<div id="about-section" class="text-center" >
+    <div class="container">
+        <div class="section-title center">
+            <h2>Nossos <strong style="color: #53cbf1">Planos</strong></h2>
+            <hr>
+            <p style="font-size: larger">Estamos sempre prontos para responder às suas perguntas sobre licenciamento e questões técnicas.</p>
+        </div>
+        <div id="row">
+            <!-- test -->
+            <div class="col-md-12">
+                <div class="pricing-table-content">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-table-price wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.5s" style="visibility: visible; animation-duration: 0.5s; animation-delay: 0.5s; animation-name: fadeInUp;">
+                                <div class="price-header">
+                                    <span class="price-title">Unico</span>
+                                    <div class="price">
+                                        <sup class="price-up">R$</sup>
+                                        80
+                                        <span class="price-down">/mês</span>
+                                    </div>
+                                </div>
+                                <div class="price-article">
+                                    <ul>
+                                        <li style="font-size: larger"><strong>1 Usuário</strong></li>
+                                        <li>Inclusão de 6 fotos por paciente</li>
+                                        <li>2 dispositivos simultaneous</li>
+                                        <li>Suporte</li>
+                                        <li>1 Consulta gratis por mês</li>
+                                    </ul>
+                                </div>
+                                <div class="price-footer">
+                                    <a class="purchase-btn" href="#">Notificar Lançamento</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-table-price-p featured-price wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" style="visibility: visible; animation-duration: 1s; animation-delay: 1s; animation-name: fadeInUp;">
+                                <div class="price-header">
+                                    <span class="price-title">Multi</span>
+                                    <div class="price">
+                                        <sup class="price-up">R$</sup>
+                                        150
+                                        <span class="price-down">/mês</span>
+                                    </div>
+                                </div>
+                                <div class="price-article">
+                                    <ul>
+                                        <li style="font-size: larger"><strong>2 - 4 Usuários</strong></li>
+                                        <li>Inclusão de 6 fotos por paciente</li>
+                                        <li>2 dispositivos simultaneous</li>
+                                        <li>Suporte</li>
+                                        <li>1 Consulta gratis por mês</li>
+                                    </ul>
+                                </div>
+                                <div class="price-footer">
+                                    <a class="purchase-btn" href="#">Notificar Lançamento</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="single-table-price wow fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.75s" style="visibility: visible; animation-duration: 0.75s; animation-delay: 0.75s; animation-name: fadeInUp;">
+                                <div class="price-header">
+                                    <span class="price-title">Prêmio</span>
+                                    <div class="price">
+                                        <sup class="price-up">R$</sup>
+                                        220
+                                        <span class="price-down">/mês</span>
+                                    </div>
+                                </div>
+                                <div class="price-article">
+                                    <ul>
+                                        <li style="font-size: larger"><strong>5 - 8 Usuários</strong></li>
+                                        <li>Inclusão de 6 fotos por paciente</li>
+                                        <li>2 dispositivos simultaneous</li>
+                                        <li>Suporte</li>
+                                        <li>2 Consulta gratis por mês</li>
+                                    </ul>
+                                </div>
+                                <div class="price-footer">
+                                    <a class="purchase-btn" href="#">Notificar Lançamento</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- TESTIMONIAL -->
+
+<!-- CONTATO -->
+<div id="contact-section" class="text-center">
+    <div class="container">
+        <div class="section-title center">
+            <h2><strong style="color: #53cbf1">Contate-nos</strong> de qualquer lugar</h2>
+            <hr>
+            <p style="font-size: larger">Estamos sempre prontos para responder às suas perguntas sobre licenciamento e questões técnicas.</p>
+        </div>
+        <div class="col-md-12 col-md-offset-0">
+            <div class="col-md-3"> <i class="fa fa-map-marker fa-2x"></i>
+                <p>Uberlândia</p>
+            </div>
+            <div class="col-md-3"> <i class="fa fa-envelope-o fa-2x"></i>
+                <p>contato@odontovision.com</p>
+            </div>
+            <div class="col-md-3"> <i class="fa fa-phone fa-2x"></i>
+                <p>(34) 3224 - 0507</p>
+            </div>
+            <div class="col-md-3"> <i class="fa fa-whatsapp fa-2x"></i>
+                <p>(34) 99642 - 7629</p>
+            </div>
+            <hr>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <hr>
+            <h3>Alguma dúvida ? <br>Entre em contato.</h3>
+            <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Nome">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="E-mail">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="4" placeholder="Dúvida ou Pergunta"></textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Enviar</button>
+            </form>
+            <p>Você pode nos telefonar a qualquer hora, de segunda a sexta-feira, <span style="color: #53cbf1; font-size: small;">08:00 - 18:00.</span></p>
+            <!-- <p style="color: #53cbf1; font-size: small;">Oferecemos suporte por telefone apenas a usuários licenciados ou utilizadores no processo de decisão de compra. Obrigado por sua compreensão.</p> -->
+        </div>
+    </div>
+</div>
+</div>
+<nav id="footer">
+    <div class="container">
+        <div class="pull-left fnav">
+            <p>Copyright &copy; 2017 Odontovision</p>
+        </div>
+        <div class="pull-right fnav">
+            <ul class="footer-social">
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/SmoothScroll.js"></script>
+<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+<script src="js/owl.carousel.js"></script>
+<script type="text/javascript" src="js/slick.js"></script>
+<script type="text/javascript" src="js/jquery.mixitup.js"></script>
+<script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
+<script src="js/waypoint.js"></script>
+<script src="js/jquery.counterup.js"></script>
+<script type="text/javascript" src="js/wow.js"></script>
+<script type="text/javascript" src="js/bootstrap-progressbar.js"></script>
+
+<!-- Javascripts
+    ================================================== -->
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

@@ -115,7 +115,7 @@ Route::group(['middleware' => [/*'subscriptions', 'permissions', 'firsttime'*/]]
     Route::resource('reminders', 'ReminderController');
 
     Route::resource('agenda', 'AgendaController');
-    Route::resource('holidays', 'AppointmentHolidaysController');
+    Route::resource('holidays', 'HolidaysController');
 
     Route::resource('firsttime', 'FirstimeController');
 
