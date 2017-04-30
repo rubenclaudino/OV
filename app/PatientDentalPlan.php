@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DentalPlan extends Model
+class PatientDentalPlan extends Model
 {
     protected $guarded = ['id'];
 
-    public function dental_plan_type()
+    public function clinic_dental_plan()
     {
-        return $this->belongsTo('App\DentalPlanType');
+        return $this->belongsTo('App\ClinicDentalPlan');
     }
 
     public function patient()

@@ -95,8 +95,7 @@
                                         </div>
                                         <div class="form-group">
                                             <!-- <label>Dental Plan</label> -->
-                                            {!! Form::select('dental_plan_id', $dentalPlans, 'Dental Plan',['class' => 'form-control selectpicker dental_plan',
-                                            'disabled' => ($dentalPlans->count() <= 0)]) !!}
+                                            {!! Form::select('clinic_dental_plan_id', $dentalPlans, 'Dental Plan',['class' => 'form-control selectpicker dental_plan']) !!}
 
                                         </div>
                                     </div>

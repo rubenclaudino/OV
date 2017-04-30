@@ -55,7 +55,6 @@
         var mainCalendarEvents = '';
     </script>
 
-
 </head>
 <body ng-app="myApp">
 
@@ -453,11 +452,11 @@ $.subview({
                                 method: "POST",
                                 success: function (data) {
                                     $.unblockUI();
-                                    $.hideSubview();
+                                    //$.hideSubview();
                                     //console.log(data);
                                     if (data.status === 'success') {
                                         toastr.success(data.message);
-                                        $.hideSubview();
+                                        //$.hideSubview();
                                     }
                                 }
                             });
@@ -536,7 +535,7 @@ $.subview({
                                     $.unblockUI();
                                     //console.log(data);
                                     if (data.status === 'success') {
-                                        $.hideSubview();
+                                        //$.hideSubview();
                                         toastr.success(data.message);
                                     }
                                 }
@@ -1113,7 +1112,7 @@ $.subview({
                             data: newEvent,
                             success: function (data) {
                                 $.unblockUI();
-                                $.hideSubview();
+                                //$.hideSubview();
                                 if (data.status == "success") {
                                     $(".form-full-event").find('.event-id').val('');
                                     $('#full-calendar').fullCalendar('removeEvents', actual_event._id);
@@ -1121,7 +1120,7 @@ $.subview({
                                     console.log(newEvent);
                                     $('#full-calendar').fullCalendar('renderEvent', newEvent, true);
                                     demoCalendar = $("#full-calendar").fullCalendar("clientEvents");
-                                    $.hideSubview();
+                                    //$.hideSubview();
                                     toastr.success(data.message);
                                     return false;
 

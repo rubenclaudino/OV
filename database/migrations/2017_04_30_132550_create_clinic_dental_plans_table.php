@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDentalPlanTypesTable extends Migration
+class CreateClinicDentalPlansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateDentalPlanTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dental_plan_types', function (Blueprint $table) {
+        Schema::create('clinic_dental_plans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
+            $table->string('website');
+            $table->string('phone_1');
+            $table->string('phone_2');
+
+            $table->integer('clinic_id')->unsigned();
+            $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +33,6 @@ class CreateDentalPlanTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dental_plan_types');
+        Schema::dropIfExists('clinic_dental_plans');
     }
 }

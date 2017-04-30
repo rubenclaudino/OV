@@ -24,15 +24,15 @@ class PatientsController extends Controller
         // TODO: based on roles, filter out patients by clinic
         $patients = Patient::all();
 
-       /* if ($user->isAdmin() || $user->hasRole('receptionist')) {
-            $users = Patient::where('clinic_id', $user->clinic_id)->get();
-        }*/
+        /* if ($user->isAdmin() || $user->hasRole('receptionist')) {
+             $users = Patient::where('clinic_id', $user->clinic_id)->get();
+         }*/
 
-       /* $i = 0;
-        foreach ($users as $data) {
-            $users[$i]->speciality = DB::select("SELECT `specialties`.*, `patient_speciality`.`patient_id` from `specialties` inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id` where `patient_speciality`.`patient_id` ='" . $data->id . "'");
-            $i++;
-        }*/
+        /* $i = 0;
+         foreach ($users as $data) {
+             $users[$i]->speciality = DB::select("SELECT `specialties`.*, `patient_speciality`.`patient_id` from `specialties` inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id` where `patient_speciality`.`patient_id` ='" . $data->id . "'");
+             $i++;
+         }*/
 
         return view('patients.index', compact('title', 'subtitle', 'patients', 'activeClass'));
     }
@@ -72,11 +72,10 @@ class PatientsController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-
-        $input['clinic_id'] = Auth::user()->clinic_id;
+        $request['clinic_id'] = Auth::user()->clinic_id;
 
         // adding patient
-        $patient = Patient::create($input);
+        $patient = Patient::create($request->except('specialty'));
         if (!$patient->id)
             return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
 
@@ -126,21 +125,26 @@ class PatientsController extends Controller
 
         // adding patient speciality
         // TODO: adding dynamic tabs on specialty select
-        /*
-                    if (isset($input['speciality'])) {
-                        $speciality = $input['speciality'];
-                        foreach ($speciality as $d) {
-                            $check = PatientSpeciality::where([['patient_id', '=', $patient->id], ['speciality_id', '=', $d]])->count();
-                            if ($check > 0) {
-                            } else {
-                                PatientSpeciality::create([
-                                    'patient_id'    => $patient->id,
-                                    'speciality_id' => $d,
-                                ]);
-                            }
-                        }
-                    }
-        */
+
+        if ($request->has('specialty')) {
+            //return implode($request->specialty, ',');
+            $patient->specialties()->sync([$request->specialty]);
+
+            return 'sync';
+
+            /*$specialty = $input['specialty'];
+            foreach ($specialty as $d) {
+                $check = Specialty::where([['patient_id', $patient->id], ['specialty_id', $d]])->count();
+                if ($check > 0) {
+                } else {
+                    Specialty::create([
+                        'patient_id' => $patient->id,
+                        'specialty_id' => $d,
+                    ]);
+                }
+            }*/
+        }
+
         // getting patient
 
         $p = Patient::find($patient->id);
@@ -410,7 +414,7 @@ class PatientsController extends Controller
             foreach ($data->appointments as $v) {
                 $dentist = User::where('id', $v->dentist_id)->select('first_name', 'last_name')->first();
                 $data->appointments[$k]->dentist = $dentist;
-                $s="";
+                $s = "";
                 if ($data->appointments[$k]->status == '1') {
                     $s = "Booked";
                 }

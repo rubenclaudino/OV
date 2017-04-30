@@ -61,7 +61,7 @@
                     <input type="hidden" name="hasOrtoSpec" id="hasOrtoSpec" value="0"/>
                     <div class="form-group">
                         <label for="pSpec">Especialidades</label>
-                        {!! Form::select('speciality[]',$treatments,'',['class' => 'form-control
+                        {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
                         selectpicker','multiple' => 'true']) !!}
                     </div>
                 </div>

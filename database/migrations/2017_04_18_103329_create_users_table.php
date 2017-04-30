@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('borough');
             $table->string('zip_code');
             $table->string('address');
-            $table->integer('street_number');
+            $table->string('street_number');
 
             $table->string('phone_1');
             $table->string('phone_2')->nullable();

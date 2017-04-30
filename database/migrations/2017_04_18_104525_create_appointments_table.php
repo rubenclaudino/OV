@@ -46,8 +46,6 @@ class CreateAppointmentsTable extends Migration
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
             $table->integer('specialty_id')->unsigned();
             $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
-            $table->integer('dental_plan_id')->unsigned()->nullable();
-            $table->foreign('dental_plan_id')->references('id')->on('dental_plans')->onDelete('cascade');
 
             $table->timestamps();
         });
