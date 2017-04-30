@@ -17,9 +17,15 @@ class ReferralsTableSeeder extends Seeder
             ['name' => 'Rádio'],
             ['name' => 'Local'],
             ['name' => 'Outdoor'],
-            ['name' => 'Professional'],
+            ['name' => 'Encaminhado'],
             ['name' => 'Internet'],
-            ['name' => 'Lista Telefonica']
+            ['name' => 'Carta'],
+            ['name' => 'Profissional'],
+            ['name' => 'Luminoso'],
+            ['name' => 'Panfleto'],
+            ['name' => 'Telemarketing'],
+            ['name' => 'Luminoso'],
+            ['name' => 'Lista Telefônica']
         ]);
     }
 }

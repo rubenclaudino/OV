@@ -14,7 +14,8 @@ class AppointmentTypesTableSeeder extends Seeder
         DB::table('appointment_types')->insert([
             ['name' => 'First appointment'],
             ['name' => 'Routine'],
-            ['name' => 'Evaluation']
+            ['name' => 'Evaluation'],
+            ['name' => 'Return']
         ]);
     }
 }
