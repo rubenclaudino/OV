@@ -59,7 +59,6 @@
          			<tr>
          				<th></th>
          				<th>Especialidade</th>
-         				<th>Descrição</th>
          				<th>Cor</th>
          				<th class="hidden-print"></th>
          			</tr>
@@ -71,10 +70,9 @@
             			<tr ng-repeat="speciality in specialities">
                             <!-- ID -->
             				<td>{! speciality.id !}</td>
-            				<td>{! speciality.title !}</td>
-            				<td>{! speciality.description !}</td>
+            				<td>{! speciality.name !}</td>
             				<td>
-                                <span class="label label-default" style="background:#{! speciality.color_code !} !important;opacity: 0.7">{! speciality.color_code !}</span>
+                                <span class="label label-default" style="background:#{! speciality.color !} !important;opacity: 0.7">{! speciality.color !}</span>
                             </td>
                         <td class="hidden-print">
                            <div class="btn-group">

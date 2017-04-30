@@ -12,7 +12,8 @@ class PatientsTableSeeder extends Seeder
     public function run()
     {
         DB::table('patients')->insert([
-            ['clinic_id' => 1, 'first_name' => 'Marko', 'last_name' => 'Admin', 'phone_1' => '4823798237']
+            ['clinic_id' => 1, 'first_name' => 'Marko', 'last_name' => 'Admin', 'phone_1' => '4823798237'],
+            ['clinic_id' => 1, 'first_name' => 'Anthony', 'last_name' => 'Pollard', 'phone_1' => '3432240507']
         ]);
     }
 }

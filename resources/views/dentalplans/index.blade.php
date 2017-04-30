@@ -55,7 +55,7 @@
             <div class="panel-body">
 
                 <!-- start: TABLE -->
-                <table class="table table-striped table-hover datatable" id="mainInfo">
+                <table class="table table-striped table-hover" id="mainInfo">
 
                     <!-- start: COLUMN INFO -->
                     <thead>

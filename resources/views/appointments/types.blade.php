@@ -1,45 +1,26 @@
 @extends('layouts.page')
 @section('content')
-    <div class="main-content">
-        <div class="container">
 
-            <!-- start: TOOLBAR -->
-            <div class="toolbar row">
-                <div class="col-sm-6 hidden-xs">
-                    <div class="page-header">
-                        <h1>{{ $title }}
-                            <small>{{ $subtitle }}</small>
-                        </h1>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="toolbar-tools pull-right">
-                        <!-- start: TOP NAVIGATION MENU -->
-                        <ul class="nav navbar-right">
-                            <li>
-                                <a href="#" class="new-event MyToolbar" data-toggle="modal"
-                                   data-target="#addAppointmentTypeModal">
-                                    <i class="fa fa-calendar-o"></i> Novo Tipo
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- end: TOP NAVIGATION MENU -->
-                    </div>
-                </div>
-            </div>
-            <!-- end: TOOLBAR -->
+    <div class="main-content">
+
+        <div class="container">
 
             <!-- start: MAIN INFORMATION PANEL -->
             <div class="panel panel-white" style="margin-top:8px;">
                 <div class="panel-body">
 
                     <!-- start: TABLE STATUS TYPES -->
-                    <table class="table table-striped table-hover datatable">
+                    <table class="table table-striped table-hover">
                         <thead>
                         <tr>
                             <th class="hide">#</th>
-                            <th style="width: 100%">Tipo de Agendamento</th>
-                            <th></th>
+                            <th style="width: 100%"><h3>Tipos de Agendamento</h3></th>
+                            <th>
+                                <a href="#" class="new-event MyToolbar" data-toggle="modal"
+                                   data-target="#addAppointmentTypeModal" style="vertical-align: middle">
+                                    <i class="fa fa-plus fa-2x text-success"></i>
+                                </a>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -79,6 +60,7 @@
             <!-- start: MAIN INFORMATION PANEL -->
 
         </div>
+
     </div>
 
     <!-- add modal -->
