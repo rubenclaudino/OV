@@ -32,8 +32,8 @@
                                         <div class="user-image">
                                             <div class="fileupload-new thumbnail"
                                                  style="border: white 1px solid;border-radius: 1px;height: 165px;padding-top:15px">
-                                                @if($patient->profile_url != '')
-                                                    <img src="{{ url('/')}}/{{$patient->profile_url }}"
+                                                @if($patient->patient_profile_image != '')
+                                                    <img src="{{ url('/')}}/{{$patient->patient_profile_image }}"
                                                          alt="{{ $patient->first_name }} {{ $patient->last_name }}">
                                                 @else
                                                     <img src="http://placehold.it/130xx130"
@@ -95,8 +95,8 @@
                                         <!-- start: SPEACIAL TAGS INFO -->
                                     <!-- @if($patient->sms_confirmation == 1)<label class="label label-success">SMS</label>@endif -->
                                         <p>
-                                            @if($patient->speciality)
-                                                @foreach($patient->speciality as $d)
+                                            @if($patient->specialty)
+                                                @foreach($patient->specialty as $d)
                                                     <label class="label label-warning"
                                                            style="background: #{{$d->color_code}} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $d->title }}</label>
                                                 @endforeach
@@ -111,21 +111,21 @@
                                         <h5>
                                             <i class="fa fa-birthday-cake fa-fw"></i> &nbsp;
                                             <?php
-                                            $from = new DateTime(str_replace('/', '-', $patient->DOB));
+                                            $from = new DateTime(str_replace('/', '-', $patient->date_of_birth));
                                             $to = new DateTime('today');
                                             echo $from->diff($to)->y;?> anos</h5>
-                                        <h5>@if($patient->address->street_address)<i class="fa fa-map-marker fa-fw"></i>
-                                            &nbsp; {{ $patient->address->street_address }}   {{ $patient->address->number }}
+                                        <h5>@if($patient->street_address)<i class="fa fa-map-marker fa-fw"></i>
+                                            &nbsp; {{ $patient->street_address }}   {{ $patient->number }}
                                             @else <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5> @endif
                                         </h5>
                                         <h5>
-                                            @if ($patient->contact->phone_landline)<i class="fa fa-phone fa-fw"></i>
-                                            &nbsp;&nbsp;&nbsp;{{ $patient->contact->phone_landline }}&nbsp;
+                                            @if ($patient->phone_landline)<i class="fa fa-phone fa-fw"></i>
+                                            &nbsp;&nbsp;&nbsp;{{ $patient->phone_landline }}&nbsp;
                                             &nbsp; @else () @endif
-                                            @if ($patient->contact->celular_1)<i class="fa fa-mobile fa-fw"></i>&nbsp;
-                                            &nbsp;&nbsp;{{ $patient->contact->celular_1 }}&nbsp;&nbsp; @else () @endif
-                                            @if ($patient->contact->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>
-                                            &nbsp;&nbsp;{{ $patient->contact->whatsapp_number }} @else @endif
+                                            @if ($patient->phone_1)<i class="fa fa-mobile fa-fw"></i>&nbsp;
+                                            &nbsp;&nbsp;{{ $patient->phone_1 }}&nbsp;&nbsp; @else () @endif
+                                            @if ($patient->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>
+                                            &nbsp;&nbsp;{{ $patient->whatsapp_number }} @else @endif
                                         </h5>
 
                                     </div>
@@ -264,7 +264,7 @@
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
                                                 Data de Nascimento
                                             </td>
-                                            <td style="font-size:1.1em">{{ $patient->DOB }}</td>
+                                            <td style="font-size:1.1em">{{ $patient->date_of_birth }}</td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
@@ -354,25 +354,25 @@
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">
                                                             Profissional
                                                         </td>
-                                                        <td style="font-size:1.1em">@if ($patient->professional->gender == 0)
+                                                        <td style="font-size:1.1em">@if ($patient->user->gender == 0)
                                                                 <small>Dr.</small> @else
                                                                 <small>Dra.
-                                                                </small> @endif {{ $patient->professional->first_name }} {{ $patient->professional->last_name }}
+                                                                </small> @endif {{ $patient->user->first_name }} {{ $patient->user->last_name }}
                                                         </td>
                                                     <tr>
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">
                                                             Indicação
                                                         </td>
                                                         <td style="font-size:1.1em">
-                                                            @if(isset($patient->indication))
-                                                                @if($patient->indication == '0') Conhecido @endif
-                                                                @if($patient->indication == '1') TV @endif
-                                                                @if($patient->indication == '2') Rádio @endif
-                                                                @if($patient->indication == '3') Local @endif
-                                                                @if($patient->indication == '4') Outdoor @endif
-                                                                @if($patient->indication == '5') Profissional @endif
-                                                                @if($patient->indication == '6') Internet @endif
-                                                                @if($patient->indication == '7') Lista Telefonica @endif
+                                                            @if(isset($patient->referral))
+                                                                @if($patient->referral == '0') Conhecido @endif
+                                                                @if($patient->referral == '1') TV @endif
+                                                                @if($patient->referral == '2') Rádio @endif
+                                                                @if($patient->referral == '3') Local @endif
+                                                                @if($patient->referral == '4') Outdoor @endif
+                                                                @if($patient->referral == '5') Profissional @endif
+                                                                @if($patient->referral == '6') Internet @endif
+                                                                @if($patient->referral == '7') Lista Telefonica @endif
 
                                                             @endif
                                                         </td>
@@ -446,12 +446,12 @@
                                 @foreach($appointments as $data)
                                     <tr>
                                         <td style="font-size:1.1em">{{ $data->startdate }}</td>
-                                        <td style="font-size:1.1em">{{ date('H:i', strtotime($data->appointment_starttime)) }}</td>
+                                        <td style="font-size:1.1em">{{ date('H:i', strtotime($data->starttime)) }}</td>
                                         <td class="hidden-xs"
-                                            style="font-size:1.1em">@if ($data->dentist[0]->gender == 0)
+                                            style="font-size:1.1em">@if ($data->user[0]->gender == 0)
                                                 <small>Dr.</small> @else
                                                 <small>Dra.
-                                                </small> @endif {{ $data->dentist[0]->first_name }} {{ $data->dentist[0]->last_name }}
+                                                </small> @endif {{ $data->user[0]->first_name }} {{ $data->user[0]->last_name }}
                                         </td>
                                         <td style="font-size:1.1em">-</td>
                                         <td style="font-size:1.1em">
@@ -470,9 +470,9 @@
                                         </td>
                                         <td class="center hidden-xs" style="font-size:1.1em"><a><i
                                                         class="fa fa-info"
-                                                        data-text="{{$data->appointment_observation}}"
+                                                        data-text="{{$data->observation}}"
                                                         data-toggle="tooltip" data-placement="top"
-                                                        title="{{$data->appointment_observation}}"></i></a></td>
+                                                        title="{{$data->observation}}"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -511,7 +511,7 @@
                                             <td style="color: #3d3d3d;font-weight:bold;line-height:30px;">
                                                 Está tomando medicamentos
                                             </td>
-                                            <td>@if($patient->take_drugs == 1) Sim @else Não @endif</td>
+                                            <td>@if($patient->takes_drugs == 1) Sim @else Não @endif</td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
@@ -529,13 +529,13 @@
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 Utiliza algum anticoncepcional
                                             </td>
-                                            <td>@if($patient->take_preg_pills == 1) Sim @else Não @endif</td>
+                                            <td>@if($patient->takes_birth_control_pills == 1) Sim @else Não @endif</td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 Teve alguma operação grave
                                             </td>
-                                            <td>@if($patient->has_prev_surgeries == 1) Sim @else Não @endif</td>
+                                            <td>@if($patient->had_previous_surgeries == 1) Sim @else Não @endif</td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
@@ -548,11 +548,7 @@
                                                 Biotipo
                                             </td>
                                             <td>
-                                                @if(isset($patient->bodyType))
-                                                    {{ $patient->bodyType->title }}
-                                                @else
-                                                    -
-                                                @endif
+                                                DELETE ME - BODY TYPE
                                             </td>
                                         </tr>
                                         <tr>
@@ -1024,7 +1020,7 @@
 
             </div>
             <!-- end: PATIENT INFORMATION -->
-
+            
             <!-- start: MODAL -->
             <div id="appointment_modal" style="display:none;">
                 <div class="col-md-12">

@@ -118,17 +118,18 @@ class PatientsController extends Controller
 
         $patient = Patient::find($id);
 
-        $patient->speciality = DB::select("SELECT `specialities`.*, `patient_speciality`.`patient_id` from `specialities` inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id` where `patient_speciality`.`patient_id` ='" . $patient->id . "'");
-
-        $patient->diseases = DB::select("SELECT `diseases`.*, `patient_disease`.`patient_id` from `diseases` inner join `patient_disease` on `patient_disease`.`disease_id` = `diseases`.`id` where `patient_disease`.`patient_id` ='" . $patient->id . "'");
+        //$patient->speciality = DB::select("SELECT `specialities`.*, `patient_speciality`.`patient_id` from
+        // `specialities` inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id`
+        // where `patient_speciality`.`patient_id` ='" . $patient->id . "'");
+        //$patient->diseases = DB::select("SELECT `diseases`.*, `patient_disease`.`patient_id` from `diseases`
+        // inner join `patient_disease` on `patient_disease`.`disease_id` = `diseases`.`id` where `patient_disease`.`patient_id` ='" . $patient->id . "'");
 
         // getting recent appointments
-
         $appointments = Appointment::where('patient_id', $patient->id)->orderBy('starttimestamp', 'desc')->get();
 
         // missed appointments
-
-        $missedAppointments = Appointment::where('status', '3')->count();
+        // TODO: filter by patient
+        $missedAppointments = Appointment::with('status')->get()->where('status', '3')->count();
 
         return view('patients.show', compact('title', 'subtitle', 'patient', 'activeClass', 'patient', 'appointments', 'missedAppointments'));
     }
