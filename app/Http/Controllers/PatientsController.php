@@ -80,10 +80,8 @@ class PatientsController extends Controller
         $input = $request->all();
         $request['clinic_id'] = Auth::user()->clinic_id;
 
-        // TODO: find where is 'disease' fed to the request
         // TODO: clinic dental plan as foreign key in patient dental plan
-        $patient = Patient::create($request->except('specialty', 'diseases',
-            'disease', 'clinic_dental_plan_id', 'patient_id'));
+        $patient = Patient::create($request->except('specialty', 'diseases', 'clinic_dental_plan_id'));
         if (!$patient->id)
             return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
 
@@ -94,7 +92,6 @@ class PatientsController extends Controller
 
         if ($request->has('diseases')) {
             $diseases = array_keys(array_filter(json_decode($request->diseases, true)));
-            //return $diseases;
             $patient->diseases()->sync($diseases);
         }
 
