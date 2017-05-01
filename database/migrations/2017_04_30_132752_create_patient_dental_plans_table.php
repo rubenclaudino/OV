@@ -15,9 +15,10 @@ class CreatePatientDentalPlansTable extends Migration
     {
         Schema::create('patient_dental_plans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('card_number', 30)->nulable();
+            $table->string('card_owner', 30)->nullable();
+            $table->string('dental_plan_type', 30)->nullable();
             $table->string('ans_code');
-            $table->string('card_number');
 
             $table->integer('patient_id')->unsigned();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');

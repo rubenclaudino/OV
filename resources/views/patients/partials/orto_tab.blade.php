@@ -1,6 +1,6 @@
 <!-- start: ORTO -->
 <div id="orto" class="tab-pane fade">
-    {{--
+
         <!-- start: ROW -->
         <div class="row" style="background:#fff;">
 
@@ -16,9 +16,9 @@
                         <!-- start: TREATMENT STATUS -->
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <label for="ortho_treatment_status">Status do Tratamento</label>
-                                <select class="form-control" id="ortho_treatment_status"
-                                        name="ortho_treatment_status">
+                                <label for="treatment_status">Status do Tratamento</label>
+                                <select class="form-control" id="treatment_status"
+                                        name="treatment_status">
                                     <option value="1">Ativo</option>
                                     <option value="0">Inativo</option>
                                     <option value="2">Aguardando Documentação</option>
@@ -43,9 +43,9 @@
                         <!-- start: REASON FOR ORTHODONTIC TREATMENT -->
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <label for="ortho_reason_for_treatment">Razão do tratamento</label>
-                                <input type="text" class="form-control" id="ortho_reason_for_treatment"
-                                       name="ortho_reason_for_treatment">
+                                <label for="reason_for_treatment">Razão do tratamento</label>
+                                <input type="text" class="form-control" id="reason_for_treatment"
+                                       name="reason_for_treatment">
                             </div>
                         </div>
                         <!-- end: REASON FOR ORTHODONTIC TREATMENT -->
@@ -53,9 +53,9 @@
                         <!-- start: MOTIVAITIONAL LEVEL -->
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <label for="orto_motivation_level">Nível de motivação</label>
-                                <input type="text" class="form-control" id="orto_motivation_level"
-                                       name="orto_motivation_level">
+                                <label for="motivation_level">Nível de motivação</label>
+                                <input type="text" class="form-control" id="motivation_level"
+                                       name="motivation_level">
                             </div>
                         </div>
                         <!-- end: MOTIVAITIONAL LEVEL -->
@@ -74,9 +74,9 @@
                         <!-- start: ORTHODONTIST RESPONSIBLE -->
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <label for="ortho_responsible">Especialista</label>
-                                <select class="form-control" id="ortho_responsible"
-                                        name="ortho_responsible">
+                                <label for="responsible">Especialista</label>
+                                <select class="form-control" id="responsible"
+                                        name="responsible">
                                 </select>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                         <div class="fileupload fileupload-new center" data-provides="fileupload"
                              style="width:100%;">
 
-                            <input name="patient_orto_init" id="patient_orto_init" value="false"
+                            <input name="orto_initial_image" id="orto_initial_image" value="false"
                                    type="hidden" style="width:100%;">
 
                             <div class="fileupload-new thumbnail"
@@ -163,7 +163,7 @@
                           Mudar
                        </span>
 
-                       <input name="patient_orto_init_img" id="patient_orto_init_img" type="file"
+                       <input name="orto_initial_image" id="orto_initial_image" type="file"
                               accept="image/x-png, image/gif, image/jpeg">
 
                                </span>
@@ -189,7 +189,7 @@
 
                         <div class="fileupload fileupload-new center"
                              data-provides="fileupload">
-                            <input name="patient_orto_init" id="patient_orto_init" value="false"
+                            <input name="orto_initial_image" id="orto_initial_image" value="false"
                                    type="hidden">
                             <div class="fileupload-new thumbnail"
                                  style="width:100%;border:none;">
@@ -208,7 +208,7 @@
                           <i class="fa fa-picture-o fa=fw"></i>
                           Mudar
                        </span>
-                       <input name="patient_orto_init_img" id="patient_orto_init_img" type="file"
+                       <input name="orto_initial_image_img" id="orto_initial_image_img" type="file"
                               accept="image/x-png, image/gif, image/jpeg">
                     </span>
                                 <span href="#" class="btn fileupload-exists btn-danger"
@@ -236,7 +236,7 @@
                             <div class="noteWrap">
                                 <div class="form-group"
                                      style="padding: 0px !important;margin: 0px !important">
-                                       <textarea id="ortho_planing_note" name="ortho_planing_note"
+                                       <textarea id="planing_note" name="planing_note"
                                                  class="form-control summernote"
                                                  placeholder="Planejamento..." style="display: none;">
                                        </textarea>
@@ -253,6 +253,6 @@
 
         </div>
         <!-- start: ROW -->
---}}
+
 </div>
 <!-- end: ORTO -->

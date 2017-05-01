@@ -20,7 +20,7 @@ class Patient extends Model
 
     public function diseases()
     {
-        return $this->belongsToMany('App\Disease');
+        return $this->belongsToMany('App\Disease', 'disease_patient');
     }
 
     public function pictograms()
@@ -75,6 +75,6 @@ class Patient extends Model
 
     public function specialties()
     {
-        return $this->belongsToMany('App\Specialty', 'patient_specialty', 'specialty_id', 'patient_id');
+        return $this->belongsToMany('App\Specialty', 'patient_specialty');
     }
 }

@@ -12,8 +12,8 @@
                 <!-- start:  TAKES MEDICINES -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
-                        <label for="take_drug">Está tomando medicamentos</label>
-                        {!! Form::select('take_drugs', array('0' => 'Não','1' => 'Sim'),'',['class' =>
+                        <label for="takes_drugs">Está tomando medicamentos</label>
+                        {!! Form::select('takes_drugs', array('0' => 'Não','1' => 'Sim'),'',['class' =>
                         'form-control','placeholder' => 'Não Informado']) !!}
                     </div>
                 </div>
@@ -22,28 +22,18 @@
                 <!-- start:  BIRTH DEFECTS -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
-                        <label for="have_birth_defect">Anomalias congénitas</label>
+                        <label for="has_birth_defect">Anomalias congénitas</label>
                         {!! Form::select('has_birth_defect', array('0' => 'Não','1' =>
                         'Sim'),'',['class' => 'form-control','placeholder' => 'Não Informado']) !!}
                     </div>
                 </div>
                 <!-- end:  BIRTH DEFECTS -->
 
-                <!-- start:  BONE DEVELOPMENT -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <label for="bone_dev_stage">Bone development stage?</label>
-                        {!! Form::select('bone_dev_stage', array('0' => 'Não','1' => 'Sim'),'',['class'
-                        => 'form-control','placeholder' => 'Não Informado']) !!}
-                    </div>
-                </div>
-                <!-- end:  BONE DEVELOPMENT -->
-
                 <!-- start:  TAKES PREGNANCY PILLS -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
-                        <label for="take_prg_pills">Utiliza algum anticoncepcional</label>
-                        {!! Form::select('take_preg_pills', array('0' => 'Não','1' => 'Sim'),'',['class'
+                        <label for="takes_birth_control_pills">Utiliza algum anticoncepcional</label>
+                        {!! Form::select('takes_birth_control_pills', array('0' => 'Não','1' => 'Sim'),'',['class'
                         => 'form-control','placeholder' => 'Não Informado']) !!}
                     </div>
                 </div>
@@ -52,8 +42,8 @@
                 <!-- start:  PREV SURGERIES -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
-                        <label for="has_prev_surgeries">Teve alguma operação grave</label>
-                        {!! Form::select('has_prev_surgeries', array('0' => 'Não','1' =>
+                        <label for="had_previous_surgeries">Teve alguma operação grave</label>
+                        {!! Form::select('had_previous_surgeries', array('0' => 'Não','1' =>
                         'Sim'),'',['class' => 'form-control','placeholder' => 'Não Informado']) !!}
                     </div>
                 </div>
@@ -80,19 +70,9 @@
                 </div>
                 <!-- end:  WHEELCHAIR -->
 
-                <!-- start:  BODY TYPE -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <label for="body_type">Biotipo</label>
-                        {!! Form::select('body_type_id', array('0' => 'Não','1' => 'Sim'),'',['class' =>
-                        'form-control','placeholder' => 'Não Informado']) !!}
-                    </div>
-                </div>
-                <!-- end:  BODY TYPE -->
-
                 <!-- start:  HEIGHT -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <label for="patient_height">Altura</label>
+                    <label for="height">Altura</label>
                     <div class="form-group">
                         <div class="input-group">
                             {{ Form::text('height','',array('class' => 'form-control','placeholder' =>
@@ -105,7 +85,7 @@
 
                 <!-- start:  WEIGHT -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <label for="patient_weight">Peso</label>
+                    <label for="weight">Peso</label>
                     <div class="form-group">
                         <div class="input-group">
                             {{ Form::text('weight','',array('class' => 'form-control','placeholder' =>
@@ -125,8 +105,6 @@
         <!-- start: RIGHT SIDE INFO -->
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"
              style="margin-top: 25px;background: whitesmoke;padding: 20px 0px">
-
-            <input type="hidden" value="0" name="hasDisease" id="hasDisease"/>
 
             <style>
                 #diseaseList th, #diseaseList td {
@@ -149,16 +127,14 @@
             </style>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                @foreach($disease as $data)
+                @foreach($diseases as $disease)
                     <div class="col-md-6">
-
                         <div class="form-group">
-                            <label>{{ Form::checkbox('disease','0','',array('class' => 'grey','data-id'
-                                                                    => $data->id)) }} {{$data->title}}</label>
+                            <label>                                {{$disease->title}}
+                            </label>
+                            {{ Form::checkbox('diseases','0','',['class' => 'grey','data-id'=> $disease->id]) }}
                             <div class="clearfix"></div>
                         </div>
-
                     </div>
                 @endforeach
             </div>

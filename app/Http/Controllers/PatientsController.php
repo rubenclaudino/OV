@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use App\Clinic;
+use App\ClinicDentalPlan;
 use App\Disease;
 use App\Patient;
 use App\Referral;
+use App\Role;
 use App\Specialty;
 use App\User;
 use Illuminate\Http\Request;
@@ -30,7 +33,10 @@ class PatientsController extends Controller
 
         /* $i = 0;
          foreach ($users as $data) {
-             $users[$i]->speciality = DB::select("SELECT `specialties`.*, `patient_speciality`.`patient_id` from `specialties` inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id` where `patient_speciality`.`patient_id` ='" . $data->id . "'");
+             $users[$i]->speciality = DB::select("SELECT `specialties`.*, `patient_speciality`.`patient_id`
+        from `specialties` inner join `patient_speciality` on
+        `patient_speciality`.`speciality_id` = `specialities`.`id` where
+        `patient_speciality`.`patient_id` ='" . $data->id . "'");
              $i++;
          }*/
 
@@ -47,16 +53,14 @@ class PatientsController extends Controller
         $professionals = [];
 
         // getting diseases
-        $disease = Disease::all();
+        $diseases = Disease::all();
 
-        $i = 0;
-        foreach ($disease as $data) {
-            $disease[$i]->value = "0";
-            $disease[$i]->action = false;
-            $i++;
+        foreach ($diseases as $data) {
+            $data->value = "0";
+            $data->action = false;
         }
 
-        $dentist = User::where('clinic_id', Auth::user()->clinic_id)->get();
+        $dentist = Role::where('name', 'Dentist')->first()->users()->get();
         foreach ($dentist as $data) {
             $name = $data->first_name . " " . $data->last_name;
             $professionals[$data->id] = $name;
@@ -64,9 +68,11 @@ class PatientsController extends Controller
 
         $treatments = Specialty::pluck('name', 'id');
         $referrals = Referral::pluck('name', 'id');
+        $clinic_dental_plans = ClinicDentalPlan::pluck('name', 'id');
 
         $clinics = Clinic::pluck('name', 'id');
-        return view('patients.create', compact('title', 'subtitle', 'activeClass', 'clinics', 'disease', 'professionals', 'treatments', 'referrals'));
+        return view('patients.create', compact('title', 'subtitle', 'activeClass', 'clinics', 'diseases', 'professionals',
+            'treatments', 'referrals', 'clinic_dental_plans'));
     }
 
     public function store(Request $request)
@@ -74,14 +80,25 @@ class PatientsController extends Controller
         $input = $request->all();
         $request['clinic_id'] = Auth::user()->clinic_id;
 
-        // adding patient
-        $patient = Patient::create($request->except('specialty'));
+        // TODO: find where is 'disease' fed to the request
+        // TODO: clinic dental plan as foreign key in patient dental plan
+        $patient = Patient::create($request->except('specialty', 'diseases',
+            'disease', 'clinic_dental_plan_id', 'patient_id'));
         if (!$patient->id)
             return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
 
+        // TODO: adding dynamic tabs on specialty select
+        if ($request->has('specialty')) {
+            $patient->specialties()->sync($request->specialty);
+        }
 
-        // uploading profile image
-        if (isset($input['patient_profile_image'])) {
+        if ($request->has('diseases')) {
+            $diseases = array_keys(array_filter(json_decode($request->diseases, true)));
+            //return $diseases;
+            $patient->diseases()->sync($diseases);
+        }
+
+        if ($request->has('patient_profile_image')) {
             if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
                 mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
             }
@@ -93,65 +110,7 @@ class PatientsController extends Controller
             $patient->save();
         }
 
-        // adding patient address
-        /*
-                    $address = Address::create($input);
-                    if ($address) {
-                        $patient = $patient::find($patient->id);
-                        $patient->address_id = $address->id;
-                        $patient->save();
-                    }
-        */
-        // adding patient contact
-        /*
-                    $contact = Contact::create($input);
-                    if ($contact) {
-                        $patient = $patient::find($patient->id);
-                        $patient->contact_id = $contact->id;
-                        $patient->save();
-                    }*/
-
-        // saving patient disease
-        /*if (isset($request->diseases)) {
-            $diseases = json_decode($request->diseases);
-            foreach ($diseases as $key => $val) {
-                $u = PatientDisease::create([
-                    'patient_id' => $patient->id,
-                    'disease_id' => $key,
-                    'status'     => $val
-                ]);
-            }
-        }*/
-
-        // adding patient speciality
-        // TODO: adding dynamic tabs on specialty select
-
-        if ($request->has('specialty')) {
-            //return implode($request->specialty, ',');
-            $patient->specialties()->sync([$request->specialty]);
-
-            return 'sync';
-
-            /*$specialty = $input['specialty'];
-            foreach ($specialty as $d) {
-                $check = Specialty::where([['patient_id', $patient->id], ['specialty_id', $d]])->count();
-                if ($check > 0) {
-                } else {
-                    Specialty::create([
-                        'patient_id' => $patient->id,
-                        'specialty_id' => $d,
-                    ]);
-                }
-            }*/
-        }
-
-        // getting patient
-
-        $p = Patient::find($patient->id);
-        //$p->contact = Contact::find($p->contact_id);
-        //$p->address = Address::find($p->address_id);
-
-        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!", 'json' => $p]);
+        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!"]);
     }
 
     public function show($id)
@@ -168,11 +127,11 @@ class PatientsController extends Controller
 
         // getting recent appointments
 
-        $appointments = Appointment::where('patient_id', '=', $patient->id)->orderBy('starttimestamp', 'desc')->get();
+        $appointments = Appointment::where('patient_id', $patient->id)->orderBy('starttimestamp', 'desc')->get();
 
         // missed appointments
 
-        $missedAppointments = Appointment::where('status', '=', '3')->count();
+        $missedAppointments = Appointment::where('status', '3')->count();
 
         return view('patients.show', compact('title', 'subtitle', 'patient', 'activeClass', 'patient', 'appointments', 'missedAppointments'));
     }
@@ -193,7 +152,7 @@ class PatientsController extends Controller
 
         // get this clinic dentist
 
-        $dentist = DB::table('dentists')->where('clinic_id', '=', $patient->clinic_id)->select("id", "first_name", "last_name")->get();
+        $dentist = DB::table('dentists')->where('clinic_id', $patient->clinic_id)->select("id", "first_name", "last_name")->get();
         $professionals = [];
 
         // getting diseases
@@ -201,7 +160,7 @@ class PatientsController extends Controller
         $disease = Disease::all();
         $i = 0;
         foreach ($disease as $data) {
-            $patientDisease = PatientDisease::where([['patient_id', '=', $patient->id], ['disease_id', '=', $data->id]])->first();
+            $patientDisease = PatientDisease::where([['patient_id', $patient->id], ['disease_id', $data->id]])->first();
             if (isset($patientDisease->id)) {
                 if ($patientDisease->status == "1") {
                     $disease[$i]->value = "1";
@@ -394,7 +353,8 @@ class PatientsController extends Controller
     public function getPatientList(Request $request)
     {
         $patients = Patient::where([['first_name', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
-            ->orWhere('phone_1', 'like', $request->name . '%')
+            ->orWhere([['phone_1', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
+            ->orWhere([['last_name', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
             /*->leftJoin('contact', 'contact.id', 'patients.contact_id')
            /* ->select('patients.*', 'contact.celular_1')*/
             ->get();
