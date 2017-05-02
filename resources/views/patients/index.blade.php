@@ -86,8 +86,8 @@
                             <!-- PROFILE PICTURE -->
                             <td>
                                 <div class="image_cont hidden-print" style="opacity: 0.8">
-                                    @if($patient->profile_url != '')
-                                        {{ Html::image(url('/').'/'.$patient->profile_url) }}
+                                    @if($patient->patient_profile_image != '')
+                                        {{ Html::image(url('/').'/'.$patient->patient_profile_image) }}
                                     @else
                                         @if($patient->gender == '1')
                                             {{ Html::image(url('/')."/images/user/female.png") }}

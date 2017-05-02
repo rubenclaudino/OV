@@ -100,11 +100,11 @@
 
                                             <div class="fileupload-new thumbnail" style="width:100%">
                                                 <?php
-                                                if ($patient->profile_url) {
-                                                    $patient->profile_url = url('/') . "/" . $patient->profile_url;
+                                                if ($patient->patient_profile_image) {
+                                                    $patient->patient_profile_image = url('/') . "/" . $patient->patient_profile_image;
                                                 }
                                                 ?>
-                                                {{ HTML::image($patient->profile_url) }}
+                                                {{ Html::image($patient->patient_profile_image) }}
                                             </div>
 
                                             <div style="line-height: 10px; width:100%"
@@ -295,7 +295,7 @@
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <label for="dob">Data de Nascimento</label>
                                                     <div class="input-group">
-                                                        {{ Form::text('DOB',$patient->DOB,array('class' => 'form-control date-picker', 'style' => 'padding-left:30px')) }}
+                                                        {{ Form::text('DOB',$patient->date_of_birth,array('class' => 'form-control date-picker', 'style' => 'padding-left:30px')) }}
                                                         <span class="input-icon" style="margin-top: 2px !important;"> <i
                                                                     class="fa fa-calendar"></i> </span>
                                                     </div>
@@ -394,7 +394,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{ Form::text('phone_landline',$patient->contact->phone_landline,array('class' => 'form-control input-mask-phone')) }}
+                                                    {{ Form::text('phone_landline',$patient->phone_landline,array('class' => 'form-control input-mask-phone')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -411,7 +411,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{ Form::text('phone_landline',$patient->contact->phone_landline,array('class' => 'form-control input-mask-phone')) }}
+                                                    {{ Form::text('phone_landline',$patient->phone_landline,array('class' => 'form-control input-mask-phone')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -422,13 +422,13 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                     <div class="form-group"
                                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                                        <label for="phone_landline">
+                                                        <label for="phone_1">
                                                             Celular 1
                                                         </label>
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{ Form::text('celular_1',$patient->contact->celular_1,array('class' => 'form-control input-mask-phone')) }}
+                                                    {{ Form::text('phone_1',$patient->phone_1,array('class' => 'form-control input-mask-phone')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -439,13 +439,13 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                     <div class="form-group"
                                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                                        <label for="phone_landline">
+                                                        <label for="phone_2">
                                                             Celular 2
                                                         </label>
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{ Form::text('celular_2',$patient->contact->celular_2,array('class' => 'form-control input-mask-phone')) }}
+                                                    {{ Form::text('phone_2',$patient->phone_2,array('class' => 'form-control input-mask-phone')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -462,7 +462,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{Form::text('whatsapp_number',$patient->contact->whatsapp_number,array('class' => 'form-control input-mask-phone')) }}
+                                                    {{Form::text('whatsapp_number',$patient->whatsapp_number,array('class' => 'form-control input-mask-phone')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -581,7 +581,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{Form::text('street_address',$patient->address->street_address,array('class' => 'form-control')) }}
+                                                    {{Form::text('street_address',$patient->street_address,array('class' => 'form-control')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -598,7 +598,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{Form::text('number',$patient->address->number,array('class' => 'form-control')) }}
+                                                    {{Form::text('number',$patient->number,array('class' => 'form-control')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -609,7 +609,7 @@
                                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="doc">Bairro</label>
-                                                        {{Form::text('borough',$patient->address->borough,array('class' => 'form-control')) }}
+                                                        {{Form::text('borough',$patient->borough,array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <!-- end: BOUROUGH -->
@@ -618,13 +618,13 @@
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <div class="form-group"
                                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                                        <label for="patient_zip">
+                                                        <label for="zip_code">
                                                             CEP
                                                         </label>
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{Form::text('zip',$patient->address->zip,array('class' => 'form-control')) }}
+                                                    {{Form::text('zip_code',$patient->zip_code,array('class' => 'form-control')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -635,7 +635,7 @@
                                                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="patient_city">Cidade</label>
-                                                        {{Form::text('city',$patient->address->city,array('class' => 'form-control')) }}
+                                                        {{Form::text('city',$patient->city,array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <!-- end: CITY -->
@@ -652,7 +652,7 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="patient_country">Observação</label>
-                                                        {{Form::text('country',$patient->address->country,array('class' => 'form-control')) }}
+                                                        {{Form::text('country',$patient->country,array('class' => 'form-control')) }}
                                                     </div>
                                                 </div>
                                                 <!-- end: OBSERVATION -->
@@ -719,7 +719,7 @@
                                         <div class="form-group">
                                             <label for="take_drug">Está tomando medicamentos</label>
                                             <!--input type="text" class="form-control" id="take_drug" name="take_drug"-->
-                                            {!! Form::select('take_drugs', array('0' => 'Não','1' => 'Sim'),array($patient->take_drugs),['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
+                                            {!! Form::select('take_drugs', array('0' => 'Não','1' => 'Sim'),array($patient->takes_drugs),['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
                                         </div>
                                     </div>
                                     <!-- end:  TAKES MEDICINES -->
@@ -733,20 +733,11 @@
                                     </div>
                                     <!-- end:  BIRTH DEFECTS -->
 
-                                    <!-- start:  BONE DEVELOPMENT -->
-                                <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                       <div class="form-group">
-                                          <label for="bone_dev_stage">Estágio de desenvolvimento ósseo</label>
-                                          {!! Form::select('bone_dev_stage', array('0' => 'No','1' => 'Yes'),$patient->bone_dev_stage,['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
-                                        </div>
-                                     </div> -->
-                                    <!-- end:  BONE DEVELOPMENT -->
-
                                     <!-- start:  TAKES PREGNANCY PILLS -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="take_prg_pills">Utiliza algum anticoncepcional</label>
-                                            {!! Form::select('take_preg_pills', array('0' => 'Não','1' => 'Sim'),$patient->take_preg_pills,['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
+                                            <label for="takes_birth_control_pills">Utiliza algum anticoncepcional</label>
+                                            {!! Form::select('takes_birth_control_pills', array('0' => 'Não','1' => 'Sim'),$patient->takes_birth_control_pills,['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
                                         </div>
                                     </div>
                                     <!-- end:  TAKES PREGNANCY PILLS -->
@@ -754,8 +745,8 @@
                                     <!-- start:  PREV SURGERIES -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="has_prev_surgeries">Teve alguma operação grave</label>
-                                            {!! Form::select('has_prev_surgeries', array('0' => 'Não','1' => 'Sim'),$patient->has_prev_surgeries,['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
+                                            <label for="had_prev_surgeries">Teve alguma operação grave</label>
+                                            {!! Form::select('had_prev_surgeries', array('0' => 'Não','1' => 'Sim'),$patient->had_prev_surgeries,['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
                                         </div>
                                     </div>
                                     <!-- end:  PREV SURGERIES -->

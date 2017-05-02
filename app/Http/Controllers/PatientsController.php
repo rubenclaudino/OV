@@ -117,17 +117,8 @@ class PatientsController extends Controller
         $activeClass = "patients";
 
         $patient = Patient::find($id);
-
-        //$patient->speciality = DB::select("SELECT `specialities`.*, `patient_speciality`.`patient_id` from
-        // `specialities` inner join `patient_speciality` on `patient_speciality`.`speciality_id` = `specialities`.`id`
-        // where `patient_speciality`.`patient_id` ='" . $patient->id . "'");
-        //$patient->diseases = DB::select("SELECT `diseases`.*, `patient_disease`.`patient_id` from `diseases`
-        // inner join `patient_disease` on `patient_disease`.`disease_id` = `diseases`.`id` where `patient_disease`.`patient_id` ='" . $patient->id . "'");
-
-        // getting recent appointments
         $appointments = Appointment::where('patient_id', $patient->id)->orderBy('starttimestamp', 'desc')->get();
 
-        // missed appointments
         // TODO: filter by patient
         $missedAppointments = Appointment::with('status')->get()->where('status', '3')->count();
 
@@ -139,39 +130,29 @@ class PatientsController extends Controller
         $title = "Patients";
         $subtitle = 'Informações detalhadas de todos tratamentos';
         $activeClass = "patients";
-        $user = Auth::user();
-        $subtitle = "Informações detalhadas de todos tratamentos";
-
-        // getting users
-
-        $pUsers = array();
 
         $patient = Patient::find($id);
 
-        // get this clinic dentist
-
-        $dentist = DB::table('dentists')->where('clinic_id', $patient->clinic_id)->select("id", "first_name", "last_name")->get();
+        // TODO: filter by patient clinic
+        $dentist = Role::where('name', 'Dentist')->first()->users()->get();
         $professionals = [];
 
-        // getting diseases
-
         $disease = Disease::all();
-        $i = 0;
+
         foreach ($disease as $data) {
-            $patientDisease = PatientDisease::where([['patient_id', $patient->id], ['disease_id', $data->id]])->first();
+            $patientDisease = $patient->diseases();
             if (isset($patientDisease->id)) {
                 if ($patientDisease->status == "1") {
-                    $disease[$i]->value = "1";
-                    $disease[$i]->action = true;
+                    $data->value = "1";
+                    $data->action = true;
                 } else {
-                    $disease[$i]->value = "0";
-                    $disease[$i]->action = false;
-                }
+                    $data->value = "0";
+                    $data->action = false;
+                };
             } else {
-                $disease[$i]->value = "0";
-                $disease[$i]->action = false;
+                $data->value = "0";
+                $data->action = false;
             }
-            $i++;
         }
 
         foreach ($dentist as $data) {
@@ -179,14 +160,15 @@ class PatientsController extends Controller
             $professionals[$data->id] = $name;
         }
 
-        // getting treatment types
-        $treatments = Speciality::pluck('title', 'id');
+// getting treatment types
+        $treatments = Specialty::pluck('name', 'id');
 
-        // getting all roles
+// getting all roles
         return view('patients.edit', compact('title', 'subtitle', 'patient', 'activeClass', 'professionals', 'disease', 'patientDisease', 'treatments'));
     }
 
-    public function update(Request $request, $id)
+    public
+    function update(Request $request, $id)
     {
         if ($request->action === 'save_profile') {
             $patient = Patient::find($id);
@@ -285,7 +267,8 @@ class PatientsController extends Controller
         }
     }
 
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         $patient = Patient::findOrFail($id);
 
@@ -348,7 +331,8 @@ class PatientsController extends Controller
      * @param Request $request
      * @return
      */
-    public function getPatientList(Request $request)
+    public
+    function getPatientList(Request $request)
     {
         $patients = Patient::where([['first_name', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
             ->orWhere([['phone_1', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
@@ -398,7 +382,8 @@ class PatientsController extends Controller
         return $patients;
     }
 
-    public function upload($file, $id)
+    public
+    function upload($file, $id)
     {
         // getting all of the post data
         $destinationPath = 'uploads/' . $id; // upload path
@@ -415,7 +400,8 @@ class PatientsController extends Controller
     /**
      * PATIENT STATS
      **/
-    public function stats()
+    public
+    function stats()
     {
         $title = "Patient Stats";
         $subtitle = 'Informações detalhadas de todos tratamentos';

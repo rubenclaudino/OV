@@ -1020,7 +1020,7 @@
 
             </div>
             <!-- end: PATIENT INFORMATION -->
-            
+
             <!-- start: MODAL -->
             <div id="appointment_modal" style="display:none;">
                 <div class="col-md-12">
