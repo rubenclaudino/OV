@@ -153,13 +153,14 @@ class UsersController extends Controller
         $activeClass = "users_management";
 
         // get all users
-        $users = User::where([['clinic_id', '=', Auth::user()->clinic_id], ['role_id', '>', '1']])
+        $users = User::where('clinic_id', Auth::user()->clinic_id)->with('roles')->get();
+       /* $users = User::where([['clinic_id', '=', Auth::user()->clinic_id], ['role_id', '>', '1']])
             ->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
             ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
             ->select('users.*', 'roles.name AS rolename', 'roles.*', 'users.name AS username')
             ->orderBy('roles.slug', 'ASC')
             ->whereNotIn('users.id', array(Auth::user()->id))
-            ->get();
+            ->get();*/
 
         $i = 0;
         foreach ($users as $data) {

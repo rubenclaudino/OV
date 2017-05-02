@@ -92,22 +92,22 @@
                             <td class="hidden-print">
                                 <div class="image_cont" style="opacity: 0.8">
                                     @if($data->profile_url != '')
-                                        {{ HTML::image(url('/').'/'.$data->profile_url) }}
+                                        {{ Html::image(url('/').'/'.$data->profile_url) }}
                                     @else
-                                        {{ HTML::image(url('/')."/images/anonymous.jpg") }}
+                                        {{ Html::image(url('/')."/images/anonymous.jpg") }}
                                     @endif
                                 </div>
                             </td>
                             <!-- USERNAME -->
                             <td>{{ $data->username }}</td>
                             <td class="center">
-                                @if($data->rolename == 'Admin')
+                                @if($data->rolename == 'admin')
                                     <span class="label label-default" style="background: #1b6d85 !important;opacity: 0.8"> Super Admin </span>
-                                @elseif($data->rolename == 'DentistAdmin')
+                                @elseif($data->rolename == 'local_admin')
                                     <span class="label label-default" style="background: #75ab00 !important;opacity: 0.8"> Clinic Admin </span>
-                                @elseif($data->rolename == 'Receptionist')
+                                @elseif($data->rolename == 'receptionist')
                                     <span class="label label-default" style="background: #ad1457 !important;opacity: 0.8"> Receptionist </span>
-                                @elseif($data->rolename == 'Dentist')
+                                @elseif($data->rolename == 'dentist')
                                     <span class="label label-default" style="background: #8b1014 !important;opacity: 0.8"> Dentist </span>
                                 @endif
                             </td>
