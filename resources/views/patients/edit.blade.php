@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <!-- end: GENERAL INFO -->
-
+                {{--
                     <!-- start: HEALTH -->
                     <li id="healthTitle">
                         <a data-toggle="tab" href="#health">
@@ -29,47 +29,47 @@
                         </a>
                     </li>
                     <!-- end: HEALTH -->
-
-                    <!-- start: DENTAL PLAN -->
+--}}
+                <!-- start: DENTAL PLAN -->
                     <li id="dentalPlanTitle">
                         <a data-toggle="tab" href="#dentalPlan">
                             <strong>Convênio</strong>
                         </a>
                     </li>
                     <!-- end: DENTAL PLAN -->
+                    {{--
+                                        <!-- start: SPEC - ORT -->
+                                        <li id="ortoTitle">
+                                            <a data-toggle="tab" href="#orto">
+                                                <strong>Ortodontia</strong>
+                                            </a>
+                                        </li>
+                                        <!-- end: SPEC - ORT -->
 
-                    <!-- start: SPEC - ORT -->
-                    <li id="ortoTitle">
-                        <a data-toggle="tab" href="#orto">
-                            <strong>Ortodontia</strong>
-                        </a>
-                    </li>
-                    <!-- end: SPEC - ORT -->
+                                        <!-- start: SPEC - PROST -->
+                                        <li id="prosTitle">
+                                            <a data-toggle="tab" href="#prosthesis">
+                                                <strong>Prótese</strong>
+                                            </a>
+                                        </li>
+                                        <!-- end: SPEC - PROST -->
 
-                    <!-- start: SPEC - PROST -->
-                    <li id="prosTitle">
-                        <a data-toggle="tab" href="#prosthesis">
-                            <strong>Prótese</strong>
-                        </a>
-                    </li>
-                    <!-- end: SPEC - PROST -->
+                                        <!-- start: SPEC - IMPLANT -->
+                                        <li id="impTitle">
+                                            <a data-toggle="tab" href="#implant">
+                                                <strong>Implantodontia</strong>
+                                            </a>
+                                        </li>
+                                        <!-- end: SPEC - IMPLANT -->
 
-                    <!-- start: SPEC - IMPLANT -->
-                    <li id="impTitle">
-                        <a data-toggle="tab" href="#implant">
-                            <strong>Implantodontia</strong>
-                        </a>
-                    </li>
-                    <!-- end: SPEC - IMPLANT -->
-
-                    <!-- end: EXAMS -->
-                    <li>
-                        <a data-toggle="tab" href="#exam">
-                            <strong>Exames</strong>
-                        </a>
-                    </li>
-                    <!-- end: EXAMS -->
-
+                                        <!-- end: EXAMS -->
+                                        <li>
+                                            <a data-toggle="tab" href="#exam">
+                                                <strong>Exames</strong>
+                                            </a>
+                                        </li>
+                                        <!-- end: EXAMS -->
+                    --}}
                 </ul>
                 <!-- end: TAB HEADERS -->
 
@@ -736,7 +736,8 @@
                                     <!-- start:  TAKES PREGNANCY PILLS -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="takes_birth_control_pills">Utiliza algum anticoncepcional</label>
+                                            <label for="takes_birth_control_pills">Utiliza algum
+                                                anticoncepcional</label>
                                             {!! Form::select('takes_birth_control_pills', array('0' => 'Não','1' => 'Sim'),$patient->takes_birth_control_pills,['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
                                         </div>
                                     </div>
@@ -833,7 +834,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                                <div class="clearfix"></div>
+                                            <div class="clearfix"></div>
                                         </div>
                                     </div>
 

@@ -55,7 +55,7 @@ class PermissionsController extends Controller
 
                     if ((strpos($action, 'Auth') == '')) {
                         if (strpos($action, 'Laravel') == '') {
-                            $string = stripslashes(str_replace("App\Http\Controllers", "", $action));
+                            $string = stripslashes(str_replace("App\\Http\\Controllers", "", $action));
                             $controllers[$string] = $string;
                         }
                     }
@@ -97,7 +97,8 @@ class PermissionsController extends Controller
         $user = Auth::user();
         if ($user->isAdmin() || $user->hasPermission('permissions.store')) {
             $request = $request->all();
-            $request['slug'] = strtolower(str_replace('@', '.', $request['slug']));
+            $request['slug'] = strtolower(str_replace('Controller@', '-', $request['slug']));
+            return $request['slug'];
             $validator = Validator::make($request, [
                 'slug' => 'unique:permissions',
             ]);

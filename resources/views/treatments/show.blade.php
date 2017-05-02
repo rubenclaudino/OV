@@ -65,10 +65,10 @@
                               Especialidade
                            </td>
                            <td>
-                              @foreach($plan->speciality as $d)
+                             {{--@foreach($plan->speciality as $d)
                                  <span class="label label-default" style="@if($d->color_code != '')background:#{{$d->color_code}} !important @endif;opacity: 0.8">{{$d->title }}</span>
                                  {{$d->title }}
-                              @endforeach
+                              @endforeach--}}
                            </td>
                         </tr>
                         <tr>

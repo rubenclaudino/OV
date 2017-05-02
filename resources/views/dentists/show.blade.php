@@ -229,7 +229,7 @@
                            </tr>
                            <tr>
                               <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">Data de Nascimento</td>
-                              <td style="font-size:1.1em">{{ $dentist->dob }}</td>
+                              <td style="font-size:1.1em">{{ $dentist->date_of_birth }}</td>
                            </tr>
                            <tr>
                               <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">CPF</td>
@@ -271,7 +271,7 @@
                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Bairro</td>
                                        <td style="font-size:1.1em">@if( $dentist->borough ) {{ $dentist->borough }} @else - @endif</td>
                                         <td style="font-weight:bold;font-size:1.1em;width: 15%">CEP</td>
-                                        <td style="font-size:1.1em">@if( $dentist->zip ) {{ $dentist->zip }} @else - @endif</td>
+                                        <td style="font-size:1.1em">@if( $dentist->zip_code ) {{ $dentist->zip_code }} @else - @endif</td>
                                     </tr>
                                     <tr>
                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Cidade</td>
@@ -338,25 +338,25 @@
                      @foreach($dentist->appointments as $data)
                         <tr>
                            <td style="font-size:1.1em">{{ $data->startdate }}</td>
-                           <td style="font-size:1.1em">{{ date('H:i', strtotime($data->appointment_starttime)) }}</td>
+                           <td style="font-size:1.1em">{{ date('H:i', strtotime($data->starttime)) }}</td>
                             <td class="hidden-xs" style="font-size:1.1em">{{ $data->patient->first_name }}  {{ $data->patient->last_name }}</td>
                            <td style="font-size:1.1em">@if($data->patient->has_dental_plan == 0) Convênio @else Particular @endif</td>
                            <td style="font-size:1.1em">{{ $data->specialty_id }}</td>
                            <td class="center" style="font-size:1.1em">
-                              @if( $data->status == 1 )
+                              @if( $data->status->id == 1 )
                                  <span class="label" style="background: #5bc0de;opacity: 0.8">Agendado</span>
-                              @elseif( $data->status == 1 )
+                              @elseif( $data->status->id == 1 )
                                  <span class="label" style="background: #5cb85c;opacity: 0.8">Confirmado</span>
-                              @elseif( $data->status == 1 )
+                              @elseif( $data->status->id == 1 )
                                  <span class="label" style="background: #f0ad4e;opacity: 0.8">Desmarcado</span>
-                              @elseif( $data->status == 1 )
+                              @elseif( $data->status->id == 1 )
                                  <span class="label" style="background: #d9534f;opacity: 0.8">Faltou</span>
-                              @elseif( $data->status == 1 )
+                              @elseif( $data->status->id == 1 )
                                  <span class="label" style="background: #5e5e5e;opacity: 0.8">Finalizado</span>
                               @endif
                            </td>
                            <td class="center hidden-xs" style="font-size:1.1em">
-                              <a><i class="fa fa-info" data-text="{{$data->appointment_observation}}" data-toggle="tooltip" data-placement="top" title="{{$data->appointment_observation}}"></i></a>
+                              <a><i class="fa fa-info" data-text="{{$data->observation}}" data-toggle="tooltip" data-placement="top" title="{{$data->observation}}"></i></a>
                            </td>
                         </tr>
                      @endforeach
