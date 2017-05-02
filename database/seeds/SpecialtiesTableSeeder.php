@@ -13,6 +13,7 @@ class SpecialtiesTableSeeder extends Seeder
     {
         DB::table('specialties')->insert([
             ['name' => 'Diagnóstico', 'color' => '3D4236'],
+            ['name' => 'Clinica Geral', 'color' => '1EA0CA'],
             ['name' => 'Radiologia', 'color' => '0098A6'],
             ['name' => 'Testes e Exames de Laboratório', 'color' => 'B3C90C'],
             ['name' => 'Prevenção', 'color' => '785248'],

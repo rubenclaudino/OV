@@ -85,7 +85,7 @@
                                         </div>
                                         <div class="form-group">
                                             <!-- <label>Treatment Type</label> -->
-                                            {!! Form::select('specialty_id', $specialties, 'Treatment Type',['class' => 'form-control selectpicker treatment_type']) !!}
+                                            {!! Form::select('specialty_id', $specialties, 2,['class' => 'form-control selectpicker treatment_type']) !!}
                                         </div>
                                     </div>
                                     <div class="col-md-6">

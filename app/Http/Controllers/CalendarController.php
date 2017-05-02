@@ -57,7 +57,7 @@ class CalendarController extends Controller
         $dentalPlans = ClinicDentalPlan::pluck('title', 'id');
         $appointments = Appointment::where('user_id', $id)->where('clinic_id', $user->clinic_id)->with('patient')->get();
         $report_models = CustomReport::pluck('name', 'id');
-        $specialties = Specialty::pluck('name', 'id');
+        $specialties = Specialty::orderBy('name')->pluck('name', 'id');
         $appointment_statuses = AppointmentStatus::pluck('name', 'id');
 
         $calendarArray = array();

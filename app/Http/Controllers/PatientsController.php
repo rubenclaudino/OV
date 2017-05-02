@@ -66,7 +66,7 @@ class PatientsController extends Controller
             $professionals[$data->id] = $name;
         }
 
-        $treatments = Specialty::pluck('name', 'id');
+        $treatments = Specialty::orderBy('name')->pluck('name', 'id');
         $referrals = Referral::pluck('name', 'id');
         $clinic_dental_plans = ClinicDentalPlan::pluck('title', 'id');
 
@@ -96,7 +96,7 @@ class PatientsController extends Controller
             $patient->diseases()->sync($diseases);
         }
 
-        if ($request->hasFile('patient_profile_image')) {
+        if ($request->has('patient_profile_image')) {
             if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
                 mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
             }
