@@ -23,8 +23,8 @@
                         <div class="col-sm-6 hidden-xs">
 
                             <div class="table-header">
-                                <h2 style="font-weight: lighter">{{ $title }}</h2>
-                                <p style="font-size: large;">Your plan currently has <strong>7</strong> users available</p>
+                                <h2 style="font-weight: lighter">Gerenciamento de usuários</h2>
+                                <p style="font-size: large;">Seu plano tem direto á <strong>7</strong> usuários</p>
                             </div>
 
                         </div>
@@ -32,16 +32,12 @@
                         <div class="col-sm-6 col-xs-12">
 
                             <div class="toolbar-tools pull-right" style="padding-top: 10px;">
+
                                 <!-- start: TOP NAVIGATION MENU -->
                                 <ul class="nav navbar-right">
                                     <li>
                                         <a href="#" class="print">
-                                            <i class="fa fa-users"></i> Change Plan
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="new-event MyToolbar">
-                                            <i class="fa fa-link"></i> Send Invite
+                                            <i class="fa fa-users"></i> Atualizar Plano
                                         </a>
                                     </li>
                                     <li>
@@ -51,6 +47,7 @@
                                     </li>
                                 </ul>
                                 <!-- end: TOP NAVIGATION MENU -->
+
                             </div>
 
                         </div>
@@ -64,7 +61,7 @@
                 <div class="panel-body" >
 
                     <!-- start: DISPLAYING USERS -->
-                    <table class="table datatable table-striped table-hover table-condensed" id="mainInfo">
+                    <table class="table table-striped table-hover" id="mainInfo">
 
                         <!-- start: TABLE HEAD -->
                         <thead>
@@ -104,11 +101,11 @@
                                 @if($data->roles->first()->name == 'admin')
                                     <span class="label label-default" style="background: #1b6d85 !important;opacity: 0.8"> Super Admin </span>
                                 @elseif($data->roles->first()->name == 'local_admin')
-                                    <span class="label label-default" style="background: #75ab00 !important;opacity: 0.8"> Clinic Admin </span>
+                                    <span class="label label-default" style="background: #75ab00 !important;opacity: 0.8"> Administrador </span>
                                 @elseif($data->roles->first()->name == 'receptionist')
-                                    <span class="label label-default" style="background: #ad1457 !important;opacity: 0.8"> Receptionist </span>
+                                    <span class="label label-default" style="background: #ad1457 !important;opacity: 0.8"> Recepcionista </span>
                                 @elseif($data->roles->first()->name == 'dentist')
-                                    <span class="label label-default" style="background: #8b1014 !important;opacity: 0.8"> Dentist </span>
+                                    <span class="label label-default" style="background: #8b1014 !important;opacity: 0.8"> Dentista </span>
                                 @endif
                             </td>
                             <td>{{ date('d/m/Y', strtotime($data->created_at)) }}</td>
@@ -119,13 +116,13 @@
                                         Opções &nbsp;<span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                        <li><a href="{{ URL::route('dentists.show', $data->id) }}"><small><i class="fa fa-user fa-fw"></i>&nbsp; Profile</small></a></li>
-                                        <li><a href="#"><small><i class="fa fa-eye fa-fw"></i>&nbsp; Activity</small></a></li>
+                                        <li><a href="{{ URL::route('dentists.show', $data->id) }}"><small><i class="fa fa-user fa-fw"></i>&nbsp; Perfil</small></a></li>
+                                        <li><a href="#"><small><i class="fa fa-eye fa-fw"></i>&nbsp; Atividades</small></a></li>
                                         <li><a href="#"><small><i class="fa fa-info fa-fw"></i>&nbsp; Log</small></a></li>
-                                        <li><a href="#"><small><i class="fa fa-check fa-fw"></i>&nbsp; Permissions</small></a></li>
-                                        <li><a href="#"><small><i class="fa fa-unlock-alt fa-fw"></i>&nbsp; Make Admin</small></a></li>
+                                        <li><a href="#"><small><i class="fa fa-check fa-fw"></i>&nbsp; Permissões</small></a></li>
+                                        <li><a href="#" class="hidden"><small><i class="fa fa-unlock-alt fa-fw"></i>&nbsp; Make Admin</small></a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#"><small><i class="fa fa-ban fa-fw"></i>&nbsp; Remover</small></a></li>
+                                        <li><a href="#"><small><i class="fa fa-ban fa-fw"></i>&nbsp; Desativar</small></a></li>
                                     </ul>
                                 </div>
                             </td>
