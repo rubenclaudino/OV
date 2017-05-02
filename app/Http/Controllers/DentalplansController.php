@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\State;
 use Illuminate\Http\Request;
-use App\DentalPlan;
+use App\ClinicDentalPlan;
 use Illuminate\Support\Facades\Auth;
 
 class DentalplansController extends Controller
@@ -15,7 +15,7 @@ class DentalplansController extends Controller
         $title = "Dental Plans";
         $subtitle = "Dental Plans List";
         $activeClass = "dentalplans";
-        $plans = DentalPlan::all();
+        $plans = ClinicDentalPlan::all();
         return view('dentalplans.index', compact('title', 'subtitle', 'activeClass', 'plans'));
     }
 
@@ -32,7 +32,7 @@ class DentalplansController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $plan = DentalPlan::create($input);
+        $plan = ClinicDentalPlan::create($input);
         if ($plan->id) {
             return response()->json(['status' => 'success', 'message' => 'Dental Plan Created!']);
         } else {
@@ -48,7 +48,7 @@ class DentalplansController extends Controller
         $subtitle = "";
 
         $user = Auth::user();
-        $plan = DentalPlan::find($id);
+        $plan = ClinicDentalPlan::find($id);
 
         return view('treatments.show', compact('title', 'subtitle', 'patient', 'activeClass', 'plan'));
     }
@@ -59,7 +59,7 @@ class DentalplansController extends Controller
         $subtitle = "Alterar informação do convênio";
         $activeClass = "dentalplans";
 
-        $plan = DentalPlan::find($id);
+        $plan = ClinicDentalPlan::find($id);
 
         return view('dentalplans.edit', compact('title', 'subtitle', 'patient', 'activeClass', 'plan'));
     }
@@ -67,7 +67,7 @@ class DentalplansController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $dentalplan = DentalPlan::find($id);
+        $dentalplan = ClinicDentalPlan::find($id);
         if ($dentalplan->id) {
             $dentalplan->fill($input)->save();
             return response()->json(['status' => 'success', 'message' => "Cadastro atualizado com sucesso!"]);
@@ -84,13 +84,13 @@ class DentalplansController extends Controller
     public function permission()
     {
         $array = array(
-            array('Show All Dental Plan', 'dentalplanscontroller.index', 'DentalPlan', 'Show All Dental Plan'),
-            array('Create Dental Plan', 'dentalplanscontroller.create', 'DentalPlan', 'Create New Dental Plan'),
-            array('Store Dental Plan', 'dentalplanscontroller.store', 'DentalPlan', 'Save Dental Plan'),
-            array('Show Dental Plan', 'dentalplanscontroller.show', 'DentalPlan', 'Show Dental Plan'),
-            array('Edit Dental Plan', 'dentalplanscontroller.edit', 'DentalPlan', 'edit Dental Plan'),
-            array('Update Dental Plan', 'dentalplanscontroller.update', 'DentalPlan', 'Update Dental Plan'),
-            array('Destroy Dental Plan', 'dentalplanscontroller.destroy', 'DentalPlan', 'Destroy Dental Plan'),
+            array('Show All Dental Plan', 'dentalplanscontroller.index', 'ClinicDentalPlan', 'Show All Dental Plan'),
+            array('Create Dental Plan', 'dentalplanscontroller.create', 'ClinicDentalPlan', 'Create New Dental Plan'),
+            array('Store Dental Plan', 'dentalplanscontroller.store', 'ClinicDentalPlan', 'Save Dental Plan'),
+            array('Show Dental Plan', 'dentalplanscontroller.show', 'ClinicDentalPlan', 'Show Dental Plan'),
+            array('Edit Dental Plan', 'dentalplanscontroller.edit', 'ClinicDentalPlan', 'edit Dental Plan'),
+            array('Update Dental Plan', 'dentalplanscontroller.update', 'ClinicDentalPlan', 'Update Dental Plan'),
+            array('Destroy Dental Plan', 'dentalplanscontroller.destroy', 'ClinicDentalPlan', 'Destroy Dental Plan'),
         );
 
         // checking

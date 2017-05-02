@@ -81,7 +81,7 @@
                         <td class="hide">{{ $i }}<?php $i++;?></td>
                         <td>{{ $data->title }}</td>
                         <td><a href="{{ $data->url }}" target="_blank">{{ $data->url }}</a></td>
-                        <td>{{ $data->phone }}</td>
+                        <td>{{ $data->phone_1 }}</td>
                         <td>
                             <small>{{ $data->cep }}</small>
                         </td>

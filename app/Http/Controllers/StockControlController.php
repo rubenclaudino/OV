@@ -102,7 +102,8 @@ class StockControlController extends Controller
         $activeClass = "stockcontrol";
 
         $items = Item::all();
-        $contacts = ItemContact::all();
+        // TODO: implement contacts
+        $contacts = [];// ItemContact::all();
 
         return view('stockcontrol.quoteitems', compact('title', 'subtitle', 'activeClass', 'items', 'contacts'));
     }

@@ -72,7 +72,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                        <div class="form-group">
                                           <label for="phone">Phone 1</label>
-                                          <input class="form-control" id="phone" name="phone" type="text" value="{{ $plan->phone }}">
+                                          <input class="form-control" id="phone" name="phone" type="text" value="{{ $plan->phone_1 }}">
                                        </div>
                                     </div>
                                      <!-- end: PHONE 1 -->
@@ -80,8 +80,8 @@
                                      <!-- start: PHONE 2 -->
                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                        <div class="form-group">
-                                          <label for="phone2">Phone 2</label>
-                                          <input class="form-control" id="phone2" name="alternate_phone" type="text" value="{{ $plan->alternate_phone }}">
+                                          <label for="phone_2">Phone 2</label>
+                                          <input class="form-control" id="phone2" name="phone_2" type="text" value="{{ $plan->phone_2 }}">
                                        </div>
                                     </div>
                                      <!-- end: PHONE 2 -->
