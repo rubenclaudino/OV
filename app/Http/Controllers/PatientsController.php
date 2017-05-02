@@ -68,7 +68,7 @@ class PatientsController extends Controller
 
         $treatments = Specialty::pluck('name', 'id');
         $referrals = Referral::pluck('name', 'id');
-        $clinic_dental_plans = ClinicDentalPlan::pluck('name', 'id');
+        $clinic_dental_plans = ClinicDentalPlan::pluck('title', 'id');
 
         $clinics = Clinic::pluck('name', 'id');
         return view('patients.create', compact('title', 'subtitle', 'activeClass', 'clinics', 'diseases', 'professionals',

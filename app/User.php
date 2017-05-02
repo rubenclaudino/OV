@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use EntrustUserTrait;
 
     protected $guarded = ['id', 'roles'];
 
@@ -18,11 +19,6 @@ class User extends Authenticatable
     public function agenda()
     {
         return $this->hasOne('App\Agenda');
-    }
-
-    public function roles()
-    {
-        return $this->belongsToMany('App\Role');
     }
 
     public function chat_messages()
@@ -70,27 +66,19 @@ class User extends Authenticatable
         return $this->hasMany('App\UserHoliday');
     }
 
-
-    public function hasRole($roleName)
-    {
-        foreach ($this->roles()->get() as $role) {
-            if ($role->name == $roleName)
-                return true;
-        }
-        return false;
-    }
-
     public function isAdmin()
     {
         foreach ($this->roles()->get() as $role) {
-            if ($role->name == 'Admin')
+            if ($role->name == 'admin')
                 return true;
         }
         return false;
     }
 
+    // TODO: redundant, remove once it is working
     public function hasPermission($permission)
     {
+        //$this->can($permission);
         return true;
     }
 

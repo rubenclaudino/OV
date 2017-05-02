@@ -26,6 +26,8 @@ class CreateContactEntitiesTable extends Migration
             $table->string('phone_1');
             $table->string('phone_2')->nullable();
             $table->string('phone_landline')->nullable();
+
+            $table->boolean('is_public');
             $table->timestamps();
         });
     }

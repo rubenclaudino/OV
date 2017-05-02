@@ -12,13 +12,13 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-            ['name' => 'Admin'],
-            ['name' => 'Local Admin'],
-            ['name' => 'Dentist'],
-            ['name' => 'Professor'],
-            ['name' => 'Investor'],
-            ['name' => 'Consultant'],
-            ['name' => 'Receptionist'],
+            ['name' => 'admin', 'display_name' => 'Admin'],
+            ['name' => 'local_admin', 'display_name' => 'Local Admin'],
+            ['name' => 'dentist', 'display_name' => 'Dentist'],
+            ['name' => 'professor', 'display_name' => 'Professor'],
+            ['name' => 'investor', 'display_name' => 'Investor'],
+            ['name' => 'consultant', 'display_name' => 'Consultant'],
+            ['name' => 'receptionist', 'display_name' => 'Receptionist'],
         ]);
     }
 }
