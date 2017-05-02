@@ -28,7 +28,6 @@ class AgendaController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-
         $array = [];
         unset($input['_method']);
         unset($input['_token']);

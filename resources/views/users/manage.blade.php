@@ -99,15 +99,15 @@
                                 </div>
                             </td>
                             <!-- USERNAME -->
-                            <td>{{ $data->username }}</td>
+                            <td>{{ $data->first_name . ' ' . $data->last_name}} </td>
                             <td class="center">
-                                @if($data->rolename == 'admin')
+                                @if($data->roles->first()->name == 'admin')
                                     <span class="label label-default" style="background: #1b6d85 !important;opacity: 0.8"> Super Admin </span>
-                                @elseif($data->rolename == 'local_admin')
+                                @elseif($data->roles->first()->name == 'local_admin')
                                     <span class="label label-default" style="background: #75ab00 !important;opacity: 0.8"> Clinic Admin </span>
-                                @elseif($data->rolename == 'receptionist')
+                                @elseif($data->roles->first()->name == 'receptionist')
                                     <span class="label label-default" style="background: #ad1457 !important;opacity: 0.8"> Receptionist </span>
-                                @elseif($data->rolename == 'dentist')
+                                @elseif($data->roles->first()->name == 'dentist')
                                     <span class="label label-default" style="background: #8b1014 !important;opacity: 0.8"> Dentist </span>
                                 @endif
                             </td>
