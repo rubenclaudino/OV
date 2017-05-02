@@ -140,7 +140,7 @@
             <!-- end: CLINICS -->
 
                 <!-- start: MANAGEMENT -->
-                <?php if($user->hasRole('dentistadmin')){ ?>
+                <?php if($user->hasRole('admin')){ ?>
                 <li class="<?php if (isset($activeClass)) {
                     if ($activeClass == 'users_management') {
                         echo 'active open';
@@ -212,7 +212,7 @@
                     <a href="javascript:void(0)"><i class="fa fa-users"></i><span class="title"> Pacientes </span><i
                                 class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
-                        <?php if($user->hasRole('dentistadmin')){ ?>
+                        <?php if($user->hasRole('admin')){ ?>
                         <li class="">
                             <a href="{{ url('/patients/stats') }}">
                                 <span class="title"> Estatísticas </span>

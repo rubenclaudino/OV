@@ -60,7 +60,7 @@ class PatientsController extends Controller
             $data->action = false;
         }
 
-        $dentist = Role::where('name', 'Dentist')->first()->users()->get();
+        $dentist = Role::where('name', 'dentist')->first()->users()->get();
         foreach ($dentist as $data) {
             $name = $data->first_name . " " . $data->last_name;
             $professionals[$data->id] = $name;
@@ -78,6 +78,7 @@ class PatientsController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+
         $request['clinic_id'] = Auth::user()->clinic_id;
 
         // TODO: clinic dental plan as foreign key in patient dental plan
@@ -95,7 +96,7 @@ class PatientsController extends Controller
             $patient->diseases()->sync($diseases);
         }
 
-        if ($request->has('patient_profile_image')) {
+        if ($request->hasFile('patient_profile_image')) {
             if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
                 mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
             }
@@ -134,7 +135,7 @@ class PatientsController extends Controller
         $patient = Patient::find($id);
 
         // TODO: filter by patient clinic
-        $dentist = Role::where('name', 'Dentist')->first()->users()->get();
+        $dentist = Role::where('name', 'dentist')->first()->users()->get();
         $professionals = [];
 
         $disease = Disease::all();

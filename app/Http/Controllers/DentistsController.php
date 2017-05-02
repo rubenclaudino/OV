@@ -20,7 +20,7 @@ class DentistsController extends Controller
         $activeClass = "dentists";
 
         // TODO: filter by clinic if not admin
-        $users = Role::where('name', 'Dentist')->first()->users()->get();
+        $users = Role::where('name', 'dentist')->first()->users()->get();
 
         return view('dentists.index', compact('title', 'subtitle', 'users', 'activeClass'));
     }
@@ -48,11 +48,11 @@ class DentistsController extends Controller
             $request->clinic_id = Auth::user()->clinic_id;
 
         $dentist = User::create($request->except('role', 'password_confirmation'));
-        $dentist->roles()->attach(Role::where('name', 'Dentist')->first());
+        $dentist->roles()->attach(Role::where('name', 'dentist')->first());
 
         // TODO: front end doesn't have this capability yet
         if ($request->has('dentistadmin'))
-            $dentist->roles()->attach(Role::where('name', 'Local Admin')->first());
+            $dentist->roles()->attach(Role::where('name', 'local_admin')->first());
 
         return response()->json(['status' => 'success', 'message' => 'Usuário cadastrado com sucesso!']);
     }

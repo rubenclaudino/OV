@@ -25,8 +25,8 @@ class CalendarController extends Controller
     {
         $id = Auth::user()->id;
         // if dentist admin or receptionist is present there
-        if (Auth::user()->hasRole('Receptionist')) {
-            $dentists = Role::where('name', 'Dentist')->first()->users()->get();
+        if (Auth::user()->hasRole('receptionist')) {
+            $dentists = Role::where('name', 'dentist')->first()->users()->get();
 
             if (isset($dentists[0]->user_id))
                 return redirect()->action('CalendarController@show', ['id' => $dentists[0]->user_id]);
@@ -137,7 +137,7 @@ class CalendarController extends Controller
         }
 
         // getting current clinic dentists
-        $dentist = Role::where('name', 'Dentist')->first()->users()->where('clinic_id', $user->clinic_id)->get();
+        $dentist = Role::where('name', 'dentist')->first()->users()->where('clinic_id', $user->clinic_id)->get();
 
         foreach ($dentist as $d) {
             $name = $d->first_name . " " . $d->last_name;

@@ -17,7 +17,7 @@
                     use App\Role;$user = Auth::user();
 
                     // get user role
-                    $role = DB::table('role_user')->where('user_id', '=', $user->id)->first();
+                    $role = DB::table('role_user')->where('user_id', $user->id)->first();
                     $roles = DB::table('roles')->get();
 
                     if (!empty($role)) {
@@ -148,7 +148,7 @@
                                 </a>
                             </li>
 
-                            @if($user->hasRole('Admin') /* dentist admin */ )
+                            @if($user->hasRole('admin') /* dentist admin */ )
                                 <li>
                                     <a href="{{ url('/user/invoices') }}">
                                         <i class='fa fa-money fa-fw'></i>
