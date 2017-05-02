@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clinic;
+use App\Permission;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -192,7 +193,7 @@ class UsersController extends Controller
 
         // checking
         foreach ($array as $data) {
-            $count = Permission::where('slug', '=', $data[1])->count();
+            $count = Permission::where('slug', $data[1])->count();
             if ($count == '0') {
                 // adding permission
                 Permission::create([
