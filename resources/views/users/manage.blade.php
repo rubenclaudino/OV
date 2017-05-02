@@ -61,7 +61,7 @@
                 <div class="panel-body" >
 
                     <!-- start: DISPLAYING USERS -->
-                    <table class="table datatable table-striped table-hover table-condensed" id="mainInfo">
+                    <table class="table table-striped table-hover" id="mainInfo">
 
                         <!-- start: TABLE HEAD -->
                         <thead>
@@ -120,7 +120,7 @@
                                         <li><a href="#"><small><i class="fa fa-eye fa-fw"></i>&nbsp; Atividades</small></a></li>
                                         <li><a href="#"><small><i class="fa fa-info fa-fw"></i>&nbsp; Log</small></a></li>
                                         <li><a href="#"><small><i class="fa fa-check fa-fw"></i>&nbsp; Permissões</small></a></li>
-                                        <li><a href="#"><small><i class="fa fa-unlock-alt fa-fw"></i>&nbsp; Make Admin</small></a></li>
+                                        <li><a href="#" class="hidden"><small><i class="fa fa-unlock-alt fa-fw"></i>&nbsp; Make Admin</small></a></li>
                                         <li class="divider"></li>
                                         <li><a href="#"><small><i class="fa fa-ban fa-fw"></i>&nbsp; Desativar</small></a></li>
                                     </ul>
