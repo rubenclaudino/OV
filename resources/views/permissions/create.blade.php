@@ -63,9 +63,9 @@
                <div class="clearfix"></div>
 				<!-- start: NAME -->
                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-   					<div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
-   					  <label for="fname">Nome</label>
-   					  <input class="form-control" id="name" name="name" type="text" placeholder="Name" value="param">
+   					<div class="form-group {{ $errors->has('display_name') ? 'has-error' : '' }}">
+   					  <label for="fname">Mostrar nome</label>
+   					  <input class="form-control" id="display_name" name="display_name" type="text" placeholder="Mostrar nome" value="param">
    					</div>
    				</div>
 				<!-- start: DESCRIPTION -->
@@ -87,9 +87,9 @@
    				</div>
 				<!-- start: SLUG -->
                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				   <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
-					   <label for="fname">Slug</label>
-					   {!! Form::select('slug', $controllers,'',['class' => 'form-control selectpicker','placeholder' => 'Select Slug']) !!}
+				   <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+					   <label for="name">Name</label>
+					   {!! Form::select('name', $controllers,'',['class' => 'form-control selectpicker','placeholder' => 'Select controller']) !!}
 				   </div>
    				</div>
 

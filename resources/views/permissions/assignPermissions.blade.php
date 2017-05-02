@@ -15,31 +15,31 @@
                 <div class="panel-heading table_tab_color">
                     <h2 class="table_title">
                         <?php
-                        if($data->name == 'DentistAdmin')
+                        if($data->name == 'local_admin')
                         {
                             echo 'Dentist Admin';
                         }
-                        else if($data->name == 'Dentist')
+                        else if($data->name == 'dentist')
                         {
                             echo 'Dentist Limited';
                         }
-                        else if($data->name == 'Receptionist')
+                        else if($data->name == 'receptionist')
                         {
                             echo 'Receptionist Admin';
                         }
-                        else if($data->name == 'Receptionist')
+                        else if($data->name == 'receptionist')
                         {
                             echo 'Receptionist Limited';
                         }
-                        else if($data->name == 'Professor')
+                        else if($data->name == 'professor')
                         {
                             echo 'Professor Limited';
                         }
-                        else if($data->name == 'Professor')
+                        else if($data->name == 'professor')
                         {
                             echo 'Professor Admin';
                         }
-                        else if($data->name == 'User')
+                        else if($data->name == 'user')
                         {
                             echo 'Free User';
                         }
@@ -71,8 +71,8 @@
 							<td>
 								<?php
 								$find = DB::table('permission_role')
-										->where('role_id','=',$data->id)
-										->where('permission_id','=',$d->id)
+										->where('role_id',$data->id)
+										->where('permission_id',$d->id)
 										->first();
 								?>
 								<label><input type="checkbox" class="clickPermissions" name="" data-permissionid="{{ $d->id }}" data-roleid="{{ $data->id }}" <?php if(!empty($find)){?> data-id="{{ $find->id }}" <?php } ?> <?php if(!empty($find)){echo "checked";}?>></label>

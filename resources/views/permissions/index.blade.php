@@ -47,8 +47,8 @@
          		<thead>
          			<tr>
          				<th class="center">  </th>
-         				<th>Name</th>
-         				<th>Slug</th>
+         				<th>Mostrar nome</th>
+         				<th>Nome</th>
          				<th>Description</th>
          				<th></th>
          			</tr>
@@ -60,8 +60,8 @@
                   ?>
             			<tr>
             				<td class="center">{{ $data->id }}</td>
+            				<td>{{ $data->display_name }}</td>
             				<td>{{ $data->name }}</td>
-            				<td>{{ $data->slug }}</td>
             				<td>{{ $data->description }}</td>
             				<td>
                            <div class="btn-group">

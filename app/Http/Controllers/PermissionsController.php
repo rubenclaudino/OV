@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Permission;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,14 +21,9 @@ class PermissionsController extends Controller
             $title = "Permissions";
             $subtitle = 'Informações detalhadas de todos tratamentos';
             $activeClass = "permissions";
-            $user = Auth::user();
-            $subtitle = "Informações detalhadas de todos tratamentos";
-            // getting users
-            $pUsers = array();
 
             $permissions = Permission::all();
 
-            // getting all roles
             return view('permissions.index', compact('title', 'subtitle', 'activeClass', 'permissions'));
         } else {
             //# code...
@@ -97,8 +93,8 @@ class PermissionsController extends Controller
         $user = Auth::user();
         if ($user->isAdmin() || $user->hasPermission('permissions.store')) {
             $request = $request->all();
-            $request['slug'] = strtolower(str_replace('Controller@', '-', $request['slug']));
-            return $request['slug'];
+            $request['slug'] = strtolower(str_replace('Controller@', '.', $request['slug']));
+            //return $request['slug'];
             $validator = Validator::make($request, [
                 'slug' => 'unique:permissions',
             ]);
@@ -171,7 +167,7 @@ class PermissionsController extends Controller
 
                 if ((strpos($action, 'Auth') == '')) {
                     if (strpos($action, 'Laravel') == '') {
-                        $string = stripslashes(str_replace("App\Http\Controllers", "", $action));
+                        $string = stripslashes(str_replace("App\\Http\\Controllers", "", $action));
                         $controllers[str_replace('@', '.', strtolower($string))] = str_replace('@', '.', strtolower($string));
                     }
                 }
@@ -242,9 +238,9 @@ class PermissionsController extends Controller
             $subtitle = "Assign Permissions";
             $activeClass = "permissions";
 
-            $role = DB::table('roles')->get();
+            $role = Role::all();
             $permissions = DB::table('permissions')
-                ->orderBy('model', 'asc')->get();
+                ->orderBy('name', 'asc')->get();
 
             $permissionRole = DB::table('permission_role')->get();
 
@@ -269,7 +265,7 @@ class PermissionsController extends Controller
 
                 if ((strpos($action, 'Auth') == '')) {
                     if (strpos($action, 'Laravel') == '') {
-                        $string = stripslashes(str_replace("App\Http\Controllers", "", $action));
+                        $string = stripslashes(str_replace("App\\Http\\Controllers", "", $action));
                         $controllers[$string] = $string;
                     }
                 }
@@ -343,7 +339,7 @@ class PermissionsController extends Controller
 
         $i = 1;
         foreach ($models as $data) {
-            $permissions = Permission::where('title', $data)->get();
+            $permissions = Permission::where('name', $data)->get();
             $models[$data] = $permissions;
             $i++;
         }
