@@ -31,11 +31,11 @@
                                         echo "Bom dia";
                                     } else
                                         /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
-                                        if ($time >= "16" && $time < "21") {
+                                        if ($time >= "16" && $time < "20") {
                                             echo "Boa tarde";
                                         } else
                                             /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
-                                            if ($time >= "21" && $time < "23") {
+                                            if ($time >= "20" && $time < "22") {
                                                 echo "Boa Noite";
                                             } else
                                                 /* Finally, show good night if the time is greater than or equal to 1900 hours */
@@ -44,14 +44,17 @@
                                                 }
                                     ?>
                                 </h5>
+
                                 <!-- end: DEPENDING HOUR SEND GOOD MORNING - GOOD AFTERNOON - GOOD NIGHT -->
                                 <h4>
                                   @if(Auth::user()->cro != null)  @if(Auth::user()->gender == 0) Dr. @else Dra. @endif @endif {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                 </h4>
-                                <a class="btn user-options sb_toggle" data-toggle="tooltip" data-placement="bottom"
+
+                                <a class="btn user-options sb_toggle hide" data-toggle="tooltip" data-placement="bottom"
                                    title="Dados da Clinica">
                                     <i style="font-size:1.0em!important" class="fa fa-cog"></i>
                                 </a>
+
                             </div>
                         </div>
                     </div>
