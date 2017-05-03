@@ -150,6 +150,47 @@
                 </div>
                 <!-- end : BEST MONTH FOR HOLIDAYS -->
 
+                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 nopadding hide">
+                    <div class="panel panel-white equalSecondRow">
+                        <div class="panel-heading border-light">
+                            <h5 style="margin-bottom:0;">Renda (Convênio X Particular)</h5>
+                        </div>
+                        <div class="panel-body" style="width:100%">
+                            <div class="convas-container">
+                                <canvas id="canvas1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7 col-lg-8 col-sm-12 col-xs-12 nopadding hide">
+                    <div class="panel panel-white equalThisRow">
+                        <div class="panel-heading border-light">
+                            <h5 style="margin-bottom:0;">Fluxo de Pacientes (Convênio X Particular)</h5>
+                        </div>
+                        <div class="panel-body">
+                            <div class="convas-container">
+                                <canvas id="canvas2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- start : PATIENTS BOOKED PER MONTH -->
+                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 nopadding hide">
+                    <div class="panel panel-white equalSecondRow">
+                        <div class="panel-heading border-light">
+                            <h5 style="margin-bottom:0;">Fluxo de Pacientes</h5>
+                        </div>
+                        <div class="panel-body">
+                            <div class="convas-container">
+                                <canvas id="barChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end : PATIENTS BOOKED PER MONTH -->
+
             </div>
 
             <!-- end: PAGE CONTENT-->
