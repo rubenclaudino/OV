@@ -716,7 +716,7 @@ $(document).ready(function () {
                 if (data != 'error') {
                     $html = "<ul class='patient_search_dropdown'>";
                     for ($i = 0; $i < data.length; $i++) {
-                        $phone = data[$i].contact.celular_1;
+                        $phone = data[$i].phone_1;
                         if ($phone == '') {
                             $phone = 'Nenhum numero de contato encontrado!';
                         }
@@ -728,7 +728,7 @@ $(document).ready(function () {
                 } else {
                     $html = "<ul class='patient_search_dropdown'>";
                     for ($i = 0; $i < data.length; $i++) {
-                        $phone = data[$i].contact.celular_1;
+                        $phone = data[$i].phone_1;
                         if ($phone == '') {
                             $phone = 'Nenhum numero de contato encontrado!';
                         }

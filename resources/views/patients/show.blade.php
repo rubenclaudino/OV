@@ -448,10 +448,10 @@
                                         <td style="font-size:1.1em">{{ $data->startdate }}</td>
                                         <td style="font-size:1.1em">{{ date('H:i', strtotime($data->starttime)) }}</td>
                                         <td class="hidden-xs"
-                                            style="font-size:1.1em">@if ($data->user[0]->gender == 0)
+                                            style="font-size:1.1em">@if ($data->user->first()->gender == 0)
                                                 <small>Dr.</small> @else
                                                 <small>Dra.
-                                                </small> @endif {{ $data->user[0]->first_name }} {{ $data->user[0]->last_name }}
+                                                </small> @endif {{ $data->user->first()->first_name }} {{ $data->user->first()->last_name }}
                                         </td>
                                         <td style="font-size:1.1em">-</td>
                                         <td style="font-size:1.1em">
