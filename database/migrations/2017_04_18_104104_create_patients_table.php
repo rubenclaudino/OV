@@ -121,6 +121,7 @@ class CreatePatientsTable extends Migration
             $table->string('typeOfPlan1', 30)->nullable();
             $table->string('typeOfPlan2', 30)->nullable();
             $table->string('speciality')->nullable();
+            $table->string('exp_date')->nullable();
 
             $table->string('sms_confirmation', 50)->nullable();
             $table->string('CPF', 50)->nullable();
