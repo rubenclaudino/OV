@@ -31,7 +31,7 @@
         </div>
         <!-- end: PANEL CONFIGURATION MODAL FORM -->
 
-        <div class="container" style="opacity: 0.7">
+        <div class="container" style="opacity: 0.7;padding-top: 10px;padding-right: 25px">
 
             <!-- start: PAGE CONTENT -->
 

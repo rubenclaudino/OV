@@ -79,19 +79,19 @@
                                  <div class="checkbox">
 
                                     <label style="padding-top: 10px;color: #3d3d3d !important">
-                                       <input name="days" class="grey" type="checkbox" @if(isset($agenda->days)) @if (in_array(1, $agenda->days)) checked @endif  @endif value="1"> Segunda</label>
+                                       <input name="days" type="checkbox" @if(isset($agenda->days)) @if (in_array(1, $agenda->days)) checked @endif  @endif value="1"> Segunda</label>
                                     <div class="clearfix"></div>
                                     <label style="color: #3d3d3d !important">
-                                       <input name="days" class="grey" type="checkbox" @if(isset($agenda->days)) @if (in_array(2, $agenda->days)) checked @endif  @endif value="2"> Terça</label>
+                                       <input name="days" type="checkbox" @if(isset($agenda->days)) @if (in_array(2, $agenda->days)) checked @endif  @endif value="2"> Terça</label>
                                     <div class="clearfix"></div>
                                     <label style="color: #3d3d3d !important">
-                                       <input name="days" class="grey" type="checkbox" @if(isset($agenda->days)) @if (in_array(3, $agenda->days)) checked @endif  @endif value="3"> Quarta</label>
+                                       <input name="days" type="checkbox" @if(isset($agenda->days)) @if (in_array(3, $agenda->days)) checked @endif  @endif value="3"> Quarta</label>
                                     <div class="clearfix"></div>
                                     <label style="color: #3d3d3d !important">
-                                       <input name="days" class="grey" type="checkbox" @if(isset($agenda->days)) @if (in_array(4, $agenda->days)) checked @endif  @endif value="4"> Quinta</label>
+                                       <input name="days" type="checkbox" @if(isset($agenda->days)) @if (in_array(4, $agenda->days)) checked @endif  @endif value="4"> Quinta</label>
                                     <div class="clearfix"></div>
                                     <label style="color: #3d3d3d !important">
-                                       <input name="days" class="grey" type="checkbox" @if(isset($agenda->days)) @if (in_array(5, $agenda->days)) checked @endif  @endif value="5"> Sexta</label>
+                                       <input name="days" type="checkbox" @if(isset($agenda->days)) @if (in_array(5, $agenda->days)) checked @endif  @endif value="5"> Sexta</label>
                                     <div class="clearfix"></div>
 
                                  </div>
@@ -105,10 +105,10 @@
                                  <div class="checkbox">
 
                                     <label style="padding-top: 10px;color: #3d3d3d !important">
-                                       <input name="days" class="grey" type="checkbox" @if(isset($agenda->days)) @if (in_array(6, $agenda->days)) checked @endif  @endif value="6"> Sabado</label>
+                                       <input name="days" type="checkbox" @if(isset($agenda->days)) @if (in_array(6, $agenda->days)) checked @endif  @endif value="6"> Sabado</label>
                                     <div class="clearfix"></div>
                                     <label style="color: #3d3d3d !important">
-                                       <input name="days" class="grey" type="checkbox" @if(isset($agenda->days)) @if (in_array(0, $agenda->days)) checked @endif  @endif value="0"> Domingo</label>
+                                       <input name="days" type="checkbox" @if(isset($agenda->days)) @if (in_array(0, $agenda->days)) checked @endif  @endif value="0"> Domingo</label>
                                     <div class="clearfix"></div>
 
                                  </div>
