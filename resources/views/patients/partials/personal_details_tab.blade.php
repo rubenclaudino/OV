@@ -12,15 +12,15 @@
 
                 <div style="background: whitesmoke;margin-left: 10px;padding-top: 10px" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                <!-- start: IMAGE -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="fileupload fileupload-new" data-provides="fileupload">
-                        <div class="fileupload-new thumbnail" style="width:100%"></div>
-                        <div style="line-height: 10px; width:100%"
-                             class="fileupload-preview fileupload-exists thumbnail">
-                        </div>
+                    <!-- start: IMAGE -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-new thumbnail" style="width:100%"></div>
+                            <div style="line-height: 10px; width:100%"
+                                 class="fileupload-preview fileupload-exists thumbnail">
+                            </div>
 
-                        <div>
+                            <div>
                             <span class="btn btn-primary btn-file">
                                 <span class="fileupload-new">
                                     <i class="fa fa-picture-o"></i>Selecione imagem
@@ -32,86 +32,71 @@
                                        accept="image/x-png, image/gif, image/jpeg">
                             </span>
 
-                            <a href="#" class="btn fileupload-exists btn-light-grey"
-                               data-dismiss="fileupload">
-                                <i class="fa fa-times"></i> Remover
-                            </a>
+                                <a href="#" class="btn fileupload-exists btn-light-grey"
+                                   data-dismiss="fileupload">
+                                    <i class="fa fa-times"></i> Remover
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- end: IMAGE -->
+                    <!-- end: IMAGE -->
 
-                <!-- start: DENTIST -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <label for="doc">Dentista</label>
-                        {!! Form::select('user_id', $professionals,'',['class' =>
-                        'form-control','placeholder' => 'Não informado']) !!}
+                    <!-- start: DENTIST -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="doc">Dentista</label>
+                            {!! Form::select('user_id', $professionals,'',['class' =>
+                            'form-control','placeholder' => 'Não informado']) !!}
+                        </div>
                     </div>
-                </div>
-                <!-- end: DENTIST -->
+                    <!-- end: DENTIST -->
 
-                <!-- start: HAS DENTAL PLAN -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <label for="hasDentalPlan">Tem Convênio</label>
-                        {!! Form::select('has_dental_plan', array('0' => 'Não','1' => 'Sim'),'',['class'
-                        => 'form-control','placeholder' => 'Não informado']) !!}
+                    <!-- start: HAS DENTAL PLAN -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="hasDentalPlan">Tem Convênio</label>
+                            {!! Form::select('has_dental_plan', array('0' => 'Não','1' => 'Sim'),'',['class'
+                            => 'form-control','placeholder' => 'Não informado']) !!}
+                        </div>
                     </div>
-                </div>
-                <!-- end: HAS DENTAL PLAN -->
+                    <!-- end: HAS DENTAL PLAN -->
 
-                <!-- start: SPECIALITY -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- start: SPECIALITY -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                    <input type="hidden" name="hasProsSpec" id="hasProsSpec" value="0"/>
-                    <input type="hidden" name="hasOrtoSpec" id="hasOrtoSpec" value="0"/>
+                        <input type="hidden" name="hasProsSpec" id="hasProsSpec" value="0"/>
+                        <input type="hidden" name="hasOrtoSpec" id="hasOrtoSpec" value="0"/>
 
-                    <div class="form-group">
-                        <label for="pSpec">Especialidades</label>
-                        {!! Form::select('specialty[]',$treatments, 2,['class' => 'form-control
-                        selectpicker','multiple' => 'true']) !!}
+                        <div class="form-group">
+                            <label for="pSpec">Especialidades</label>
+                            {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
+                            selectpicker','multiple' => 'true']) !!}
+                        </div>
                     </div>
-                </div>
-                <!-- end: SPECIALITY -->
+                    <!-- end: SPECIALITY -->
 
-                <!-- start: INDICATION -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <label for="indication">Indicação</label>
-                        {!! Form::select('referral_id', $referrals,'',['class' =>
-                        'form-control','placeholder' => 'Não informado']) !!}
+                    <!-- start: INDICATION -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="indication">Indicação</label>
+                            {!! Form::select('referral_id', $referrals,'',['class' =>
+                            'form-control','placeholder' => 'Não informado']) !!}
+                        </div>
                     </div>
-                </div>
-                <!-- end: INDICATION -->
+                    <!-- end: INDICATION -->
 
-                <!-- start: VIP -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<<<<<<< HEAD
-                    <div class="checkbox">
-                        <label>
-                        {{ Form::checkbox('sms_confirmation','',null,array('class' => 'grey')) }}
-                            Confirmação SMS
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            {{ Form::checkbox('vip','',null,array('class' => 'grey')) }}
-                            VIP
-                        </label>
-=======
-                    <div class="form-group">
+                    <!-- start: VIP -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
                             <label for="vip">vip</label>
                             {!! Form::select('vip', array('0' => 'Não','1' => 'Sim'),'',['class'
                            => 'form-control','placeholder' => 'Não informado']) !!}
->>>>>>> 92991194a96079ec52ec811360745bc6b9b81394
-                OFESSIONAL:diffg RE  # get from REMOTE
-qqqqqq
-                </div>
-                <!-- end: qqIP -->
+                        </div>
+                    </div>
+                    <!-- end: VIP -->
 
                 </div>
-t
+
             </div>
             <!-- end: ROW -->
 
