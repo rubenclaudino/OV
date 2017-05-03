@@ -6,103 +6,67 @@
    <div class="container">
 
 	   <!-- start: MAIN INFO PANEL -->
-      <div class="row" style="margin-top: 10px">
+      <div class="row" style="margin-top: 10px;opacity: 0.8">
 
          <!-- start : PATIENTS REGISTERED -->
-         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 nopadding">
-            <div class="panel-default panel-white core-box ">
-               <div class="panel-body no-padding">
-                  <div class="padding-20 partition-green core-icon text-center">
-                     <h2>{{ $patients['count'] }}</h2>
-                  </div>
-                  <div class="padding-20 core-content">
-                     <h4 class=" block no-margin">Pacientes</h4>
-                     <span class="subtitle">Cadastrados</span>
-                  </div>
-               </div>
+         <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+            <div class="panel partition-green" style="text-align: center;padding: 10px">
+               <h4>Pacientes</h4>
+               <h1>{{ $patients['count'] }}</h1>
+               <p>Cadastrados</p>
             </div>
          </div>
          <!-- start : PATIENTS REGISTERED -->
 
          <!-- start : PATIENTS INACTIVE -->
-         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 nopadding">
-            <div class="panel-default panel-white core-box ">
-               <div class="panel-body no-padding">
-                  <div class="padding-20 partition-green core-icon text-center">
-                     <h2>0</h2>
-                  </div>
-                  <div class="padding-20 core-content">
-                     <h4 class=" block no-margin">Pacientes</h4>
-                     <span class="subtitle">Inativos</span>
-                  </div>
-               </div>
+         <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+            <div class="panel partition-green" style="text-align: center;padding: 10px">
+               <h4>Pacientes</h4>
+               <h1>0</h1>
+               <p>Inativos</p>
             </div>
          </div>
          <!-- end : PATIENTS INACTIVE -->
 
          <!-- start : AVG AGE BASE -->
-         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 nopadding">
-            <div class="panel-default panel-white core-box ">
-               <div class="panel-body no-padding">
-                  <div class="padding-20 partition-green core-icon text-center">
-                     <h2>0</h2>
-                  </div>
-                  <div class="padding-20 core-content">
-                     <h4 class=" block no-margin">Média</h4>
-                     <span class="subtitle">Idade</span>
-                  </div>
-               </div>
+         <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+            <div class="panel partition-green" style="text-align: center;padding: 10px">
+               <h4>Idade</h4>
+               <h1>0</h1>
+               <p>Média</p>
             </div>
          </div>
          <!-- end : AVG AGE BASE -->
 
          <!-- start : MONTHLY AVG PATIENTS SEEN -->
-         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 nopadding">
-            <div class="panel-default panel-white core-box ">
-               <div class="panel-body no-padding">
-                  <div class="padding-20 partition-green core-icon text-center">
-                     <h2>0</h2>
-                  </div>
-                  <div class="padding-20 core-content">
-                     <h4 class=" block no-margin">Pacientes</h4>
-                     <span class="subtitle">Média / Mês</span>
-                  </div>
-               </div>
+         <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+            <div class="panel partition-green" style="text-align: center;padding: 10px">
+               <h4>Pacientes</h4>
+               <h1>0</h1>
+               <p>Média / Mês</p>
             </div>
          </div>
          <!-- end : MONTHLY AVG PATIENTS SEEN -->
 
-         <!-- start : DENTAL PLAN -->
-         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 nopadding">
-            <div class="panel-default panel-white core-box ">
-               <div class="panel-body no-padding">
-                  <div class="padding-20 partition-green core-icon text-center">
-                     <h2>{{ $patients['insuredPlan'] }}</h2>
-                  </div>
-                  <div class="padding-20 core-content">
-                     <h4 class=" block no-margin">Pacientes</h4>
-                     <span class="subtitle">Convênios</span>
-                  </div>
-               </div>
+         <!-- start : DENTAL PLAN PATIENTS -->
+         <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+            <div class="panel partition-green" style="text-align: center;padding: 10px">
+               <h4>Pacientes</h4>
+               <h1>{{ $patients['insuredPlan'] }}</h1>
+               <p>Com Convênios</p>
             </div>
          </div>
-         <!-- end : DENTAL PLAN -->
+         <!-- end : DENTAL PLAN PATIENTS -->
 
-         <!-- start : PRIVATE PLAN -->
-         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 nopadding">
-            <div class="panel-default panel-white core-box ">
-               <div class="panel-body no-padding">
-                  <div class="padding-20 partition-green core-icon text-center">
-                     <h2>{{ $patients['privatePlan'] }}</h2>
-                  </div>
-                  <div class="padding-20 core-content">
-                     <h4 class=" block no-margin">Pacientes</h4>
-                     <span class="subtitle">Particular</span>
-                  </div>
-               </div>
+         <!-- start : PRIVATE PATIENTS -->
+         <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+            <div class="panel partition-green" style="text-align: center;padding: 10px">
+               <h4>Pacientes</h4>
+               <h1>{{ $patients['privatePlan'] }}</h1>
+               <p>Particular</p>
             </div>
          </div>
-         <!-- end : PRIVATE PLAN -->
+         <!-- end : PRIVATE PATIENTS -->
 
          <div class="clearfix"></div>
 

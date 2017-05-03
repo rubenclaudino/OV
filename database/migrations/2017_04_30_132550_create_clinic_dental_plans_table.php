@@ -19,6 +19,7 @@ class CreateClinicDentalPlansTable extends Migration
             $table->string('url');
             $table->string('phone_1');
             $table->string('phone_2');
+            $table->string('ans_code');
 
             $table->integer('clinic_id')->unsigned();
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');

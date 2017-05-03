@@ -3,12 +3,16 @@
 
     <!-- start: MAIN CONTENT -->
     <div class="main-content">
+
         <!-- start: CONTAINER -->
         <div class="container">
+
             <!-- start: MAIN PANEL -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px;font-size: 1.1em;">
+
                 <!-- start: TAB OPTIONS -->
                 <ul class="nav nav-tabs">
+
                     <!-- start: GENERAL INFO -->
                     <li class="active">
                         <a data-toggle="tab" href="#personal_details">
@@ -58,6 +62,7 @@
                     </a>
                 </li>--}}
                 <!-- end: EXAMS -->
+
                 </ul>
                 <!-- end: TAB OPTIONS -->
 
@@ -77,9 +82,9 @@
                 </div>
                 <!-- start: TAB CONTENT -->
                 {!! Form::close() !!}
+
             </div>
             <!-- end: MAIN PANEL -->
-
 
         </div>
 

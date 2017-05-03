@@ -18,7 +18,7 @@ class CreatePatientDentalPlansTable extends Migration
             $table->string('card_number', 30)->nulable();
             $table->string('card_owner', 30)->nullable();
             $table->string('dental_plan_type', 30)->nullable();
-            $table->string('ans_code');
+            $table->string('exp_date');
 
             $table->integer('patient_id')->unsigned();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
