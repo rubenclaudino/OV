@@ -37,26 +37,6 @@ class ItemContactsController extends Controller
 
         $contato = ContactEntity::create($input);
 
-        /* $address = Address::create($input);
-         $contact = Contact::create($input);
-
-         if ($contact) {
-             $contato = $contato::find($contato->id);
-             $contato->id_contact = $contact->id;
-             $contato->save();
-         }
-
-         if ($address) {
-             $contato = $contato::find($contato->id);
-             $contato->id_address = $address->id;
-             $contato->save();
-         }
-
-         // getting contact
-         $p = ContactEntity::find($contato->id);
-         $p->contact = Contact::find($p->id_contact);
-         $p->address = Address::find($p->id_address);
- */
         if ($contato->id)
             return response()->json(['status' => 'success', 'message' => 'Cadastrado com sucesso!']);
 

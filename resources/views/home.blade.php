@@ -41,7 +41,7 @@
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendados</h4>
-                        <h1>0</h1>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
                         <p>Hoje</p>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendados</h4>
-                        <h1>0</h1>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
                         <p>Ontem</p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendados</h4>
-                        <h1>0</h1>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Essa semana</p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendados</h4>
-                        <h1>0</h1>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Semana passada</p>
                     </div>
                 </div>
