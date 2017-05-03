@@ -74,33 +74,6 @@ class CalendarController extends Controller
                     $dentist = User::where('id', $v->dentist_id)->select('first_name', 'last_name')->first();
                     $v->dentist = $dentist;
                 }
-                //$data->patient = new \StdClass;
-                //$data['patient'] = $data->patient;
-                /*$data->patient->first_name = $data->patient->first_name;
-                $data->patient->last_name = $data->patient->last_name;
-                $data->patient->vip = $data->patient->vip;
-                $data->patient->patient_profile_image = $data->patient->patient_profile_image;
-                $data->patient->contact = $data->patient->contact;
-                $data->patient->address = $data->patient->address;
-                $data->patient->specialty = $data->specialty;
-                $data->patient->appointments = $data->patient->appointments;
-                $data->patient->contact = $data->patient->contact;
-                $data->patient->address = $data->patient->address;*/
-
-                //$data->category = $data->treatment_type_id;
-                //$data->treatmentType = '';
-                /*$data['specialty'] = "Specialty";
-                $data->content = $data->appointment_observation;
-                $data->status = $data->status;
-                $data->appointment_type_id = $data->appointment_type_id;
-                $data->specialty_id = $data->specialty_id;
-                $data->dental_plan_id = $data->dental_plan_id;
-                $data->appointment_observation = $data->appointment_observation;*/
-
-                //$data->patient->specialty = $data->patient->specialty;
-                /* DB::select("SELECT `specialties`.*, `treatment_specialties`.`treatment_type_id` from `specialties`
-                 inner join `treatment_specialties` on `treatment_specialties`.`specialty_id` = `specialties`.`id`
-                 where `treatment_specialties`.`treatment_type_id` = '" . $data->treatment_type_id . "'");*/
 
                 if ($data->created_by != '') {
                     $use = User::find($data->created_by);
@@ -217,8 +190,8 @@ class CalendarController extends Controller
      */
     public function getTodaysEvent(Request $request)
     {
-        $count = Appointment::where([['startdate', $request->date], ['dentist_id', $request->dentist_id]])->count();
-        $appointments = Appointment::where([['startdate', $request->date], ['dentist_id', $request->dentist_id]])->orderBy('starttimestamp', 'asc')->get();
+        $count = Appointment::where([['startdate', $request->date], ['user_id', $request->dentist_id]])->count();
+        $appointments = Appointment::where([['startdate', $request->date], ['user_id', $request->dentist_id]])->orderBy('starttimestamp', 'asc')->get();
 
         if ($count <= 0)
             return response()->json(['status' => 'error', 'message' => 'No Appointments found By the given Date.']);

@@ -207,9 +207,9 @@ $(document).ready(function(){
                   $appointments = data.message;
                   for($i = 0;$i< $appointments.length;$i++){
                      $html += "<div class='call_block'><div class='col-md-7'><h3>"+$appointments[$i].patient.first_name+" "+$appointments[$i].patient.last_name+"</h3>";
-                     $html += "<div class='information'><p><i class='fa fa-clock-o'></i> "+new Date($appointments[$i].appointment_starttime).toString('h:mm tt') +" </p>";
-                     $html += "<p><i class='fa fa-phone'></i> "+$appointments[$i].patient.contact.phone_landline+" </p>";
-                     $html += "<p><i class='fa fa-mobile'></i> "+$appointments[$i].patient.contact.phone_1+" </p>";
+                     $html += "<div class='information'><p><i class='fa fa-clock-o'></i> "+new Date($appointments[$i].start).toString('h:mm tt') +" </p>";
+                     $html += "<p><i class='fa fa-phone'></i> "+$appointments[$i].patient.phone_landline+" </p>";
+                     $html += "<p><i class='fa fa-mobile'></i> "+$appointments[$i].patient.phone_1+" </p>";
                      $html += "</div></div><div class='col-md-5'><select class='form-control selectpicker' data-selected='"+$appointments[$i].status+"' data-id = '"+$appointments[$i].id+"'><option value='1' selected='selected'>Agendado</option><option value='2'>Confirmado</option><option value='3'>Desmarcado</option><option value='4'>Falta</option><option value='5'>Finalizado</option></select></div><div class='clearfix'></div></div>";
 
                      //console.log($html);

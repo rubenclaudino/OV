@@ -79,7 +79,7 @@
                             ?>
                             <tr>
                                 <td class="hide">{{ $data->id }}</td>
-                                <td>{{ $data->title }}</td>
+                                <td>{{ $data->name }}</td>
                                 <td>
                                     <span style="opacity: 0.7">
                                           @if($data->contact_type == 0)
@@ -93,8 +93,8 @@
                                         @endif
                                     </span>
                                 </td>
-                                <td>{{ $data->contact->phone_landline }}</td>
-                                <td>{{ $data->contact->celular_1 }}</td>
+                                <td>{{ $data->phone_landline }}</td>
+                                <td>{{ $data->phone_1 }}</td>
                                 <td>
                                     <div class="btn-group hidden-print">
                                         <button type="button" class="btn btn-sm dropdown-toggle"
