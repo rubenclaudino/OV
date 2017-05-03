@@ -24,7 +24,6 @@ class ReferralsTableSeeder extends Seeder
             ['name' => 'Luminoso'],
             ['name' => 'Panfleto'],
             ['name' => 'Telemarketing'],
-            ['name' => 'Luminoso'],
             ['name' => 'Lista Telefônica']
         ]);
     }

@@ -52,7 +52,7 @@
                          <!-- start: DENTIST NAME -->
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                            <h2 class="light_black" style="margin-top:10px;margin-bottom:5px;font-weight: lighter;opacity: 0.8;text-align:left;float:left;">
-                              {{ $dentist->gender }} {{ $dentist->first_name }} {{ $dentist->last_name}}&nbsp;&nbsp;
+                              @if($dentist->gender == 0) Dr. @else Dra. @endif  {{ $dentist->first_name }} {{ $dentist->last_name}}&nbsp;&nbsp;
                            </h2>
                             <!-- start: SPECIAL NOTATIONS -->
                             @if($dentist->vip == 1)<label class="label label-warning" style="opacity: 0.7;text-align:left;float:left;margin-top:18px;padding: 5px !important;margin-right: 5px">VIP</label>@endif
@@ -176,22 +176,22 @@
                      <strong>Agendamentos</strong>
                   </a>
                </li>
-               <li >
+               <li class="hide">
                   <a data-toggle="tab" href="#financeiro">
                      <strong>Financeiro</strong>
                   </a>
                </li>
-               <li>
+               <li class="hide">
                   <a data-toggle="tab" href="#orto">
                      <strong>Ortodontia</strong>
                   </a>
                </li>
-               <li>
+               <li class="hide">
                   <a data-toggle="tab" href="#prosthesis">
                      <strong>Prótese</strong>
                   </a>
                </li>
-               <li>
+               <li class="hide">
                   <a data-toggle="tab" href="#prosthesis">
                      <strong>Implantologia</strong>
                   </a>
@@ -329,7 +329,7 @@
                         <th class="hidden-xs" style="font-size:1.1em">Horário</th>
                         <th class="hidden-xs" style="font-size:1.1em">Paciente</th>
                         <th style="font-size:1.1em">Tipo Plano</th>
-                        <th style="font-size:1.1em">Specialidade</th>
+                        <th style="font-size:1.1em">Especialidade</th>
                         <th class="center" style="font-size:1.1em">Status</th>
                         <th class="center hidden-xs" style="font-size:1.1em"></th>
                      </tr>
@@ -338,7 +338,7 @@
                      @foreach($dentist->appointments as $data)
                         <tr>
                            <td style="font-size:1.1em">{{ $data->startdate }}</td>
-                           <td style="font-size:1.1em">{{ date('H:i', strtotime($data->starttime)) }}</td>
+                           <td style="font-size:1.1em">{{ date('H:i', strtotime($data->starttimestamp)) }}</td>
                             <td class="hidden-xs" style="font-size:1.1em">{{ $data->patient->first_name }}  {{ $data->patient->last_name }}</td>
                            <td style="font-size:1.1em">@if($data->patient->has_dental_plan == 0) Convênio @else Particular @endif</td>
                            <td style="font-size:1.1em">{{ $data->specialty_id }}</td>
