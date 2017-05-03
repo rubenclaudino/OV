@@ -64,11 +64,11 @@
                             <th>Id</th>
                             <th></th>
                             <th>Nome</th>
-                            <th>Telefone</th>
+                            <th colspan="2">Telefone</th>
                             <th>Profissional</th>
                             <th>Especialidade</th>
                             <th>Tipo Plano</th>
-                            <th></th>
+                            <th class="hidden"></th>
                             <th class="hidden-print"></th>
                         </tr>
                         </thead>
@@ -102,6 +102,7 @@
                                 {{ $patient->first_name }} {{ $patient->last_name }}
                             </td>
                             <!-- PHONE NUMBER -->
+                            <td>{{ $patient->phone_landline }}</td>
                             <td>{{ $patient->phone_1 }}</td>
                             <!-- PROFESSIONAL - DENTIST -->
                             <td>
@@ -140,7 +141,7 @@
                                 </small>
                             </td>
                             <!-- VIP / WHEELCHAIR -->
-                            <td>
+                            <td class="hidden">
                                 @if($patient->vip == 1)<label class="label label-warning tooltips"
                                                            data-title="Paciente Importante" data-placement="bottom"
                                                            style="background: gold !important;opacity: 0.6;letter-spacing: 1px">VIP</label>@endif
@@ -149,10 +150,10 @@
                                                                    data-placement="bottom" style="opacity: 0.6;"><i
                                             class="fa fa-wheelchair"></i></label>@endif
                             </td>
-                            <!-- OPTIONS -->
+                            <!-- start: OPTIONS -->
                             <td class="hidden-print">
                                 <div class="btn-group pull-right">
-                                    <button type="button" class="btn btn-squared btn-sm dropdown-toggle"
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
                                             style="background: #dddddd;border-radius: 1px;opacity: 0.9"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Opções &nbsp;<span class="caret"></span>
@@ -171,6 +172,7 @@
                                     </ul>
                                 </div>
                             </td>
+                            <!-- end: OPTIONS -->
                         </tr>
                         <?php } } ?>
                         </tbody>

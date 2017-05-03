@@ -176,14 +176,8 @@ class PatientsController extends Controller
             if (!empty($patient)) {
 
                 $input = $request->all();
-                if (!isset($input['sms_confirmation'])) {
-                    $input['sms_confirmation'] = 0;
-                }
                 if (!isset($input['vip'])) {
                     $input['vip'] = 0;
-                }
-                if (!isset($input['allow_profile_use'])) {
-                    $input['allow_profile_use'] = 0;
                 }
                 $patient->fill($input)->save();
 

@@ -1,11 +1,17 @@
 <!-- start: PERSONAL DETIALS -->
 <div id="personal_details" class="tab-pane fade active in">
+
     <!-- start: ROW -->
     <div class="row">
+
         <!-- start:  LEFT DIV -->
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+
             <!-- start: ROW -->
             <div class="row">
+
+                <div style="background: whitesmoke;margin-left: 10px;padding-top: 10px" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                 <!-- start: IMAGE -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -35,15 +41,15 @@
                 </div>
                 <!-- end: IMAGE -->
 
-                <!-- start: PROFESSIONAL -->
+                <!-- start: DENTIST -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
-                        <label for="doc">Profissional</label>
+                        <label for="doc">Dentista</label>
                         {!! Form::select('user_id', $professionals,'',['class' =>
                         'form-control','placeholder' => 'Não informado']) !!}
                     </div>
                 </div>
-                <!-- end: PROFESSIONAL -->
+                <!-- end: DENTIST -->
 
                 <!-- start: HAS DENTAL PLAN -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -57,8 +63,10 @@
 
                 <!-- start: SPECIALITY -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                     <input type="hidden" name="hasProsSpec" id="hasProsSpec" value="0"/>
                     <input type="hidden" name="hasOrtoSpec" id="hasOrtoSpec" value="0"/>
+
                     <div class="form-group">
                         <label for="pSpec">Especialidades</label>
                         {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
@@ -77,22 +85,18 @@
                 </div>
                 <!-- end: INDICATION -->
 
-                <!-- start: SMS VIP -->
+                <!-- start: VIP -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="checkbox">
-                        <label>
-                            {{ Form::checkbox('sms_confirmation','',null,array('class' => 'grey')) }}
-                            Confirmação SMS
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            {{ Form::checkbox('vip','',null,array('class' => 'grey')) }}
-                            VIP
-                        </label>
+                    <div class="form-group">
+                            <label for="vip">vip</label>
+                            {!! Form::select('vip', array('0' => 'Não','1' => 'Sim'),'',['class'
+                           => 'form-control','placeholder' => 'Não informado']) !!}
                     </div>
                 </div>
-                <!-- end: SMS VIP -->
+                <!-- end: VIP -->
+
+                </div>
+
             </div>
             <!-- end: ROW -->
 
@@ -104,6 +108,7 @@
 
             <!-- start:  RIGHT DIV -->
             <ul class="nav nav-tabs nav-nested" style="background:whitesmoke;opacity: 0.5">
+
                 <!-- start: MAIN DETIALS -->
                 <li class="active">
                     <a data-toggle="tab" href="#pDetails">
@@ -125,6 +130,7 @@
                     </a>
                 </li>
                 <!-- end: ADDRESS -->
+
             </ul>
             <!-- start:  RIGHT DIV -->
 
@@ -158,6 +164,8 @@
                             </div>
                             <!-- end: LAST NAME -->
 
+                            <div class="clearfix"></div>
+
                             <!-- start: GENDER -->
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -175,8 +183,6 @@
                                     <div class="input-group">
                                         {{ Form::text('date_of_birth','',array('class' => 'form-control
                                         date-picker', 'id' => 'date_of_birth')) }}
-                                        <span class="input-group-addon"> <i
-                                                    class="fa fa-calendar"></i> </span>
                                     </div>
                                 </div>
                             </div>
@@ -249,6 +255,8 @@
                                 </div>
                             </div>
                             <!-- end: PROFESSION -->
+
+                            <div class="clearfix"></div>
 
                             <!-- start: OBSERVATION -->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
