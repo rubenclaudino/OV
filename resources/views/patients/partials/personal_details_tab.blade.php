@@ -61,7 +61,7 @@
                     <input type="hidden" name="hasOrtoSpec" id="hasOrtoSpec" value="0"/>
                     <div class="form-group">
                         <label for="pSpec">Especialidades</label>
-                        {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
+                        {!! Form::select('specialty[]',$treatments, 2,['class' => 'form-control
                         selectpicker','multiple' => 'true']) !!}
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="checkbox">
                         <label>
-                            {{ Form::checkbox('sms_confirmation','',null,array('class' => 'grey')) }}
+                        {{ Form::checkbox('sms_confirmation','',null,array('class' => 'grey')) }}
                             Confirmação SMS
                         </label>
                     </div>

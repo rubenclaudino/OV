@@ -445,10 +445,10 @@ $(document).ready(function(){
          }
       },
       rules: {
-         patient_profile_image:{required:true},
+         //patient_profile_image:{required:true},
          first_name:{required:true},
          last_name:{required:true},
-         email:{required:true, email: true},
+         /*email:{required:true, email: true},
          DOB:{required:true},
          gender:{required:true},
          CPF:{required:true},
@@ -464,7 +464,7 @@ $(document).ready(function(){
          city_id:{required:true},
          borough_id:{required:true},
          state_id:{required:true},
-         zip:{required:true},
+         zip:{required:true},*/
       },
       messages: {
          patient_profile_image:{required:"Profile Image is required!"},

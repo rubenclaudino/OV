@@ -4,12 +4,6 @@
         <!-- start: MAIN CONTAINER -->
 <div class="main-container inner">
 
-    <style>
-        #current_dentist_id {
-            display: none;
-        }
-    </style>
-
     <div id="current_dentist">
         {!! Form::select('dentist_id', $professionals,$dentist_id,['class' => 'form-control','id' => 'current_dentist_id']) !!}
     </div>
