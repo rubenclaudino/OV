@@ -24,8 +24,8 @@
                     <!-- start: CONTACT NAME -->
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="title">Nome</label>
-                            <input class="form-control" id="title" name="title" type="text">
+                            <label for="name">Nome</label>
+                            <input class="form-control" id="name" name="name" type="text">
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="celular_1">Celular</label>
-                            <input class="form-control input-mask-phone" id="celular_1" name="celular_1"
+                            <input class="form-control input-mask-phone" id="phone_1" name="phone_1"
                                    type="text">
                         </div>
                     </div>
@@ -104,16 +104,16 @@
                     <!-- start: ROAD -->
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="street_address">Rua / Avendia</label>
-                            <input class="form-control" id="street_address" name="street_address" type="text">
+                            <label for="address">Rua / Avendia</label>
+                            <input class="form-control" id="address" name="address" type="text">
                         </div>
                     </div>
 
                     <!-- start: NUMBER -->
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="number">Número</label>
-                            <input class="form-control" id="number" name="number" type="text">
+                            <label for="street_number">Número</label>
+                            <input class="form-control" id="street_number" name="street_number" type="text">
                         </div>
                     </div>
 
@@ -129,7 +129,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="zip">CEP</label>
-                            <input class="form-control input-mask-cep" id="zip" name="zip" type="text">
+                            <input class="form-control input-mask-cep" id="zip_code" name="zip_code" type="text">
                         </div>
                     </div>
 

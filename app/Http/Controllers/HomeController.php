@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -13,7 +15,9 @@ class HomeController extends Controller
         $subtitle = "Book an Appointment";
         $activeClass = "dashboard";
 
-        return view('home', compact('title', 'subtitle', 'activeClass'));
+        // TODO: filter based on clinic
+        $appointments = Appointment::all();
+        return view('home', compact('title', 'subtitle', 'activeClass', 'appointments'));
     }
 
     public function joinus()

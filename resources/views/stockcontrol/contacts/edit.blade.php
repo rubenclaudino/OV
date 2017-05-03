@@ -32,9 +32,9 @@
                             <!-- start: CONTACT NAME -->
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 clearfix">
                                 <div class="form-group">
-                                    <label for="title" >Nome</label>
-                                    <input id="title" class="form-control" name="title" type="text"
-                                           value="{{ $contact->title }}">
+                                    <label for="name" >Nome</label>
+                                    <input id="name" class="form-control" name="name" type="text"
+                                           value="{{ $contact->name }}">
                                 </div>
                             </div>
 
@@ -49,8 +49,8 @@
                             <!-- start: OBSERVATION -->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
                                 <div class="form-group">
-                                    <label for="title">Observação</label>
-                                    <input id="title" class="form-control" name="title" type="text"
+                                    <label for="obs">Observação</label>
+                                    <input id="obs" class="form-control" name="obs" type="text"
                                            value="{{ $contact->obs }}">
                                 </div>
                             </div>
@@ -68,16 +68,16 @@
                                     <label for="phone_landline">Telefone Fixo</label>
                                     <input class="form-control input-mask-phone1" id="phone_landline"
                                            name="phone_landline" type="text"
-                                           value="{{ $contact->contact->phone_landline }}">
+                                           value="{{ $contact->phone_landline }}">
                                 </div>
                             </div>
 
                             <!-- start: CEL1 -->
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="celular_1">Celular</label>
-                                    <input class="form-control input-mask-phone" id="celular_1" name="celular_1"
-                                           type="text" value="{{ $contact->contact->celular_1 }}">
+                                    <label for="phone_1">Celular</label>
+                                    <input class="form-control input-mask-phone" id="phone_1" name="phone_1"
+                                           type="text" value="{{ $contact->phone_1 }}">
                                 </div>
                             </div>
 
@@ -87,7 +87,7 @@
                                     <label for="whatsapp_number">Whatsapp</label>
                                     <input class="form-control input-mask-phone" id="whatsapp_number"
                                            name="whatsapp_number" type="text"
-                                           value="{{ $contact->contact->whatsapp_number }}">
+                                           value="{{ $contact->whatsapp_number }}">
                                 </div>
                             </div>
 
@@ -96,7 +96,7 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input class="form-control" id="email" name="email" type="email"
-                                           value="{{ $contact->contact->email }}">
+                                           value="{{ $contact->email }}">
                                 </div>
                             </div>
 
@@ -110,18 +110,18 @@
                             <!-- start: ROAD -->
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="street_address">Rua / Avendia</label>
-                                    <input class="form-control" id="street_address" name="street_address" type="text"
-                                           value="{{ $contact->address->street_address }}">
+                                    <label for="address">Rua / Avendia</label>
+                                    <input class="form-control" id="address" name="address" type="text"
+                                           value="{{ $contact->address }}">
                                 </div>
                             </div>
 
                             <!-- start: NUMBER -->
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="number">Número</label>
-                                    <input class="form-control" id="number" name="number" type="text"
-                                           value="{{ $contact->address->number }}">
+                                    <label for="street_number">Número</label>
+                                    <input class="form-control" id="street_number" name="street_number" type="text"
+                                           value="{{ $contact->street_number }}">
                                 </div>
                             </div>
 
@@ -130,16 +130,16 @@
                                 <div class="form-group">
                                     <label for="borough">Bairro</label>
                                     <input class="form-control" id="borough" name="borough" type="text"
-                                           value="{{ $contact->address->borough }}">
+                                           value="{{ $contact->borough }}">
                                 </div>
                             </div>
 
                             <!-- start: CEP -->
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="zip">CEP</label>
-                                    <input class="form-control input-mask-cep" id="zip" name="zip" type="text"
-                                           value="{{ $contact->address->zip }}">
+                                    <label for="zip_code">CEP</label>
+                                    <input class="form-control input-mask-cep" id="zip_code" name="zip_code" type="text"
+                                           value="{{ $contact->zip_code }}">
                                 </div>
                             </div>
 
@@ -148,7 +148,7 @@
                                 <div class="form-group">
                                     <label for="city">Cidade</label>
                                     <input class="form-control" id="city" name="city" type="text"
-                                           value="{{ $contact->address->city }}">
+                                           value="{{ $contact->city }}">
                                 </div>
                             </div>
 
@@ -184,7 +184,7 @@
                             '25' => 'SP',
                             '26' => 'SE',
                             '27' => 'TO' ),
-                            $contact->address->state_id,['class' => 'form-control', 'style' => 'border-radius:3px']) !!}
+                            $contact->state_id,['class' => 'form-control', 'style' => 'border-radius:3px']) !!}
                                     </select>
                                 </div>
                             </div>

@@ -16,18 +16,25 @@ class CreateContactEntitiesTable extends Migration
         Schema::create('contact_entities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('state');
-            $table->string('city');
-            $table->string('borough');
-            $table->string('zip_code');
-            $table->string('address');
-            $table->string('street_number');
+            $table->string('email');
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('borough')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('address')->nullable();
+            $table->string('street_number')->nullable();
 
             $table->string('phone_1');
             $table->string('phone_2')->nullable();
             $table->string('phone_landline')->nullable();
 
-            $table->boolean('is_public');
+            $table->tinyInteger('contact_type')->nullable();
+            $table->string('obs')->nullable();
+            $table->string('whatsapp_number')->nullable();
+            // TODO: delete
+            $table->string('state_id')->nullable();
+
+            $table->boolean('is_public')->nullable();
             $table->timestamps();
         });
     }

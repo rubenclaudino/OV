@@ -753,7 +753,7 @@ $.subview({
                         $(".form-full-event .all-day").bootstrapSwitch('state', demoCalendar[i].allDay);
                         $(".form-full-event .patient_telephone").val(demoCalendar[i].patient_telephone);
                         $(".form-full-event .patient_mobile").val(demoCalendar[i].patient_mobile);
-                        //$(".form-full-event .patientObservation").val(demoCalendar[i].patient_observation);
+                        $(".form-full-event .patientObservation").val(demoCalendar[i].patient_observation);
                         $(".form-full-event .all-day").bootstrapSwitch('state', demoCalendar[i].allDay);
                         $(".form-full-event .event-start-date").val(moment(demoCalendar[i].start));
                         $(".form-full-event .event-end-date").val(moment(demoCalendar[i].end));
@@ -1085,12 +1085,12 @@ $.subview({
                             }
                         }
                     } else {
-                        newEvent.id = el;
+                        //newEvent.id = el;
                         newEvent.patient_id = formD.patient_id;
-                        newEvent.patient = $.parseJSON($('#patient_json').val());
+                        /*newEvent.patient = $.parseJSON($('#patient_json').val());
                         newEvent.patient_telephone = $('.form-full-event .patient_telephone').val();
                         newEvent.patient_mobile = $('.form-full-event .patient_mobile').val();
-                        newEvent.patient_observation = $('.form-full-event .patientObservation').val();
+                        newEvent.patient_observation = $('.form-full-event .patientObservation').val();*/
                     }
                     $.blockUI({
                         message: '<i class="fa fa-spinner fa-spin"></i> Saving Appointment ...'
