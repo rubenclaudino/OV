@@ -114,18 +114,15 @@
                                             $from = new DateTime(str_replace('/', '-', $patient->date_of_birth));
                                             $to = new DateTime('today');
                                             echo $from->diff($to)->y;?> anos</h5>
-                                        <h5>@if($patient->street_address)<i class="fa fa-map-marker fa-fw"></i>
-                                            &nbsp; {{ $patient->street_address }}   {{ $patient->number }}
+
+                                        <h5>@if($patient->address != null)<i class="fa fa-map-marker fa-fw"></i>&nbsp;{{ $patient->address }} {{ $patient->street_number }} , {{ $patient->borough }} , {{ $patient->city }} {{ $patient->state }}
                                             @else <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5> @endif
                                         </h5>
+
                                         <h5>
-                                            @if ($patient->phone_landline)<i class="fa fa-phone fa-fw"></i>
-                                            &nbsp;&nbsp;&nbsp;{{ $patient->phone_landline }}&nbsp;
-                                            &nbsp; @else () @endif
-                                            @if ($patient->phone_1)<i class="fa fa-mobile fa-fw"></i>&nbsp;
-                                            &nbsp;&nbsp;{{ $patient->phone_1 }}&nbsp;&nbsp; @else () @endif
-                                            @if ($patient->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>
-                                            &nbsp;&nbsp;{{ $patient->whatsapp_number }} @else @endif
+                                            @if ($patient->phone_landline)<i class="fa fa-phone fa-fw"></i>{{ $patient->phone_landline }}&nbsp;@endif
+                                            @if ($patient->phone_1)<i class="fa fa-mobile fa-fw"></i>{{ $patient->phone_1 }} @endif
+                                            @if ($patient->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>{{ $patient->whatsapp_number }}@endif
                                         </h5>
 
                                     </div>

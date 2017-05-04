@@ -18,9 +18,7 @@
                 <div class="logo">
                     <img src="{{ url('/')}}/images/logoxb.png" alt="Odontovision"
                          style="width:100px;margin-top: 10px;opacity: 0.6">
-                    <h5 class="z-depth-1"
-                        style="letter-spacing: 3px;color: dodgerblue;margin: 0px;margin-top: 10px;font-size: 10px">
-                        ODONTOVISION</h5>
+                    <h5 style="letter-spacing: 3px;color: dodgerblue;margin: 0px;margin-top: 10px;font-size: 10px">ODONTOVISION</h5>
                 </div>
                 <!-- end: LOGO -->
 
