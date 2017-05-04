@@ -129,7 +129,7 @@ class CalendarController extends Controller
     {
         $request['clinic_id'] = Auth::user()->clinic_id;
         $appointment = Appointment::create($request->all());
-        return response()->json(['status' => 'success', 'message' => 'Appointment Saved!', 'id' => $appointment->id]);
+        return response()->json(['status' => 'success', 'message' => 'Agendado com sucesso!', 'id' => $appointment->id]);
     }
 
     public function show($id)
@@ -142,7 +142,7 @@ class CalendarController extends Controller
     public function update(Request $request, $id)
     {
         Appointment::find($id)->update($request->all());
-        return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);
+        return response()->json(['status' => 'success', 'message' => 'Agendamento atualizado!']);
     }
 
     public function updateStatus(Request $request, $id)
