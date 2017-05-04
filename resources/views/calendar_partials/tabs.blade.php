@@ -1,3 +1,4 @@
+
 <!-- start: TAB TITLES START -->
 <ul id="mainEventTabs" class="nav nav-tabs new-event-tabs" role="tablist" data-tabs="tabs" style="display:none;">
 
@@ -76,41 +77,43 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label>Appointment Status</label> -->
-                                            {!! Form::select('appointment_status_id', $appointment_statuses, 'Appointment Status',['class' => 'form-control selectpicker appointment_type']) !!}
+                                            {!! Form::select('appointment_status_id', $appointment_statuses, 'Appointment Status',['class' => 'form-control appointment_type']) !!}
 
                                         </div>
                                         <div class="form-group">
                                             <!-- <label>Treatment Type</label> -->
-                                            {!! Form::select('specialty_id', $specialties, 2,['class' => 'form-control selectpicker treatment_type']) !!}
+                                            {!! Form::select('specialty_id', $specialties, 2,['class' => 'form-control treatment_type']) !!}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label>Appointment Type</label> -->
-                                            {!! Form::select('appointment_type_id', $types, 'Appointment Type',['class' => 'form-control selectpicker appointment_type']) !!}
+                                            {!! Form::select('appointment_type_id', $types, 'Appointment Type',['class' => 'form-control appointment_type']) !!}
                                         </div>
                                         <div class="form-group">
                                             <!-- <label>Dental Plan</label> -->
-                                            {!! Form::select('clinic_dental_plan_id', $dentalPlans, 'Dental Plan',['class' => 'form-control selectpicker dental_plan']) !!}
+                                            {!! Form::select('clinic_dental_plan_id', $dentalPlans, 'Dental Plan',['class' => 'form-control dental_plan']) !!}
 
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                        <textarea class="form-control patientObservation" style="min-height:95px;"
+                                        <textarea class="form-control patientObservation" style="min-height:83px;"
                                                   placeholder="Observações do Paciente" disabled="disabled"></textarea>
                                 </div>
                                 <div class="form-group">
                                         <textarea class="form-control appointmentObservation"
                                                   name="observation" placeholder="Observações do Agendamento"
-                                                  style="min-height:95px;"></textarea>
+                                                  style="min-height:83px;"></textarea>
                                 </div>
                             </div>
 

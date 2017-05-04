@@ -73,13 +73,17 @@
 
     <!-- start: BUTTONS AREA -->
     <div class="col-md-5">
+
         <div class="patient_actions">
+
             <div class="dropdown" style="display:inline-block;">
-                <button class="btn btn-info btn-profile dropdown-toggle" type="button" id="dropdownMenu1"
+
+                <button class="btn btn-primary btn-profile dropdown-toggle" type="button" id="dropdownMenu1"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     &nbsp;&nbsp;&nbsp; Opções &nbsp;&nbsp;&nbsp;
                     <span class="caret"></span>
                 </button>
+
                 <ul class="dropdown-menu appt_tabs_dropdown pull-right" aria-labelledby="dropdownMenu1"
                     style="opacity:0.8;">
                     <li><a href="#appointment-summary" aria-controls="appointment-summary" role="tab"
@@ -100,9 +104,11 @@
                             <small><i class="fa fa-ban fa-fw"></i></small>
                             &nbsp; Excluír</a></li>
                 </ul>
+
             </div>
 
         </div>
+
     </div>
     <!-- end: BUTTONS AREA -->
 
