@@ -365,6 +365,7 @@ class UsersTableSeeder extends Seeder
         User::find(10)->roles()->attach([3]);
 
         User::find(2)->specialties()->attach([12]);
+        User::find(2)->specialties()->attach([2]);
 
     }
 }

@@ -92,6 +92,11 @@ class User extends Authenticatable
         $this->attributes['first_name'] = ucfirst($value);
     }
 
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = ucfirst($value);
+    }
+
     public function getPhone1Attribute($value)
     {
         $phone = substr_replace($value, '(', 0, 0);
@@ -145,4 +150,15 @@ class User extends Authenticatable
         return ucfirst($value);
     }
 
+    public function Fullname()
+    {
+        $doc = 'Dr. ';
+
+        if($this->gender == 1)
+        {
+            $doc = 'Dra. ';
+        }
+
+        return $doc . $this->first_name . ' ' . $this->last_name;
+    }
 }

@@ -49,17 +49,15 @@
                         <!-- start: QUICK INFO PANEL -->
                       <div class="panel panel-white">
 
-                         <!-- start: DENTIST NAME -->
+                         <!-- start: USER NAME -->
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+
                            <h2 class="light_black" style="margin-top:10px;margin-bottom:5px;font-weight: lighter;opacity: 0.8;text-align:left;float:left;">
-                              @if($dentist->gender == 0) Dr. @else Dra. @endif  {{ $dentist->first_name }} {{ $dentist->last_name}}&nbsp;&nbsp;
+                              {{ $dentist->Fullname() }}
                            </h2>
-                            <!-- start: SPECIAL NOTATIONS -->
-                            @if($dentist->vip == 1)<label class="label label-warning" style="opacity: 0.7;text-align:left;float:left;margin-top:18px;padding: 5px !important;margin-right: 5px">VIP</label>@endif
-                            @if($dentist->wheel_chair == 1)<label class="label label-info" style="opacity: 0.7;text-align:left;float:left;margin-top:18px;padding: 5px !important;"><i class="fa fa-wheelchair"></i></label>@endif
-                            <!-- end: SPECIAL NOTATIONS -->
+
                         </div>
-                         <!-- end: DENTIST NAME -->
+                         <!-- end: USER NAME -->
 
                          <!-- start: DENTIST OPTIONS BUTTON -->
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
@@ -81,12 +79,10 @@
 
                            <!-- start: SPEACIAL TAGS INFO -->
                            <p>
-                              @if($dentist->speciality)
-                                 @foreach($dentist->speciality as $d)
-                                    <label class="label label-warning" style="background: #{{$d->color}} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $d->name }}</label>
+                              @if($dentist->specialties)
+                                 @foreach($dentist->specialties as $specialty)
+                                    <label class="label label-warning" style="background: #{{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
                                  @endforeach
-                              @else
-                                    <label class="label label-warning" style="background: brown !important;opacity: 0.7;letter-spacing: 1px !important;">Clínica Geral</label>
                               @endif
                            </p>
                            <!-- start: SPEACIAL TAGS INFO -->
@@ -117,7 +113,7 @@
 
                      <!-- start: CRO -->
                      <div class="col-lg-12 col-md-12">
-                        <div class="panel panel-white" style="padding:5px; background: whitesmoke">
+                        <div class="panel panel-white" style="padding:10px; background: whitesmoke">
                               <i class="fa fa-user fa-fw"></i>
                                &nbsp;&nbsp;CRO
                               <span class="pull-right" style="padding-right: 10px"><strong>{{ $dentist->cro }}</strong></span>
@@ -127,7 +123,7 @@
 
                      <!-- start: BOOKINGS -->
                      <div class="col-lg-12 col-md-12">
-                        <div class="panel panel-white" style="padding:5px; background: whitesmoke">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
                               <i class="fa fa-calendar-o fa-fw"></i>
                                &nbsp;&nbsp;Agendamentos
                               <span class="pull-right" style="padding-right: 10px"><strong>{{ count($dentist->appointments)}}</strong></span>
@@ -137,7 +133,7 @@
 
                         <!-- start: CAPTIVE PATIENTS -->
                     <div class="col-lg-12 col-md-12">
-                        <div class="panel panel-white" style="padding:5px; background: whitesmoke">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
                               <i class="fa fa-users fa-fw"></i>
                                &nbsp;&nbsp;Pacientes
                               <span class="pull-right" style="padding-right: 10px"><strong>{{ count($dentist->patients)}}</strong></span>
@@ -171,6 +167,7 @@
 
             <!-- start: TABS -->
             <ul class="nav nav-tabs" style="font-size: 1.1em">
+
                <li class="active">
                   <a data-toggle="tab" href="#personal_details">
                      <strong>Geral</strong>
@@ -206,6 +203,7 @@
                      <strong>Estatísticas</strong>
                   </a>
                </li>
+
             </ul>
             <!-- end: TABS -->
 
@@ -262,10 +260,15 @@
 
                          <!-- start: ADDRESS -->
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+
                            <div class="panel panel-white accepted_plan">
+
                               <div class="panel-body" style="">
+
                                  <table class="table table-condensed ">
+
                                     <tbody>
+
                                     <tr>
                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Rua / Avendia</td>
                                        <td style="font-size:1.1em">@if( $dentist->street_address ) {{ $dentist->street_address }} @else - @endif</td>
@@ -284,19 +287,29 @@
                                        <td style="font-weight:bold;font-size:1.1em;width: 15%">Estado</td>
                                        <td style="font-size:1.1em">@if( $dentist->state ) {{ $dentist->state }} @else - @endif</td>
                                     </tr>
+
                                     </tbody>
+
                                  </table>
+
                               </div>
+
                            </div>
+
                         </div>
                          <!-- end: ADDRESS -->
 
                          <!-- start: CONTACTS -->
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+
                            <div class="panel panel-white accepted_plan">
+
                               <div class="panel-body" style="">
+
                                  <table class="table table-condensed ">
+
                                     <tbody>
+
                                     <tr>
                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Contato 1</td>
                                        <td style="font-size:1.1em;width: 15%">@if( $dentist->ref1 ) {{ $dentist->ref1 }} @else - @endif</td>
@@ -309,10 +322,15 @@
                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Telefone</td>
                                        <td class="hidden-xs" style="font-size:1.1em;width: 15%">@if( $dentist->ref_num2 ) {{ $dentist->ref_num2 }} @else - @endif</td>
                                     </tr>
+
                                     </tbody>
+
                                  </table>
+
                               </div>
+
                            </div>
+
                         </div>
                          <!-- end: CONTACTS -->
 
@@ -327,7 +345,9 @@
 
                 <!-- start: APPOINTMENTS -->
                <div id="appointments" class="tab-pane fade" style="overflow-x:auto;max-height:292px;padding: 30px;">
+
                   <table class="table table-striped table-hover" id="sample-table-2" >
+
                      <thead>
                      <tr>
                         <th style="font-size:1.1em">Data</th>
@@ -339,15 +359,16 @@
                         <th class="center hidden-xs" style="font-size:1.1em"></th>
                      </tr>
                      </thead>
+
                      <tbody>
                      @foreach($dentist->appointments as $data)
-                        <tr>
-                           <td style="font-size:1.1em">{{ $data->startdate }}</td>
-                           <td style="font-size:1.1em">{{ date('H:i', strtotime($data->starttimestamp)) }}</td>
-                            <td class="hidden-xs" style="font-size:1.1em">{{ $data->patient->first_name }}  {{ $data->patient->last_name }}</td>
-                           <td style="font-size:1.1em">@if($data->patient->has_dental_plan == 0) Convênio @else Particular @endif</td>
-                           <td style="font-size:1.1em">{{ $data->specialty_id }}</td>
-                           <td class="center" style="font-size:1.1em">
+                        <tr style="font-size:1.1em">
+                           <td>{{ $data->startdate }}</td>
+                           <td>{{ date('H:i', strtotime($data->starttimestamp)) }}</td>
+                           <td>{{ $data->patient->first_name }}  {{ $data->patient->last_name }}</td>
+                           <td>@if($data->patient->has_dental_plan == 0) Convênio @else Particular @endif</td>
+                           <td>{{ $data->specialty_id }}</td>
+                           <td class="center">
                               @if( $data->status->id == 1 )
                                  <span class="label" style="background: #5bc0de;opacity: 0.8">Agendado</span>
                               @elseif( $data->status->id == 1 )
@@ -360,13 +381,15 @@
                                  <span class="label" style="background: #5e5e5e;opacity: 0.8">Finalizado</span>
                               @endif
                            </td>
-                           <td class="center hidden-xs" style="font-size:1.1em">
+                           <td class="center hidden-xs">
                               <a><i class="fa fa-info" data-text="{{$data->observation}}" data-toggle="tooltip" data-placement="top" title="{{$data->observation}}"></i></a>
                            </td>
                         </tr>
                      @endforeach
                      </tbody>
+
                   </table>
+
                </div>
                 <!-- end: APPOINTMENTS -->
 
