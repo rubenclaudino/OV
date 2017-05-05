@@ -64,7 +64,7 @@
                          <!-- start: DENTIST OPTIONS BUTTON -->
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
                            <div class="btn-group pull-right" style="margin-top:10px;">
-                              <button class="btn dropdown-toggle btn-squared" data-toggle="dropdown" aria-expanded="false" style="border-radius: 1px;background: #dddddd">
+                              <button class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false">
                               Opções &nbsp; <span class="caret"></span></button>
                               <ul class="dropdown-menu">
                               <li><a href="{{ URL::route('patients.edit', $dentist->id) }}"><i class="fa fa-pencil fa-fw text-info" style="color: #404040"></i>&nbsp;&nbsp;Editar</a></li>
@@ -83,7 +83,7 @@
                            <p>
                               @if($dentist->speciality)
                                  @foreach($dentist->speciality as $d)
-                                    <label class="label label-warning" style="background: #{{$d->color_code}} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $d->title }}</label>
+                                    <label class="label label-warning" style="background: #{{$d->color}} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $d->name }}</label>
                                  @endforeach
                               @else
                                     <label class="label label-warning" style="background: brown !important;opacity: 0.7;letter-spacing: 1px !important;">Clínica Geral</label>
@@ -96,9 +96,9 @@
                               -
                            </h5>
                            <h5>
-                               @if ($dentist->phone_landline)<i class="fa fa-phone fa-fw"></i>&nbsp;&nbsp;&nbsp;{{ $dentist->phone_landline }}&nbsp;&nbsp; @else () @endif
-                               @if ($dentist->phone_1)<i class="fa fa-mobile fa-fw"></i>&nbsp;&nbsp;&nbsp;{{ $dentist->phone_1 }}&nbsp;&nbsp; @else () @endif
-                               @if ($dentist->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>&nbsp;&nbsp;{{ $dentist->whatsapp_number }} @else @endif
+                               @if ($dentist->phone_landline)<i class="fa fa-phone fa-fw"></i>&nbsp;&nbsp;&nbsp;{{ $dentist->phone_landline }}&nbsp;&nbsp; @endif
+                               @if ($dentist->phone_1)<i class="fa fa-mobile fa-fw"></i>&nbsp;&nbsp;&nbsp;{{ $dentist->phone_1 }}&nbsp;&nbsp; @endif
+                               @if ($dentist->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>&nbsp;&nbsp;{{ $dentist->whatsapp_number }} @endif
                            </h5>
 
                         </div>
@@ -112,36 +112,41 @@
 
                      <!-- start: QUICK STATS -->
                      <div class="col-lg-3 col-md-3" style="margin-top: 13px;opacity:1">
+
                      <span class="pull-right">
 
                      <!-- start: CRO -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure" style="padding: 8px;border-radius: 2px;border: transparent;margin-bottom: 7px">
-                           <span class="pull-left">
+                     <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:5px; background: whitesmoke">
                               <i class="fa fa-user fa-fw"></i>
-                              &nbsp;CRO &nbsp;&nbsp;&nbsp;</span>
-                           <span class="pull-right" style="color: white;padding-right: 5px"><strong>{{ $dentist->cro }}</strong></span>
-                     </button>
+                               &nbsp;&nbsp;CRO
+                              <span class="pull-right" style="padding-right: 10px"><strong>{{ $dentist->cro }}</strong></span>
+                        </div>
+                     </div>
                      <!-- end: CRO -->
 
                      <!-- start: BOOKINGS -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure" style="padding: 8px;border-radius: 2px;border: transparent;margin: 7px 0px">
-                           <span class="pull-left">
+                     <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:5px; background: whitesmoke">
                               <i class="fa fa-calendar-o fa-fw"></i>
-                                       &nbsp;Agendamentos</span>
-                           <span class="pull-right" style="color: white;padding-right: 5px"><strong>&nbsp;&nbsp;&nbsp;{{ count($dentist->appointments)}}</strong></span>
-                     </button>
+                               &nbsp;&nbsp;Agendamentos
+                              <span class="pull-right" style="padding-right: 10px"><strong>{{ count($dentist->appointments)}}</strong></span>
+                        </div>
+                     </div>
                      <!-- end: BOOKINGS -->
 
                         <!-- start: CAPTIVE PATIENTS -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure" style="padding: 8px;border-radius: 2px;border: transparent;margin: 7px 0px">
-                           <span class="pull-left">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:5px; background: whitesmoke">
                               <i class="fa fa-users fa-fw"></i>
-                                       &nbsp;Pacientes</span>
-                           <span class="pull-right" style="color: white;padding-right: 5px"><strong>{{ count($dentist->patients)}}</strong></span>
-                     </button>
+                               &nbsp;&nbsp;Pacientes
+                              <span class="pull-right" style="padding-right: 10px"><strong>{{ count($dentist->patients)}}</strong></span>
+                        </div>
+                     </div>
                         <!-- end: CAPTIVE PATIENTS -->
 
                   </span>
+
                      </div>
                      <!-- end: QUICK STATS -->
 
