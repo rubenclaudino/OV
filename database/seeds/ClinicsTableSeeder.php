@@ -60,6 +60,23 @@ class ClinicsTableSeeder extends Seeder
                 'type'            => $faker->word,
                 'status'          => $faker->word,
                 'subscription_id' => 3
+            ],
+            [
+                'name'            => 'Odonto Granada',
+                'owner_name'      => 'Luciene Oliveira Resende',
+                'borough'         => 'Granada',
+                'state'           => 'MG',
+                'zip_code'        => '38410020',
+                'address'         => 'Alameda Raul Petronilho Pádua',
+                'street_number'   => '144',
+                'phone_1'         => '3432372002',
+                'phone_2'         => '',
+                'fax'             => '',
+                'email'           => 'none@none.com',
+                'website'         => '',
+                'type'            => 'clinic',
+                'status'          => '1',
+                'subscription_id' => 3
             ]
         ]);
 

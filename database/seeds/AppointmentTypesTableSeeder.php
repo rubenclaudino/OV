@@ -13,7 +13,6 @@ class AppointmentTypesTableSeeder extends Seeder
     {
         DB::table('appointment_types')->insert([
             ['name' => 'Avaliação'],
-            ['name' => 'Rotina'],
             ['name' => 'Retorno'],
         ]);
     }
