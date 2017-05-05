@@ -123,7 +123,7 @@ class CreatePatientsTable extends Migration
             $table->string('speciality')->nullable();
             $table->string('exp_date')->nullable();
 
-            $table->string('sms_confirmation', 50)->nullable();
+            $table->boolean('confirmation_request')->nullable();
             $table->string('CPF', 50)->nullable();
             $table->string('RG', 50)->nullable();
             $table->string('vip', 50)->nullable();

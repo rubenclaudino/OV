@@ -127,7 +127,7 @@
                             <!-- COL 8: OPTIONS  -->
                             <td>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-squared dropdown-toggle"
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
                                             style="background: #dddddd;opacity: 0.9" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         Options &nbsp;<span class="caret"></span>
