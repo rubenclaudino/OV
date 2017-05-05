@@ -122,7 +122,7 @@ class CalendarController extends Controller
 
         return view('calendar', compact('title', 'subtitle', 'activeClass', 'types', 'treatmentTypes', 'dentalPlans',
             'calendarArray', 'professionals', 'dentist_id', 'treatmentTypesWithPrice', 'report_models', 'treatments', 'agendaSettings', 'specialties',
-            'holidays', 'appointment_statuses'));
+            'holidays', 'appointment_statuses', 'user'));
     }
 
     public function store(Request $request)
@@ -135,8 +135,10 @@ class CalendarController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        if ($user->isAdmin() || $user->hasRole('Local Admin') || $user->hasRole('receptionist'))
+        if ($user->isAdmin() || $user->hasRole('local_admin') || $user->hasRole('receptionist'))
             return $this->userAppointments($id);
+        else
+            return redirect()->back();
     }
 
     public function update(Request $request, $id)
