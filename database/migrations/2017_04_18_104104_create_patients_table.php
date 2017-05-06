@@ -68,34 +68,6 @@ class CreatePatientsTable extends Migration
             $table->string('accepted_DP1', 30)->nullable();
             $table->string('DP_acd1', 30)->nullable();
 
-            // Orthodontic
-            $table->string('orto_responsible', 50)->nullable();
-            $table->string('orto_treatment_status', 50)->nullable();
-            $table->string('orto_anterior_ortho_treatment', 50)->nullable();
-            $table->string('orto_reason_for_treatment', 50)->nullable();
-            $table->string('orto_motivation_level', 50)->nullable();
-            $table->string('orto_brace_type', 50)->nullable();
-            $table->string('orto_planning_notes')->nullable();
-            $table->string('orto_initial_image')->nullable();
-            $table->string('orto_final_image')->nullable();
-            $table->string('orto_observation', 250)->nullable();
-
-            // prosthetic
-            $table->string('pros_responsible', 50)->nullable();
-            $table->string('pros_treatment_status', 50)->nullable();
-            $table->string('pros_has_used_before', 50)->nullable();
-            $table->string('pros_reason_for_treatment', 50)->nullable();
-            $table->string('pros_limitations', 50)->nullable();
-            $table->string('pros_type_cement', 50)->nullable();
-            $table->string('pros_type_rem', 50)->nullable();
-            $table->string('pros_type_pros', 50)->nullable();
-            $table->string('pros_region', 50)->nullable();
-            $table->string('pros_material', 50)->nullable();
-            $table->string('pros_planning_notes')->nullable();
-            $table->string('pros_initial_image', 50)->nullable();
-            $table->string('pros_final_image', 50)->nullable();
-            $table->string('pros_observation', 250)->nullable();
-
             // TODO: what are those
 
             $table->string('upload_exams', 50)->nullable();
