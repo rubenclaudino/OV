@@ -104,28 +104,41 @@
                                         </p>
                                         <!-- start: SPEACIAL TAGS INFO -->
 
+                                        <!-- start: AGE -->
                                         <h5>
-                                            <i class="fa fa-birthday-cake fa-fw"></i> &nbsp;
+                                            <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;
                                             <?php
                                             $from = new DateTime(str_replace('/', '-', $patient->date_of_birth));
                                             $to = new DateTime('today');
-                                            echo $from->diff($to)->y;?> anos</h5>
+                                            echo $from->diff($to)->y;?> anos
+                                        </h5>
+                                        <!-- end: AGE -->
 
-                                        <h5>@if($patient->address != null)<i class="fa fa-map-marker fa-fw"></i>
+                                        <!-- start: ADDRESS -->
+                                        <h5>
+                                            @isset($patient->address)
+                                            <i class="fa fa-map-marker fa-fw"></i>
                                             &nbsp;{{ $patient->address }} {{ $patient->street_number }}
                                             , {{ $patient->borough }} , {{ $patient->city }} {{ $patient->state }}
-                                            @else <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5> @endif
+                                            @else
+                                                <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5>
+                                                @endisset
                                         </h5>
+                                        <!-- end: ADDRESS -->
 
+                                        <!-- start: PHONE -->
                                         <h5>
-                                            @if ($patient->phone_landline)<i
-                                                    class="fa fa-phone fa-fw"></i>{{ $patient->phone_landline }}
-                                            &nbsp;@endif
-                                            @if ($patient->phone_1)<i
-                                                    class="fa fa-mobile fa-fw"></i>{{ $patient->phone_1 }} @endif
-                                            @if ($patient->whatsapp_number)<i
-                                                    class="fa fa-whatsapp fa-fw"></i>{{ $patient->whatsapp_number }}@endif
+                                            @isset ($patient->phone_landline)
+                                            <i class="fa fa-phone fa-fw"></i>&nbsp; {{ $patient->phone_landline }}
+                                            &nbsp;@endisset
+                                            @isset ($patient->phone_1)
+                                            <i class="fa fa-mobile fa-fw"></i>&nbsp; {{ $patient->phone_1 }}
+                                            @endisset
+                                            @isset ($patient->whatsapp_number)
+                                            <i class="fa fa-whatsapp fa-fw"></i>&nbsp; {{ $patient->whatsapp_number }}
+                                            @endisset
                                         </h5>
+                                        <!-- end: PHONE -->
 
                                     </div>
                                     <!-- end: PATIENT DATA -->
@@ -138,6 +151,7 @@
 
                             <!-- start: QUICK STATS -->
                             <div class="col-lg-3 col-md-3" style="margin-top: 13px;opacity:1">
+
                      <span class="pull-right">
 
                           <!-- start: RELIABILITY -->
@@ -146,7 +160,8 @@
                               <i class="fa fa-check fa-fw"></i>
                                &nbsp;&nbsp;Confiabilidade
                               <span class="pull-right"
-                                    style="padding-right: 10px"><strong>0  %</strong></span>
+                                    style="padding-right: 10px"><strong>0  %</strong>
+                              </span>
                         </div>
                      </div>
                          <!-- end: RELIABILITY -->
@@ -157,7 +172,8 @@
                               <i class="fa fa-calendar fa-fw"></i>
                                &nbsp;&nbsp;Agendamentos
                               <span class="pull-right"
-                                    style="padding-right: 10px"><strong>{{ count($appointments) }}</strong></span>
+                                    style="padding-right: 10px"><strong>{{ count($appointments) }}</strong>
+                              </span>
                         </div>
                      </div>
                          <!-- end: TOTAL APPOINTMENTS -->
@@ -259,53 +275,98 @@
 
                                 <!-- start: LEFT SIDE INFO -->
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                    <table class="table">
+
+                                    <table class="table" style="font-size:1.1em">
+
                                         <tbody>
                                         <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
                                                 Data de Nascimento
                                             </td>
-                                            <td style="font-size:1.1em">{{ $patient->date_of_birth }}</td>
+                                            <td>
+                                                @isset($patient->date_of_birth)
+                                                {{ $patient->date_of_birth }}
+                                                @else
+                                                    -
+                                                    @endisset
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
                                                 CPF
                                             </td>
-                                            <td style="font-size:1.1em">{{ $patient->CPF }}</td>
+                                            <td>
+                                                @isset($patient->CPF)
+                                                {{ $patient->CPF }}
+                                                @else
+                                                    -
+                                                    @endisset
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
                                                 RG
                                             </td>
-                                            <td style="font-size:1.1em">{{ $patient->RG }}</td>
+                                            <td>
+                                                @isset($patient->RG)
+                                                {{ $patient->RG }}
+                                                @else
+                                                    -
+                                                    @endisset
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
                                                 Profissão
                                             </td>
-                                            <td style="font-size:1.1em"></td>
+                                            <td>
+                                                @isset($patient->profession)
+                                                {{ $patient->profession }}
+                                                @else
+                                                    -
+                                                    @endisset
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
                                                 Estado Civil
                                             </td>
-                                            <td style="font-size:1.1em">@if($patient->maritial_status == 1)Married @else
-                                                    Unmarried @endif</td>
+                                            <td>
+                                                @isset($patient->maritial_status)
+                                                {{ $patient->maritial_status }}
+                                                @else
+                                                    -
+                                                    @endisset
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
                                                 Email
                                             </td>
-                                            <td style="font-size:1.1em">{{ $patient->email }}</td>
+                                            <td>
+                                                @isset($patient->email)
+                                                {{ $patient->email }}
+                                                @else
+                                                    -
+                                                    @endisset
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
                                                 Nacionalidade
                                             </td>
-                                            <td style="font-size:1.1em">{{ $patient->nationality }}</td>
+                                            <td>
+                                                @isset($patient->nationality)
+                                                {{ $patient->nationality }}
+                                                @else
+                                                    -
+                                                    @endisset
+                                            </td>
                                         </tr>
                                         </tbody>
+
                                     </table>
+
                                 </div>
                                 <!-- end: LEFT SIDE INFO -->
 
@@ -330,7 +391,7 @@
                                                             -
                                                         </td>
                                                         <td style="font-weight:bold;width: 25%">
-                                                            Data de Expiração
+                                                            Data de Exp.
                                                         </td>
                                                         <td>
                                                             @isset($patient->exp_date)
@@ -375,16 +436,19 @@
 
                                     <!-- start: DEMOGRAPHICS -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+
                                         <div class="panel panel-white accepted_plan">
-                                            <div class="panel-body" style="">
-                                                <table class="table table-condensed">
+
+                                            <div class="panel-body">
+
+                                                <table class="table table-condensed" style="font-size:1.1em;">
+
                                                     <tbody>
                                                     <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                        <td style="font-weight:bold;width: 25%">
                                                             Dentista
                                                         </td>
-
-                                                        <td style="font-size:1.1em">
+                                                        <td>
                                                             @if(isset($patient->user))
                                                                 @if ($patient->user->gender == 0)
                                                                     <small>Dr.</small> @else
@@ -395,10 +459,10 @@
                                                             @endif
                                                         </td>
                                                     <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                        <td style="font-weight:bold;width: 25%">
                                                             Indicação
                                                         </td>
-                                                        <td style="font-size:1.1em">
+                                                        <td>
                                                             @if(isset($patient->referral))
                                                                 {{ $patient->referral->name }}
                                                             @else
@@ -409,8 +473,11 @@
                                                     </tbody>
 
                                                 </table>
+
                                             </div>
+
                                         </div>
+
                                     </div>
                                     <!-- end: DEMOGRAPHICS -->
 
@@ -419,7 +486,7 @@
 
                                         <div class="panel panel-white accepted_plan">
 
-                                            <div class="panel-body" style="">
+                                            <div class="panel-body">
 
                                                 <table class="table table-condensed" style="font-size:1.1em">
 
@@ -491,74 +558,99 @@
                         <!-- start: APPOINTMENTS -->
                         <div id="appointments" class="tab-pane fade"
                              style="overflow-x:auto;max-height:292px;padding: 30px;">
-                            <table class="table table-striped table-hover" id="sample-table-2">
+
+                            <table class="table table-striped table-hover" id="sample-table-2" style="font-size:1.1em">
+
                                 <thead>
                                 <tr>
-                                    <th style="font-size:1.1em">Data</th>
-                                    <th class="hidden-xs" style="font-size:1.1em">Horário</th>
-                                    <th class="hidden-xs" style="font-size:1.1em">Profissional</th>
-                                    <th style="font-size:1.1em">Especialidade</th>
-                                    <th style="font-size:1.1em">R$</th>
-                                    <th class="center" style="font-size:1.1em"></th>
-                                    <th class="center hidden-xs" style="font-size:1.1em"></th>
+                                    <th>Data</th>
+                                    <th>Horário</th>
+                                    <th>Dentista</th>
+                                    <th>Especialidade</th>
+                                    <th>Tipo</th>
+                                    <th>Status</th>
+                                    <th>R$</th>
+                                    <th class="center"></th>
+                                    <th class="center"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($appointments as $data)
+                                @foreach($appointments as $appointment)
                                     <tr>
-                                        <td style="font-size:1.1em">{{ $data->startdate }}</td>
-                                        <td style="font-size:1.1em">{{ date('H:i', strtotime($data->starttime)) }}</td>
-                                        <td class="hidden-xs"
-                                            style="font-size:1.1em">@if ($data->user->first()->gender == 0)
+                                        <td>{{ date('D d/m/y', strtotime($appointment->startdate)) }}</td>
+                                        <td>{{ date('H:i', strtotime($appointment->starttime)) }}</td>
+                                        <td>
+                                            @if ($appointment->user->first()->gender == 0)
                                                 <small>Dr.</small> @else
                                                 <small>Dra.
-                                                </small> @endif {{ $data->user->first()->first_name }} {{ $data->user->first()->last_name }}
-                                        </td>
-                                        <td style="font-size:1.1em">-</td>
-                                        <td style="font-size:1.1em">
-                                            @if(isset($data->treatment[0]))
-                                                R$ {{ $data->treatment[0]->amount }}
-                                            @else
-                                                -
+                                                </small>
                                             @endif
+                                            {{ $appointment->user->first()->first_name }} {{ $appointment->user->first()->last_name }}
                                         </td>
-                                        <td class="center" style="font-size:1.1em">
-                                            <a ng-click="myData.show({{ $data->id }},$event)" href="#appointment_model"
-                                               class="view_patient_appointment" data-toggle="modal" class="demo"
-                                               data="{{ $data->id }}">
-                                                <i class="fa fa-calendar"></i>
+                                        <td style="font-size:0.9em">
+                                            <label class="label label-warning"
+                                                   style="background: #{{ $appointment->specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $appointment->specialty->name }}</label>
+                                        </td>
+                                        <td>
+                                            {{ $appointment->type->name }}
+                                        </td>
+                                        <td style="font-size:0.9em">
+                                            @if( $appointment->status->id == 1 )
+                                                <span style="color: #5bc0de;"> <strong>{{ $appointment->status->name }} </strong></span>
+                                            @elseif( $appointment->status->id == 2 )
+                                                <span style="color: #5cb85c;"><strong>{{ $appointment->status->name }} </strong></span>
+                                            @elseif( $appointment->status->id == 3 )
+                                                <span style="color: #f0ad4e"><strong>{{ $appointment->status->name }}</strong></span>
+                                            @elseif( $appointment->status->id == 4 )
+                                                <span style="color: #d9534f"><strong>{{ $appointment->status->name }}</strong></span>
+                                            @elseif( $appointment->status->id == 5 )
+                                                <span style="color: #5e5e5e"><strong>{{ $appointment->status->name }}</strong></span>
+                                            @endif
+
+                                        </td>
+                                        <td>
+                                            -
+                                        </td>
+                                        <td class="center">
+                                            <i class="fa fa-calendar"></i>
+                                        </td>
+                                        <td class="center">
+                                            <a>
+                                                <i class="fa fa-info" data-text="{{$appointment->observation}}"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="{{$appointment->observation}}">
+                                                </i>
                                             </a>
                                         </td>
-                                        <td class="center hidden-xs" style="font-size:1.1em"><a><i
-                                                        class="fa fa-info"
-                                                        data-text="{{$data->observation}}"
-                                                        data-toggle="tooltip" data-placement="top"
-                                                        title="{{$data->observation}}"></i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
+
                             </table>
+
                         </div>
                         <!-- end: APPOINTMENTS -->
 
                         <!-- start: EXAMS -->
                         <div id="exam" class="tab-pane fade">
-                            <div class="panel panel-white">
-                                <div class="panel-body">
-                                    <ul id="Grid" class="list-unstyled">
-                                        <li style="display: inline-block;"
-                                            class="col-md-3 col-sm-6 col-xs-12 mix category_1 gallery-img" data-cat="1">
-                                            <div class="portfolio-item">
-                                                <a class="thumb-info" href="images/patient_uploads/"
-                                                   data-lightbox="gallery" data-title="">
-                                                    <img src="images/patient_uploads/" class="img-responsive" alt="">
-                                                    <span class="thumb-info-title"></span>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+
+                            <ul id="Grid" class="list-unstyled">
+
+                                <li style="display: inline-block;"
+                                    class="col-md-3 col-sm-6 col-xs-12 mix category_1 gallery-img" data-cat="1">
+
+                                    <div class="portfolio-item">
+                                        <a class="thumb-info" href="images/patient_uploads/"
+                                           data-lightbox="gallery" data-title="">
+                                            <img src="images/patient_uploads/" class="img-responsive" alt="">
+                                            <span class="thumb-info-title"></span>
+                                        </a>
+                                    </div>
+
+                                </li>
+
+                            </ul>
+
                         </div>
                         <!-- end: EXAMS -->
 
@@ -977,70 +1069,91 @@
                                 </style>
 
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding: 25px;">
+
                                     <table class="table table-condensed" style="font-size:1.1em">
+
                                         <tbody>
                                         <!-- DATE REGISTERED -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 Data Cadastrado
                                             </td>
-                                            <td>{{ $patient->created_at }}</td>
+                                            <td>
+                                                {{ $patient->created_at }}
+                                            </td>
                                         </tr>
                                         <!-- USER WHO REGISTERED PATIENT -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 Cadastrado por
                                             </td>
-                                            <td>-</td>
+                                            <td>
+                                                -
+                                            </td>
                                         </tr>
                                         <!-- APPOINTMENT COUNT -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 N&deg; Agendamentos
                                             </td>
-                                            <td>{{ count($appointments)}}</td>
+                                            <td>
+                                                {{ count($appointments)}}
+                                            </td>
                                         </tr>
                                         <!-- APPOINTMENTS MISSED -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 N&deg; Faltas
                                             </td>
-                                            <td>{{ $missedAppointments }}</td>
+                                            <td>
+                                                {{ count($appointments->where('appointment_status_id', 4)) }}
+                                            </td>
                                         </tr>
                                         <!-- IS OUT PATIENT FOR X MANY DAYS -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 È nosso paciente á
                                             </td>
-                                            <td>-</td>
+                                            <td>
+                                                {{ $patient->created_at->diffForHumans() }}
+                                            </td>
                                         </tr>
                                         <!-- DAYS TILL NEXT TEETH CLEANING PERMITTED -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 Dias até próxima limpeza
                                             </td>
-                                            <td>-</td>
+                                            <td>
+                                                -
+                                            </td>
                                         </tr>
                                         <!-- DAYS SINCE LAST APPOINTMENT -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 Ùltimo agendamento á
                                             </td>
-                                            <td>-</td>
+                                            <td>
+                                                {{ str_limit($appointments->max()->start,10) }}
+                                            </td>
                                         </tr>
                                         <!-- MONEY EARNED FROM PATIENT -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">Retorno
                                                 Gerado
                                             </td>
-                                            <td>-</td>
+                                            <td>
+                                                -
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
+
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
                                     <div class="panel panel-white accepted_plan">
+
                                         <div class="panel-body">
 
                                             <!-- start: GRAPH 1 -->
@@ -1065,8 +1178,11 @@
                                             <!-- end: GRAPH 2 -->
 
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
                             <!-- end: ROW -->
 
