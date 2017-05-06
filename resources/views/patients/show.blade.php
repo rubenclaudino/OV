@@ -79,9 +79,11 @@
                                                                 class="fa fa-pencil fa-fw text-info"
                                                                 style="color: #404040"></i>&nbsp;&nbsp;Editar</a></li>
                                                 <li class="hide"><a href="#"><i class="fa fa-money fa-fw text-info"
-                                                                   style="color: #404040"></i>&nbsp; Pagamento</a></li>
+                                                                                style="color: #404040"></i>&nbsp;
+                                                        Pagamento</a></li>
                                                 <li class="hide"><a href="#"><i class="fa fa-print fa-fw text-info"
-                                                                   style="color: #404040"></i>&nbsp; Imprimir</a></li>
+                                                                                style="color: #404040"></i>&nbsp;
+                                                        Imprimir</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -114,14 +116,20 @@
                                             $to = new DateTime('today');
                                             echo $from->diff($to)->y;?> anos</h5>
 
-                                        <h5>@if($patient->address != null)<i class="fa fa-map-marker fa-fw"></i>&nbsp;{{ $patient->address }} {{ $patient->street_number }} , {{ $patient->borough }} , {{ $patient->city }} {{ $patient->state }}
+                                        <h5>@if($patient->address != null)<i class="fa fa-map-marker fa-fw"></i>
+                                            &nbsp;{{ $patient->address }} {{ $patient->street_number }}
+                                            , {{ $patient->borough }} , {{ $patient->city }} {{ $patient->state }}
                                             @else <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5> @endif
                                         </h5>
 
                                         <h5>
-                                            @if ($patient->phone_landline)<i class="fa fa-phone fa-fw"></i>{{ $patient->phone_landline }}&nbsp;@endif
-                                            @if ($patient->phone_1)<i class="fa fa-mobile fa-fw"></i>{{ $patient->phone_1 }} @endif
-                                            @if ($patient->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>{{ $patient->whatsapp_number }}@endif
+                                            @if ($patient->phone_landline)<i
+                                                    class="fa fa-phone fa-fw"></i>{{ $patient->phone_landline }}
+                                            &nbsp;@endif
+                                            @if ($patient->phone_1)<i
+                                                    class="fa fa-mobile fa-fw"></i>{{ $patient->phone_1 }} @endif
+                                            @if ($patient->whatsapp_number)<i
+                                                    class="fa fa-whatsapp fa-fw"></i>{{ $patient->whatsapp_number }}@endif
                                         </h5>
 
                                     </div>
@@ -162,7 +170,8 @@
                          <!-- start: TYPE PLAN -->
                     <div class="col-lg-12 col-md-12">
                         <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
-                               <i class="fa fa-folder-o fa-fw"></i>&nbsp;@if($patient->has_dental_plan == 1)
+                               <i class="fa fa-folder-o fa-fw"></i>
+                             &nbsp;@if($patient->has_dental_plan == 1)
                                 Particular @endif
                             @if($patient->has_dental_plan == 0)Convênio @endif
                         </div>
@@ -220,12 +229,12 @@
                                 <strong>Anamnese</strong>
                             </a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a data-toggle="tab" href="#orto">
                                 <strong>Ortodontia</strong>
                             </a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a data-toggle="tab" href="#prosthesis">
                                 <strong>Prótese</strong>
                             </a>
@@ -351,10 +360,16 @@
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">
                                                             Profissional
                                                         </td>
-                                                        <td style="font-size:1.1em">@if ($patient->user->gender == 0)
-                                                                <small>Dr.</small> @else
-                                                                <small>Dra.
-                                                                </small> @endif {{ $patient->user->first_name }} {{ $patient->user->last_name }}
+
+                                                        <td style="font-size:1.1em">
+                                                            @if(isset($patient->user))
+                                                                @if ($patient->user->gender == 0)
+                                                                    <small>Dr.</small> @else
+                                                                    <small>Dra.
+                                                                    </small> @endif {{ $patient->user->first_name }} {{ $patient->user->last_name }}
+                                                            @else
+                                                                Clínica
+                                                            @endif
                                                         </td>
                                                     <tr>
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">
@@ -362,15 +377,9 @@
                                                         </td>
                                                         <td style="font-size:1.1em">
                                                             @if(isset($patient->referral))
-                                                                @if($patient->referral == '0') Conhecido @endif
-                                                                @if($patient->referral == '1') TV @endif
-                                                                @if($patient->referral == '2') Rádio @endif
-                                                                @if($patient->referral == '3') Local @endif
-                                                                @if($patient->referral == '4') Outdoor @endif
-                                                                @if($patient->referral == '5') Profissional @endif
-                                                                @if($patient->referral == '6') Internet @endif
-                                                                @if($patient->referral == '7') Lista Telefonica @endif
-
+                                                                {{ $patient->referral->name }}
+                                                            @else
+                                                                -
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -384,34 +393,66 @@
 
                                     <!-- start: CONTACTS -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+
                                         <div class="panel panel-white accepted_plan">
+
                                             <div class="panel-body" style="">
-                                                <table class="table table-condensed ">
+
+                                                <table class="table table-condensed" style="font-size:1.1em">
+
                                                     <tbody>
                                                     <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Nome
-                                                            Mãe
+                                                        <td style="font-weight:bold;width: 25%">
+                                                            Contato 1
                                                         </td>
-                                                        <td style="font-size:1.1em;width: 25%">-</td>
-                                                        <td class="hidden-xs"
-                                                            style="font-weight:bold;font-size:1.1em;width: 25%">Telefone
+                                                        <td style="width: 25%">
+                                                            @if(isset($patient->related_name_1))
+                                                                {{ $patient->related_name_1 }}
+                                                            @else
+                                                                -
+                                                            @endif
                                                         </td>
-                                                        <td class="hidden-xs" style="font-size:1.1em;width: 25%">-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Nome
-                                                            Pai
-                                                        </td>
-                                                        <td style="font-size:1.1em;width: 25%">-</td>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                        <td style="font-weight:bold;width: 25%">
                                                             Telefone
                                                         </td>
-                                                        <td class="hidden-xs" style="font-size:1.1em;width: 25%">-</td>
+                                                        <td style="width: 25%">
+                                                            @if(isset($patient->related_phone_1))
+                                                                {{ $patient->related_phone_1 }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-weight:bold;;width: 25%">
+                                                            Contato 2
+                                                        </td>
+                                                        <td style="width: 25%">
+                                                            @if(isset($patient->related_name_2))
+                                                                {{ $patient->related_name_2 }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                        <td style="font-weight:bold;width: 25%">
+                                                            Telefone
+                                                        </td>
+                                                        <td style="width: 25%">
+                                                            @if(isset($patient->related_phone_2))
+                                                                {{ $patient->related_phone_2 }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                     </tbody>
+
                                                 </table>
+
                                             </div>
+
                                         </div>
+
                                     </div>
                                     <!-- end: CONTACTS -->
 
