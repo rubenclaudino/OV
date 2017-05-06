@@ -99,50 +99,70 @@ class User extends Authenticatable
 
     public function getPhone1Attribute($value)
     {
-        $phone = substr_replace($value, '(', 0, 0);
-        $phone = substr_replace($phone, ')', 3, 0);
-        $phone = substr_replace($phone, ' ', 4, 0);
-        $phone = substr_replace($phone, ' ', 10, 0);
-        $phone = substr_replace($phone, '-', 11, 0);
-        $phone = substr_replace($phone, ' ', 12, 0);
+        if ($value != null) {
+            $phone = substr_replace($value, '(', 0, 0);
+            $phone = substr_replace($phone, ')', 3, 0);
+            $phone = substr_replace($phone, ' ', 4, 0);
+            $phone = substr_replace($phone, ' ', 10, 0);
+            $phone = substr_replace($phone, '-', 11, 0);
+            $phone = substr_replace($phone, ' ', 12, 0);
 
-        return $phone;
+            return $phone;
+        } else
+
+            return $value;
     }
 
     public function getPhone2Attribute($value)
     {
-        $phone = substr_replace($value, '(', 0, 0);
-        $phone = substr_replace($phone, ')', 3, 0);
-        $phone = substr_replace($phone, ' ', 4, 0);
-        $phone = substr_replace($phone, ' ', 10, 0);
-        $phone = substr_replace($phone, '-', 11, 0);
-        $phone = substr_replace($phone, ' ', 12, 0);
+        if ($value != null) {
+            $phone = substr_replace($value, '(', 0, 0);
+            $phone = substr_replace($phone, ')', 3, 0);
+            $phone = substr_replace($phone, ' ', 4, 0);
+            $phone = substr_replace($phone, ' ', 10, 0);
+            $phone = substr_replace($phone, '-', 11, 0);
+            $phone = substr_replace($phone, ' ', 12, 0);
 
-        return $phone;
+            return $phone;
+        } else
+
+            return $value;
     }
 
     public function getWhatsappNumberAttribute($value)
     {
-        $phone = substr_replace($value, '(', 0, 0);
-        $phone = substr_replace($phone, ')', 3, 0);
-        $phone = substr_replace($phone, ' ', 4, 0);
-        $phone = substr_replace($phone, ' ', 10, 0);
-        $phone = substr_replace($phone, '-', 11, 0);
-        $phone = substr_replace($phone, ' ', 12, 0);
+        if ($value != null) {
 
-        return $phone;
+            $phone = substr_replace($value, '(', 0, 0);
+            $phone = substr_replace($phone, ')', 3, 0);
+            $phone = substr_replace($phone, ' ', 4, 0);
+            $phone = substr_replace($phone, ' ', 10, 0);
+            $phone = substr_replace($phone, '-', 11, 0);
+            $phone = substr_replace($phone, ' ', 12, 0);
+
+            return $phone;
+
+        } else
+
+            return $value;
     }
 
     public function getPhoneLandlineAttribute($value)
     {
-        $phone = substr_replace($value, '(', 0, 0);
-        $phone = substr_replace($phone, ')', 3, 0);
-        $phone = substr_replace($phone, ' ', 4, 0);
-        $phone = substr_replace($phone, ' ', 9, 0);
-        $phone = substr_replace($phone, '-', 10, 0);
-        $phone = substr_replace($phone, ' ', 11, 0);
+        if ($value != null) {
 
-        return $phone;
+            $phone = substr_replace($value, '(', 0, 0);
+            $phone = substr_replace($phone, ')', 3, 0);
+            $phone = substr_replace($phone, ' ', 4, 0);
+            $phone = substr_replace($phone, ' ', 9, 0);
+            $phone = substr_replace($phone, '-', 10, 0);
+            $phone = substr_replace($phone, ' ', 11, 0);
+
+            return $phone;
+
+        } else
+
+            return $value;
     }
 
     public function getEmailAttribute($value)
@@ -154,8 +174,7 @@ class User extends Authenticatable
     {
         $doc = 'Dr. ';
 
-        if($this->gender == 1)
-        {
+        if ($this->gender == 1) {
             $doc = 'Dra. ';
         }
 
