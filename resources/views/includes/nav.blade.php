@@ -47,7 +47,8 @@
 
                                 <!-- end: DEPENDING HOUR SEND GOOD MORNING - GOOD AFTERNOON - GOOD NIGHT -->
                                 <h4>
-                                  @if(Auth::user()->cro != null)  @if(Auth::user()->gender == 0) Dr. @else Dra. @endif @endif {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                                    @if(Auth::user()->cro != null)  @if(Auth::user()->gender == 0) Dr. @else
+                                        Dra. @endif @endif {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                 </h4>
 
                                 <a class="btn user-options sb_toggle hide" data-toggle="tooltip" data-placement="bottom"
@@ -142,68 +143,26 @@
                 <?php } ?>
             <!-- end: CLINICS -->
 
-                <!-- start: MANAGEMENT -->
-                <?php if($user->hasRole('admin')){ ?>
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'users_management') {
-                        echo 'active open';
-                    }
-                }?>">
-                    <a href="{{ url('/users/manage') }}"><i class="fa fa-users"></i><span
-                                class="title"> Gerenciamento </span></a>
-                </li>
-                <?php } ?>
-            <!-- end: MANAGEMENT -->
-
-                <!-- start: USERS -->
-                <?php if($user->isAdmin()){ ?>
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'users') {
-                        echo 'active open';
-                    }
-                }?>" style="display:none;">
-                    <a href="javascript:void(0)"><i class="fa fa-user"></i><span class="title"> Usuários </span><i
-                                class="icon-arrow"></i> </a>
+                <!-- start: USER MANAGEMENT -->
+                @role('admin')
+                <li class="@if(\Route::current()->getName() == 'users.index' || \Route::current()->getName() == 'users.create') {{'active'}}@endif">
+                    <a href="javascript:void(0)"><i class="fa fa-user"></i><span class="title"> Gerenciamento </span><i
+                                class="icon-arrow"></i></a>
                     <ul class="sub-menu">
-                        <li class="">
+                        <li class="@if(\Route::current()->getName() == 'users.index') {{'active'}}@endif">
                             <a href="{{ url('/users') }}">
                                 <span class="title"> Usuários </span>
                             </a>
                         </li>
-                        <li>
+                        <li class="@if(\Route::current()->getName() == 'users.create') {{'active'}}@endif">
                             <a href="{{ url('/users/create') }}">
                                 <span class="title"> Registrar Usuário </span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <?php } ?>
-            <!-- end: USERS -->
-
-                <!-- start: DENTISTS -->
-                <?php if($user->isAdmin() || $user->hasPermission('dentistscontroller.index')){ ?>
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'dentists') {
-                        echo 'active open';
-                    }
-                }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-user-md"></i><span class="title"> Dentistas </span><i
-                                class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li class="">
-                            <a href="{{ url('/dentists') }}">
-                                <span class="title"> Dentistas </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/dentists/create') }}">
-                                <span class="title"> Registerar Dentista </span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <?php } ?>
-            <!-- end: DENTISTS -->
+                @endrole
+            <!-- end: USER MANAGEMENT -->
 
                 <!-- start: PATIENTS -->
                 <?php if($user->isAdmin() || $user->hasPermission('patientscontroller.index')){ ?>
@@ -236,31 +195,6 @@
                 </li>
                 <?php } ?>
             <!-- end: PATIENTS -->
-
-                <!-- start: RECEPTIONISTS -->
-                <?php if($user->hasPermission('recepnistscontroller.index')){ ?>
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'recepnists') {
-                        echo 'active open';
-                    }
-                }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-user"></i><span class="title"> Recepcionistas </span><i
-                                class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li class="">
-                            <a href="{{ url('/recepnists') }}">
-                                <span class="title"> Recepcionistas </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/recepnists/create') }}">
-                                <span class="title"> Registrar Recepcionista</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <?php } ?>
-            <!-- end: RECEPTIONISTS -->
 
                 <!-- start: TREATMENTS -->
                 <?php if($user->isAdmin() || $user->hasPermission('treatmenttypescontroller.index')){ ?>
