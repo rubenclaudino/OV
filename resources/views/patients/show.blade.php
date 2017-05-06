@@ -71,17 +71,16 @@
                                     <!-- start: PATIENT OPTIONS BUTTON -->
                                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
                                         <div class="btn-group pull-right" style="margin-top:10px;">
-                                            <button class="btn dropdown-toggle btn-squared" data-toggle="dropdown"
-                                                    aria-expanded="false"
-                                                    style="border-radius: 1px;background: #dddddd">
+                                            <button class="btn dropdown-toggle btn-primary" data-toggle="dropdown"
+                                                    aria-expanded="false">
                                                 Opções &nbsp; <span class="caret"></span></button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="{{ URL::route('patients.edit', $patient->id) }}"><i
                                                                 class="fa fa-pencil fa-fw text-info"
                                                                 style="color: #404040"></i>&nbsp;&nbsp;Editar</a></li>
-                                                <li><a href="#"><i class="fa fa-money fa-fw text-info"
+                                                <li class="hide"><a href="#"><i class="fa fa-money fa-fw text-info"
                                                                    style="color: #404040"></i>&nbsp; Pagamento</a></li>
-                                                <li><a href="#"><i class="fa fa-print fa-fw text-info"
+                                                <li class="hide"><a href="#"><i class="fa fa-print fa-fw text-info"
                                                                    style="color: #404040"></i>&nbsp; Imprimir</a></li>
                                             </ul>
                                         </div>
@@ -138,36 +137,37 @@
                             <div class="col-lg-3 col-md-3" style="margin-top: 13px;opacity:1">
                      <span class="pull-right">
 
-                     <!-- start: USED PER WEEK -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
-                             style="padding: 8px;border-radius: 2px;border: transparent;margin-bottom: 7px;opacity: 0.6">
-                           <span class="pull-left">
+                          <!-- start: RELIABILITY -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
                               <i class="fa fa-check fa-fw"></i>
-                              &nbsp;Confiabilidade &nbsp;&nbsp;&nbsp;</span>
-                           <span class="pull-right" style="color: white;padding-right: 5px"><strong>0  %</strong></span>
-                     </button>
-                         <!-- end: USED PER WEEK -->
+                               &nbsp;&nbsp;Confiabilidade
+                              <span class="pull-right"
+                                    style="padding-right: 10px"><strong>0  %</strong></span>
+                        </div>
+                     </div>
+                         <!-- end: RELIABILITY -->
 
-                         <!-- start: USED PER WEEK -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
-                             style="padding: 8px;border-radius: 2px;border: transparent;margin: 7px 0px;opacity: 0.6">
-                           <span class="pull-left">
-                              <i class="fa fa-calendar-o fa-fw"></i>
-                                       &nbsp;Agendamentos</span>
-                           <span class="pull-right"
-                                 style="color: white;padding-right: 5px"><strong>{{ count($appointments) }}</strong></span>
-                     </button>
-                         <!-- end: USED PER WEEK -->
+                         <!-- start: TOTAL RELIABILITY -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
+                              <i class="fa fa-calendar fa-fw"></i>
+                               &nbsp;&nbsp;Agendamentos
+                              <span class="pull-right"
+                                    style="padding-right: 10px"><strong>{{ count($appointments) }}</strong></span>
+                        </div>
+                     </div>
+                         <!-- end: TOTAL APPOINTMENTS -->
 
-                         <!-- start: USED PER MONTH -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
-                             style="padding: 8px;border-radius: 2px;border: transparent;margin: 7px 0px;opacity: 0.6">
-                           <span class="pull-left">
-                              <i class="fa fa-folder-o fa-fw"></i>&nbsp;@if($patient->has_dental_plan == 1)
-                                   Particular @endif
-                               @if($patient->has_dental_plan == 0)Convênio @endif </span>
-                     </button>
-                         <!-- end: USED PER MONTH -->
+                         <!-- start: TYPE PLAN -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
+                               <i class="fa fa-folder-o fa-fw"></i>&nbsp;@if($patient->has_dental_plan == 1)
+                                Particular @endif
+                            @if($patient->has_dental_plan == 0)Convênio @endif
+                        </div>
+                     </div>
+                         <!-- end: TYPE PLAN -->
 
                          <!-- start: RANKING BETWEEN TREATMENTS -->
                          <!-- <button type="button" class="btn btn-info btn-md btn-block panel-azure" style="padding: 8px;border-radius: 2px;border: transparent;margin-top: 7px">

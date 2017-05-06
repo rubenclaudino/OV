@@ -27,7 +27,7 @@
                                     /* This sets the $time variable to the current hour in the 24 hour clock format */
                                     $time = date("H");
                                     /* If the time is less than 1200 hours, show good morning */
-                                    if ($time < "5") {
+                                    if ($time < "12") {
                                         echo "Bom dia";
                                     } else
                                         /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
