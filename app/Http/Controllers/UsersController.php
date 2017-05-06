@@ -20,28 +20,9 @@ class UsersController extends Controller
         $activeClass = "users";
         $subtitle = "";
 
-        $pUsers = array();
-        $user = Auth::user();
-        $users = DB::table('users')
-            ->leftjoin('role_user', 'users.id', '=', 'role_user.user_id')
-            ->where('role_id', '=', '2')
-            ->get();
-        $roleEntry = DB::table('roles')->get();
+        $users = User::all();
 
-        foreach ($users as $data) {
-            $user = User::find($data->id);
-            $clinic = Clinic::find($data->clinic_id);
-
-            // adding data into external array
-            $fusers = new \stdClass();
-            $fusers->id = $data->id;
-            $fusers->name = $data->name;
-            $fusers->email = $data->email;
-            $fusers->clinic_name = $clinic->name;
-            array_push($pUsers, $fusers);
-        }
-
-        return view('users.index', compact('title', 'subtitle', 'pUsers', 'activeClass'));
+        return view('users.index', compact('title', 'subtitle', 'users', 'activeClass'));
     }
 
     public function create()
@@ -59,9 +40,9 @@ class UsersController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'clinic_id' => 'required',
-            'name'      => 'required',
-            'email'     => 'required|email|unique:users',
-            'password'  => 'required|min:6|confirmed',
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -72,10 +53,10 @@ class UsersController extends Controller
 
             // adding dentist
             $clinic = User::create([
-                'name'      => $request->name,
-                'email'     => $request->email,
+                'name' => $request->name,
+                'email' => $request->email,
                 'clinic_id' => $request->clinic_id,
-                'password'  => bcrypt($request->password),
+                'password' => bcrypt($request->password),
             ]);
 
             $user = User::find($clinic->id);
@@ -103,13 +84,8 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-
-        if ($user->trashed()) {
-            return response()->json(['status' => 'success', 'message' => "User Deleted!"]);
-        } else {
-            return response()->json(['status' => 'error', 'message' => 'Some Error Occured!']);
-        }
+        User::destroy($id);
+        return response()->json(['status' => 'success', 'message' => "User Deleted!"]);
     }
 
     public function profile()
@@ -155,13 +131,13 @@ class UsersController extends Controller
 
         // get all users
         $users = User::where('clinic_id', Auth::user()->clinic_id)->with('roles')->get();
-       /* $users = User::where([['clinic_id', '=', Auth::user()->clinic_id], ['role_id', '>', '1']])
-            ->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
-            ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
-            ->select('users.*', 'roles.name AS rolename', 'roles.*', 'users.name AS username')
-            ->orderBy('roles.slug', 'ASC')
-            ->whereNotIn('users.id', array(Auth::user()->id))
-            ->get();*/
+        /* $users = User::where([['clinic_id', '=', Auth::user()->clinic_id], ['role_id', '>', '1']])
+             ->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
+             ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
+             ->select('users.*', 'roles.name AS rolename', 'roles.*', 'users.name AS username')
+             ->orderBy('roles.slug', 'ASC')
+             ->whereNotIn('users.id', array(Auth::user()->id))
+             ->get();*/
 
         $i = 0;
         foreach ($users as $data) {
@@ -197,9 +173,9 @@ class UsersController extends Controller
             if ($count == '0') {
                 // adding permission
                 Permission::create([
-                    'name'        => $data[0],
-                    'slug'        => $data[1],
-                    'model'       => $data[2],
+                    'name' => $data[0],
+                    'slug' => $data[1],
+                    'model' => $data[2],
                     'description' => $data[3],
                 ]);
             }
