@@ -14,17 +14,18 @@ class CreateDentisticaDetailsTable extends Migration
     public function up()
     {
         Schema::create('dentistica_details', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('status');
-            $table->string('reason');
-            $table->string('motivation');
-            $table->string('limit');
-            $table->string('type');
-            $table->string('region');
-            $table->string('plan');
-            $table->string('initial_photo');
-            $table->string('final_photo');
-            $table->timestamps();
+
+            $table->string('status', 50)->nulable();
+            $table->string('used_before', 50)->nulable();
+            $table->string('reason', 50)->nulable();
+            $table->string('motivation', 50)->nulable();
+            $table->string('type', 50)->nulable();
+            $table->string('responsible', 50)->nulable();
+            $table->string('planing_notes')->nullable();
+            $table->string('initial_image')->nullable();
+            $table->string('final_image')->nullable();
+            $table->string('observation');
+            $table->float('price');
 
             $table->integer('patient_id')->unsigned();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');

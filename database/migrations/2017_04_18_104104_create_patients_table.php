@@ -90,7 +90,6 @@ class CreatePatientsTable extends Migration
             $table->string('diseases', 50)->nullable();
 
             $table->string('typeOfPlan1', 30)->nullable();
-            $table->string('typeOfPlan2', 30)->nullable();
 
             $table->integer('referral_id')->unsigned()->nullable();
             $table->foreign('referral_id')->references('id')->on('referrals')->onDelete('cascade');

@@ -94,17 +94,12 @@
                                         <hr style="margin:4px 0 10px;">
 
                                         <!-- start: SPEACIAL TAGS INFO -->
-                                    <!-- @if($patient->sms_confirmation == 1)<label class="label label-success">SMS</label>@endif -->
                                         <p>
                                             @if($patient->specialty)
-                                                @foreach($patient->specialty as $d)
+                                                @foreach($patient->specialty as $specialty)
                                                     <label class="label label-warning"
-                                                           style="background: #{{$d->color_code}} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $d->title }}</label>
+                                                           style="background: #{{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
                                                 @endforeach
-                                            @else
-                                                <label class="label label-warning"
-                                                       style="background: brown !important;opacity: 0.7;letter-spacing: 1px !important;">Clínica
-                                                    Geral</label>
                                             @endif
                                         </p>
                                         <!-- start: SPEACIAL TAGS INFO -->
@@ -319,34 +314,62 @@
 
                                     <!-- start: DENTAL PLAN INFO -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+
                                         <div class="panel panel-white accepted_plan">
+
                                             <div class="panel-body" style="">
-                                                <table class="table table-condensed ">
+
+                                                <table class="table table-condensed" style="font-size:1.1em;">
+
                                                     <tbody>
                                                     <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                        <td style="font-weight:bold;width: 25%">
                                                             Convênio
                                                         </td>
-                                                        <td style="font-size:1.1em">-</td>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Código
-                                                            ANS
+                                                        <td>
+                                                            -
                                                         </td>
-                                                        <td style="font-size:1.1em">-</td>
+                                                        <td style="font-weight:bold;width: 25%">
+                                                            Data de Expiração
+                                                        </td>
+                                                        <td>
+                                                            @isset($patient->exp_date)
+                                                            {{ $patient->exp_date }}
+                                                            @else
+                                                                -
+                                                                @endisset
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Número
-                                                            Cartão
+                                                        <td style="font-weight:bold;width: 25%">
+                                                            Número Cartão
                                                         </td>
-                                                        <td style="font-size:1.1em">-</td>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                        <td>
+                                                            @isset($patient->card_number)
+                                                            {{ $patient->card_number }}
+                                                            @else
+                                                                -
+                                                                @endisset
+                                                        </td>
+                                                        <td style="font-weight:bold;width: 25%">
                                                             Titular
                                                         </td>
-                                                        <td style="font-size:1.1em">-</td>
+                                                        <td>
+                                                            @isset($patient->card_owner)
+                                                            {{ $patient->card_owner }}
+                                                            @else
+                                                                -
+                                                                @endisset
+                                                        </td>
                                                     </tr>
                                                     </tbody>
+
                                                 </table>
+
                                             </div>
+
                                         </div>
+
                                     </div>
                                     <!-- end: DENTAL PLAN INFO -->
 
@@ -358,7 +381,7 @@
                                                     <tbody>
                                                     <tr>
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">
-                                                            Profissional
+                                                            Dentista
                                                         </td>
 
                                                         <td style="font-size:1.1em">
