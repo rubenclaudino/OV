@@ -16,12 +16,15 @@
     </style>
 
     <div class="main-content">
+
         <div class="container" style="min-height: 580px">
 
             <!-- start: MAIN INFO PANEL -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel" style="background: white;margin-top: 10px">
+
                 <!-- start: TABLE HEADER -->
                 <div class="panel-heading header_t1" style="background: whitesmoke;padding: 0px !important;">
+
                     <div class="toolbar row" style="min-height: 100px;background: whitesmoke;border: none;opacity:0.8;">
                         <div class="col-sm-6 hidden-xs">
                             <div class="table-header">
@@ -49,6 +52,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- end: TABLE HEADER -->
 
@@ -67,7 +71,7 @@
                             <th colspan="2">Telefone</th>
                             <th>Profissional</th>
                             <th>Especialidade</th>
-                            <th>Tipo Plano</th>
+                            <th>Plano</th>
                             <th class="hidden"></th>
                             <th class="hidden-print"></th>
                         </tr>
@@ -107,15 +111,9 @@
                             <!-- PROFESSIONAL - DENTIST -->
                             <td>
                                 @if(isset($patient->user))
-                                    @if($patient->user->gender == 0)
-                                        Dr.
-                                    @else
-                                        Dra.
-                                    @endif
-                                    {{ $patient->user->first_name }}
-                                    {{ $patient->user->last_name }}
+                                    {{ $patient->user->Fullname() }}
                                 @else
-                                    -
+                                    Clínica
                                 @endif
                             </td>
                             <!-- SPECIALTIES -->
@@ -188,5 +186,7 @@
 
 
         </div>
+
     </div>
+
 @endsection

@@ -145,8 +145,8 @@
                                     <!-- start: PROFESSIONAL -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label for="doc">Profissional</label>
-                                            {!! Form::select('professional_id', $professionals,array($patient->professional_id),['class' => 'form-control selectpicker','placeholder' => 'Profissional']) !!}
+                                            <label for="doc">Dentista</label>
+                                            {!! Form::select('professional_id', $professionals,array($patient->professional_id),['class' => 'form-control','placeholder' => 'Não informado']) !!}
                                         </div>
                                     </div>
                                     <!-- end: PROFESSIONAL -->
@@ -155,7 +155,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="hasDentalPlan">Tem Convênio</label>
-                                            {!! Form::select('has_dental_plan', array('1' => 'Não','2' => 'Sim','0' => 'Não informado'),array($patient->has_dental_plan),['class' => 'form-control selectpicker','placeholder' => 'Plano']) !!}
+                                            {!! Form::select('has_dental_plan', array('0' => 'Não','1' => 'Sim'),array($patient->has_dental_plan),['class' => 'form-control','placeholder' => 'Não Informado']) !!}
                                         </div>
                                     </div>
                                     <!-- end: DENTAL PLAN -->
@@ -168,6 +168,8 @@
 
                                         <div class="form-group">
                                             <label for="pSpec">Especialidades</label>
+                                            {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
+                            selectpicker','multiple' => 'true']) !!}
                                         </div>
 
                                     </div>
@@ -177,7 +179,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <label for="indication">Indicação</label>
-                                            {!! Form::select('indication', array('0' => 'Conhecido','1' => 'TV','2' => 'Rádio','3' => 'Local','4' => 'Outdoor','5' => 'Professional','6' => 'Internet','7' => 'Lista Telefonica'),array($patient->indication),['class' => 'form-control selectpicker','placeholder' => 'Não informado']) !!}
+                                            {!! Form::select('indication', array('0' => 'Conhecido','1' => 'TV','2' => 'Rádio','3' => 'Local','4' => 'Outdoor','5' => 'Professional','6' => 'Internet','7' => 'Lista Telefonica'),array($patient->indication),['class' => 'form-control','placeholder' => 'Não informado']) !!}
                                         </div>
                                     </div>
                                     <!-- end: INDICATION -->

@@ -14,19 +14,24 @@ class CreateImplantDetailsTable extends Migration
     public function up()
     {
         Schema::create('implant_details', function (Blueprint $table) {
+
             $table->increments('id');
             $table->string('status');
             $table->boolean('used_before');
             $table->string('reason');
-            $table->string('limits');
-            $table->string('material');
-            $table->string('plan');
             $table->string('motivation');
+            $table->string('pros_type');
+            $table->string('responsible');
+            $table->string('planing_notes');
             $table->string('initial_photo');
             $table->string('final_photo');
-            $table->string('type');
-            $table->string('region');
+            $table->string('observation');
             $table->float('price');
+            $table->string('limits');
+            $table->string('material');
+            $table->string('cement');
+            $table->string('remainder');
+            $table->string('region');
 
             $table->timestamps();
 

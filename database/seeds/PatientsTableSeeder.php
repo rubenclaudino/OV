@@ -31,5 +31,7 @@ class PatientsTableSeeder extends Seeder
                 'phone_landline' => '23423424'
             ]
         ]);
+
+        Patient::find(2)->specialties()->attach([12]);
     }
 }

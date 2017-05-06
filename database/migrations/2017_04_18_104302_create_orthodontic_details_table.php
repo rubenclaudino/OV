@@ -14,16 +14,19 @@ class CreateOrthodonticDetailsTable extends Migration
     public function up()
     {
         Schema::create('orthodontic_details', function (Blueprint $table) {
+
             $table->increments('id');
-            $table->string('treatment_status', 50)->nulable();
-            $table->string('anterior_ortho_treatment', 50)->nulable();
-            $table->string('reason_for_treatment', 50)->nulable();
-            $table->string('motivation_level', 50)->nulable();
+            $table->string('status', 50)->nulable();
+            $table->string('used_before', 50)->nulable();
+            $table->string('reason', 50)->nulable();
+            $table->string('motivation', 50)->nulable();
             $table->string('brace_type', 50)->nulable();
             $table->string('responsible', 50)->nulable();
-            $table->string('initial_image');
-            $table->string('final_image');
-            $table->string('planing_note');
+            $table->string('planing_notes')->nullable();
+            $table->string('initial_image')->nullable();
+            $table->string('final_image')->nullable();
+            $table->string('observation');
+            $table->float('price');
 
             $table->timestamps();
 

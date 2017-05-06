@@ -71,18 +71,19 @@
                                     <!-- start: PATIENT OPTIONS BUTTON -->
                                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
                                         <div class="btn-group pull-right" style="margin-top:10px;">
-                                            <button class="btn dropdown-toggle btn-squared" data-toggle="dropdown"
-                                                    aria-expanded="false"
-                                                    style="border-radius: 1px;background: #dddddd">
+                                            <button class="btn dropdown-toggle btn-primary" data-toggle="dropdown"
+                                                    aria-expanded="false">
                                                 Opções &nbsp; <span class="caret"></span></button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="{{ URL::route('patients.edit', $patient->id) }}"><i
                                                                 class="fa fa-pencil fa-fw text-info"
                                                                 style="color: #404040"></i>&nbsp;&nbsp;Editar</a></li>
-                                                <li><a href="#"><i class="fa fa-money fa-fw text-info"
-                                                                   style="color: #404040"></i>&nbsp; Pagamento</a></li>
-                                                <li><a href="#"><i class="fa fa-print fa-fw text-info"
-                                                                   style="color: #404040"></i>&nbsp; Imprimir</a></li>
+                                                <li class="hide"><a href="#"><i class="fa fa-money fa-fw text-info"
+                                                                                style="color: #404040"></i>&nbsp;
+                                                        Pagamento</a></li>
+                                                <li class="hide"><a href="#"><i class="fa fa-print fa-fw text-info"
+                                                                                style="color: #404040"></i>&nbsp;
+                                                        Imprimir</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -93,17 +94,12 @@
                                         <hr style="margin:4px 0 10px;">
 
                                         <!-- start: SPEACIAL TAGS INFO -->
-                                    <!-- @if($patient->sms_confirmation == 1)<label class="label label-success">SMS</label>@endif -->
                                         <p>
                                             @if($patient->specialty)
-                                                @foreach($patient->specialty as $d)
+                                                @foreach($patient->specialty as $specialty)
                                                     <label class="label label-warning"
-                                                           style="background: #{{$d->color_code}} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $d->title }}</label>
+                                                           style="background: #{{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
                                                 @endforeach
-                                            @else
-                                                <label class="label label-warning"
-                                                       style="background: brown !important;opacity: 0.7;letter-spacing: 1px !important;">Clínica
-                                                    Geral</label>
                                             @endif
                                         </p>
                                         <!-- start: SPEACIAL TAGS INFO -->
@@ -115,14 +111,20 @@
                                             $to = new DateTime('today');
                                             echo $from->diff($to)->y;?> anos</h5>
 
-                                        <h5>@if($patient->address != null)<i class="fa fa-map-marker fa-fw"></i>&nbsp;{{ $patient->address }} {{ $patient->street_number }} , {{ $patient->borough }} , {{ $patient->city }} {{ $patient->state }}
+                                        <h5>@if($patient->address != null)<i class="fa fa-map-marker fa-fw"></i>
+                                            &nbsp;{{ $patient->address }} {{ $patient->street_number }}
+                                            , {{ $patient->borough }} , {{ $patient->city }} {{ $patient->state }}
                                             @else <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5> @endif
                                         </h5>
 
                                         <h5>
-                                            @if ($patient->phone_landline)<i class="fa fa-phone fa-fw"></i>{{ $patient->phone_landline }}&nbsp;@endif
-                                            @if ($patient->phone_1)<i class="fa fa-mobile fa-fw"></i>{{ $patient->phone_1 }} @endif
-                                            @if ($patient->whatsapp_number)<i class="fa fa-whatsapp fa-fw"></i>{{ $patient->whatsapp_number }}@endif
+                                            @if ($patient->phone_landline)<i
+                                                    class="fa fa-phone fa-fw"></i>{{ $patient->phone_landline }}
+                                            &nbsp;@endif
+                                            @if ($patient->phone_1)<i
+                                                    class="fa fa-mobile fa-fw"></i>{{ $patient->phone_1 }} @endif
+                                            @if ($patient->whatsapp_number)<i
+                                                    class="fa fa-whatsapp fa-fw"></i>{{ $patient->whatsapp_number }}@endif
                                         </h5>
 
                                     </div>
@@ -138,36 +140,38 @@
                             <div class="col-lg-3 col-md-3" style="margin-top: 13px;opacity:1">
                      <span class="pull-right">
 
-                     <!-- start: USED PER WEEK -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
-                             style="padding: 8px;border-radius: 2px;border: transparent;margin-bottom: 7px;opacity: 0.6">
-                           <span class="pull-left">
+                          <!-- start: RELIABILITY -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
                               <i class="fa fa-check fa-fw"></i>
-                              &nbsp;Confiabilidade &nbsp;&nbsp;&nbsp;</span>
-                           <span class="pull-right" style="color: white;padding-right: 5px"><strong>0  %</strong></span>
-                     </button>
-                         <!-- end: USED PER WEEK -->
+                               &nbsp;&nbsp;Confiabilidade
+                              <span class="pull-right"
+                                    style="padding-right: 10px"><strong>0  %</strong></span>
+                        </div>
+                     </div>
+                         <!-- end: RELIABILITY -->
 
-                         <!-- start: USED PER WEEK -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
-                             style="padding: 8px;border-radius: 2px;border: transparent;margin: 7px 0px;opacity: 0.6">
-                           <span class="pull-left">
-                              <i class="fa fa-calendar-o fa-fw"></i>
-                                       &nbsp;Agendamentos</span>
-                           <span class="pull-right"
-                                 style="color: white;padding-right: 5px"><strong>{{ count($appointments) }}</strong></span>
-                     </button>
-                         <!-- end: USED PER WEEK -->
+                         <!-- start: TOTAL RELIABILITY -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
+                              <i class="fa fa-calendar fa-fw"></i>
+                               &nbsp;&nbsp;Agendamentos
+                              <span class="pull-right"
+                                    style="padding-right: 10px"><strong>{{ count($appointments) }}</strong></span>
+                        </div>
+                     </div>
+                         <!-- end: TOTAL APPOINTMENTS -->
 
-                         <!-- start: USED PER MONTH -->
-                     <button type="button" class="btn btn-info btn-md btn-block panel-azure"
-                             style="padding: 8px;border-radius: 2px;border: transparent;margin: 7px 0px;opacity: 0.6">
-                           <span class="pull-left">
-                              <i class="fa fa-folder-o fa-fw"></i>&nbsp;@if($patient->has_dental_plan == 1)
-                                   Particular @endif
-                               @if($patient->has_dental_plan == 0)Convênio @endif </span>
-                     </button>
-                         <!-- end: USED PER MONTH -->
+                         <!-- start: TYPE PLAN -->
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
+                               <i class="fa fa-folder-o fa-fw"></i>
+                             &nbsp;@if($patient->has_dental_plan == 1)
+                                Particular @endif
+                            @if($patient->has_dental_plan == 0)Convênio @endif
+                        </div>
+                     </div>
+                         <!-- end: TYPE PLAN -->
 
                          <!-- start: RANKING BETWEEN TREATMENTS -->
                          <!-- <button type="button" class="btn btn-info btn-md btn-block panel-azure" style="padding: 8px;border-radius: 2px;border: transparent;margin-top: 7px">
@@ -220,12 +224,12 @@
                                 <strong>Anamnese</strong>
                             </a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a data-toggle="tab" href="#orto">
                                 <strong>Ortodontia</strong>
                             </a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a data-toggle="tab" href="#prosthesis">
                                 <strong>Prótese</strong>
                             </a>
@@ -310,34 +314,62 @@
 
                                     <!-- start: DENTAL PLAN INFO -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+
                                         <div class="panel panel-white accepted_plan">
+
                                             <div class="panel-body" style="">
-                                                <table class="table table-condensed ">
+
+                                                <table class="table table-condensed" style="font-size:1.1em;">
+
                                                     <tbody>
                                                     <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                        <td style="font-weight:bold;width: 25%">
                                                             Convênio
                                                         </td>
-                                                        <td style="font-size:1.1em">-</td>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Código
-                                                            ANS
+                                                        <td>
+                                                            -
                                                         </td>
-                                                        <td style="font-size:1.1em">-</td>
+                                                        <td style="font-weight:bold;width: 25%">
+                                                            Data de Expiração
+                                                        </td>
+                                                        <td>
+                                                            @isset($patient->exp_date)
+                                                            {{ $patient->exp_date }}
+                                                            @else
+                                                                -
+                                                                @endisset
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Número
-                                                            Cartão
+                                                        <td style="font-weight:bold;width: 25%">
+                                                            Número Cartão
                                                         </td>
-                                                        <td style="font-size:1.1em">-</td>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                        <td>
+                                                            @isset($patient->card_number)
+                                                            {{ $patient->card_number }}
+                                                            @else
+                                                                -
+                                                                @endisset
+                                                        </td>
+                                                        <td style="font-weight:bold;width: 25%">
                                                             Titular
                                                         </td>
-                                                        <td style="font-size:1.1em">-</td>
+                                                        <td>
+                                                            @isset($patient->card_owner)
+                                                            {{ $patient->card_owner }}
+                                                            @else
+                                                                -
+                                                                @endisset
+                                                        </td>
                                                     </tr>
                                                     </tbody>
+
                                                 </table>
+
                                             </div>
+
                                         </div>
+
                                     </div>
                                     <!-- end: DENTAL PLAN INFO -->
 
@@ -349,12 +381,18 @@
                                                     <tbody>
                                                     <tr>
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">
-                                                            Profissional
+                                                            Dentista
                                                         </td>
-                                                        <td style="font-size:1.1em">@if ($patient->user->gender == 0)
-                                                                <small>Dr.</small> @else
-                                                                <small>Dra.
-                                                                </small> @endif {{ $patient->user->first_name }} {{ $patient->user->last_name }}
+
+                                                        <td style="font-size:1.1em">
+                                                            @if(isset($patient->user))
+                                                                @if ($patient->user->gender == 0)
+                                                                    <small>Dr.</small> @else
+                                                                    <small>Dra.
+                                                                    </small> @endif {{ $patient->user->first_name }} {{ $patient->user->last_name }}
+                                                            @else
+                                                                Clínica
+                                                            @endif
                                                         </td>
                                                     <tr>
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">
@@ -362,15 +400,9 @@
                                                         </td>
                                                         <td style="font-size:1.1em">
                                                             @if(isset($patient->referral))
-                                                                @if($patient->referral == '0') Conhecido @endif
-                                                                @if($patient->referral == '1') TV @endif
-                                                                @if($patient->referral == '2') Rádio @endif
-                                                                @if($patient->referral == '3') Local @endif
-                                                                @if($patient->referral == '4') Outdoor @endif
-                                                                @if($patient->referral == '5') Profissional @endif
-                                                                @if($patient->referral == '6') Internet @endif
-                                                                @if($patient->referral == '7') Lista Telefonica @endif
-
+                                                                {{ $patient->referral->name }}
+                                                            @else
+                                                                -
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -384,34 +416,66 @@
 
                                     <!-- start: CONTACTS -->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+
                                         <div class="panel panel-white accepted_plan">
+
                                             <div class="panel-body" style="">
-                                                <table class="table table-condensed ">
+
+                                                <table class="table table-condensed" style="font-size:1.1em">
+
                                                     <tbody>
                                                     <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Nome
-                                                            Mãe
+                                                        <td style="font-weight:bold;width: 25%">
+                                                            Contato 1
                                                         </td>
-                                                        <td style="font-size:1.1em;width: 25%">-</td>
-                                                        <td class="hidden-xs"
-                                                            style="font-weight:bold;font-size:1.1em;width: 25%">Telefone
+                                                        <td style="width: 25%">
+                                                            @if(isset($patient->related_name_1))
+                                                                {{ $patient->related_name_1 }}
+                                                            @else
+                                                                -
+                                                            @endif
                                                         </td>
-                                                        <td class="hidden-xs" style="font-size:1.1em;width: 25%">-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">Nome
-                                                            Pai
-                                                        </td>
-                                                        <td style="font-size:1.1em;width: 25%">-</td>
-                                                        <td style="font-weight:bold;font-size:1.1em;width: 25%">
+                                                        <td style="font-weight:bold;width: 25%">
                                                             Telefone
                                                         </td>
-                                                        <td class="hidden-xs" style="font-size:1.1em;width: 25%">-</td>
+                                                        <td style="width: 25%">
+                                                            @if(isset($patient->related_phone_1))
+                                                                {{ $patient->related_phone_1 }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="font-weight:bold;;width: 25%">
+                                                            Contato 2
+                                                        </td>
+                                                        <td style="width: 25%">
+                                                            @if(isset($patient->related_name_2))
+                                                                {{ $patient->related_name_2 }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                        <td style="font-weight:bold;width: 25%">
+                                                            Telefone
+                                                        </td>
+                                                        <td style="width: 25%">
+                                                            @if(isset($patient->related_phone_2))
+                                                                {{ $patient->related_phone_2 }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                     </tbody>
+
                                                 </table>
+
                                             </div>
+
                                         </div>
+
                                     </div>
                                     <!-- end: CONTACTS -->
 
