@@ -36,7 +36,6 @@ Route::group(['middleware' => [/*'subscriptions', 'permissions', 'firsttime'*/]]
         ]);
     });
     Route::get('users/permission', 'UsersController@permission');
-
     Route::resource('users', 'UsersController');
 
     Route::get('home/joinus', 'HomeController@joinus');
