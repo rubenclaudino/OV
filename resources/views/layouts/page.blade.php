@@ -50,6 +50,8 @@
 
 </div>
 
+@yield('extra_scripts')
+
 <!--<![endif]-->
 <script type="text/javascript" src="{{ asset('plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery.easing.min.js')}}"></script>

@@ -87,70 +87,39 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function setFirstNameAttribute($value)
+    public function getFirstNameAttribute($value)
     {
-        $this->attributes['first_name'] = ucfirst($value);
+        return ucfirst($value);
     }
 
-    public function setLastNameAttribute($value)
+    public function getLastNameAttribute($value)
     {
-        $this->attributes['last_name'] = ucfirst($value);
+        return ucfirst($value);
     }
 
     public function getPhone1Attribute($value)
     {
-        if ($value != null) {
-            $phone = substr_replace($value, '(', 0, 0);
-            $phone = substr_replace($phone, ')', 3, 0);
-            $phone = substr_replace($phone, ' ', 4, 0);
-            $phone = substr_replace($phone, ' ', 10, 0);
-            $phone = substr_replace($phone, '-', 11, 0);
-            $phone = substr_replace($phone, ' ', 12, 0);
-
-            return $phone;
-        } else
-
-            return $value;
+        return $this->modifyPhoneStringCharacters($value);
     }
 
     public function getPhone2Attribute($value)
     {
-        if ($value != null) {
-            $phone = substr_replace($value, '(', 0, 0);
-            $phone = substr_replace($phone, ')', 3, 0);
-            $phone = substr_replace($phone, ' ', 4, 0);
-            $phone = substr_replace($phone, ' ', 10, 0);
-            $phone = substr_replace($phone, '-', 11, 0);
-            $phone = substr_replace($phone, ' ', 12, 0);
-
-            return $phone;
-        } else
-
-            return $value;
+        return $this->modifyPhoneStringCharacters($value);
     }
 
     public function getWhatsappNumberAttribute($value)
     {
-        if ($value != null) {
-
-            $phone = substr_replace($value, '(', 0, 0);
-            $phone = substr_replace($phone, ')', 3, 0);
-            $phone = substr_replace($phone, ' ', 4, 0);
-            $phone = substr_replace($phone, ' ', 10, 0);
-            $phone = substr_replace($phone, '-', 11, 0);
-            $phone = substr_replace($phone, ' ', 12, 0);
-
-            return $phone;
-
-        } else
-
-            return $value;
+        return $this->modifyPhoneStringCharacters($value);
     }
 
     public function getPhoneLandlineAttribute($value)
     {
-        if ($value != null) {
+        return $this->modifyPhoneStringCharacters($value);
+    }
 
+    private function modifyPhoneStringCharacters($value)
+    {
+        if ($value != null) {
             $phone = substr_replace($value, '(', 0, 0);
             $phone = substr_replace($phone, ')', 3, 0);
             $phone = substr_replace($phone, ' ', 4, 0);
@@ -159,10 +128,9 @@ class User extends Authenticatable
             $phone = substr_replace($phone, ' ', 11, 0);
 
             return $phone;
+        }
 
-        } else
-
-            return $value;
+        return $value;
     }
 
     public function getEmailAttribute($value)
@@ -170,14 +138,8 @@ class User extends Authenticatable
         return ucfirst($value);
     }
 
-    public function Fullname()
+    public function fullName()
     {
-        $doc = 'Dr. ';
-
-        if ($this->gender == 1) {
-            $doc = 'Dra. ';
-        }
-
-        return $doc . $this->first_name . ' ' . $this->last_name;
+        return (($this->gender == 0) ? 'Dr.' : 'Dra.') . ' ' . $this->first_name . ' ' . $this->last_name;
     }
 }

@@ -28,7 +28,6 @@ Route::post(
 
 Route::group(['middleware' => [/*'subscriptions', 'permissions', 'firsttime'*/]], function () {
     //Route::resource('appointment', 'AppointmentController');
-    Route::get('user/profile', 'UsersController@profile');
     Route::get('user/invoices', 'UsersController@invoices');
     Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
         return $request->user()->downloadInvoice($invoiceId, [
@@ -37,7 +36,7 @@ Route::group(['middleware' => [/*'subscriptions', 'permissions', 'firsttime'*/]]
         ]);
     });
     Route::get('users/permission', 'UsersController@permission');
-    Route::get('users/manage', 'UsersController@manage');
+
     Route::resource('users', 'UsersController');
 
     Route::get('home/joinus', 'HomeController@joinus');

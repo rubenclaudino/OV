@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Clinic;
+use App\Http\Requests\UserValidationRequest;
 use App\Permission;
+use App\Role;
+use App\State;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,61 +19,34 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $title = "Usuários";
-        $subtitle = '';
-        $activeClass = "users";
-        $subtitle = "";
-
         $users = User::all();
-
-        return view('users.index', compact('title', 'subtitle', 'users', 'activeClass'));
+        return view('users.index', compact('users'));
     }
 
     public function create()
     {
-        $title = "Usuário";
-        $subtitle = "Cadastrar um novo usuário";
-        $activeClass = "users";
-
         $clinics = Clinic::pluck('name', 'id');
+        $roles = Role::pluck('display_name', 'id');
+        $states = State::pluck('name', 'id');
+        $cities = City::pluck('name', 'id');
 
-        return view('users.create', compact('title', 'subtitle', 'activeClass', 'clinics'));
+        return view('users.create', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
 
-    public function store(Request $request)
+    public function store(UserValidationRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'clinic_id' => 'required',
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('users/create')
-                ->withErrors($validator)
-                ->withInput();
-        } else {
-
-            // adding dentist
-            $clinic = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'clinic_id' => $request->clinic_id,
-                'password' => bcrypt($request->password),
-            ]);
-
-            $user = User::find($clinic->id);
-            $user->attachRole('2');
-
-            return redirect('users/create')
-                ->with('status', 'Dentist Admin Created!');
-        }
+        $user = User::create($request->except('password_confirmation'));
+        $user->roles()->sync($request->roles);
+        return redirect('users')->with('status', 'User Created!');
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $clinics = Clinic::pluck('name', 'id');
+        $roles = Role::pluck('display_name', 'id');
+        $states = State::pluck('name', 'id');
+        $cities = City::pluck('name', 'id');
+        return view('users.show', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
 
     public function edit($id)
@@ -77,27 +54,17 @@ class UsersController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+        $user->roles()->sync($request->roles);
+        return redirect('users')->with('status', 'User Updated!');
     }
 
     public function destroy($id)
     {
         User::destroy($id);
-        return response()->json(['status' => 'success', 'message' => "User Deleted!"]);
-    }
-
-    public function profile()
-    {
-        $user = Auth::user();
-
-        $title = "User Profile";
-        $subtitle = "";
-        $activeClass = "";
-        $subtitle = "";
-
-        return view('users.profile.index', compact('title', 'subtitle', 'user', 'activeClass'));
+        return redirect('users')->with('status', 'User Deleted!');
     }
 
     public function userDetails()
@@ -118,45 +85,6 @@ class UsersController extends Controller
         $user = Auth::user();
         //$invoices = $user->invoices();
         return view('users.invoices', compact('title', 'subtitle', 'invoices', 'activeClass'));
-    }
-
-    /**
-     * MANAGE ALL USERS AS PER CLINIC
-     */
-    public function manage()
-    {
-        $title = "Manage Clinic User";
-        $subtitle = "All the clinic User List";
-        $activeClass = "users_management";
-
-        // get all users
-        $users = User::where('clinic_id', Auth::user()->clinic_id)->with('roles')->get();
-        /* $users = User::where([['clinic_id', '=', Auth::user()->clinic_id], ['role_id', '>', '1']])
-             ->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
-             ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
-             ->select('users.*', 'roles.name AS rolename', 'roles.*', 'users.name AS username')
-             ->orderBy('roles.slug', 'ASC')
-             ->whereNotIn('users.id', array(Auth::user()->id))
-             ->get();*/
-
-        $i = 0;
-        foreach ($users as $data) {
-            // if($users[$i]->hasRole('dentist')){
-            //    $dentist = Dentist::where('user_id','=',$data->id)->first();
-            //    $users[$i]->profile_url =$dentist->profile_url;
-            // }
-            // if($users[$i]->hasRole('patient')){
-            //    $patient = Patient::where('user_id','=',$data->id)->first();
-            //    $users[$i]->profile_url =$patient->profile_url;
-            // }
-            // if($users[$i]->hasRole('receptionist')){
-            //    $r = Receptionist::where('user_id','=',$data->id)->first();
-            //    $users[$i]->profile_url =$r->profile_url;
-            // }
-            $i++;
-        }
-
-        return view('users.manage', compact('title', 'subtitle', 'users', 'activeClass'));
     }
 
     public function permission()
