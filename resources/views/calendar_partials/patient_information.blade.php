@@ -35,20 +35,18 @@
                    ng-if="patient.wheel_chair == '1'"><i class="fa fa-wheelchair"></i></label>
             <!-- end: PATIENT OBS -->
             <div class="clearfix"></div>
+            
             <!-- start: SPECIALTY -->
             <div class="patient_specialty">
-                    <span class="label label-default" ng-repeat="speciality in patient.specialty"
+                    <span class="label label-default" ng-repeat="speciality in patient.specialties"
                           style="background: #{[{ speciality.color_code }]} !important;opacity: 0.7;letter-spacing: 1px !important;margin-right: 5px;">{[{ specialty.name }]}</span>
                 <br>
             </div>
             <!-- end: SPECIALTY -->
 
             <!-- start: DENTAL INSURER -->
-            <h5 style="padding-bottom: 5px" ng-if="patient.has_dental_plan">
-                    <span ng-if="patient.has_dental_plan == 1"><i
-                                class="fa fa-folder-o fa-fw"></i>&nbsp; Particular</span>
-                <span ng-if="patient.has_dental_plan == 0"><i
-                            class="fa fa-folder-o fa-fw"></i>&nbsp; Convênio</span>
+            <h5 style="padding-bottom: 5px">
+                {[{ patient.has_dental_plan }]}
             </h5>
             <!-- end: DENTAL INSURER -->
 
