@@ -35,7 +35,7 @@
                    ng-if="patient.wheel_chair == '1'"><i class="fa fa-wheelchair"></i></label>
             <!-- end: PATIENT OBS -->
             <div class="clearfix"></div>
-            
+
             <!-- start: SPECIALTY -->
             <div class="patient_specialty">
                     <span class="label label-default" ng-repeat="speciality in patient.specialties"
