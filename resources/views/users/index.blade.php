@@ -55,6 +55,12 @@
                         </div>
                 @endif
 
+                        @if (session('status'))
+                            <script>
+                                $( document ).ready(swal("{{ session('status') }}"))
+                            </script>
+                    @endif
+
                 <!-- DISPLAYING USERS -->
                     <table class="table datatable table-striped">
                         <thead>
@@ -101,6 +107,9 @@
                                             <ul class="dropdown-menu pull-right" style="opacity:0.9;">
                                                 <li><a href="{{ URL::route('users.show', $user->id) }}">
                                                         <small><i class="fa fa-user fa-fw"></i>&nbsp; Perfil</small>
+                                                    </a></li>
+                                                <li><a href="{{ URL::route('users.edit', $user->id) }}">
+                                                        <small><i class="fa fa-user fa-fw"></i>&nbsp; Edit</small>
                                                     </a></li>
                                                 <li><a href="#">
                                                         <small><i class="fa fa-eye fa-fw"></i>&nbsp; Atividades</small>
@@ -161,7 +170,7 @@
                         success: function (data) {
                             if (data) {
                                 swal("Deleted!", "User has been deleted", "success");
-                                location.reload();
+                                //location.reload();
                             }
                             else
                                 swal("cancelled", "User has not been deleted", "error");

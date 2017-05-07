@@ -49,9 +49,13 @@ class UsersController extends Controller
         return view('users.show', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $clinics = Clinic::pluck('name', 'id');
+        $roles = Role::pluck('display_name', 'id');
+        $states = State::pluck('name', 'id');
+        $cities = City::pluck('name', 'id');
+        return view('users.edit', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
 
     public function update(Request $request, User $user)
@@ -65,12 +69,6 @@ class UsersController extends Controller
     {
         User::destroy($id);
         return redirect('users')->with('status', 'User Deleted!');
-    }
-
-    public function userDetails()
-    {
-        $user = Clinic::where('id', '=', Auth::user()->clinic_id)->first();
-        return $user;
     }
 
     /**
