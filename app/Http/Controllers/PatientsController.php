@@ -22,23 +22,9 @@ class PatientsController extends Controller
         $title = "Pacientes";
         $subtitle = 'Informações dos Pacientes';
         $activeClass = "patients";
-        $user = Auth::user();
 
         // TODO: based on roles, filter out patients by clinic
         $patients = Patient::all();
-
-        /* if ($user->isAdmin() || $user->hasRole('receptionist')) {
-             $users = Patient::where('clinic_id', $user->clinic_id)->get();
-         }*/
-
-        /* $i = 0;
-         foreach ($users as $data) {
-             $users[$i]->speciality = DB::select("SELECT `specialties`.*, `patient_speciality`.`patient_id`
-        from `specialties` inner join `patient_speciality` on
-        `patient_speciality`.`speciality_id` = `specialities`.`id` where
-        `patient_speciality`.`patient_id` ='" . $data->id . "'");
-             $i++;
-         }*/
 
         return view('patients.index', compact('title', 'subtitle', 'patients', 'activeClass'));
     }

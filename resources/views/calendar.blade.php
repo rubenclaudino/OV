@@ -4,11 +4,7 @@
     <!-- start: MAIN CONTAINER -->
     <div class="main-container inner">
 
-        @if($user->isAdmin() || $user->hasRole('local_admin') || $user->hasRole('receptionist'))
-            <div id="current_dentist">
-                {!! Form::select('dentist_id', $professionals,$dentist_id,['class' => 'form-control','id' => 'current_dentist_id']) !!}
-            </div>
-    @endif
+
 
     @include('calendar_partials.quick_patient_modal')
 
@@ -46,12 +42,18 @@
                 <!-- start: PAGE CONTENT -->
                 <div class="row">
                     <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 nopadding">
+
                         <!-- start: FULL CALENDAR PANEL -->
                         <div class="panel panel-white"
                              style="margin-top:0px;margin-left:-8px!important;margin-bottom:0;">
                             <div class="panel-body">
                                 <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
                                     <div class="row">
+                                        @if(Auth::user()->isAdmin() || Auth::user()->hasRole('local_admin') || Auth::user()->hasRole('receptionist'))
+                                            <div id="current_dentist">
+                                                {!! Form::select('dentist_id', $professionals,$dentist_id,['class' => 'form-control','id' => 'current_dentist_id']) !!}
+                                            </div>
+                                        @endif
                                         <div id='full-calendar'></div>
                                     </div>
                                 </div>
