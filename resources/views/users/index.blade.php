@@ -117,7 +117,8 @@
                                                         </small>
                                                     </a></li>
                                                 <li class="divider"></li>
-                                                <li><a id="delete_user" href="#" data-href="{{ url('users', $user->id) }}">
+                                                <li><a id="delete_user" href="#"
+                                                       data-href="{{ url('users', $user->id) }}">
                                                         <small><i class="fa fa-ban fa-fw"></i>&nbsp; Desativar</small>
                                                     </a></li>
                                             </ul>
@@ -137,39 +138,36 @@
 @endsection
 
 @section('extra_scripts')
-<script>
-    $('a#delete_user').on('click', function(){
-        var url = $(this).attr("data-href");
-        swal({
-                title: "Delete user?",
-                text: "Submit to delete",
-                type: "warning",
-                showCancelButton: true,
-                closeOnConfirm: false,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Delete!"
-            },
-            function(){
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data:{
-                        _method: 'DELETE',
-                        _token: csrf_token
-                    },
-                    success: function (data) {
-                        if(data){
-                            swal("Deleted!","User has been deleted", "success");
-                            setTimeout(function() {
-                                self.parents(".delete_form").submit();
-                            }, 2000); //2 second delay (2000 milliseconds = 2 seconds)
+    <script>
+        $('a#delete_user').on('click', function () {
+            var url = $(this).attr("data-href");
+            swal({
+                    title: "Delete user?",
+                    text: "Submit to delete",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Delete!"
+                },
+                function () {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: {
+                            _method: 'DELETE',
+                            _token: csrf_token
+                        },
+                        success: function (data) {
+                            if (data) {
+                                swal("Deleted!", "User has been deleted", "success");
+                                location.reload();
+                            }
+                            else
+                                swal("cancelled", "User has not been deleted", "error");
                         }
-                        else{
-                            swal("cancelled","Your album is safe", "error");
-                        }
-                    }
+                    })
                 });
-            });
-    })
-</script>
+        })
+    </script>
 @endsection
