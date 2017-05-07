@@ -8,7 +8,7 @@
         <div class="container">
 
             <!-- start: MAIN PANEL -->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px;font-size: 1.1em;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-size: 1.1em;margin-left: -10px;margin-top: 20px;">
 
                 <!-- start: TAB OPTIONS -->
                 <ul class="nav nav-tabs">

@@ -10,32 +10,37 @@
             <!-- start: ROW -->
             <div class="row">
 
-                <div style="background: whitesmoke;margin-left: 10px;padding-top: 10px" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div style="background: whitesmoke;margin-left: 10px;padding-top: 10px"
+                     class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                     <!-- start: IMAGE -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="fileupload fileupload-new" data-provides="fileupload">
+
                             <div class="fileupload-new thumbnail" style="width:100%"></div>
                             <div style="line-height: 10px; width:100%"
                                  class="fileupload-preview fileupload-exists thumbnail">
                             </div>
 
                             <div>
+
                             <span class="btn btn-primary btn-file">
                                 <span class="fileupload-new">
-                                    <i class="fa fa-picture-o"></i>Selecione imagem
+                                    <i class="fa fa-picture-o"></i>
+                                    Selecione imagem
                                 </span>
                                  <span class="fileupload-exists">
-                                    <i class="fa fa-picture-o"></i>Alterar
+                                    <i class="fa fa-picture-o"></i>
+                                     Alterar
                                  </span>
                                 <input name="patient_profile_image" id="patient_profile_image" type="file"
                                        accept="image/x-png, image/gif, image/jpeg">
                             </span>
 
-                                <a href="#" class="btn fileupload-exists btn-light-grey"
-                                   data-dismiss="fileupload">
+                                <span class="btn fileupload-exists btn-danger" data-dismiss="fileupload">
                                     <i class="fa fa-times"></i> Remover
-                                </a>
+                                </span>
+
                             </div>
                         </div>
                     </div>
@@ -63,10 +68,6 @@
 
                     <!-- start: SPECIALITY -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                        <input type="hidden" name="hasProsSpec" id="hasProsSpec" value="0"/>
-                        <input type="hidden" name="hasOrtoSpec" id="hasOrtoSpec" value="0"/>
-
                         <div class="form-group">
                             <label for="pSpec">Especialidades</label>
                             {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
@@ -78,12 +79,22 @@
                     <!-- start: INDICATION -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="indication">Indicação</label>
+                            <label for="referral_id">Indicação</label>
                             {!! Form::select('referral_id', $referrals,'',['class' =>
                             'form-control','placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
                     <!-- end: INDICATION -->
+
+                    <!-- start: ALLWAYS CONFIRM APPOINTMENT -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="confirmation_request">Necessita confirmação</label>
+                            {!! Form::select('confirmation_request', array('0' => 'Não','1' => 'Sim'),'',['class'
+                           => 'form-control','placeholder' => 'Não informado']) !!}
+                        </div>
+                    </div>
+                    <!-- end: ALLWAYS CONFIRM APPOINTMENT -->
 
                     <!-- start: VIP -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -116,6 +127,7 @@
                     </a>
                 </li>
                 <!-- end: MAIN DETIALS -->
+
                 <!-- start: CONTACT INFO -->
                 <li>
                     <a data-toggle="tab" href="#pContact">
@@ -123,6 +135,7 @@
                     </a>
                 </li>
                 <!-- end: CONTACT INFO -->
+
                 <!-- start: ADDRESS -->
                 <li>
                     <a data-toggle="tab" href="#pAddress">
@@ -181,8 +194,7 @@
                                 <div class="form-group">
                                     <label for="date_of_birth">Data de Nascimento</label>
                                     <div class="input-group">
-                                        {{ Form::text('date_of_birth','',array('class' => 'form-control
-                                        date-picker', 'id' => 'date_of_birth')) }}
+                                        {{ Form::text('date_of_birth','',array('class' => 'form-control input-mask-date', 'id' => 'date_of_birth')) }}
                                     </div>
                                 </div>
                             </div>
@@ -222,6 +234,28 @@
                             </div>
                             <!-- end: CIVAL STATUS -->
 
+                            <!-- start: NATIONALTY -->
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="nationality">Nacionalidade</label>
+                                    {{ Form::text('nationality','',array('class' => 'form-control', 'id'
+                                    => 'nationality')) }}
+                                </div>
+                            </div>
+                            <!-- end: NATIONALTY -->
+
+                            <div class="clearfix"></div>
+
+                            <!-- start: PROFESSION -->
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="profession">Ocupação / Profissão</label>
+                                    {{ Form::text('profession','',array('class' => 'form-control', 'id'
+                                    => 'profession')) }}
+                                </div>
+                            </div>
+                            <!-- end: PROFESSION -->
+
                             <!-- start: EDUCATION -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -233,28 +267,6 @@
                                 </div>
                             </div>
                             <!-- end: EDUCATION -->
-
-                            <div class="clearfix"></div>
-
-                            <!-- start: NATIONALTY -->
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label for="nationality">Nacionalidade</label>
-                                    {{ Form::text('nationality','',array('class' => 'form-control', 'id'
-                                    => 'nationality')) }}
-                                </div>
-                            </div>
-                            <!-- end: NATIONALTY -->
-
-                            <!-- start: PROFESSION -->
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label for="profession">Ocupação / Profissão</label>
-                                    {{ Form::text('profession','',array('class' => 'form-control', 'id'
-                                    => 'profession')) }}
-                                </div>
-                            </div>
-                            <!-- end: PROFESSION -->
 
                             <div class="clearfix"></div>
 
@@ -564,14 +576,20 @@
                             <!-- end: OBSERVATION -->
 
                         </div>
+
                     </div>
+
                 </div>
                 <!-- end: ADDRESS -->
+
             </div>
             <!-- end: TAB CONTENT -->
+
         </div>
         <!-- end: RIGHT DIV -->
+
     </div>
-    <!-- start: ROW -->
+    <!-- end: ROW -->
+
 </div>
 <!-- end: PERSONAL DETIALS -->

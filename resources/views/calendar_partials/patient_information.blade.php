@@ -52,16 +52,19 @@
             </h5>
             <!-- end: DENTAL INSURER -->
 
-
             <!-- start: ADDRESS -->
-            <h5 style="padding-bottom: 5px">
-                <i class="fa fa-map-marker fa-fw"></i>&nbsp; {[{ patient.address }]} {[{ patient.street_number }]} , {[{ patient.borough }]} , {[{ patient.city }]} {[{ patient.state }]}
+            <h5>
+                <i class="fa fa-map-marker fa-fw"></i>
+                &nbsp;{[{ patient.address }]} {[{ patient.street_number }]}
+                , {[{ patient.borough }]} , {[{ patient.city }]} {[{ patient.state }]}
             </h5>
             <!-- end: ADDRESS -->
 
             <!-- start: PHONE -->
             <h5>
-                <i class="fa fa-phone fa-fw"></i>&nbsp; {[{ patient.phone_1 }]} {[{ patient.phone_1 }]} {[{ patient.phone_landline }]}
+                <i class="fa fa-phone fa-fw"></i>&nbsp; {[{ patient.phone_landline }]}
+                <i class="fa fa-mobile fa-fw"></i>&nbsp; {[{ patient.phone_1 }]}
+                <i class="fa fa-whatsapp fa-fw"></i>&nbsp; {[{ patient.whatsapp_number }]}
             </h5>
             <!-- end: PHONE -->
 

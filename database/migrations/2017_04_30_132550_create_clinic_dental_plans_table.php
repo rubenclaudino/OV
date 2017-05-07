@@ -14,6 +14,7 @@ class CreateClinicDentalPlansTable extends Migration
     public function up()
     {
         Schema::create('clinic_dental_plans', function (Blueprint $table) {
+
             $table->increments('id');
             $table->string('title');
             $table->string('url');
