@@ -594,19 +594,8 @@
                                         <td>
                                             {{ $appointment->type->name }}
                                         </td>
-                                        <td style="font-size:0.9em">
-                                            @if( $appointment->status->id == 1 )
-                                                <span style="color: #5bc0de;"> <strong>{{ $appointment->status->name }} </strong></span>
-                                            @elseif( $appointment->status->id == 2 )
-                                                <span style="color: #5cb85c;"><strong>{{ $appointment->status->name }} </strong></span>
-                                            @elseif( $appointment->status->id == 3 )
-                                                <span style="color: #f0ad4e"><strong>{{ $appointment->status->name }}</strong></span>
-                                            @elseif( $appointment->status->id == 4 )
-                                                <span style="color: #d9534f"><strong>{{ $appointment->status->name }}</strong></span>
-                                            @elseif( $appointment->status->id == 5 )
-                                                <span style="color: #5e5e5e"><strong>{{ $appointment->status->name }}</strong></span>
-                                            @endif
-
+                                        <td>
+                                            {{ $appointment->status->name }}
                                         </td>
                                         <td>
                                             -

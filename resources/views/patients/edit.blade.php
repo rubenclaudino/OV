@@ -93,25 +93,28 @@
                                 <!-- start: ROW -->
                                 <div class="row">
 
-                                    <!-- start: PATIENT IMAGE -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div style="background: whitesmoke;margin-left: 10px;padding-top: 10px"
+                                         class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <!-- start: PATIENT IMAGE -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                            <div class="fileupload-new thumbnail" style="width:100%">
-                                                <?php
-                                                if ($patient->patient_profile_image) {
-                                                    $patient->patient_profile_image = url('/') . "/" . $patient->patient_profile_image;
-                                                }
-                                                ?>
-                                                {{ Html::image($patient->patient_profile_image) }}
-                                            </div>
+                                            <div class="fileupload fileupload-new" data-provides="fileupload">
 
-                                            <div style="line-height: 10px; width:100%"
-                                                 class="fileupload-preview fileupload-exists thumbnail">
-                                            </div>
+                                                <div class="fileupload-new thumbnail" style="width:100%">
+                                                    <?php
+                                                    if ($patient->patient_profile_image) {
+                                                        $patient->patient_profile_image = url('/') . "/" . $patient->patient_profile_image;
+                                                    }
+                                                    ?>
+                                                    {{ Html::image($patient->patient_profile_image) }}
+                                                </div>
 
-                                            <div>
+                                                <div style="line-height: 10px; width:100%"
+                                                     class="fileupload-preview fileupload-exists thumbnail">
+                                                </div>
+
+                                                <div>
 
                                        <span class="btn btn-primary btn-file">
 
@@ -130,92 +133,77 @@
 
                                         </span>
 
-                                                <a href="#" class="btn fileupload-exists btn-light-grey"
-                                                   data-dismiss="fileupload">
-                                                    <i class="fa fa-times"></i> Remover
-                                                </a>
+                                                    <span class="btn fileupload-exists btn-danger"
+                                                          data-dismiss="fileupload">
+                                    <i class="fa fa-times"></i> Remover
+                                    </span>
+
+                                                </div>
 
                                             </div>
 
                                         </div>
+                                        <!-- end: PATIENT IMAGE -->
 
-                                    </div>
-                                    <!-- end: PATIENT IMAGE -->
-
-                                    <!-- start: PROFESSIONAL -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="doc">Dentista</label>
-                                            {!! Form::select('professional_id', $professionals,array($patient->professional_id),['class' => 'form-control','placeholder' => 'Não informado']) !!}
+                                        <!-- start: PROFESSIONAL -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="professional_id">Dentista</label>
+                                                {!! Form::select('professional_id', $professionals,array($patient->professional_id),['class' => 'form-control','placeholder' => 'Não informado']) !!}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- end: PROFESSIONAL -->
+                                        <!-- end: PROFESSIONAL -->
 
-                                    <!-- start: DENTAL PLAN -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="hasDentalPlan">Tem Convênio</label>
-                                            {!! Form::select('has_dental_plan', array('0' => 'Não','1' => 'Sim'),array($patient->has_dental_plan),['class' => 'form-control','placeholder' => 'Não Informado']) !!}
+                                        <!-- start: DENTAL PLAN -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="has_dental_plan">Tem Convênio</label>
+                                                {!! Form::select('has_dental_plan', array('0' => 'Não','1' => 'Sim'),array($patient->has_dental_plan),['class' => 'form-control','placeholder' => 'Não Informado']) !!}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- end: DENTAL PLAN -->
+                                        <!-- end: DENTAL PLAN -->
 
-                                    <!-- start: SPECIALTY -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <!-- start: SPECIALTY -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                        <input type="hidden" name="hasProsSpec" id="hasProsSpec" value="0"/>
-                                        <input type="hidden" name="hasOrtoSpec" id="hasOrtoSpec" value="0"/>
+                                            <div class="form-group">
+                                                <label for="pSpec">Especialidades</label>
+                                                {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
+                                selectpicker','multiple' => 'true']) !!}
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="pSpec">Especialidades</label>
-                                            {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
-                            selectpicker','multiple' => 'true']) !!}
                                         </div>
+                                        <!-- end: SPECIALTY -->
 
-                                    </div>
-                                    <!-- end: SPECIALTY -->
-
-                                    <!-- start: INDICATION -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="indication">Indicação</label>
-                                            {!! Form::select('indication', array('0' => 'Conhecido','1' => 'TV','2' => 'Rádio','3' => 'Local','4' => 'Outdoor','5' => 'Professional','6' => 'Internet','7' => 'Lista Telefonica'),array($patient->indication),['class' => 'form-control','placeholder' => 'Não informado']) !!}
+                                        <!-- start: INDICATION -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="indication">Indicação</label>
+                                                {!! Form::select('indication', array($patient->referrals),array($patient->referrals),['class' => 'form-control','placeholder' => 'Não informado']) !!}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- end: INDICATION -->
+                                        <!-- end: INDICATION -->
 
-                                    <!-- start: VIP -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="vip">VIP</label>
-                                            {!! Form::select('vip', array('0' => 'Sim','1' => 'Não'),array($patient->vip),['class' => 'form-control selectpicker']) !!}
+                                        <!-- start: ALLWAYS CONFIRM APPOINTMENT -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="confirmation_request">Necessita confirmação</label>
+                                                {!! Form::select('confirmation_request', array('0' => 'Não','1' => 'Sim'),array($patient->confirmation_request),['class'
+                                               => 'form-control','placeholder' => 'Não informado']) !!}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- end: VIP -->
+                                        <!-- end: ALLWAYS CONFIRM APPOINTMENT -->
 
-                                    <!-- start: EXTRAS -->
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                                        <!-- start: SMS -->
-                                        <div class="checkbox hidden">
-                                            <label>
-                                                {{ Form::checkbox('sms_confirmation',$patient->sms_confirmation,null,array('class' => 'grey')) }}
-                                                Confirmação SMS
-                                            </label>
+                                        <!-- start: VIP -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="vip">VIP</label>
+                                                {!! Form::select('vip', array('0' => 'Sim','1' => 'Não'),array($patient->vip),['class' => 'form-control']) !!}
+                                            </div>
                                         </div>
-                                        <!-- end: SMS -->
-
-                                        <!-- start: ALLOW -->
-                                    <!-- <div class="checkbox">
-                                 <label>
-                                    {{ Form::checkbox('allow_profile_use',$patient->allow_profile_use,null,array('class' => 'grey')) }}
-                                            Allow Profile Use
-                                         </label>
-                                      </div> -->
-                                        <!-- end: ALLOW -->
+                                        <!-- end: VIP -->
 
                                     </div>
-                                    <!-- end: EXTRAS -->
 
                                 </div>
                                 <!-- end: ROW -->
@@ -288,7 +276,7 @@
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="gender">Sexo</label>
-                                                        {!! Form::select('gender', array('0' => 'M','1' => 'F'),array($patient->gender),['class' => 'form-control selectpicker']) !!}
+                                                        {!! Form::select('gender', array('0' => 'M','1' => 'F'),array($patient->gender),['class' => 'form-control']) !!}
                                                     </div>
                                                 </div>
                                                 <!-- end: GENDER -->
@@ -297,9 +285,7 @@
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <label for="dob">Data de Nascimento</label>
                                                     <div class="input-group">
-                                                        {{ Form::text('DOB',$patient->date_of_birth,array('class' => 'form-control date-picker', 'style' => 'padding-left:30px')) }}
-                                                        <span class="input-icon" style="margin-top: 2px !important;"> <i
-                                                                    class="fa fa-calendar"></i> </span>
+                                                        {{ Form::text('DOB',$patient->date_of_birth,array('class' => 'form-control input-mask-date')) }}
                                                     </div>
                                                     <br>
                                                 </div>
@@ -329,7 +315,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="marital_status">Estado Civil</label>
-                                                        {!! Form::select('maritial_status', array('1' => 'Solteiro(a)','0' => 'Casado(a)','2' => 'Divorciado(a)','3' => 'Viúvo(a)'),array($patient->maritial_status),['class' => 'form-control selectpicker','placeholder' => 'Não informado']) !!}
+                                                        {!! Form::select('maritial_status', array('1' => 'Solteiro(a)','0' => 'Casado(a)','2' => 'Divorciado(a)','3' => 'Viúvo(a)'),array($patient->maritial_status),['class' => 'form-control','placeholder' => 'Não informado']) !!}
                                                     </div>
                                                 </div>
                                                 <!-- end: CIVAL STATUS -->
@@ -358,7 +344,7 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="education">Grau de Instrução</label>
-                                                        {!! Form::select('education', array('0' => 'Ensino Fundamental','1' => 'Ensino Médio','2' => 'Ensino Superior'),array($patient->maritial_status),['class' => 'form-control selectpicker','placeholder' => 'Não Informado']) !!}
+                                                        {!! Form::select('education', array('0' => 'Ensino Fundamental','1' => 'Ensino Médio','2' => 'Ensino Superior'),array($patient->maritial_status),['class' => 'form-control','placeholder' => 'Não Informado']) !!}
                                                     </div>
                                                 </div>
                                                 <!-- end: EDUCATION -->
@@ -396,7 +382,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{ Form::text('phone_landline',$patient->phone_landline,array('class' => 'form-control input-mask-phone')) }}
+                                                    {{ Form::text('phone_landline',$patient->phone_landline,array('class' => 'form-control input-mask-phone1')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -498,7 +484,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{Form::text('',$patient->email,array('class' => 'form-control','enabled' => 'true')) }}
+                                                    {{Form::text('',$patient->email,array('class' => 'form-control input-mask-phone','enabled' => 'true')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -532,7 +518,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                              style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                                 <span>
-                                                    {{Form::text('',$patient->email,array('class' => 'form-control','enabled' => 'true', 'id' => 'contact2')) }}
+                                                    {{Form::text('',$patient->email,array('class' => 'form-control input-mask-phone','enabled' => 'true', 'id' => 'contact2')) }}
                                                 </span>
                                                         </div>
                                                     </div>
@@ -646,6 +632,8 @@
                                                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="patient_state">Estado</label>
+                                                        {!! Form::select('professional_id', $professionals,array($patient->professional_id),['class' => 'form-control','placeholder' => 'Não informado']) !!}
+
                                                     </div>
                                                 </div>
                                                 <!-- end: STATE -->
@@ -876,198 +864,67 @@
                     <div id="dentalPlan" class="tab-pane fade">
 
                         <!-- start: ROW -->
-                        <div class="row" style="background:#fff;">
-
-                            <!-- start: ADD DENTAL PLAN -->
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <button id="addDenalPlan1" class="btn btn-block btn-primary">
-                                    Add Dental Plan
-                                </button>
-                                <hr class="custom_sepg">
-                            </div>
-                            <!-- start: ADD DENTAL PLAN -->
-
-                            <input type="hidden" class="form-control" id="hasDentalPlan2" name="hasDentalPlan2"
-                                   value="0">
-                            <input type="hidden" class="form-control" id="hasDentalPlan3" name="hasDentalPlan3"
-                                   value="0">
+                        <div class="row" style="margin: 15px">
 
                             <!-- start: DIV -->
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopadding">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 
-                                <!-- start: PANEL -->
-                                <div class="panel panel-white" style="background: whitesmoke">
+                                <!-- start: ROW -->
+                                <div class="row">
 
-                                    <!-- start: PANEL BODY -->
-                                    <div class="panel-body">
-
-                                        <!-- start: ROW -->
-                                        <div class="row">
-
-                                            <!-- start: DENTAL PLAN -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="accepted_DP1">Dental Plan</label>
-                                                    <select class="form-control" id="accepted_DP1" name="accepted_DP1">
-                                                        <option>Não Informado</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- end: DENTAL PLAN -->
-
-                                            <!-- start: CARD NUMBER -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="typeOfPlan1">Card Number</label>
-                                                    <input type="text" class="form-control" id="typeOfPlan1"
-                                                           name="typeOfPlan1">
-                                                </div>
-                                            </div>
-                                            <!-- end: CARD NUMBER -->
-
-                                            <!-- start: TITLE HOLDER -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="cardNo1">Title Holder</label>
-                                                    <input type="text" class="form-control" id="cardNo1" name="cardNo1">
-                                                </div>
-                                            </div>
-                                            <!-- end: TITLE HOLDER -->
-
-                                            <!-- start: PLAN TYPE -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label for="cardExpDate1">Plan Type</label>
-                                                <div class="form-group input-group">
-                                                    <input type="text" class="form-control" id="cardNo1" name="cardNo1">
-                                                </div>
-                                            </div>
-                                            <!-- end: PLAN TYPE -->
-
-                                            <!-- start: ANS CODE -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="DP_acd1">ANS Code</label>
-                                                    <input type="text" class="form-control" id="DP_acd1" name="DP_acd1">
-                                                </div>
-                                            </div>
-                                            <!-- end: ANS CODE -->
-
+                                    <!-- start: DENTAL PLAN -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="accepted_DP1">Dental Plan</label>
+                                            <select class="form-control" id="accepted_DP1" name="accepted_DP1">
+                                                <option>Não Informado</option>
+                                            </select>
                                         </div>
-                                        <!-- end: ROW -->
-
                                     </div>
-                                    <!-- end: PANEL BODY -->
+                                    <!-- end: DENTAL PLAN -->
+
+                                    <!-- start: CARD NUMBER -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="typeOfPlan1">Card Number</label>
+                                            <input type="text" class="form-control" id="typeOfPlan1"
+                                                   name="typeOfPlan1">
+                                        </div>
+                                    </div>
+                                    <!-- end: CARD NUMBER -->
+
+                                    <!-- start: TITLE HOLDER -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="cardNo1">Title Holder</label>
+                                            <input type="text" class="form-control" id="cardNo1" name="cardNo1">
+                                        </div>
+                                    </div>
+                                    <!-- end: TITLE HOLDER -->
+
+                                    <!-- start: PLAN TYPE -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <label for="cardExpDate1">Plan Type</label>
+                                        <div class="form-group input-group">
+                                            <input type="text" class="form-control" id="cardNo1" name="cardNo1">
+                                        </div>
+                                    </div>
+                                    <!-- end: PLAN TYPE -->
+
+                                    <!-- start: EXPIRY DATE -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="exp_date">Data de Expiração</label>
+                                            <input type="date" class="form-control" id="exp_date" name="exp_date">
+                                        </div>
+                                    </div>
+                                    <!-- end: EXPIRY DATE -->
 
                                 </div>
-                                <!-- end: PANEL -->
+                                <!-- end: ROW -->
 
                             </div>
                             <!-- end: DIV -->
-
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopadding dentalPlanHidden" id="hideDP1">
-                                <div class="panel panel-white accepted_plan">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <button id="addDenalPlan2" class="btn btn-block btn-primary">
-                                                    Add Dental Plan
-                                                </button>
-                                                <br>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="accepted_DP2">Dental Plan</label>
-                                                    <select class="form-control" id="accepted_DP2" name="accepted_DP2">
-                                                        <option>--Please select a professional--</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="typeOfPlan2">Type Of Plan</label>
-                                                    <input type="text" class="form-control" id="typeOfPlan2"
-                                                           name="typeOfPlan2">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="cardNo2">Card Number</label>
-                                                    <input type="text" class="form-control" id="cardNo2" name="cardNo2">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label for="cardExpDate2">Expiry Date</label>
-                                                <div class="form-group input-group">
-                                                    <input data-date-format="dd-mm-yyyy" data-date-viewmode="years"
-                                                           class="form-control date-picker" type="text"
-                                                           id="cardExpDate2" name="cardExpDate2">
-                                                    <span class="input-group-addon"> <i
-                                                                class="fa fa-calendar"></i> </span>
-                                                </div>
-                                                <br>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="DP_acd2">Accomodations</label>
-                                                    <input type="text" class="form-control" id="DP_acd2" name="DP_acd2">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopadding dentalPlanHidden" id="hideDP2">
-                                <div class="panel panel-white accepted_plan">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <!--div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                               <a id="addDenalPlan3" class="btn btn-block btn-primary">
-                                                  Add Dental Plan
-                                               </a>
-                                               <br>
-                                            </div-->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="accepted_DP3">Dental Plan</label>
-                                                    <select class="form-control" id="accepted_DP3" name="accepted_DP3">
-                                                        <option>--Please select a professional--</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="typeOfPlan3">Type Of Plan</label>
-                                                    <input type="text" class="form-control" id="typeOfPlan3"
-                                                           name="typeOfPlan3">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="cardNo3">Card Number</label>
-                                                    <input type="text" class="form-control" id="cardNo3" name="cardNo3">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label for="cardExpDate3">Expiry Date</label>
-                                                <div class="form-group input-group">
-                                                    <input data-date-format="dd-mm-yyyy" data-date-viewmode="years"
-                                                           class="form-control date-picker" type="text"
-                                                           id="cardExpDate3" name="cardExpDate3">
-                                                    <span class="input-group-addon"> <i
-                                                                class="fa fa-calendar"></i> </span>
-                                                </div>
-                                                <br>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="DP_acd3">Accomodations</label>
-                                                    <input type="text" class="form-control" id="DP_acd3" name="DP_acd3">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
                         <!-- end: ROW -->
@@ -1210,7 +1067,8 @@
                                             <!-- start: INITIAL STAGE PHOTO -->
                                             <div class="col-md-6 col-lg-6">
 
-                                                <h4>Foto Inícial <span class="pull-right" style="font-weight: lighter">00/00/0000</span>
+                                                <h4>Foto Inícial <span class="pull-right"
+                                                                       style="font-weight: lighter">00/00/0000</span>
                                                 </h4>
 
                                                 <div class="fileupload fileupload-new center" data-provides="fileupload"
@@ -1262,7 +1120,8 @@
                                             <!-- start: FINAL STAGE PHOTO -->
                                             <div class="col-md-6 col-lg-6">
 
-                                                <h4>Foto Final <span class="pull-right" style="font-weight: lighter">00/00/0000</span>
+                                                <h4>Foto Final <span class="pull-right"
+                                                                     style="font-weight: lighter">00/00/0000</span>
                                                 </h4>
 
                                                 <div class="fileupload fileupload-new center"
@@ -1346,7 +1205,7 @@
                     </div>
                     <!-- end: ORTO -->
 
-                    <!-- start: PROSTETIS -->
+                    <!-- start: PROS -->
                     <div id="prosthesis" class="tab-pane fade">
                         <div class="row" style="background:#fff;">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopadding">
@@ -1527,7 +1386,7 @@
             <!-- end: MAIN DIV -->
 
         </div>
-        <!-- start: CONTAINER -->
+        <!-- end: CONTAINER -->
 
     </div>
     <!-- end: MAIN CONTENT -->

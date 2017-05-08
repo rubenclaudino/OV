@@ -27,6 +27,7 @@
                         <div class="col-sm-6 col-xs-12">
 
                             <div class="toolbar-tools pull-right" style="padding-top: 10px;">
+
                                 <!-- start: TOP NAVIGATION MENU -->
                                 <ul class="nav navbar-right">
                                     <li>
@@ -41,6 +42,7 @@
                                     </li>
                                 </ul>
                                 <!-- end: TOP NAVIGATION MENU -->
+
                             </div>
 
                         </div>
@@ -75,15 +77,15 @@
                         <?php
                         if(!empty($plans)){
                         $i = 1;
-                        foreach($plans as $data){
+                        foreach($plans as $plan){
                         ?>
                         <tr>
                             <td class="hide">{{ $i }}<?php $i++;?></td>
-                            <td>{{ $data->title }}</td>
-                            <td><a href="{{ $data->url }}" target="_blank">{{ $data->url }}</a></td>
-                            <td>{{ $data->phone_1 }}</td>
+                            <td>{{ $plan->title }}</td>
+                            <td><a href="{{ $plan->url }}" target="_blank">{{ $plan->url }}</a></td>
+                            <td>{{ $plan->phone_1 }}</td>
                             <td>
-                                <small>{{ $data->ans_code }}</small>
+                                <small>{{ $plan->ans_code }}</small>
                             </td>
                             <td>0</td>
                             <td class="hidden-print">
@@ -94,18 +96,18 @@
                                         Opções &nbsp;<span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" style="opacity: 0.9">
-                                        <li><a href="{{ url('/dentalplans')}}/{{$data->id}}" class="edittreatmentType"
-                                               data-id="{{$data->id}}">
+                                        <li><a href="{{ url('/dentalplans')}}/{{$plan->id}}" class="edittreatmentType"
+                                               data-id="{{$plan->id}}">
                                                 <small><i class="fa fa-folder-o fa-fw"></i>&nbsp; Perfil</small>
                                             </a></li>
-                                        <li><a href="{{ url('/dentalplans')}}/{{ $data->id}}/edit"
+                                        <li><a href="{{ url('/dentalplans')}}/{{ $plan->id}}/edit"
                                                class="edittreatmentType"
-                                               data-id="{{$data->id}}">
+                                               data-id="{{$plan->id}}">
                                                 <small><i class="fa fa-pencil fa-fw"></i>&nbsp; Editar</small>
                                             </a></li>
                                         <li class="divider"></li>
-                                        <li><a href="{{ url('/dentalplans')}}/{{ $data->id}}" class="edittreatmentType"
-                                               data-id="{{$data->id}}">
+                                        <li><a href="{{ url('/dentalplans')}}/{{ $plan->id}}" class="edittreatmentType"
+                                               data-id="{{$plan->id}}">
                                                 <small><i class="fa fa-ban fa-fw"></i>&nbsp; Excluír</small>
                                             </a></li>
                                     </ul>

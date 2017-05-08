@@ -33,9 +33,8 @@
 
         <div class="container" style="opacity: 0.7">
 
-            <!-- start: PAGE CONTENT -->
-
-            <div class="row">
+            <!-- start: USER WIDGETS -->
+            <div class="row" style="margin-top: 10px;margin-right: -5px">
 
                 <!-- start: APPOINTMENTS BOOKED TODAY -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
@@ -81,7 +80,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Confirmados</h4>
-                        <h1>0</h1>
+                        <h1>{{ $appointments->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 2)->count() }}</h1>
                         <p>Essa semana</p>
                     </div>
                 </div>
@@ -91,7 +90,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Desmarcados</h4>
-                        <h1>0</h1>
+                        <h1>{{ $appointments->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 3)->count() }}</h1>
                         <p>Essa semana</p>
                     </div>
                 </div>
@@ -121,7 +120,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Você tem</h4>
-                        <h1>0</h1>
+                        <h1>{{ $appointments->where('user_id', Auth::user()->id)->count() }}</h1>
                         <p>pacientes cativos</p>
                     </div>
                 </div>
@@ -131,9 +130,9 @@
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Seu maior intervalo hoje é das</h4>
-                        <h1> <span style="color:silver !important">00:00</span>
-                            <span>á</span>
-                            <span style="color:silver !important">00:00</span>
+                        <h1> <span style="color:silver !important; font-size: 87%">00:00</span>
+                            <span><small>á</small></span>
+                            <span style="color:silver !important; font-size: 87%">00:00</span>
                         </h1>
                         <p>-</p>
                     </div>
@@ -150,6 +149,7 @@
                 </div>
                 <!-- end : BEST MONTH FOR HOLIDAYS -->
 
+                <!-- start : EARNING AMOUNT BETWEEN PRIVATE AND DENTAL PLANS BY MONTH -->
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 nopadding hide">
                     <div class="panel panel-white equalSecondRow">
                         <div class="panel-heading border-light">
@@ -162,7 +162,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- end : EARNING AMOUNT BETWEEN PRIVATE AND DENTAL PLANS BY MONTH -->
 
+                <!-- start : PATIENT FLUXATION BY MONTH (PRIVATE AND DENTAL PLAN)-->
                 <div class="col-md-7 col-lg-8 col-sm-12 col-xs-12 nopadding hide">
                     <div class="panel panel-white equalThisRow">
                         <div class="panel-heading border-light">
@@ -175,6 +177,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- end : PATIENT FLUXATION BY MONTH (PRIVATE AND DENTAL PLAN)-->
 
                 <!-- start : PATIENTS BOOKED PER MONTH -->
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 nopadding hide">
@@ -192,8 +195,81 @@
                 <!-- end : PATIENTS BOOKED PER MONTH -->
 
             </div>
+            <!-- end: USER WIDGETS -->
 
-            <!-- end: PAGE CONTENT-->
+            <!-- start: CLINIC ADMIN WIDGETS -->
+            <div class="row" style="margin-top: 10px;margin-right: -5px;">
+
+                <!-- start:  -->
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 nopadding">
+                    <div class="panel" style="text-align: center; padding-bottom: 2px;padding-top: 0.5px">
+                        <h3 style="color: #3d3d3d">Dados relacionados á clínica</h3>
+                    </div>
+                </div>
+                <!-- end:  -->
+
+                <!-- start: BOOKED TODAY -->
+                <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+                    <div class="panel partition-green" style="text-align: center;padding: 10px">
+                        <h4>Agendados</h4>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
+                        <p>Hoje</p>
+                    </div>
+                </div>
+                <!-- end: BOOKED TODAY -->
+
+                <!-- end: APPOINTMENTS BOOKED YESTERDAY -->
+                <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+                    <div class="panel partition-green" style="text-align: center;padding: 10px">
+                        <h4>Agendados</h4>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
+                        <p>Ontem</p>
+                    </div>
+                </div>
+                <!-- end: APPOINTMENTS BOOKED YESTERDAY -->
+
+                <!-- start: APPOINTMENTS BOOKED THIS WEEK -->
+                <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+                    <div class="panel partition-green" style="text-align: center;padding: 10px">
+                        <h4>Agendados</h4>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <p>Essa semana</p>
+                    </div>
+                </div>
+                <!-- end: APPOINTMENTS BOOKED THIS WEEK -->
+
+                <!-- start: APPOINTMENTS BOOKED LAST WEEK -->
+                <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+                    <div class="panel partition-green" style="text-align: center;padding: 10px">
+                        <h4>Agendados</h4>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <p>Semana passada</p>
+                    </div>
+                </div>
+                <!-- end: APPOINTMENTS BOOKED LAST WEEK -->
+
+                <!-- start: NEW PATIENTS THIS WEEK -->
+                <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+                    <div class="panel partition-green" style="text-align: center;padding: 10px">
+                        <h4>Pacientes Novos</h4>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <p>Essa semana</p>
+                    </div>
+                </div>
+                <!-- end: NEW PATIENTS THIS WEEK -->
+
+                <!-- start: NEW PATIENTS LAST WEEK -->
+                <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+                    <div class="panel partition-green" style="text-align: center;padding: 10px">
+                        <h4>Pacientes Novos</h4>
+                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <p>Semana passada</p>
+                    </div>
+                </div>
+                <!-- end: NEW PATIENTS LAST WEEK -->
+
+            </div>
+            <!-- end: BOOKED TODAY -->
 
         </div>
 

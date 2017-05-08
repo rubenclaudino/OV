@@ -35,33 +35,34 @@
                    ng-if="patient.wheel_chair == '1'"><i class="fa fa-wheelchair"></i></label>
             <!-- end: PATIENT OBS -->
             <div class="clearfix"></div>
+
             <!-- start: SPECIALTY -->
             <div class="patient_specialty">
-                    <span class="label label-default" ng-repeat="speciality in patient.specialty"
+                    <span class="label label-default" ng-repeat="speciality in patient.specialties"
                           style="background: #{[{ speciality.color_code }]} !important;opacity: 0.7;letter-spacing: 1px !important;margin-right: 5px;">{[{ specialty.name }]}</span>
                 <br>
             </div>
             <!-- end: SPECIALTY -->
 
             <!-- start: DENTAL INSURER -->
-            <h5 style="padding-bottom: 5px" ng-if="patient.has_dental_plan">
-                    <span ng-if="patient.has_dental_plan == 1"><i
-                                class="fa fa-folder-o fa-fw"></i>&nbsp; Particular</span>
-                <span ng-if="patient.has_dental_plan == 0"><i
-                            class="fa fa-folder-o fa-fw"></i>&nbsp; Convênio</span>
+            <h5 style="padding-bottom: 5px">
+                {[{ patient.has_dental_plan }]}
             </h5>
             <!-- end: DENTAL INSURER -->
 
-
             <!-- start: ADDRESS -->
-            <h5 style="padding-bottom: 5px">
-                <i class="fa fa-map-marker fa-fw"></i>&nbsp; {[{ patient.address }]} {[{ patient.street_number }]} , {[{ patient.borough }]} , {[{ patient.city }]} {[{ patient.state }]}
+            <h5>
+                <i class="fa fa-map-marker fa-fw"></i>
+                &nbsp;{[{ patient.address }]} {[{ patient.street_number }]}
+                , {[{ patient.borough }]} , {[{ patient.city }]} {[{ patient.state }]}
             </h5>
             <!-- end: ADDRESS -->
 
             <!-- start: PHONE -->
             <h5>
-                <i class="fa fa-phone fa-fw"></i>&nbsp; {[{ patient.phone_1 }]} {[{ patient.phone_1 }]} {[{ patient.phone_landline }]}
+                <i class="fa fa-phone fa-fw"></i>&nbsp; {[{ patient.phone_landline }]}
+                <i class="fa fa-mobile fa-fw"></i>&nbsp; {[{ patient.phone_1 }]}
+                <i class="fa fa-whatsapp fa-fw"></i>&nbsp; {[{ patient.whatsapp_number }]}
             </h5>
             <!-- end: PHONE -->
 
