@@ -16,7 +16,7 @@ class CreateContactEntitiesTable extends Migration
         Schema::create('contact_entities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
             $table->string('borough')->nullable();
@@ -24,7 +24,7 @@ class CreateContactEntitiesTable extends Migration
             $table->string('address')->nullable();
             $table->string('street_number')->nullable();
 
-            $table->string('phone_1');
+            $table->string('phone_1')->nullable();
             $table->string('phone_2')->nullable();
             $table->string('phone_landline')->nullable();
 

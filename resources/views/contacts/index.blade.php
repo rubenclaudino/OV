@@ -7,67 +7,63 @@
         <!-- start: CONTAINER -->
         <div class="container">
 
-            <!-- start: MAIN TABLE PANEL -->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel" style="background: white;margin-top: 10px">
+            <!-- start: DIV -->
+            <div style="margin: 15px 2px">
 
-                <!-- start: TABLE HEADER -->
-                <div class="panel-heading header_t1" style="background: whitesmoke;padding: 0px !important;">
+                <!-- start: PANEL -->
+                <div class="panel">
 
-                    <div class="toolbar row" style="min-height: 100px;background: #f1f1f1;border: none;opacity:0.8;">
+                    <!-- start: PANEL HEAD -->
+                    <div class="panel-head">
 
-                        <div class="col-sm-6 hidden-xs">
+                        <div class="col-lg-6 col-md-6">
 
-                            <div class="table-header">
-                                <h2 style="font-weight: lighter">{{ $title }}</h2>
-                                <p style="font-size: large;">{{ $subtitle }}</p>
-                            </div>
+                            <h2 class="table_title">Contato<br>
+                                <small style="color: #dddddd">Lista de contatos</small>
+                            </h2>
 
                         </div>
 
-                        <div class="col-sm-6 col-xs-12">
+                        <div class="col-lg-6 col-md-6" style="margin-top: 30px">
 
-                            <div class="toolbar-tools pull-right" style="padding-top: 10px;">
+                            <div class="pull-right">
 
-                                <!-- start: TOP NAVIGATION MENU -->
-                                <ul class="nav navbar-right" style="opacity: 1">
-                                    <li>
-                                        <a href="{{ URL::route('contacts.create') }}">
-                                            <i class="fa fa-user"></i> Novo Contato
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="print" data-id="mainInfo">
-                                            <i class="fa fa-print"></i> Imprimir
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- end: TOP NAVIGATION MENU -->
+                                <a class="btn" href="{{ URL::route('contacts.create') }}"
+                                   style="background: whitesmoke">
+                                    <i class="fa fa-user"></i> Novo Contato
+                                </a>
+
+                                <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
+                                    <i class="fa fa-print"></i> Imprimir
+                                </a>
 
                             </div>
 
                         </div>
 
                     </div>
+                    <!-- end: PANEL HEAD -->
 
-                </div>
-                <!-- end: TABLE HEADER -->
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
-                <!-- start: TABLE BODY -->
-                <div class="panel-body">
-
-                    <!-- start: TABLE TYPE -->
-                    <div class="table-responsive">
+                    <!-- start: PANEL BODY -->
+                    <div class="panel-body" id="mainInfo">
 
                         <!-- start: CONTACT TABLE DATA -->
-                        <table class="table datatable table-striped table-hover" id="mainInfo">
+                        <table class="table table-hover table-responsive">
 
-                            <thead>
+                            <thead style="background: whitesmoke">
                             <tr>
                                 <th class="hide"></th>
                                 <th>Contato</th>
                                 <th>Tipo</th>
                                 <th>Telefone</th>
                                 <th>Celular</th>
+                                <th>Observação</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -87,7 +83,8 @@
                                         @elseif($data->contact_type == 1)
                                             <label class="label" style="background: firebrick">Protético</label>
                                         @elseif($data->contact_type == 2)
-                                            <label class="label" style="background: dodgerblue">Instituto de Radiologia</label>
+                                            <label class="label"
+                                                   style="background: dodgerblue">Instituto de Radiologia</label>
                                         @elseif($data->contact_type == 3)
                                             <label class="label" style="background: purple">Outro</label>
                                         @endif
@@ -95,10 +92,11 @@
                                 </td>
                                 <td>{{ $data->phone_landline }}</td>
                                 <td>{{ $data->phone_1 }}</td>
+                                <td>{{ $data->obs }}</td>
                                 <td>
                                     <div class="btn-group hidden-print">
-                                        <button type="button" class="btn btn-sm dropdown-toggle"
-                                                style="background: #dddddd;opacity: 0.9" data-toggle="dropdown"
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                                                style="opacity: 0.9" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                             Opções &nbsp;<span class="caret"></span>
                                         </button>
@@ -121,13 +119,13 @@
                         <!-- start: CONTACT TABLE DATA -->
 
                     </div>
-                    <!-- end: TABLE TYPE -->
+                    <!-- end: PANEL BODY -->
 
                 </div>
-                <!-- end: TABLE BODY -->
+                <!-- end: PANEL -->
 
             </div>
-            <!-- end: MAIN TABLE PANEL -->
+            <!-- end: DIV -->
 
         </div>
         <!-- end: CONTAINER -->

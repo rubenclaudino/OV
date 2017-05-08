@@ -126,6 +126,7 @@
 
             </div>
             <!-- end: MAIN INFORMATION PANEL -->
+            
         </div>
         <!-- end: CONTAINER -->
 
