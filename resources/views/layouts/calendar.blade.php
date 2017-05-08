@@ -355,7 +355,7 @@
                     @else
                         defaultRange.end = moment(end);
                     @endif
-$.subview({
+                $.subview({
                         content: "#newFullEvent",
                         onShow: function () {
                             editFullEvent();
@@ -396,11 +396,8 @@ $.subview({
 
                 },
                 eventDrop: function (event, delta, revertFunc) {
-                    console.log(event);
-                    //alert(event.title + " was dropped on " + moment(event.start).format('X') + "dd" + event.stimestamp);
+                    console.log('Event DRAG n DROP called');
                     function isOverlapping(event) {
-                        console.log("Event Dropped");
-
                         var eventStart = moment(event.start).format('X');
                         var eventEnd = moment(event.end).format('X');
 
@@ -432,8 +429,8 @@ $.subview({
                             $.blockUI({
                                 message: '<i class="fa fa-spinner fa-spin"></i> Updating this event ...'
                             });
-                            //console.log(event);
 
+                            console.log('Event DRAG n DROP AJAX called')
                             $.ajax({
                                 url: APP_URL + '/calendar/' + event.id,
                                 data: {
@@ -470,13 +467,8 @@ $.subview({
                     }
                 },
                 eventResize: function (event, delta, revertFunc) {
-                    // alert(event.title + " end is now " + event.end.format());
-                    // if (!confirm("is this okay?")) {
-                    // 	  revertFunc();
-                    // }
+                    console.log('Entered resize method')
                     function isOverlapping(event) {
-                        console.log("Event Dropped");
-
                         var eventStart = moment(event.start).format('X');
                         var eventEnd = moment(event.end).format('X');
 
@@ -515,6 +507,7 @@ $.subview({
                             });
                             //console.log(event);
 
+                            console.log('Resize appointment AJAX called')
                             $.ajax({
                                 url: APP_URL + '/calendar/' + event.id,
                                 data: {
@@ -549,6 +542,7 @@ $.subview({
                         revertFunc();
                     }
                 },
+
                 @if(isset($agendaSettings))
                 eventConstraint: "businessHours",
                 selectConstraint: "businessHours",
@@ -739,9 +733,8 @@ $.subview({
                 // $('.new-event-tabs li:last-child').children('a').trigger('click');
 
                 for (var i = 0; i < demoCalendar.length; i++) {
-
                     if (demoCalendar[i]._id == el) {
-                        console.log('Demo calendar:')
+                        console.log('Every appointment loaded:')
                         console.log(demoCalendar);
                         angular.element(document.getElementById('appointment_profile')).scope().showData(demoCalendar[i].patient);
                         $('.appt_patient_top').removeClass("hideDetails");
@@ -830,7 +823,6 @@ $.subview({
                         //appointmentSummary(demoCalendar[i]);
 
                     }
-
                 }
 
                 // trigerring summary tab
@@ -872,6 +864,7 @@ $.subview({
                             message: '<i class="fa fa-spinner fa-spin"></i> Deleting this event ...'
                         });
 
+                        console.log('DELETE appointment AJAX called');
                         $.ajax({
                             url: APP_URL + '/calendar/' + el,
                             data: {id: el, "_method": "DELETE", "_token": csrf_token},
@@ -1071,8 +1064,6 @@ $.subview({
                         newEvent.className = "appointment-status-finished";
                     }
 
-                    newEvent.patient_observation = $('.form-full-event .patientObservation').val();
-
                     if (formD.patient_id == '') {
                         // getting non changed event parameters
                         var events = $("#full-calendar").fullCalendar("clientEvents");
@@ -1088,15 +1079,17 @@ $.subview({
                         }
                     } else {
                         //newEvent.id = el;
+                        console.log('ELSE called');
                         newEvent.patient_id = formD.patient_id;
-                        /*newEvent.patient = $.parseJSON($('#patient_json').val());
-                         newEvent.patient_telephone = $('.form-full-event .patient_telephone').val();
-                         newEvent.patient_mobile = $('.form-full-event .patient_mobile').val();
-                         newEvent.patient_observation = $('.form-full-event .patientObservation').val();*/
+                        newEvent.patient = $.parseJSON($('#patient_json').val());
+                        newEvent.patient_telephone = $('.form-full-event .patient_telephone').val();
+                        newEvent.patient_mobile = $('.form-full-event .patient_mobile').val();
+                        newEvent.patient_observation = $('.form-full-event .patientObservation').val();
                     }
                     $.blockUI({
                         message: '<i class="fa fa-spinner fa-spin"></i> Saving Appointment ...'
                     });
+
                     if ($(".form-full-event .event-id").val() !== "") {
                         el = $(".form-full-event .event-id").val();
                         var actual_event = $('#full-calendar').fullCalendar('clientEvents', el);
@@ -1126,7 +1119,6 @@ $.subview({
                                     //$.hideSubview();
                                     toastr.success(data.message);
                                     return false;
-
                                 }
                             }
                         });
@@ -1142,6 +1134,7 @@ $.subview({
                                 $.unblockUI();
                                 if (data.status === "success") {
                                     newEvent.id = data.id;
+                                    console.log(newEvent);
                                     $('.form-full-event')[0].reset();
                                     // manually resetting the patient id
                                     $('.getted_patient_id').val('');

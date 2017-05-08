@@ -1039,21 +1039,21 @@
                             <td class="center">
                                     <span ng-switch="appointment.status">
                                      <span class="label label-default"
-                                           style="background: #5bc0de !important;opacity: 0.8" ng-switch-when="Booked">{[{ appointment.status }]}</span>
+                                           style="background: #5bc0de !important;opacity: 0.8" ng-switch-when="Booked">{[{ appointment.status.name }]}</span>
                                         <span class="label label-default"
                                               style="background: #5cb85c !important;opacity: 0.8"
-                                              ng-switch-when="Confirmed">{[{ appointment.status }]}</span>
+                                              ng-switch-when="Confirmed">{[{ appointment.status.name }]}</span>
                                         <span class="label label-default"
                                               style="background: #f0ad4e !important;opacity: 0.8"
-                                              ng-switch-when="Cancelled">{[{ appointment.status }]}</span>
+                                              ng-switch-when="Cancelled">{[{ appointment.status.name }]}</span>
                                         <span class="label label-default"
                                               style="background: #5e5e5e !important;opacity: 0.8"
-                                              ng-switch-when="Finished ">{[{ appointment.status }]}</span>
+                                              ng-switch-when="Finished ">{[{ appointment.status.name }]}</span>
                                         <span class="label label-default"
                                               style="background: #d9534f !important;opacity: 0.8"
-                                              ng-switch-when="Missed">{[{ appointment.status }]}</span>
+                                              ng-switch-when="Missed">{[{ appointment.status.name }]}</span>
                                      <span class="label label-default"
-                                           style="background: #1b6d85 !important;opacity: 0.8" ng-switch-default>{[{ appointment.status }]}</span>
+                                           style="background: #1b6d85 !important;opacity: 0.8" ng-switch-default>{[{ appointment.status.name }]}</span>
                                     </span>
                             </td>
                             <!-- DENTIST NAME -->
