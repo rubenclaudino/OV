@@ -1,10 +1,28 @@
 @extends('layouts.page')
 @section('content')
+
+    <!-- start: MAIN CONTENT -->
     <div class="main-content">
+
+        <!-- start: CONTAINER -->
         <div class="container">
 
             <!-- start: MAIN INFORMATION PANEL -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel" style="background: white;margin-top: 10px">
+
+                <style>
+                    .image_cont {
+                        width: 30px;
+                        height: 30px;
+                        overflow: hidden;
+                    }
+
+                    .image_cont img {
+                        border-radius: 100px;
+                        width: 100%;
+                        height: auto;
+                    }
+                </style>
 
                 <!-- start: TABLE HEADER -->
                 <div class="panel-heading header_t1" style="background: whitesmoke;padding: 0px !important;">
@@ -15,7 +33,6 @@
 
                             <div class="table-header">
                                 <h2 style="font-weight: lighter">{{ $title }}</h2>
-
                                 <p style="font-size: large;">Resumo de todos clientes</p>
                             </div>
 
@@ -24,6 +41,7 @@
                         <div class="col-sm-6 col-xs-12">
 
                             <div class="toolbar-tools pull-right" style="padding-top: 10px;">
+
                                 <!-- start: TOP NAVIGATION MENU -->
                                 <ul class="nav navbar-right">
                                     <li>
@@ -38,6 +56,7 @@
                                     </li>
                                 </ul>
                                 <!-- end: TOP NAVIGATION MENU -->
+
                             </div>
 
                         </div>
@@ -165,20 +184,10 @@
             </div>
             <!-- end: MAIN INFORMATION PANEL -->
 
-            <style>
-                .image_cont {
-                    width: 30px;
-                    height: 30px;
-                    overflow: hidden;
-                }
-
-                .image_cont img {
-                    border-radius: 100px;
-                    width: 100%;
-                    height: auto;
-                }
-            </style>
-
         </div>
+        <!-- end: CONTAINER -->
+
     </div>
+    <!-- end: MAIN CONTENT -->
+
 @endsection

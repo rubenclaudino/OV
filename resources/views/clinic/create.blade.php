@@ -1,43 +1,43 @@
 @extends('layouts.page')
 @section('content')
 
-        <!-- start: MAIN CONTENT -->
-<div class="main-content">
+    <!-- start: MAIN CONTENT -->
+    <div class="main-content">
 
-    <!-- start: CONTAINER -->
-    <div class="container">
+        <!-- start: CONTAINER -->
+        <div class="container">
 
-        <!-- start: MAIN INFORMATION PANEL -->
-        <div class="panel panel-white" style="margin-top:8px;">
+            <!-- start: MAIN INFORMATION PANEL -->
+            <div class="panel panel-white" style="margin-top:8px;">
 
-            <!-- start: PANEL HEADING -->
-            <div class="panel-heading header_t1" style="margin-bottom: 0px">
-                <h2 class="table_title">Clínica<br>
-                    <small style="color: #dddddd">Criar cadastro da sua clínica</small>
-                </h2>
-                <hr class="custom_sep" style="padding: 0;margin: 0">
-            </div>
-            <!-- end: PANEL HEADING -->
+                <!-- start: PANEL HEADING -->
+                <div class="panel-heading header_t1" style="margin-bottom: 0px">
+                    <h2 class="table_title">Clínica<br>
+                        <small style="color: #dddddd">Criar cadastro da sua clínica</small>
+                    </h2>
+                    <hr class="custom_sep" style="padding: 0;margin: 0">
+                </div>
+                <!-- end: PANEL HEADING -->
 
-            <!-- start: PANEL BODY -->
-            <div class="panel-body" style="margin-top: 0px;padding-top: 0px">
+                <!-- start: PANEL BODY -->
+                <div class="panel-body" style="margin-top: 0px;padding-top: 0px">
 
-                <!-- start: FORM -->
-                <form method="POST" action="{{ url('/clinic') }}" autocomplete="off" enctype="multipart/form-data">
+                    <!-- start: FORM -->
+                    <form method="POST" action="{{ url('/clinic') }}" autocomplete="off" enctype="multipart/form-data">
 
-                    <!-- start: ERRORS -->
-                    @if(count($errors))
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.
-                            <br/>
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-                                <!-- end: ERRORS -->
+                        <!-- start: ERRORS -->
+                        @if(count($errors))
+                            <div class="alert alert-danger">
+                                <strong>Whoops!</strong> There were some problems with your input.
+                                <br/>
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                    @endif
+                    <!-- end: ERRORS -->
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -156,19 +156,19 @@
                         </div>
                         <!-- end: BUTTON INTERACTIONS -->
 
-                </form>
-                <!-- end: FORM -->
+                    </form>
+                    <!-- end: FORM -->
+
+                </div>
+                <!-- end: PANEL BODY -->
 
             </div>
-            <!-- end: PANEL BODY -->
+            <!-- end: MAIN INFORMATION PANEL -->
 
         </div>
-        <!-- end: MAIN INFORMATION PANEL -->
+        <!-- end: CONTAINER -->
 
     </div>
-    <!-- end: CONTAINER -->
-
-</div>
-<!-- end: MAIN CONTENT -->
+    <!-- end: MAIN CONTENT -->
 
 @endsection
