@@ -26,7 +26,7 @@ Route::post(
     '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
 );*/
 
-Route::group(['middleware' => [/*'subscriptions', 'permissions', 'firsttime'*/]], function () {
+Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firsttime'*/]], function () {
     //Route::resource('appointment', 'AppointmentController');
     Route::get('user/invoices', 'UsersController@invoices');
     Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {

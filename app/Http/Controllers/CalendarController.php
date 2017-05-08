@@ -55,7 +55,7 @@ class CalendarController extends Controller
         $treatments = Specialty::pluck('name', 'id')->toJson(); //TreatmentType::pluck('price', 'id')->toJson();
         $treatmentTypesWithPrice = Specialty::all(); // TreatmentType::all();
         $dentalPlans = ClinicDentalPlan::pluck('title', 'id');
-        $appointments = Appointment::where('user_id', $id)->where('clinic_id', $user->clinic_id)->with('patient')->get();
+        $appointments = Appointment::where('user_id', $id)->where('clinic_id', $user->clinic_id)->with(['patient', 'status'])->get();
         $report_models = CustomReport::pluck('name', 'id');
         $specialties = Specialty::orderBy('name')->pluck('name', 'id');
         $appointment_statuses = AppointmentStatus::pluck('name', 'id');
@@ -96,8 +96,6 @@ class CalendarController extends Controller
             $hol->title = "Holiday";
             $hol->start = $data->start_date;
             $hol->end = $data->end_date;
-            //$hol->starttimestamp = $data->starttimestamp;
-            //$hol->endtimestamp = $data->endtimestamp;
             $hol->className = "holiday_event";
             array_push($calendarArray, $hol);
         }
@@ -128,7 +126,7 @@ class CalendarController extends Controller
     public function store(Request $request)
     {
         $request['clinic_id'] = Auth::user()->clinic_id;
-        $appointment = Appointment::create($request->all());
+        $appointment = Appointment::create($request->except('patient', 'patient_telephone', 'patient_mobile', 'patient_observation'));
         return response()->json(['status' => 'success', 'message' => 'Agendado com sucesso!', 'id' => $appointment->id]);
     }
 
