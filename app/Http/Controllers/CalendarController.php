@@ -96,8 +96,6 @@ class CalendarController extends Controller
             $hol->title = "Holiday";
             $hol->start = $data->start_date;
             $hol->end = $data->end_date;
-            //$hol->starttimestamp = $data->starttimestamp;
-            //$hol->endtimestamp = $data->endtimestamp;
             $hol->className = "holiday_event";
             array_push($calendarArray, $hol);
         }

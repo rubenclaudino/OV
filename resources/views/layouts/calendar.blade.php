@@ -741,7 +741,8 @@ $.subview({
                 for (var i = 0; i < demoCalendar.length; i++) {
 
                     if (demoCalendar[i]._id == el) {
-                        //console.log(demoCalendar);
+                        console.log('Demo calendar:')
+                        console.log(demoCalendar);
                         angular.element(document.getElementById('appointment_profile')).scope().showData(demoCalendar[i].patient);
                         $('.appt_patient_top').removeClass("hideDetails");
                         $(".form-full-event").find('.event-id').val(el);
@@ -1021,6 +1022,7 @@ $.subview({
                     $(element).closest('.form-group').removeClass('has-error').addClass('has-success').find('.symbol').removeClass('required').addClass('ok');
                 },
                 submitHandler: function (form) {
+                    console.log('You have SAVED an appointment and called AJAX to save it to DB')
                     var formD = JSON.parse(JSON.stringify($('.form-full-event').serializeObject()));
                     successHandler2.show();
                     errorHandler2.hide();
@@ -1035,7 +1037,7 @@ $.subview({
                     newEvent.title = $(".form-full-event .event-name ").val();
                     newEvent.start = new Date($('.form-full-event .event-start-date').val());
                     newEvent.end = new Date($('.form-full-event .event-end-date').val());
-                    newEvent.startdate = new Date($('.form-full-event .event-start-date').val()).toString('yyyy-M-dd');
+                    newEvent.startdate = new Date($('.form-full-event .event-start-date').val()).toString('yyyy-MM-dd');
                     newEvent.starttimestamp = timestamp1;
                     newEvent.endtimestamp = timestamp2;
                     newEvent.allDay = false;
@@ -1047,7 +1049,6 @@ $.subview({
                     newEvent.specialty_id = formD.specialty_id;
                     newEvent.category = $(".form-full-event .event-categories option:checked").text();
                     //newEvent.specialty = $(".form-full-event .treatment_type option:checked").text();
-                    //newEvent.observation = $('.form-full-event .appointmentObservation').val();
                     newEvent.observation = $('.form-full-event .appointmentObservation').val();
                     newEvent.user_id = <?php echo $dentist_id;?>;
 
@@ -1070,6 +1071,7 @@ $.subview({
                         newEvent.className = "appointment-status-finished";
                     }
 
+                    newEvent.patient_observation = $('.form-full-event .patientObservation').val();
 
                     if (formD.patient_id == '') {
                         // getting non changed event parameters
@@ -1088,9 +1090,9 @@ $.subview({
                         //newEvent.id = el;
                         newEvent.patient_id = formD.patient_id;
                         /*newEvent.patient = $.parseJSON($('#patient_json').val());
-                        newEvent.patient_telephone = $('.form-full-event .patient_telephone').val();
-                        newEvent.patient_mobile = $('.form-full-event .patient_mobile').val();
-                        newEvent.patient_observation = $('.form-full-event .patientObservation').val();*/
+                         newEvent.patient_telephone = $('.form-full-event .patient_telephone').val();
+                         newEvent.patient_mobile = $('.form-full-event .patient_mobile').val();
+                         newEvent.patient_observation = $('.form-full-event .patientObservation').val();*/
                     }
                     $.blockUI({
                         message: '<i class="fa fa-spinner fa-spin"></i> Saving Appointment ...'
@@ -1106,6 +1108,7 @@ $.subview({
                             }
                         }
 
+                        console.log('AJAX called with calendar user ID');
                         $.ajax({
                             url: APP_URL + '/calendar/' + el,
                             method: "PUT",
@@ -1129,6 +1132,7 @@ $.subview({
                         });
 
                     } else {
+                        console.log('AJAX called without calendar user ID')
                         $.ajax({
                             url: APP_URL + '/calendar',
                             method: "POST",
@@ -1189,6 +1193,7 @@ $.subview({
 
         return {
             init: function () {
+                console.log('Calendar initialized');
                 setFullCalendarEvents();
                 runFullCalendar();
 

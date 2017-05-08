@@ -54,6 +54,7 @@
                                                 {!! Form::select('dentist_id', $professionals,$dentist_id,['class' => 'form-control','id' => 'current_dentist_id']) !!}
                                             </div>
                                         @endif
+                                        <br>
                                         <div id='full-calendar'></div>
                                     </div>
                                 </div>
