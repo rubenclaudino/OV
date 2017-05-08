@@ -28,6 +28,8 @@ Route::post(
 
 Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firsttime'*/]], function () {
     //Route::resource('appointment', 'AppointmentController');
+
+    // USER INVOICES
     Route::get('user/invoices', 'UsersController@invoices');
     Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
         return $request->user()->downloadInvoice($invoiceId, [
@@ -35,7 +37,8 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
             'product' => 'Subscription',
         ]);
     });
-    Route::get('users/permission', 'UsersController@permission');
+
+    // USERS
     Route::resource('users', 'UsersController');
 
     Route::get('home/joinus', 'HomeController@joinus');
@@ -43,16 +46,79 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::resource('clinic', 'ClinicController');
     Route::resource('dentists', 'DentistsController');
 
+    // EXAMS
     Route::post('exams/get', 'PatientExamsController@getExams');
     Route::resource('exams', 'PatientExamsController');
 
+    // PICTOGRAM
     Route::post('pictogram/getPictogram', 'PictogramController@getPictogram');
     Route::resource('pictogram', 'PictogramController');
 
+    // PATIENTS
     Route::post('patients/getPatients', 'PatientsController@getPatientList');
     Route::get('patients/stats', 'PatientsController@stats');
     Route::resource('patients', 'PatientsController');
 
+    // Route::get('treatments/treatmentTypes','TreatmentController@treatmentTypes');
+    // Route::post('treatments/addTreatmentType','TreatmentController@addTreatmentTypes');
+    Route::post('treatments/getPatientTreatment', 'TreatmentController@getPatientTreatment');
+    Route::resource('treatments', 'TreatmentController');
+
+    // SPECIALTIES
+    Route::get('specialities/get', 'SpecialityController@get');
+    Route::resource('specialities', 'SpecialityController');
+
+    // REVIEW --- POSSIBLE DELETE
+    Route::resource('treatmenttypes', 'TreatmentTypesController');
+    Route::resource('holidays', 'HolidaysController');
+    Route::resource('recepnists', 'RecepnistsController');
+
+    // DENTAL PLANS
+    Route::get('dentalplans/permission', 'DentalplansController@permission');
+    Route::resource('dentalplans', 'DentalplansController');
+
+    // PERMISSIONS
+    Route::get('permissions/addPermissions', 'PermissionsController@addPermissions');
+    //Route::get('permissions/assign','PermissionsController@assign');
+    Route::get('permissions/assignPermissions', 'PermissionsController@assign');
+    Route::post('permissions/saveRole', 'PermissionsController@saveRole');
+    Route::resource('permissions', 'PermissionsController');
+    Route::get('users/permission', 'UsersController@permission');
+
+    // STOCKCONTROL
+    Route::get('quoteitems', 'StockControlController@quoteItems');
+    Route::get('getItemHistory/{id}', 'StockControlController@getItemHistory');
+    Route::put('updateStock/{id}', 'StockControlController@updateStock');
+    Route::resource('stockcontrol', 'StockControlController');
+
+    // CONTACTS
+    Route::resource('contacts', 'ContactsController');
+
+    // POTENTIAL CLIENTS
+    Route::put('potentialclients/{id}', 'PotentialClientsController@update');
+    Route::resource('potentialclients', 'PotentialClientsController');
+    Route::get('newclients', 'PotentialClientsController@newclients');
+
+    // DEVELOPER UPDATES
+    Route::post('devupdates', 'DevUpdatesController@create');
+    Route::put('devupdates/{id}', 'DevUpdatesController@update');
+    Route::resource('devupdates', 'DevUpdatesController');
+
+    // INVESTORS
+    Route::resource('investors', 'InvestorsController');
+    Route::get('investors', 'InvestorsController@show');
+
+    // REMINDERS
+    Route::put('updateReminderUserStatus/{id}', 'ReminderController@updateReminderUserStatus');
+    Route::put('updateStatus/{id}', 'ReminderController@updateStatus');
+    Route::put('unmarkReminder/{id}', 'ReminderController@unmarkReminder');
+    Route::resource('reminders', 'ReminderController');
+
+    // AGENDA
+    Route::resource('agenda', 'AgendaController');
+    Route::resource('holidays', 'HolidaysController');
+    Route::post('calendar/getTodaysEvents', 'CalendarController@getTodaysEvent');
+    Route::resource('calendar', 'CalendarController');
     Route::get('calendar/appointmentdetails/{id}', 'CalendarController@appointmentdetails');
     Route::put('calendar/updateStatus/{id}', 'CalendarController@updateStatus');
     Route::get('calendar/appointmentTypes', 'CalendarController@appointmentTypes');
@@ -65,56 +131,7 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::post('calendar/getQuotation', 'CalendarController@getQuotation');
     Route::post('calendar/summary', 'CalendarController@summary');
 
-    Route::post('calendar/getTodaysEvents', 'CalendarController@getTodaysEvent');
-    Route::resource('calendar', 'CalendarController');
-
-    Route::resource('holidays', 'HolidaysController');
-    Route::resource('recepnists', 'RecepnistsController');
-
-    // Route::get('treatments/treatmentTypes','TreatmentController@treatmentTypes');
-    // Route::post('treatments/addTreatmentType','TreatmentController@addTreatmentTypes');
-    Route::post('treatments/getPatientTreatment', 'TreatmentController@getPatientTreatment');
-    Route::resource('treatments', 'TreatmentController');
-
-    Route::get('specialities/get', 'SpecialityController@get');
-    Route::resource('specialities', 'SpecialityController');
-
-    Route::resource('treatmenttypes', 'TreatmentTypesController');
-
-    Route::get('dentalplans/permission', 'DentalplansController@permission');
-    Route::resource('dentalplans', 'DentalplansController');
-
-    Route::get('permissions/addPermissions', 'PermissionsController@addPermissions');
-    //Route::get('permissions/assign','PermissionsController@assign');
-    Route::get('permissions/assignPermissions', 'PermissionsController@assign');
-    Route::post('permissions/saveRole', 'PermissionsController@saveRole');
-    Route::resource('permissions', 'PermissionsController');
-
-    Route::get('quoteitems', 'StockControlController@quoteItems');
-    Route::get('getItemHistory/{id}', 'StockControlController@getItemHistory');
-    Route::put('updateStock/{id}', 'StockControlController@updateStock');
-    Route::resource('stockcontrol', 'StockControlController');
-    Route::resource('contacts', 'ItemContactsController');
-
-    Route::put('potentialclients/{id}', 'PotentialClientsController@update');
-    Route::resource('potentialclients', 'PotentialClientsController');
-    Route::get('newclients', 'PotentialClientsController@newclients');
-
-    Route::post('devupdates', 'DevUpdatesController@create');
-    Route::put('devupdates/{id}', 'DevUpdatesController@update');
-    Route::resource('devupdates', 'DevUpdatesController');
-
-    Route::resource('investors', 'InvestorsController');
-    Route::get('investors', 'InvestorsController@show');
-
-    Route::put('updateReminderUserStatus/{id}', 'ReminderController@updateReminderUserStatus');
-    Route::put('updateStatus/{id}', 'ReminderController@updateStatus');
-    Route::put('unmarkReminder/{id}', 'ReminderController@unmarkReminder');
-    Route::resource('reminders', 'ReminderController');
-
-    Route::resource('agenda', 'AgendaController');
-    Route::resource('holidays', 'HolidaysController');
-
+    // USER FIRST TIME
     Route::resource('firsttime', 'FirstimeController');
 
 });

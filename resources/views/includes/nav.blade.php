@@ -13,6 +13,7 @@
 
             <!-- start: USER INTERACTIONS -->
             <div class="user-profile border-top padding-horizontal-10 block">
+
                 <div class="padding-vertical-20">
                     <div class="">
                         <div class="profile_block">
@@ -39,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- end: USER INTERACTIONS -->
 
@@ -153,13 +155,11 @@
                     <a href="javascript:void(0)"><i class="fa fa-users"></i><span class="title"> Pacientes </span><i
                                 class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
-                        <?php if($user->hasRole('admin')){ ?>
                         <li class="">
                             <a href="{{ url('/patients/stats') }}">
                                 <span class="title"> Estatísticas </span>
                             </a>
                         </li>
-                        <?php } ?>
                         <li class="">
                             <a href="{{ url('/patients') }}">
                                 <span class="title"> Lista de Pacientes </span>
@@ -177,7 +177,7 @@
 
                 <!-- start: TREATMENTS -->
                 <?php if($user->isAdmin() || $user->hasPermission('treatmenttypescontroller.index')){ ?>
-                <li class="<?php if (isset($activeClass)) {
+                <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'treatmenttypes') {
                         echo 'active open';
                     }
@@ -226,7 +226,7 @@
                         </li>
                         <li>
                             <a href="{{ url('/')}}/dentalplans/create">
-                                <span class="title"> Registrar Convênio </span>
+                                <span class="title"> Cadastrar Convênio </span>
                             </a>
                         </li>
                     </ul>
@@ -236,7 +236,7 @@
 
                 <!-- start: REMINDERS -->
                 <?php if($user->isAdmin() || $user->hasPermission('remindercontroller.index')){ ?>
-                <li class="<?php if (isset($activeClass)) {
+                <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'reminders') {
                         echo 'active open';
                     }
@@ -256,7 +256,7 @@
 
                 <!-- start: PAYMENTS -->
                 <?php if($user->isAdmin() || $user->hasPermission('paymentcontroller.index')){ ?>
-                <li class="<?php if (isset($activeClass)) {
+                <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'payments') {
                         echo 'active open';
                     }
@@ -286,7 +286,7 @@
 
                 <!-- start: PERMISSION SETTINGS -->
                 <?php  if($user->isAdmin()){ ?>
-                <li class="<?php if (isset($activeClass)) {
+                <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'permissions') {
                         echo 'active open';
                     }
@@ -329,18 +329,23 @@
                                 <span class="title"> Lista de Itens </span>
                             </a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a href="{{ route('stockcontrol.create') }}">
                                 <span class="title"> Registrar Item </span>
                             </a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a href="{{ url('/quoteitems') }}">
                                 <span class="title"> Gerar Orçamento </span>
                             </a>
                         </li>
                     </ul>
                 </li>
+
+                <?php } ?>
+            <!-- end: STOCK CONTROL -->
+
+                <!-- start: CONTACTS -->
                 <li class="<?php if (isset($activeClass)) {
                     if ($activeClass == 'contacts') {
                         echo 'active open';
@@ -349,12 +354,11 @@
                     <a href="{{ route('contacts.index') }}"><i class="fa fa-cog"></i> <span
                                 class="title"> Contatos </span></a>
                 </li>
-                <?php } ?>
-            <!-- end: STOCK CONTROL -->
+                <!-- end: CONTACTS -->
 
                 <!-- start: SELECT LISTS AVIALBLE -->
                 <?php if($user->isAdmin()){ ?>
-                <li class="<?php if (isset($activeClass)) {
+                <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'settings') {
                         echo 'active open';
                     }
@@ -374,7 +378,7 @@
 
                 <!-- start: INVESTORS -->
                 <?php if($user->isAdmin() || $user->hasPermission('potentialclientscontroller.index')){ ?>
-                <li class="<?php if (isset($activeClass)) {
+                <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'potentialclients') {
                         echo 'active open';
                     }
@@ -416,7 +420,7 @@
 
                 <!-- start: FINANCE -->
                 <?php if($user->isAdmin() || $user->hasPermission('paymentcontroller.index')){ ?>
-                <li style="display:none;" class="<?php if (isset($activeClass)) {
+                <li style="display:none;" class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'finances') {
                         echo 'active open';
                     }

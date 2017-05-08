@@ -1,7 +1,10 @@
 <!-- start: PAGESLIDE RIGHT -->
 <div id="pageslide-right" class="pageslide slide-fixed inner">
+
    <div class="right-wrapper">
+
       <ul class="nav nav-tabs nav-justified" id="sidebar-tab">
+
          <li class="active">
             <a href="#users" role="tab" data-toggle="tab"><i class="fa fa-users"></i></a>
          </li>
@@ -11,8 +14,11 @@
          <li>
             <a href="#settings" role="tab" data-toggle="tab"><i class="fa fa-gear"></i></a>
          </li>
+
       </ul>
+
       <div class="tab-content">
+
          <div class="tab-pane" id="notifications">
             <div class="notifications">
                <div class="pageslide-title">
@@ -62,6 +68,7 @@
                </div>
             </div>
          </div>
+
          <div class="tab-pane" id="settings">
             <h5 class="sidebar-title">General Settings</h5>
             <ul class="media-list">
@@ -112,7 +119,9 @@
                </button>
             </div>
          </div>
+
       </div>
+
       <!--<div class="hidden-xs" id="style_selector">
          <div id="style_selector_container">
             <div class="pageslide-title">
@@ -195,5 +204,6 @@
          <div class="style-toggle open"></div>
       </div>-->
    </div>
+
 </div>
 <!-- end: PAGESLIDE RIGHT -->

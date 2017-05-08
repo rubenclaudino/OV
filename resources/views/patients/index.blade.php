@@ -118,15 +118,10 @@
                             </td>
                             <!-- SPECIALTIES -->
                             <td>
-                                @if($patient->speciality)
-                                    @foreach($patient->speciality as $d)
+                                    @foreach($patient->specialties as $specialty)
                                         <label class="label label-warning"
-                                               style="background: #{{$d->color_code}} !important;opacity: 0.7;">{{ $d->title }}</label>
+                                               style="background: #{{$specialty->color}} !important;opacity: 0.7;">{{ $specialty->name }}</label>
                                     @endforeach
-                                @else
-                                    <label class="label label-warning"
-                                           style="background: brown !important;opacity: 0.7;">Clínica Geral</label>
-                                @endif
                             </td>
                             <!-- DENTAL PLAN -->
                             <td>

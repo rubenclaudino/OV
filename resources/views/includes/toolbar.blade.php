@@ -1,11 +1,15 @@
 <div class="toolbar row">
+
     <div class="col-sm-6 hidden-xs">
+
         <div class="page-header">
             <h1>{{ $title }}
                 <small>{{ $subtitle }}</small>
             </h1>
         </div>
+
     </div>
+
     <div class="col-sm-6 col-xs-12">
         <a href="#" class="back-subviews">
             <i class="fa fa-chevron-left"></i> BACK
@@ -121,4 +125,5 @@
             <!-- end: TOP NAVIGATION MENU -->
         </div>
     </div>
+
 </div>

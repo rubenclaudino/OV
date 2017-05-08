@@ -8,7 +8,7 @@ use App\ContactEntity;
 use App\Contact;
 use App\Address;
 
-class ItemContactsController extends Controller
+class ContactsController extends Controller
 {
 
     public function index()
@@ -19,7 +19,7 @@ class ItemContactsController extends Controller
 
         $contatos = ContactEntity::all()->sortByDesc('name');
 
-        return view('stockcontrol.contacts.index', compact('title', 'subtitle', 'activeClass', 'contatos'));
+        return view('contacts.index', compact('title', 'subtitle', 'activeClass', 'contatos'));
     }
 
     public function create()
@@ -28,7 +28,7 @@ class ItemContactsController extends Controller
         $subtitle = "Cadastrar novo contato";
         $activeClass = "contacts";
 
-        return view('stockcontrol.contacts.create', compact('title', 'subtitle', 'activeClass'));
+        return view('contacts.create', compact('title', 'subtitle', 'activeClass'));
     }
 
     public function store(Request $request)
@@ -52,7 +52,7 @@ class ItemContactsController extends Controller
 
         $contact = ContactEntity::find($id);
 
-        return view('stockcontrol.contacts.edit', compact('title', 'subtitle', 'activeClass', 'contact'));
+        return view('contacts.edit', compact('title', 'subtitle', 'activeClass', 'contact'));
     }
 
     public function update(Request $request, $id)

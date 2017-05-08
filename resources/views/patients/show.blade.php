@@ -107,10 +107,7 @@
                                         <!-- start: AGE -->
                                         <h5>
                                             <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;
-                                            <?php
-                                            $from = new DateTime(str_replace('/', '-', $patient->date_of_birth));
-                                            $to = new DateTime('today');
-                                            echo $from->diff($to)->y;?> anos
+
                                         </h5>
                                         <!-- end: AGE -->
 
