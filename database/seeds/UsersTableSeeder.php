@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
                 'first_name'         => 'Mariana',
                 'last_name'          => 'de Oliveira',
                 'email'              => 'mariana.oliveira@email.com',
-                'password'           => bcrypt('123456'),
+                'password'           => bcrypt('mari2020'),
                 'zip_code'           => null,
                 'address'            => null,
                 'street_number'      => null,

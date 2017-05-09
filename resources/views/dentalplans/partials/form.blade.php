@@ -118,7 +118,7 @@
                     <!-- end: CEP -->
 
                     <!-- start: CITY -->
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                  <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="city_id">Cidade</label>
                             {!! Form::select('city_id',$cities,'',['class' => 'select2picker select_city']) !!}

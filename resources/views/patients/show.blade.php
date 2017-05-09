@@ -106,7 +106,7 @@
 
                                         <!-- start: AGE -->
                                         <h5>
-                                            <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;
+                                            <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;&nbsp; -&nbsp;
                                         </h5>
                                         <!-- end: AGE -->
 
@@ -129,6 +129,8 @@
                                             &nbsp;@endisset
                                             @isset ($patient->phone_1)
                                             <i class="fa fa-mobile fa-fw"></i>&nbsp; {{ $patient->phone_1 }}
+                                            @else
+                                                <i class="fa fa-mobile fa-fw"></i> &nbsp; -
                                             @endisset
                                             @isset ($patient->whatsapp_number)
                                             <i class="fa fa-whatsapp fa-fw"></i>&nbsp; {{ $patient->whatsapp_number }}
@@ -577,16 +579,7 @@
                                         <td>{{ date('D d/m/y', strtotime($appointment->startdate)) }}</td>
                                         <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                         <td>
-<<<<<<< HEAD
                                             {{ $appointment->user->fullName() }}
-=======
-                                            @if ($appointment->user->gender == 0)
-                                                <small>Dr.</small> @else
-                                                <small>Dra.
-                                                </small>
-                                            @endif
-                                            {{ $appointment->user->first_name }} {{ $appointment->user->last_name }}
->>>>>>> 6264805264f629afbb8e23aa328e0552d18ac501
                                         </td>
                                         <td style="font-size:0.9em">
                                             <label class="label label-warning"
@@ -1128,13 +1121,9 @@
                                                 Ùltimo agendamento á
                                             </td>
                                             <td>
-<<<<<<< HEAD
-                                                {{--- str_limit($appointments->max()->start,10) --}}
-=======
                                                 @if($appointments != null)
                                                     {{ str_limit($appointments->max()->start,10) }}
                                                 @endif
->>>>>>> 6264805264f629afbb8e23aa328e0552d18ac501
                                             </td>
                                         </tr>
                                         <!-- MONEY EARNED FROM PATIENT -->

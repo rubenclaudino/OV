@@ -11,16 +11,9 @@ class CitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
-
-        $limit = 50;
-
-        for ($i = 0; $i < $limit; $i++) {
-            DB::table('cities')->insert([
-                'name' => $faker->city,
-                'states_id' => \App\State::all()->random()->id
-            ]);
-        }
+        DB::table('cities')->insert([
+            ['name' => 'Uberlândia', 'states_id' => 13]
+        ]);
 
     }
 }
