@@ -1039,7 +1039,7 @@
                     newEvent.className = formD.appointment_status_id;
                     newEvent.appointment_status_id = formD.appointment_status_id;
                     newEvent.appointment_type_id = formD.appointment_type_id;
-                    newEvent.dental_plan_id = formD.dental_plan_id;
+                    newEvent.clinic_dental_plan_id = formD.clinic_dental_plan_id;
                     newEvent.specialty_id = formD.specialty_id;
                     newEvent.category = $(".form-full-event .event-categories option:checked").text();
                     //newEvent.specialty = $(".form-full-event .treatment_type option:checked").text();

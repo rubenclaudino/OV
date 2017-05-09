@@ -100,7 +100,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Convênio</h4>
-                        <h1>0</h1>
+                        <h1>{{$patients_with_dental_plan}}</h1>
                         <p>-</p>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Particular</h4>
-                        <h1>0</h1>
+                        <h1>{{$patients->count() - $patients_with_dental_plan}}</h1>
                         <p>-</p>
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendados</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
+                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
                         <p>Hoje</p>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendados</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
+                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
                         <p>Ontem</p>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendados</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Essa semana</p>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendados</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Semana passada</p>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Pacientes Novos</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Essa semana</p>
                     </div>
                 </div>
@@ -262,7 +262,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Pacientes Novos</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Semana passada</p>
                     </div>
                 </div>
