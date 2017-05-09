@@ -1121,9 +1121,7 @@
                                                 Ùltimo agendamento á
                                             </td>
                                             <td>
-                                                @if($appointments != null)
-                                                    {{ str_limit($appointments->max()->start,10) }}
-                                                @endif
+                                                {{-- str_limit($appointments->max()->start,10) --}}
                                             </td>
                                         </tr>
                                         <!-- MONEY EARNED FROM PATIENT -->
