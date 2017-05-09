@@ -36,7 +36,7 @@
 
                             <div class="pull-right">
 
-                                <a class="btn" href="{{ URL::route('contacts.create') }}"
+                                <a class="btn" href="#"
                                    style="background: whitesmoke">
                                     <i class="fa fa-filter"></i> Filtros
                                 </a>
@@ -62,7 +62,7 @@
                     <div class="panel-body">
 
                         <!-- start: PATIENT TABLE -->
-                        <table class="table table-hover table-responsive table-condensed datatable" id="mainInfo">
+                        <table class="table table-hover table-condensed datatable" id="mainInfo">
 
                             <!-- start: COLUMN INFORMATION -->
                             <thead style="background: whitesmoke">

@@ -12,7 +12,8 @@ class CitiesTableSeeder extends Seeder
     public function run()
     {
         DB::table('cities')->insert([
-            ['name' => 'Uberlândia', 'states_id' => 13]
+            ['name' => 'Uberlândia', 'states_id' => 13],
+            ['name' => 'São Paulo', 'states_id' => 25],
         ]);
 
     }

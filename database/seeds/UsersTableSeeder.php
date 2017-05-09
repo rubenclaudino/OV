@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
             ,
             [
                 'first_name'         => 'Luciene',
-                'last_name'          => 'Oliveira',
+                'last_name'          => 'de Oliveira',
                 'email'              => 'Luciene@email.com',
                 'password'           => bcrypt('123456'),
                 'zip_code'           => null,
@@ -114,8 +114,8 @@ class UsersTableSeeder extends Seeder
             ,
             [
                 'first_name'         => 'Daiane',
-                'last_name'          => '',
-                'email'              => 'Daiane@email.com',
+                'last_name'          => 'Divina',
+                'email'              => 'Daiane_denize_lopez@hotmail.com',
                 'password'           => bcrypt('123456'),
                 'zip_code'           => null,
                 'address'            => null,
@@ -147,7 +147,7 @@ class UsersTableSeeder extends Seeder
             ,
             [
                 'first_name'         => 'Patricia',
-                'last_name'          => '',
+                'last_name'          => 'Sousa',
                 'email'              => 'Patricia@email.com',
                 'password'           => bcrypt('123456'),
                 'zip_code'           => null,
@@ -213,8 +213,8 @@ class UsersTableSeeder extends Seeder
             ,
             [
                 'first_name'         => 'Carla',
-                'last_name'          => '',
-                'email'              => 'Carla@email.com',
+                'last_name'          => 'Reis Machado',
+                'email'              => 'Carlaremac@gmail.com',
                 'password'           => bcrypt('123456'),
                 'zip_code'           => null,
                 'address'            => null,
@@ -279,7 +279,7 @@ class UsersTableSeeder extends Seeder
             ,
             [
                 'first_name'         => 'Rodrigo',
-                'last_name'          => '',
+                'last_name'          => 'Reis',
                 'email'              => 'Rodrigo@email.com',
                 'password'           => bcrypt('123456'),
                 'zip_code'           => null,
