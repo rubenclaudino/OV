@@ -23,15 +23,7 @@
                     if (!empty($role)) {
                         foreach ($roles as $data) {
                             if ($role->role_id == $data->id) {
-                                if ($data->id == 2) {
-                                    echo "Admin Account";
-                                } else if ($data->id == 1) {
-                                    echo "Super Admin Account";
-                                } else if ($data->id == 8) {
-                                    echo "Investidor";
-                                } else {
-                                    echo "Limited Account";
-                                }
+                                echo $data->display_name;
                             }
                         }
                     }

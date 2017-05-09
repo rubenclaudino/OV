@@ -1,22 +1,56 @@
 @extends('layouts.page')
 @section('content')
 
-    <!-- start: MAIN CONTAINER -->
+    <!-- start: MAIN CONTENT -->
     <div class="main-content">
 
         <!-- start: CONTAINER -->
         <div class="container">
 
-            <!-- start: MAIN INFORMATION PANEL -->
-            <div class="panel panel-white" style="margin-top:8px;">
+            <!-- start: DIV -->
+            <div style="margin: 15px 2px">
 
-                <!-- start: TABLE HEADER -->
-                <div class="panel-heading table_tab_color">
-                    <h2 class="table_title">{{ $title }}</h2>
+            <!-- start: PANEL -->
+            <div class="panel">
+
+                <!-- start: PANEL HEAD -->
+                <div class="panel-head">
+
+                    <div class="col-lg-6 col-md-6">
+
+                        <h2 class="table_title">{{ $title }}<br>
+                            <small style="color: #dddddd">...</small>
+                        </h2>
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-6" style="margin-top: 30px">
+
+                        <div class="pull-right">
+
+                            <a class="btn" href="{{ URL::route('contacts.create') }}"
+                               style="background: whitesmoke">
+                                <i class="fa fa-user"></i> Novo Contato
+                            </a>
+
+                            <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
+                                <i class="fa fa-print"></i> Imprimir
+                            </a>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <!-- end: TABLE HEADER -->
+                <!-- end: PANEL HEAD -->
 
-                <!-- start: BODY -->
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <!-- start: PANEL BODY -->
                 <div class="panel-body">
 
                     <!-- start: CLINICS REGISTERED -->
@@ -93,10 +127,13 @@
                     <!-- end: CLINICS REGISTERED -->
 
                 </div>
-                <!-- end: BODY -->
+                <!-- end: PANEL BODY -->
 
             </div>
-            <!-- end: MAIN INFORMATION PANEL -->
+            <!-- end: PANEL -->
+
+            </div>
+            <!-- end: DIV -->
 
         </div>
         <!-- end: CONTAINER -->

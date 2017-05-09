@@ -7,8 +7,8 @@
         <!-- start: CONTAINER -->
         <div class="container">
 
-            <!-- start: MAIN TABLE PANEL -->
-            <div style="margin-top: 10px">
+            <!-- start: DIV -->
+            <div style="margin: 15px 2px">
 
                 <!-- start: PANEL -->
                 <div class="panel">
@@ -214,7 +214,7 @@
                 <!-- end: PANEL -->
 
             </div>
-            <!-- end: MAIN TABLE PANEL -->
+            <!-- end: DIV -->
 
         </div>
         <!-- end: CONTAINER -->

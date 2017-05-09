@@ -35,16 +35,16 @@ class ClinicsTableSeeder extends Seeder
                 'owner_name'      => 'Luciene Oliveira Resende',
                 'borough'         => 'Granada',
                 'state'           => 'MG',
-                'zip_code'        => $faker->countryCode,
+                'zip_code'        => '00000-000',
                 'address'         => 'Alameda Raul Petronilho Pádua',
                 'street_number'   => 144,
                 'phone_1'         => '3432372002',
-                'phone_2'         => $faker->phoneNumber,
-                'fax'             => $faker->phoneNumber,
-                'email'           => $faker->companyEmail,
-                'website'         => $faker->safeEmailDomain,
-                'type'            => $faker->word,
-                'status'          => $faker->word,
+                'phone_2'         => null,
+                'fax'             => null,
+                'email'           => 'luciene@email.com',
+                'website'         => null,
+                'type'            => '1',
+                'status'          => '1',
                 'subscription_id' => 2
             ]
         ]);
