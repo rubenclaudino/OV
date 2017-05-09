@@ -579,7 +579,20 @@
                                         <td>{{ date('D d/m/y', strtotime($appointment->startdate)) }}</td>
                                         <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                         <td>
+<<<<<<< HEAD
                                             {{ $appointment->user->fullName() }}
+=======
+
+                                            {{ $appointment->user->fullName() }}
+
+                                            @if ($appointment->user->gender == 0)
+                                                <small>Dr.</small> @else
+                                                <small>Dra.
+                                                </small>
+                                            @endif
+                                            {{ $appointment->user->first_name }} {{ $appointment->user->last_name }}
+
+>>>>>>> 3a1bc063940925c94f716217417c8234ff8d8b50
                                         </td>
                                         <td style="font-size:0.9em">
                                             <label class="label label-warning"

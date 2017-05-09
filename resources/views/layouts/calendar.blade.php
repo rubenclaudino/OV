@@ -15,11 +15,11 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{$title}} | {{ config('app.name', 'Rapido') }}</title>
+    <title>{{$title}} | Odontovision</title>
     @include('includes.stylesheets')
 
 
-    <script src="{{ url('/') }}/plugins/angular/angular.min.js"></script>
+    <script src="{{ url('/plugins/angular/angular.min.js') }}"></script>
     <script>
         var app = angular.module('myApp', []).config(function ($interpolateProvider) {
             $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
@@ -203,8 +203,7 @@
         return o;
     };
 
-    var tArray = <?php print_r($treatments);?>;
-
+    var tArray = '<?php print_r($treatments);?>';
     $parsedArray = JSON.parse('<?php print_r($calendarArray);?>');
     var mainEventObject = [];
     Date.prototype.addHours = function (h) {
@@ -228,7 +227,8 @@
 
             demoCalendar = $parsedArray;
         };
-        //function to initiate Full Calendar
+
+        //function to initiate Full Calendar - called only on init - filling full-calendar class
         var runFullCalendar = function () {
             $(".add-event").off().on("click", function () {
                 subViewElement = $(this);
@@ -259,7 +259,6 @@
                     revertDuration: 50 //  original position after the drag
                 });
             });
-
 
             /* initialize the calendar
              -----------------------------------------------------------------*/
@@ -629,7 +628,6 @@
             demoCalendar = $("#full-calendar").fullCalendar("clientEvents");
         };
 
-
         // editing calendar event
         /**
          * @param data-id
@@ -637,6 +635,7 @@
          */
 
         $('body').on('click', '.fc-time .fa-pencil', function () {
+            console.log('Called on pencil click');
             var id = $(this).attr('data-id');
 
             var calEvent = $("#full-calendar").fullCalendar('clientEvents', id)[0];
@@ -660,7 +659,7 @@
 
 
         var editFullEvent = function (el) {
-            console.log('editing triggered')
+            console.log('Added EDIT event to appointment')
             $('body').on('click', '.event-holiday', function () {
                 return false;
             });
