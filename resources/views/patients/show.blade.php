@@ -107,7 +107,6 @@
                                         <!-- start: AGE -->
                                         <h5>
                                             <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;
-
                                         </h5>
                                         <!-- end: AGE -->
 
@@ -163,7 +162,7 @@
                      </div>
                          <!-- end: RELIABILITY -->
 
-                         <!-- start: TOTAL RELIABILITY -->
+                         <!-- start: TOTAL APPOINTMENTS -->
                     <div class="col-lg-12 col-md-12">
                         <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
                               <i class="fa fa-calendar fa-fw"></i>
@@ -1133,7 +1132,7 @@
                                                 {{--- str_limit($appointments->max()->start,10) --}}
 =======
                                                 @if($appointments != null)
-                                                {{ str_limit($appointments->max()->start,10) }}
+                                                    {{ str_limit($appointments->max()->start,10) }}
                                                 @endif
 >>>>>>> 6264805264f629afbb8e23aa328e0552d18ac501
                                             </td>
