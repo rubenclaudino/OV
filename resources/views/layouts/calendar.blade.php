@@ -550,7 +550,7 @@
                         start: '{{ $agendaSettings->start }}',
                         end: '{{ $agendaSettings->end }}',
                         @if(isset($agendaSettings->days))
-                        dow: [{{ implode(',', $agendaSettings->days)}}]
+                        dow: [{{ implode(',', $agendaSettings->days)}}],
                         @else
                         dow: ["1", "2", "3", "4", "5", "6", "0"]
                         @endif
@@ -564,8 +564,9 @@
                 @endif
                         @endif
                 allDaySlot: false,
-                eventRender: function (event, element, view) {
 
+                // called for each appointment reserved, and when creating new event
+                eventRender: function (event, element, view) {
                     var calendar = $('#full-calendar').fullCalendar('getCalendar');
                     var view = calendar.view;
                     var start = moment(view.start._d).format('YYYY-MM-DD');
@@ -610,7 +611,6 @@
                         moment(start, "YYYY-MM-DD").add(0, 'days').format('YYYY-MM-DD'),
                         end];
 
-
                     for (var j = 0; j < daysCount.length; j++) {
                         var count = 0;
                         for (var i = 0; i < demoCalendar.length; i++) {
@@ -620,9 +620,7 @@
                         }
                         $("thead").find("[data-date='" + daysCount[j] + "'] .appt_count").remove();
                         $("thead").find("[data-date='" + daysCount[j] + "']").prepend("<span class='badge badge-primary appt_count'>" + count + "</span>");
-
                     }
-
                 }
             });
             demoCalendar = $("#full-calendar").fullCalendar("clientEvents");
@@ -634,8 +632,8 @@
          * getting from fc-event in events
          */
 
+        // trigger edit event by clicking on pencil icon
         $('body').on('click', '.fc-time .fa-pencil', function () {
-            console.log('Called on pencil click');
             var id = $(this).attr('data-id');
 
             var calEvent = $("#full-calendar").fullCalendar('clientEvents', id)[0];

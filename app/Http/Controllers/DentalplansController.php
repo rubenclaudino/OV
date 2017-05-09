@@ -36,7 +36,8 @@ class DentalplansController extends Controller
     {
         $request['clinic_id'] = Auth::user()->clinic_id;
         ClinicDentalPlan::create($request->all());
-        return response()->json(['status' => 'success', 'message' => 'Dental Plan Created!']);
+        return redirect('dentalplans');
+            //response()->json(['status' => 'success', 'message' => 'Dental Plan Created!']);
     }
 
     public function show($id)
