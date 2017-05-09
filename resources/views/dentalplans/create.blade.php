@@ -10,6 +10,15 @@
             <!-- start: DIV -->
             <div style="margin: 15px 2px">
 
+<<<<<<< HEAD
+                <!-- start: FORM -->
+            {{ Form::open(['route' => 'dentalplans.store', 'class' => 'form']) }}
+
+            @include('dentalplans.partials.form')
+
+            {{Form::close()}}
+            <!-- end: FORM -->
+=======
                 <!-- start: PANEL -->
                 <div class="panel">
 
@@ -208,6 +217,7 @@
 
                 </div>
                 <!-- end: PANEL -->
+>>>>>>> 6264805264f629afbb8e23aa328e0552d18ac501
 
             </div>
             <!-- end: DIV -->

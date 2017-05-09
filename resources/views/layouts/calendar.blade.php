@@ -660,6 +660,7 @@
 
 
         var editFullEvent = function (el) {
+            console.log('editing triggered')
             $('body').on('click', '.event-holiday', function () {
                 return false;
             });
@@ -1038,7 +1039,7 @@
                     newEvent.className = formD.appointment_status_id;
                     newEvent.appointment_status_id = formD.appointment_status_id;
                     newEvent.appointment_type_id = formD.appointment_type_id;
-                    newEvent.dental_plan_id = formD.dental_plan_id;
+                    newEvent.clinic_dental_plan_id = formD.clinic_dental_plan_id;
                     newEvent.specialty_id = formD.specialty_id;
                     newEvent.category = $(".form-full-event .event-categories option:checked").text();
                     //newEvent.specialty = $(".form-full-event .treatment_type option:checked").text();
@@ -1116,7 +1117,7 @@
                                     console.log(newEvent);
                                     $('#full-calendar').fullCalendar('renderEvent', newEvent, true);
                                     demoCalendar = $("#full-calendar").fullCalendar("clientEvents");
-                                    //$.hideSubview();
+                                    $.hideSubview();
                                     toastr.success(data.message);
                                     return false;
                                 }

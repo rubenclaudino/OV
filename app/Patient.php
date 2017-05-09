@@ -28,9 +28,9 @@ class Patient extends Model
         return $this->hasMany('App\Pictogram');
     }
 
-    public function dental_plans()
+    public function patient_dental_plans()
     {
-        return $this->hasMany('App\DentalPlan');
+        return $this->hasMany('App\PatientDentalPlan');
     }
 
     public function consultations()

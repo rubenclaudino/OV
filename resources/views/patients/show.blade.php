@@ -571,17 +571,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @if($appointments != null)
                                 @foreach($appointments as $appointment)
                                     <tr>
                                         <td>{{ date('D d/m/y', strtotime($appointment->startdate)) }}</td>
-                                        <td>{{ date('H:i', strtotime($appointment->starttime)) }}</td>
+                                        <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                         <td>
+<<<<<<< HEAD
+                                            {{ $appointment->user->fullName() }}
+=======
                                             @if ($appointment->user->gender == 0)
                                                 <small>Dr.</small> @else
                                                 <small>Dra.
                                                 </small>
                                             @endif
                                             {{ $appointment->user->first_name }} {{ $appointment->user->last_name }}
+>>>>>>> 6264805264f629afbb8e23aa328e0552d18ac501
                                         </td>
                                         <td style="font-size:0.9em">
                                             <label class="label label-warning"
@@ -609,6 +614,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                    @endif
                                 </tbody>
 
                             </table>
@@ -1122,9 +1128,13 @@
                                                 Ùltimo agendamento á
                                             </td>
                                             <td>
+<<<<<<< HEAD
+                                                {{--- str_limit($appointments->max()->start,10) --}}
+=======
                                                 @if($appointments != null)
                                                     {{ str_limit($appointments->max()->start,10) }}
                                                 @endif
+>>>>>>> 6264805264f629afbb8e23aa328e0552d18ac501
                                             </td>
                                         </tr>
                                         <!-- MONEY EARNED FROM PATIENT -->
