@@ -74,7 +74,7 @@
                         <?php if($user->hasPermission('calendarcontroller.index')){ ?>
                         <li class="">
                             <a href="{{ url('/calendar') }}">
-                                <span class="title">Agendar</span>
+                                <span class="title">Agenda</span>
                             </a>
                         </li>
                     <!-- <li class="">
