@@ -39,7 +39,7 @@
                 <!-- start: APPOINTMENTS BOOKED TODAY -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendados</h4>
+                        <h4>Agendamentos</h4>
                         <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
                         <p>Hoje</p>
                     </div>
@@ -49,7 +49,7 @@
                 <!-- end: APPOINTMENTS BOOKED YESTERDAY -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendados</h4>
+                        <h4>Agendamentos</h4>
                         <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
                         <p>Ontem</p>
                     </div>
@@ -59,7 +59,7 @@
                 <!-- start: APPOINTMENTS BOOKED THIS WEEK -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendados</h4>
+                        <h4>Agendamentos</h4>
                         <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Essa semana</p>
                     </div>
@@ -69,7 +69,7 @@
                 <!-- start: APPOINTMENTS BOOKED LAST WEEK -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendados</h4>
+                        <h4>Agendamentos</h4>
                         <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Semana passada</p>
                     </div>
