@@ -227,12 +227,12 @@
                                 <strong>Agendamentos</strong>
                             </a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a data-toggle="tab" href="#exam">
                                 <strong>Exames</strong>
                             </a>
                         </li>
-                        <li>
+                        <li class="hide">
                             <a data-toggle="tab" href="#health">
                                 <strong>Anamnese</strong>
                             </a>
@@ -577,12 +577,12 @@
                                         <td>{{ date('D d/m/y', strtotime($appointment->startdate)) }}</td>
                                         <td>{{ date('H:i', strtotime($appointment->starttime)) }}</td>
                                         <td>
-                                            @if ($appointment->user->first()->gender == 0)
+                                            @if ($appointment->user->gender == 0)
                                                 <small>Dr.</small> @else
                                                 <small>Dra.
                                                 </small>
                                             @endif
-                                            {{ $appointment->user->first()->first_name }} {{ $appointment->user->first()->last_name }}
+                                            {{ $appointment->user->first_name }} {{ $appointment->user->last_name }}
                                         </td>
                                         <td style="font-size:0.9em">
                                             <label class="label label-warning"
@@ -1071,7 +1071,7 @@
                                         <!-- USER WHO REGISTERED PATIENT -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                Cadastrado por
+                                                Quem Cadastrou
                                             </td>
                                             <td>
                                                 -
@@ -1080,19 +1080,23 @@
                                         <!-- APPOINTMENT COUNT -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                N&deg; Agendamentos
+                                                Número de Agendamentos
                                             </td>
                                             <td>
-                                                {{ count($appointments)}}
+                                                @if($appointments != null)
+                                                    {{ count($appointments)}}
+                                                @endif
                                             </td>
                                         </tr>
                                         <!-- APPOINTMENTS MISSED -->
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                N&deg; Faltas
+                                                Número de Faltas
                                             </td>
                                             <td>
-                                                {{ count($appointments->where('appointment_status_id', 4)) }}
+                                                @if($appointments != null)
+                                                    {{ count($appointments->where('appointment_status_id', 4)) }}
+                                                @endif
                                             </td>
                                         </tr>
                                         <!-- IS OUT PATIENT FOR X MANY DAYS -->
@@ -1119,7 +1123,9 @@
                                                 Ùltimo agendamento á
                                             </td>
                                             <td>
+                                                @if($appointments != null)
                                                 {{ str_limit($appointments->max()->start,10) }}
+                                                @endif
                                             </td>
                                         </tr>
                                         <!-- MONEY EARNED FROM PATIENT -->

@@ -51,10 +51,9 @@
                     if ($activeClass == 'dashboard') {
                         echo 'active open';
                     }
-                }?>" style="margin-top:1px;">
+                }?>">
 
-
-                    <a href="{{ url('/home')}}"><i class="fa fa-home"></i> <span class="title"> Resumo </span>
+                    <a href="{{ url('/home')}}"><i class="fa fa-home fa-fw"></i> <span class="title"> Resumo </span> </a>
 
                         <!-- start: AGENDA -->
                 <?php if($user->hasPermission('calendarcontroller.index')){ ?>
@@ -64,7 +63,7 @@
                     }
                 }?>">
 
-                    <a href="javascript:void(0)"><i class="fa fa-calendar"></i><span class="title"> Agenda </span><i
+                    <a href="javascript:void(0)"><i class="fa fa-calendar fa-fw"></i><span class="title"> Agenda </span><i
                                 class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
 
@@ -89,7 +88,7 @@
                         <?php if($user->isAdmin() || $user->hasPermission('appointmenttypesrcontroller.index')){ ?>
                         <li>
                             <a href="{{ url('/calendar/appointmentTypes') }}">
-                                <span class="title">Tipo Agendamentos</span>
+                                <span class="title">Tipos de Agendamentos</span>
                             </a>
                         </li>
                         <?php } ?>
@@ -100,79 +99,36 @@
             <!-- end: AGENDA -->
 
                 <!-- start: CLINICS -->
-                <?php  if($user->isAdmin()){ ?>
+                @role('admin')
                 <li class="<?php if (isset($activeClass)) {
                     if ($activeClass == 'clinic') {
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-h-square"></i><span class="title"> Clientes </span><i
-                                class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li class="">
-                            <a href="{{ url('/clinic') }}">
-                                <span class="title">Clientes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/clinic/create') }}">
-                                <span class="title"> Registrar Client </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('clinic.index') }}"><i class="fa fa-h-square fa-fw"></i> <span
+                                class="title"> Clientes </span></a>
                 </li>
-                <?php } ?>
+                @endrole
             <!-- end: CLINICS -->
 
                 <!-- start: USER MANAGEMENT -->
                 @role('admin')
-                <li class="@if(\Route::current()->getName() == 'users.index' || \Route::current()->getName() == 'users.create') {{'active'}}@endif">
-                    <a href="javascript:void(0)"><i class="fa fa-user"></i><span class="title"> Gerenciamento </span><i
-                                class="icon-arrow"></i></a>
-                    <ul class="sub-menu">
-                        <li class="@if(\Route::current()->getName() == 'users.index') {{'active'}}@endif">
-                            <a href="{{ url('/users') }}">
-                                <span class="title"> Usuários </span>
-                            </a>
-                        </li>
-                        <li class="@if(\Route::current()->getName() == 'users.create') {{'active'}}@endif">
-                            <a href="{{ url('/users/create') }}">
-                                <span class="title"> Registrar Usuário </span>
-                            </a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="{{ route('users.index') }}"><i class="fa fa-user fa-fw"></i> <span
+                                class="title"> Gerenciamento </span></a>
                 </li>
                 @endrole
             <!-- end: USER MANAGEMENT -->
 
                 <!-- start: PATIENTS -->
-                <?php if($user->isAdmin() || $user->hasPermission('patientscontroller.index')){ ?>
                 <li class="<?php if (isset($activeClass)) {
                     if ($activeClass == 'patients') {
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-users"></i><span class="title"> Pacientes </span><i
-                                class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li class="">
-                            <a href="{{ url('/patients/stats') }}">
-                                <span class="title"> Estatísticas </span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="{{ url('/patients') }}">
-                                <span class="title"> Lista de Pacientes </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/patients/create') }}">
-                                <span class="title"> Cadastrar Paciente </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('patients.index') }}"><i class="fa fa-users fa-fw"></i> <span
+                                class="title"> Pacientes </span></a>
                 </li>
-                <?php } ?>
             <!-- end: PATIENTS -->
 
                 <!-- start: TREATMENTS -->
@@ -182,7 +138,7 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-folder-open"></i> <span
+                    <a href="javascript:void(0)"><i class="fa fa-folder-open fa-fw"></i> <span
                                 class="title"> Procedimentos </span><i class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li>
@@ -210,28 +166,14 @@
             <!-- end: TREATMENTS -->
 
                 <!-- start: DENTAL PLANS -->
-                <?php if($user->isAdmin() || $user->hasPermission('dentalplanscontroller.index')){ ?>
                 <li class="<?php if (isset($activeClass)) {
                     if ($activeClass == 'dentalplans') {
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-folder-open"></i> <span
-                                class="title"> Convênios </span><i class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{ url('/')}}/dentalplans">
-                                <span class="title"> Convênios </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/')}}/dentalplans/create">
-                                <span class="title"> Cadastrar Convênio </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('dentalplans.index') }}"><i class="fa fa-folder-open fa-fw"></i> <span
+                                class="title"> Convênios </span></a>
                 </li>
-                <?php } ?>
             <!-- end: DENTAL PLANS -->
 
                 <!-- start: REMINDERS -->
@@ -241,7 +183,7 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="{{ url('/')}}/reminders"><i class="fa fa-bell"></i> <span class="title"> Lembretes </span>
+                    <a href="{{ url('/')}}/reminders"><i class="fa fa-bell fa-fw"></i> <span class="title"> Lembretes </span>
                         <span class="badge badge-info reminderCount">{{ Auth::user()->reminderCount }}</span></a>
                 <!-- <ul class="sub-menu">
 						<li>
@@ -261,7 +203,7 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-money"></i> <span class="title"> Financeiro </span><i
+                    <a href="javascript:void(0)"><i class="fa fa-money fa-fw"></i> <span class="title"> Financeiro </span><i
                                 class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li>
@@ -291,7 +233,7 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-folder-open"></i> <span
+                    <a href="javascript:void(0)"><i class="fa fa-folder-open fa-fw"></i> <span
                                 class="title"> Permissões </span><i class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li>
@@ -315,35 +257,17 @@
             <!-- end: PERMISSION SETTINGS -->
 
                 <!-- start: STOCK CONTROL -->
-                <?php if($user->isAdmin() || $user->hasPermission('stockcontrolcontroller.index')){ ?>
+                @role('admin')
                 <li class="<?php if (isset($activeClass)) {
                     if ($activeClass == 'stockcontrol') {
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-cog"></i> <span
-                                class="title"> Controle de Estoque </span><i class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{ url('/stockcontrol') }}">
-                                <span class="title"> Lista de Itens </span>
-                            </a>
-                        </li>
-                        <li class="hide">
-                            <a href="{{ route('stockcontrol.create') }}">
-                                <span class="title"> Registrar Item </span>
-                            </a>
-                        </li>
-                        <li class="hide">
-                            <a href="{{ url('/quoteitems') }}">
-                                <span class="title"> Gerar Orçamento </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('stockcontrol.index') }}"><i class="fa fa-cog fa-fw"></i> <span
+                                class="title"> Controle de Estoque </span></a>
                 </li>
-
-                <?php } ?>
-            <!-- end: STOCK CONTROL -->
+                @endrole
+                <!-- end: STOCK CONTROL -->
 
                 <!-- start: CONTACTS -->
                 <li class="<?php if (isset($activeClass)) {
@@ -351,7 +275,7 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="{{ route('contacts.index') }}"><i class="fa fa-cog"></i> <span
+                    <a href="{{ route('contacts.index') }}"><i class="fa fa-phone fa-fw"></i> <span
                                 class="title"> Contatos </span></a>
                 </li>
                 <!-- end: CONTACTS -->
@@ -363,7 +287,7 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-bars"></i> <span class="title"> Listas </span><i
+                    <a href="javascript:void(0)"><i class="fa fa-bars fa-fw"></i> <span class="title"> Listas </span><i
                                 class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li>
@@ -383,7 +307,7 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-address-book-o"></i><span
+                    <a href="javascript:void(0)"><i class="fa fa-address-book-o fa-fw"></i><span
                                 class="title"> Investidores </span><i class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li class="">
@@ -425,7 +349,7 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-money"></i> <span class="title"> Financeiro </span><i
+                    <a href="javascript:void(0)"><i class="fa fa-money fa-fw"></i> <span class="title"> Financeiro </span><i
                                 class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li>

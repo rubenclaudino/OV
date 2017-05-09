@@ -77,7 +77,7 @@
                         <div class="clearfix"></div>
 
                         <!-- start: OBSERVATION -->
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <label for="obs">Observação</label>
                                 <input id="obs" class="form-control" name="obs" type="text">

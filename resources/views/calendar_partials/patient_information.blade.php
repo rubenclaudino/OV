@@ -92,7 +92,7 @@
                     <li><a href="#appointment-details" aria-controls="appointment-details" role="tab"
                            data-toggle="tab"><i class="fa fa-calendar-o fa-fw"></i></small>&nbsp; Booking
                             Information</a></li>
-                    <li><a href="#appointment-information" aria-controls="appointment-information" role="tab"
+                    <li class="hide"><a href="#appointment-information" aria-controls="appointment-information" role="tab"
                            data-toggle="tab" class="appointment-information"><i
                                     class="fa fa-info fa-fw"></i></small>&nbsp; Appointment Information</a></li>
 

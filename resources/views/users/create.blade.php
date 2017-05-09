@@ -1,5 +1,6 @@
 @extends('layouts.page', ['title' => 'Usuário', 'subtitle' => 'Cadastrar um novo usuário', 'activeClass' => 'users'])
 @section('content')
+
     <div class="main-content">
         <div class="container">
 

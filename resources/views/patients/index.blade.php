@@ -7,181 +7,188 @@
             height: 30px;
             overflow: hidden;
         }
-
-        .image_cont img {
-            border-radius: 100px;
-            width: 100%;
-            height: auto;
-        }
     </style>
 
-    <div class="main-content">
+    <!-- start: MAIN CONTENT -->
+    <div class="main-content" style="height: 580px">
 
-        <div class="container" style="min-height: 580px">
+        <!-- start: CONTAINER -->
+        <div class="container">
 
-            <!-- start: MAIN INFO PANEL -->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel" style="background: white;margin-top: 10px">
+            <!-- start: DIV -->
+            <div style="margin: 15px 2px">
 
-                <!-- start: TABLE HEADER -->
-                <div class="panel-heading header_t1" style="background: whitesmoke;padding: 0px !important;">
+                <!-- start: PANEL -->
+                <div class="panel">
 
-                    <div class="toolbar row" style="min-height: 100px;background: whitesmoke;border: none;opacity:0.8;">
-                        <div class="col-sm-6 hidden-xs">
-                            <div class="table-header">
-                                <h2 style="font-weight: lighter">{{ $title }}</h2>
-                                <p style="font-size: large;">Busca de pacientes</p>
-                            </div>
+                    <!-- start: PANEL HEAD -->
+                    <div class="panel-head">
+
+                        <div class="col-lg-6 col-md-6">
+
+                            <h2 class="table_title">Pacientes<br>
+                                <small style="color: #dddddd">Lista de pacientes</small>
+                            </h2>
+
                         </div>
 
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="toolbar-tools pull-right" style="padding-top: 10px;">
-                                <!-- start: TOP NAVIGATION MENU -->
-                                <ul class="nav navbar-right" style="opacity: 1">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-filter"></i> Filtros
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="print" data-id="mainInfo">
-                                            <i class="fa fa-print"></i> Imprimir
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- end: TOP NAVIGATION MENU -->
+                        <div class="col-lg-6 col-md-6" style="margin-top: 30px">
+
+                            <div class="pull-right">
+
+                                <a class="btn" href="{{ URL::route('contacts.create') }}"
+                                   style="background: whitesmoke">
+                                    <i class="fa fa-filter"></i> Filtros
+                                </a>
+
+                                <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
+                                    <i class="fa fa-print"></i> Imprimir
+                                </a>
+
                             </div>
+
                         </div>
+
                     </div>
+                    <!-- end: PANEL HEAD -->
 
-                </div>
-                <!-- end: TABLE HEADER -->
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
-                <!-- start: PANEL BODY -->
-                <div class="panel-body">
+                    <!-- start: PANEL BODY -->
+                    <div class="panel-body">
 
-                    <!-- start: PATIENT TABLE -->
-                    <table class="table  table-striped table-condensed datatable" id="mainInfo">
+                        <!-- start: PATIENT TABLE -->
+                        <table class="table table-hover table-responsive table-condensed datatable" id="mainInfo">
 
-                        <!-- start: COLUMN INFORMATION -->
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th></th>
-                            <th>Nome</th>
-                            <th colspan="2">Telefone</th>
-                            <th>Profissional</th>
-                            <th>Especialidade</th>
-                            <th>Plano</th>
-                            <th class="hidden"></th>
-                            <th class="hidden-print"></th>
-                        </tr>
-                        </thead>
-                        <!-- end: COLUMN INFORMATION -->
+                            <!-- start: COLUMN INFORMATION -->
+                            <thead style="background: whitesmoke">
+                            <tr>
+                                <th>Id</th>
+                                <th></th>
+                                <th>Nome</th>
+                                <th colspan="2">Telefone</th>
+                                <th>Dentista</th>
+                                <th>Especialidade</th>
+                                <th>Plano</th>
+                                <th class="hidden"></th>
+                                <th class="hidden-print"></th>
+                            </tr>
+                            </thead>
+                            <!-- end: COLUMN INFORMATION -->
 
-                        <!-- start: ROW INFORMATION -->
-                        <tbody>
-                        <?php
-                        if(!empty($patients)){
-                        foreach($patients as $patient){
-                        ?>
-                        <tr>
-                            <!-- ID -->
-                            <td>{{ $patient->id }}</td>
-                            <!-- PROFILE PICTURE -->
-                            <td>
-                                <div class="image_cont hidden-print" style="opacity: 0.8">
-                                    @if($patient->patient_profile_image != '')
-                                        {{ Html::image(url('/').'/'.$patient->patient_profile_image) }}
-                                    @else
-                                        @if($patient->gender == '1')
-                                            {{ Html::image(url('/')."/images/user/female.png") }}
+                            <!-- start: ROW INFORMATION -->
+                            <tbody>
+                            <?php
+                            if(!empty($patients)){
+                            foreach($patients as $patient){
+                            ?>
+                            <tr>
+                                <!-- ID -->
+                                <td>{{ $patient->id }}</td>
+                                <!-- PROFILE PICTURE -->
+                                <td>
+                                    <div class="image_cont hidden-print" style="opacity: 0.8">
+                                        @if($patient->patient_profile_image != '')
+                                            {{ Html::image(url('/').'/'.$patient->patient_profile_image) }}
                                         @else
-                                            {{ Html::image(url('/')."/images/user/male.png") }}
+                                            @if($patient->gender == '1')
+                                                {{ Html::image(url('/')."/images/user/female.png") }}
+                                            @else
+                                                {{ Html::image(url('/')."/images/user/male.png") }}
+                                            @endif
                                         @endif
+                                    </div>
+                                </td>
+                                <!-- FULL NAME -->
+                                <td>
+                                    {{ $patient->first_name }} {{ $patient->last_name }}
+                                </td>
+                                <!-- PHONE NUMBER -->
+                                <td>{{ $patient->phone_landline }}</td>
+                                <td>{{ $patient->phone_1 }}</td>
+                                <!-- PROFESSIONAL - DENTIST -->
+                                <td>
+                                    @if(isset($patient->user))
+                                        {{ $patient->user->Fullname() }}
+                                    @else
+                                        Clínica
                                     @endif
-                                </div>
-                            </td>
-                            <!-- FULL NAME -->
-                            <td>
-                                {{ $patient->first_name }} {{ $patient->last_name }}
-                            </td>
-                            <!-- PHONE NUMBER -->
-                            <td>{{ $patient->phone_landline }}</td>
-                            <td>{{ $patient->phone_1 }}</td>
-                            <!-- PROFESSIONAL - DENTIST -->
-                            <td>
-                                @if(isset($patient->user))
-                                    {{ $patient->user->Fullname() }}
-                                @else
-                                    Clínica
-                                @endif
-                            </td>
-                            <!-- SPECIALTIES -->
-                            <td>
+                                </td>
+                                <!-- SPECIALTIES -->
+                                <td>
                                     @foreach($patient->specialties as $specialty)
                                         <label class="label label-warning"
                                                style="background: #{{$specialty->color}} !important;opacity: 0.7;">{{ $specialty->name }}</label>
                                     @endforeach
-                            </td>
-                            <!-- DENTAL PLAN -->
-                            <td>
-                                <small>
-                                    <?php if ($patient->has_dental_plan == '1') {
-                                        echo 'Convênio';
-                                    } else {
-                                        echo 'Particular';
-                                    } ?>
-                                </small>
-                            </td>
-                            <!-- VIP / WHEELCHAIR -->
-                            <td class="hidden">
-                                @if($patient->vip == 1)<label class="label label-warning tooltips"
-                                                           data-title="Paciente Importante" data-placement="bottom"
-                                                           style="background: gold !important;opacity: 0.6;letter-spacing: 1px">VIP</label>@endif
-                                @if($patient->wheel_chair == 1)<label class="label label-info tooltips hidden-print"
-                                                                   data-title="Paciente Cadeirante"
-                                                                   data-placement="bottom" style="opacity: 0.6;"><i
-                                            class="fa fa-wheelchair"></i></label>@endif
-                            </td>
-                            <!-- start: OPTIONS -->
-                            <td class="hidden-print">
-                                <div class="btn-group pull-right">
-                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
-                                            style="background: #dddddd;border-radius: 1px;opacity: 0.9"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Opções &nbsp;<span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                        <li><a href="{{ URL::route('patients.show', $patient->id) }}">
-                                                <small><i class="fa fa-user fa-fw"></i> &nbsp;Perfil</small>
-                                            </a></li>
-                                        <li><a href="{{ URL::route('patients.edit', $patient->id) }}">
-                                                <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
-                                            </a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#" data-id="{{ $patient->id }}" class="deletePatient">
-                                                <small><i class="fa fa-ban fa-fw"></i> &nbsp;Excluír</small>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <!-- end: OPTIONS -->
-                        </tr>
-                        <?php } } ?>
-                        </tbody>
+                                </td>
+                                <!-- DENTAL PLAN -->
+                                <td>
+                                    <small>
+                                        <?php if ($patient->has_dental_plan == '1') {
+                                            echo 'Convênio';
+                                        } else {
+                                            echo 'Particular';
+                                        } ?>
+                                    </small>
+                                </td>
+                                <!-- VIP / WHEELCHAIR -->
+                                <td class="hidden">
+                                    @if($patient->vip == 1)<label class="label label-warning tooltips"
+                                                                  data-title="Paciente Importante"
+                                                                  data-placement="bottom"
+                                                                  style="background: gold !important;opacity: 0.6;letter-spacing: 1px">VIP</label>@endif
+                                    @if($patient->wheel_chair == 1)<label class="label label-info tooltips hidden-print"
+                                                                          data-title="Paciente Cadeirante"
+                                                                          data-placement="bottom" style="opacity: 0.6;"><i
+                                                class="fa fa-wheelchair"></i></label>@endif
+                                </td>
+                                <!-- start: OPTIONS -->
+                                <td class="hidden-print">
+                                    <div class="btn-group pull-right">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                                                style="background: #dddddd;border-radius: 1px;opacity: 0.9"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opções &nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                            <li><a href="{{ URL::route('patients.show', $patient->id) }}">
+                                                    <small><i class="fa fa-user fa-fw"></i> &nbsp;Perfil</small>
+                                                </a></li>
+                                            <li><a href="{{ URL::route('patients.edit', $patient->id) }}">
+                                                    <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
+                                                </a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#" data-id="{{ $patient->id }}" class="deletePatient">
+                                                    <small><i class="fa fa-ban fa-fw"></i> &nbsp;Excluír</small>
+                                                </a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <!-- end: OPTIONS -->
+                            </tr>
+                            <?php } } ?>
+                            </tbody>
 
-                    </table>
-                    <!-- end: PATIENT TABLE -->
+                        </table>
+                        <!-- end: PATIENT TABLE -->
+
+                    </div>
+                    <!-- end: PANEL BODY -->
 
                 </div>
-                <!-- end: PANEL BODY -->
+                <!-- end: PANEL -->
 
             </div>
-            <!-- end: MAIN INFO PANEL -->
-
+            <!-- end: DIV -->
 
         </div>
+        <!-- end: CONTAINER -->
 
     </div>
+    <!-- end: MAIN CONTENT -->
 
 @endsection
