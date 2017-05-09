@@ -127,7 +127,7 @@
                 <!-- end : CAPTIVE PATIENTS -->
 
                 <!-- start : BIGGEST INTERVAL OF THE DAY -->
-                <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding">
+                <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding hide">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Seu maior intervalo hoje é das</h4>
                         <h1> <span style="color:silver !important; font-size: 87%">00:00</span>
@@ -140,7 +140,7 @@
                 <!-- end : BIGGEST INTERVAL OF THE DAY -->
 
                 <!-- start : BEST MONTH FOR HOLIDAYS -->
-                <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding">
+                <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding hide">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Melhor mês para ferias</h4>
                         <h1>...</h1>
@@ -198,7 +198,7 @@
             <!-- end: USER WIDGETS -->
 
             <!-- start: CLINIC ADMIN WIDGETS -->
-            <div class="row" style="margin-top: 10px;margin-right: -5px;">
+            <div class="row hide" style="margin-top: 10px;margin-right: -5px;">
 
                 <!-- start:  -->
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 nopadding">

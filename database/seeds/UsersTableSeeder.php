@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
                 'whatsapp_number'    => null,
                 'nationality'        => null,
                 'date_of_birth'      => null,
-                'gender'             => 0,
+                'gender'             => 1,
                 'stripe_id'          => $faker->bankAccountNumber,
                 'card_brand'         => 'visa',
                 'card_lasts_for'     => '0000',
@@ -75,7 +75,7 @@ class UsersTableSeeder extends Seeder
                 'clinic_id'          => 2,
                 'cpf'                => null,
                 'rg'                 => null,
-                'cro'                => null,
+                'cro'                => "0",
                 'observation'        => null,
             ]
             ,
@@ -108,7 +108,7 @@ class UsersTableSeeder extends Seeder
                 'clinic_id'          => 2,
                 'cpf'                => null,
                 'rg'                 => null,
-                'cro'                => null,
+                'cro'                => "0",
                 'observation'        => null,
             ]
             ,
@@ -141,7 +141,7 @@ class UsersTableSeeder extends Seeder
                 'clinic_id'          => 2,
                 'cpf'                => null,
                 'rg'                 => null,
-                'cro'                => null,
+                'cro'                => "0",
                 'observation'        => null,
             ]
             ,
@@ -240,7 +240,7 @@ class UsersTableSeeder extends Seeder
                 'clinic_id'          => 2,
                 'cpf'                => null,
                 'rg'                 => null,
-                'cro'                => null,
+                'cro'                => "0",
                 'observation'        => null,
             ]
             ,
@@ -273,7 +273,7 @@ class UsersTableSeeder extends Seeder
                 'clinic_id'          => 2,
                 'cpf'                => null,
                 'rg'                 => null,
-                'cro'                => null,
+                'cro'                => "0",
                 'observation'        => null,
             ]
             ,
@@ -306,7 +306,40 @@ class UsersTableSeeder extends Seeder
                 'clinic_id'          => 2,
                 'cpf'                => null,
                 'rg'                 => null,
-                'cro'                => null,
+                'cro'                => "0",
+                'observation'        => null,
+            ]
+            ,
+            [
+                'first_name'         => 'Aline',
+                'last_name'          => '',
+                'email'              => 'Aline@email.com',
+                'password'           => bcrypt('123456'),
+                'zip_code'           => null,
+                'address'            => null,
+                'street_number'      => null,
+                'phone_1'            => null,
+                'phone_2'            => null,
+                'phone_landline'     => null,
+                'whatsapp_number'    => null,
+                'nationality'        => null,
+                'date_of_birth'      => null,
+                'gender'             => 0,
+                'stripe_id'          => $faker->bankAccountNumber,
+                'card_brand'         => 'visa',
+                'card_lasts_for'     => '0000',
+                'thai_ends_at'       => '',
+                'honors'             => null,
+                'percentage'         => '0',
+                'value'              => '0',
+                'earn_percentage'    => '0',
+                'uses_whatsapp'      => true,
+                'resident_in_clinic' => true,
+                'accept_calls'       => true,
+                'clinic_id'          => 2,
+                'cpf'                => null,
+                'rg'                 => null,
+                'cro'                => "0",
                 'observation'        => null,
             ],
             [
@@ -364,6 +397,7 @@ class UsersTableSeeder extends Seeder
         User::find(8)->specialties()->attach([2]);
         User::find(9)->specialties()->attach([12]);
         User::find(9)->specialties()->attach([2]);
+        User::find(10)->specialties()->attach([2]);
 
     }
 }

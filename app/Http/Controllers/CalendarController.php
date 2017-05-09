@@ -152,7 +152,7 @@ class CalendarController extends Controller
     {
         $status = AppointmentStatus::find($request->status);
         Appointment::find($id)->update(['appointment_status_id' => $status->id, 'className' => $status->class_name]);
-        return response()->json(['status' => 'success', 'message' => 'Appointment Updated!']);
+        return response()->json(['status' => 'success', 'message' => 'Agendamento Atualizado!']);
     }
 
     public function destroy($id)

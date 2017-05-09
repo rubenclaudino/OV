@@ -28,7 +28,11 @@
 
                                 <!-- end: DEPENDING HOUR SEND GOOD MORNING - GOOD AFTERNOON - GOOD NIGHT -->
                                 <h4>
+                                    @if(Auth::user()->cro != "")
                                     {{ Auth::user()->fullName() }}
+                                        @else
+                                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                                    @endif
                                 </h4>
 
                                 <a class="btn user-options sb_toggle hide" data-toggle="tooltip" data-placement="bottom"

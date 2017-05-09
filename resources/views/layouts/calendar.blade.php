@@ -1287,7 +1287,7 @@
 
 <?php
 $user = Auth::user();
-if($user->hasRole('Loclal Admin') || $user->hasRole('Receptionist')){
+if($user->hasRole('Local Admin') || $user->hasRole('Receptionist')){
 ?>
 <style>#current_dentist_id {
         display: block;

@@ -123,7 +123,7 @@
                     <li class="dropdown current-user">
                         <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true"
                            href="#">
-                            <img src="{{ url('/images/user/male.png')}}" class="img-circle" alt=""> <span
+                            <img src="{{ url('/images/user/female.png')}}" class="img-circle" alt=""> <span
                                     class="username hidden-xs" style="margin-right: 0px">
 								&nbsp;
                                 <?php
@@ -136,12 +136,12 @@
                             <li>
                                 <a href="{{ url('/user/profile') }}">
                                     <i class='fa fa-user fa-fw'></i>
-                                    &nbsp;My Profile
+                                    &nbsp;Meu Perfil
                                 </a>
                             </li>
 
                             @if($user->hasRole('admin') /* dentist admin */ )
-                                <li>
+                                <li class="hide">
                                     <a href="{{ url('/user/invoices') }}">
                                         <i class='fa fa-money fa-fw'></i>
                                         &nbsp;My Invoices

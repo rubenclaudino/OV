@@ -88,73 +88,73 @@ class Patient extends Model
         $this->attributes['last_name'] = ucfirst($value);
     }
 
-    public function getPhone1Attribute($value)
-    {
-        if ($value != null) {
-            $phone = substr_replace($value, '(', 0, 0);
-            $phone = substr_replace($phone, ')', 3, 0);
-            $phone = substr_replace($phone, ' ', 4, 0);
-            $phone = substr_replace($phone, ' ', 10, 0);
-            $phone = substr_replace($phone, '-', 11, 0);
-            $phone = substr_replace($phone, ' ', 12, 0);
+// public function getPhone1Attribute($value)
+    //   {
+    //      if ($value != null) {
+    //          $phone = substr_replace($value, '(', 0, 0);
+    //         $phone = substr_replace($phone, ')', 3, 0);
+    //          $phone = substr_replace($phone, ' ', 4, 0);
+    //         $phone = substr_replace($phone, ' ', 10, 0);
+    //         $phone = substr_replace($phone, '-', 11, 0);
+    //         $phone = substr_replace($phone, ' ', 12, 0);
 
-            return $phone;
-        } else
+    //          return $phone;
+    //      } else
 
-            return $value;
-    }
+    //          return $value;
+    //   } -->
 
-    public function getPhone2Attribute($value)
-    {
-        if ($value != null) {
-            $phone = substr_replace($value, '(', 0, 0);
-            $phone = substr_replace($phone, ')', 3, 0);
-            $phone = substr_replace($phone, ' ', 4, 0);
-            $phone = substr_replace($phone, ' ', 10, 0);
-            $phone = substr_replace($phone, '-', 11, 0);
-            $phone = substr_replace($phone, ' ', 12, 0);
+    //   public function getPhone2Attribute($value)
+    //  {
+    //      if ($value != null) {
+    //          $phone = substr_replace($value, '(', 0, 0);
+    //          $phone = substr_replace($phone, ')', 3, 0);
+    //          $phone = substr_replace($phone, ' ', 4, 0);
+    //          $phone = substr_replace($phone, ' ', 10, 0);
+    //          $phone = substr_replace($phone, '-', 11, 0);
+    //         $phone = substr_replace($phone, ' ', 12, 0);
 
-            return $phone;
-        } else
+    //          return $phone;
+    //      } else
 
-            return $value;
-    }
+    //          return $value;
+    //  }
 
-    public function getWhatsappNumberAttribute($value)
-    {
-        if ($value != null) {
+    //  public function getWhatsappNumberAttribute($value)
+    //  {
+    //      if ($value != null) {
 
-            $phone = substr_replace($value, '(', 0, 0);
-            $phone = substr_replace($phone, ')', 3, 0);
-            $phone = substr_replace($phone, ' ', 4, 0);
-            $phone = substr_replace($phone, ' ', 10, 0);
-            $phone = substr_replace($phone, '-', 11, 0);
-            $phone = substr_replace($phone, ' ', 12, 0);
+    //         $phone = substr_replace($value, '(', 0, 0);
+    //        $phone = substr_replace($phone, ')', 3, 0);
+    //        $phone = substr_replace($phone, ' ', 4, 0);
+    //         $phone = substr_replace($phone, ' ', 10, 0);
+    //        $phone = substr_replace($phone, '-', 11, 0);
+    //        $phone = substr_replace($phone, ' ', 12, 0);
 
-            return $phone;
+    //        return $phone;
 
-        } else
+    //      } else
 
-            return $value;
-    }
+    //          return $value;
+    //   }
 
-    public function getPhoneLandlineAttribute($value)
-    {
-        if ($value != null) {
+    //  public function getPhoneLandlineAttribute($value)
+    //   {
+    //       if ($value != null) {
 
-            $phone = substr_replace($value, '(', 0, 0);
-            $phone = substr_replace($phone, ')', 3, 0);
-            $phone = substr_replace($phone, ' ', 4, 0);
-            $phone = substr_replace($phone, ' ', 9, 0);
-            $phone = substr_replace($phone, '-', 10, 0);
-            $phone = substr_replace($phone, ' ', 11, 0);
+    //         $phone = substr_replace($value, '(', 0, 0);
+    //         $phone = substr_replace($phone, ')', 3, 0);
+    //         $phone = substr_replace($phone, ' ', 4, 0);
+    //          $phone = substr_replace($phone, ' ', 9, 0);
+    //         $phone = substr_replace($phone, '-', 10, 0);
+    //         $phone = substr_replace($phone, ' ', 11, 0);
 
-            return $phone;
+    //         return $phone;
 
-        } else
+    //     } else
 
-            return $value;
-    }
+    //          return $value;
+    //   }
 
     public function getEmailAttribute($value)
     {
