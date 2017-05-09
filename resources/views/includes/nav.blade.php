@@ -18,7 +18,7 @@
                     <div class="">
                         <div class="profile_block">
                             <div class="profile_image">
-                                <img src="{{ url('/') }}/images/user/male.png" alt="" style="opacity: 0.85">
+                                <img src="{{ url('/') }}/images/user/female.png" alt="" style="opacity: 0.85">
                             </div>
                             <div class="profile_information">
                                 <!-- start: DEPENDING HOUR SEND GOOD MORNING - GOOD AFTERNOON - GOOD NIGHT -->
