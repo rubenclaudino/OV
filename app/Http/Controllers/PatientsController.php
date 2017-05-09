@@ -35,10 +35,7 @@ class PatientsController extends Controller
         $subtitle = "Criar um novo cadastro de paciente";
         $activeClass = "patients";
 
-        // getting clinics
         $professionals = [];
-
-        // getting diseases
         $diseases = Disease::all();
 
         foreach ($diseases as $data) {
@@ -82,7 +79,7 @@ class PatientsController extends Controller
             $patient->diseases()->sync($diseases);
         }
 
-        if ($request->has('patient_profile_image')) {
+        if ($request->hasFile('patient_profile_image')) {
             if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
                 mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
             }
@@ -147,15 +144,12 @@ class PatientsController extends Controller
             $professionals[$data->id] = $name;
         }
 
-// getting treatment types
         $treatments = Specialty::pluck('name', 'id');
 
-// getting all roles
         return view('patients.edit', compact('title', 'subtitle', 'patient', 'activeClass', 'professionals', 'disease', 'patientDisease', 'treatments'));
     }
 
-    public
-    function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         if ($request->action === 'save_profile') {
             $patient = Patient::find($id);
@@ -170,13 +164,13 @@ class PatientsController extends Controller
                 // adding patient speciality
 
                 if (isset($input['speciality'])) {
-                    PatientSpeciality::where('patient_id', '=', $patient->id)->delete();
+                    Specialty::where('patient_id', $patient->id)->delete();
                     $speciality = $input['speciality'];
                     foreach ($speciality as $d) {
-                        $check = PatientSpeciality::where([['patient_id', '=', $patient->id], ['speciality_id', '=', $d]])->count();
+                        $check = Specialty::where([['patient_id', '=', $patient->id], ['speciality_id', '=', $d]])->count();
                         if ($check > 0) {
                         } else {
-                            PatientSpeciality::create([
+                            Specialty::create([
                                 'patient_id' => $patient->id,
                                 'speciality_id' => $d,
                             ]);
@@ -198,16 +192,6 @@ class PatientsController extends Controller
                     $patient->save();
                 }
 
-                // saving contact
-
-                $contact = Contact::find($patient->contact->id);
-                $contact->fill($input)->save();
-
-                // saving address
-
-                $address = Address::find($patient->address->id);
-                $address->fill($input)->save();
-
                 return "success";
             } else {
                 return "Paciente não foi localizado!";
@@ -223,15 +207,15 @@ class PatientsController extends Controller
                 // saving patient disease
 
                 foreach ($request->disease as $key => $val) {
-                    $patientDisease = PatientDisease::where([
+                    $patientDisease = Disease::where([
                         ['patient_id', '=', $patient->id],
                         ['disease_id', '=', $key]])->first();
                     if (isset($patientDisease->id)) {
-                        $u = PatientDisease::find($patientDisease->id);
+                        $u = Disease::find($patientDisease->id);
                         $u->status = $val;
                         $u->save();
                     } else {
-                        $u = PatientDisease::create([
+                        $u = Disease::create([
                             'patient_id' => $patient->id,
                             'disease_id' => $key,
                             'status' => $val
@@ -248,63 +232,59 @@ class PatientsController extends Controller
         }
     }
 
-    public
-    function destroy($id)
+    public function destroy($id)
     {
-        $patient = Patient::findOrFail($id);
+        Patient::destroy($id);
+        /*
+                if ($patient->delete()) {
 
-        if ($patient->delete()) {
+                    // deleting directory
 
-            // deleting directory
+                    $destinationPath = 'uploads/patients/profile/' . $id; // upload path
 
-            $destinationPath = 'uploads/patients/profile/' . $id; // upload path
+                    // deleting patient Address
 
-            // deleting patient Address
+                    $address = Address::findOrFail($patient->address_id);
+                    if ($address) {
+                        $address->delete();
+                    }
 
-            $address = Address::findOrFail($patient->address_id);
-            if ($address) {
-                $address->delete();
-            }
+                    // deleting patient Contact
 
-            // deleting patient Contact
+                    $contact = Contact::findOrFail($patient->contact_id);
+                    if ($contact) {
+                        $contact->delete();
+                    }
 
-            $contact = Contact::findOrFail($patient->contact_id);
-            if ($contact) {
-                $contact->delete();
-            }
+                    // deleting patient appointments
 
-            // deleting patient appointments
+                    $appointments = Appointment::where('patient_id', '=', $patient->id)->count();
+                    if ($appointments > 0) {
+                        Appointment::where('patient_id', '=', $patient->id)->delete();
+                    }
 
-            $appointments = Appointment::where('patient_id', '=', $patient->id)->count();
-            if ($appointments > 0) {
-                Appointment::where('patient_id', '=', $patient->id)->delete();
-            }
+                    // deleting patient exams
 
-            // deleting patient exams
+                    $exams = PatientExams::where('patient_id', '=', $patient->id)->count();
+                    if ($exams > 0) {
+                        PatientExams::where('patient_id', '=', $patient->id)->delete();
+                    }
 
-            $exams = PatientExams::where('patient_id', '=', $patient->id)->count();
-            if ($exams > 0) {
-                PatientExams::where('patient_id', '=', $patient->id)->delete();
-            }
+                    // deleting Pictogram
 
-            // deleting Pictogram
+                    $tImages = Pictogram::where('patient_id', '=', $patient->id)->count();
+                    if ($tImages > 0) {
+                        Pictogram::where('patient_id', '=', $patient->id)->delete();
+                    }
 
-            $tImages = Pictogram::where('patient_id', '=', $patient->id)->count();
-            if ($tImages > 0) {
-                Pictogram::where('patient_id', '=', $patient->id)->delete();
-            }
+                    // deleting Treatments
 
-            // deleting Treatments
-
-            $treatments = Treatment::where('patient_id', '=', $patient->id)->count();
-            if ($treatments > 0) {
-                Treatment::where('patient_id', '=', $patient->id)->delete();
-            }
-
-            return response()->json(['status' => 'success', 'message' => "Paciente Excluído com Sucesso!"]);
-        } else {
-            return response()->json(['status' => 'error', 'message' => 'Ocorreu alum erro!']);
-        }
+                    $treatments = Treatment::where('patient_id', '=', $patient->id)->count();
+                    if ($treatments > 0) {
+                        Treatment::where('patient_id', '=', $patient->id)->delete();
+                    }
+        */
+        return response()->json(['status' => 'success', 'message' => "Paciente Excluído com Sucesso!"]);
     }
 
     /**

@@ -660,6 +660,7 @@
 
 
         var editFullEvent = function (el) {
+            console.log('editing triggered')
             $('body').on('click', '.event-holiday', function () {
                 return false;
             });
@@ -1116,7 +1117,7 @@
                                     console.log(newEvent);
                                     $('#full-calendar').fullCalendar('renderEvent', newEvent, true);
                                     demoCalendar = $("#full-calendar").fullCalendar("clientEvents");
-                                    //$.hideSubview();
+                                    $.hideSubview();
                                     toastr.success(data.message);
                                     return false;
                                 }

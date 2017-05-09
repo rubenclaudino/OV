@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SpecialtiesTableSeeder::class);
         $this->call(SubscriptionsTableSeeder::class);
         $this->call(ClinicsTableSeeder::class);
-        $this->call(ClinicDentalPlansTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(AppointmentTypesTableSeeder::class);
         $this->call(AppointmentStatusesTableSeeder::class);
@@ -26,5 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
+        $this->call(ClinicDentalPlansTableSeeder::class);
+
     }
 }

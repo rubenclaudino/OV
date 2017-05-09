@@ -572,17 +572,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @if($appointments != null)
                                 @foreach($appointments as $appointment)
                                     <tr>
                                         <td>{{ date('D d/m/y', strtotime($appointment->startdate)) }}</td>
-                                        <td>{{ date('H:i', strtotime($appointment->starttime)) }}</td>
+                                        <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                         <td>
-                                            @if ($appointment->user->first()->gender == 0)
-                                                <small>Dr.</small> @else
-                                                <small>Dra.
-                                                </small>
-                                            @endif
-                                            {{ $appointment->user->first()->first_name }} {{ $appointment->user->first()->last_name }}
+                                            {{ $appointment->user->fullName() }}
                                         </td>
                                         <td style="font-size:0.9em">
                                             <label class="label label-warning"
@@ -610,6 +606,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                    @endif
                                 </tbody>
 
                             </table>
@@ -1119,7 +1116,7 @@
                                                 Ùltimo agendamento á
                                             </td>
                                             <td>
-                                                {{ str_limit($appointments->max()->start,10) }}
+                                                {{--- str_limit($appointments->max()->start,10) --}}
                                             </td>
                                         </tr>
                                         <!-- MONEY EARNED FROM PATIENT -->

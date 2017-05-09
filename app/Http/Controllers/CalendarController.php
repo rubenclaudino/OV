@@ -110,6 +110,8 @@ class CalendarController extends Controller
         // getting current clinic dentists
         $dentist = Role::where('name', 'dentist')->first()->users()->where('clinic_id', $user->clinic_id)->get();
 
+        //$dentist = Role::with('users')->where('name', 'dentist')->orWhere('name', 'local_admin')->get();
+
         foreach ($dentist as $d) {
             $name = $d->first_name . " " . $d->last_name;
             $d->name = $name;
@@ -141,7 +143,8 @@ class CalendarController extends Controller
 
     public function update(Request $request, $id)
     {
-        Appointment::find($id)->update($request->all());
+        $request['clinic_id'] = Auth::user()->clinic_id;
+        Appointment::find($id)->update($request->except('patient', 'patient_telephone', 'patient_mobile', 'patient_observation'));
         return response()->json(['status' => 'success', 'message' => 'Agendamento atualizado!']);
     }
 

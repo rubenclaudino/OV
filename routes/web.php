@@ -118,7 +118,6 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::resource('agenda', 'AgendaController');
     Route::resource('holidays', 'HolidaysController');
     Route::post('calendar/getTodaysEvents', 'CalendarController@getTodaysEvent');
-    Route::resource('calendar', 'CalendarController');
     Route::get('calendar/appointmentdetails/{id}', 'CalendarController@appointmentdetails');
     Route::put('calendar/updateStatus/{id}', 'CalendarController@updateStatus');
     Route::get('calendar/appointmentTypes', 'CalendarController@appointmentTypes');
@@ -130,6 +129,7 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::post('calendar/addQuotation', 'CalendarController@addQuotation');
     Route::post('calendar/getQuotation', 'CalendarController@getQuotation');
     Route::post('calendar/summary', 'CalendarController@summary');
+    Route::resource('calendar', 'CalendarController');
 
     // USER FIRST TIME
     Route::resource('firsttime', 'FirstimeController');

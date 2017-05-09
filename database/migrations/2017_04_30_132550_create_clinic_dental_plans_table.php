@@ -20,10 +20,19 @@ class CreateClinicDentalPlansTable extends Migration
             $table->string('url');
             $table->string('phone_1');
             $table->string('phone_2');
+            $table->string('address');
+            $table->string('street_number');
+            $table->string('borough');
+
             $table->string('ans_code');
+            $table->string('cep');
 
             $table->integer('clinic_id')->unsigned();
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
+            $table->integer('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->integer('city_id')->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();
         });
     }

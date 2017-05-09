@@ -20,7 +20,8 @@ class PatientsTableSeeder extends Seeder
                 'phone_1' => '4823798237',
                 'user_id' => 1,
                 'observation' => 'Observation XY',
-                'phone_landline' => '23423424'
+                'phone_landline' => '23423424',
+                'created_at' => \Carbon\Carbon::now()
             ],
             [
                 'clinic_id' => 1,
@@ -29,7 +30,8 @@ class PatientsTableSeeder extends Seeder
                 'phone_1' => '3432240507',
                 'user_id' => 1,
                 'observation' => null,
-                'phone_landline' => '23423424'
+                'phone_landline' => '23423424',
+                'created_at' => \Carbon\Carbon::now()
             ]
         ]);
 
