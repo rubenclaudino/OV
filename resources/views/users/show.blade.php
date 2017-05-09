@@ -419,8 +419,8 @@
                                 <tbody>
                                 @foreach($user->appointments as $appointment)
                                     <tr style="font-size:1.1em">
-                                        <td>{{ date('D d/m/y', strtotime($appointment->startdate)) }}</td>
-                                        <td>{{ date('H:i', strtotime($appointment->start)) }}</td>
+                                        <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
+                                        <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                         <td>{{ $appointment->patient->first_name }}  {{ $appointment->patient->last_name }}</td>
                                         <td>
                                             @if($appointment->dental_plan == 0)

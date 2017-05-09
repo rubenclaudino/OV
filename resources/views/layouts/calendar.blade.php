@@ -293,7 +293,7 @@
                 },
                 header: {
                     left: '',
-                    center: 'prev,title,next',
+                    center: 'prev,next,title',
                     right: 'today,agendaWeek,agendaDay,listWeek'
                 },
                 defaultView: 'agendaWeek',

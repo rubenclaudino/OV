@@ -64,6 +64,13 @@
                     <ul class="">
 
                         <li class="pull-left">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom"
+                               title="Relatar Problema" style="opacity: 0.85;">
+                                <i class="fa fa-bug"></i>
+                            </a>
+                        </li>
+
+                        <li class="pull-left">
                             <a href="{{ url('/') }}/calendar" data-toggle="tooltip" data-placement="bottom"
                                title="Agendar" style="opacity: 0.85;">
                                 <i class="fa fa-calendar"></i>
@@ -178,4 +185,5 @@
 
     </div>
     <!-- end: TOPBAR CONTAINER -->
+
 </header>

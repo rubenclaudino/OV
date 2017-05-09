@@ -576,7 +576,7 @@
                                 @if($appointments != null)
                                 @foreach($appointments as $appointment)
                                     <tr>
-                                        <td>{{ date('D d/m/y', strtotime($appointment->startdate)) }}</td>
+                                        <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
                                         <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                         <td>
                                             {{ $appointment->user->fullName() }}
