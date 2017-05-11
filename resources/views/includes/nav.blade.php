@@ -60,13 +60,11 @@
                     <a href="{{ url('/home')}}"><i class="fa fa-home fa-fw"></i> <span class="title"> Resumo </span> </a>
 
                 <!-- start: AGENDA -->
-                @role('admin')
                 <li>
                     <a href="{{ url('/calendar') }}">
                         <i class="fa fa-calendar fa-fw"></i>
                         <span class="title">Agenda</span></a>
                 </li>
-                @endrole
                 <!-- end: AGENDA -->
 
                 <!-- start: TYPES OF APPOITMENTS -->
