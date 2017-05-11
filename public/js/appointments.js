@@ -128,6 +128,7 @@ $(document).ready(function () {
                 fname: "required",
                 sname: "required",
                 email: {
+
                     required: true,
                     email: true
                 }
@@ -151,7 +152,7 @@ $(document).ready(function () {
                             toastr.success('The event has been successfully deleted!');
                         }
                         if (data.trim() === 'error') {
-                            toastr.error('The Email is already Registered!');
+                            toastr.error('Email já está cadastrado!');
                         }
                     }
                 });
@@ -189,7 +190,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.getTodaysDate', function () {
         $.blockUI({
-            message: '<i class="fa fa-spinner fa-spin"></i> Loading Agenda for the date ...'
+            message: '<i class="fa fa-spinner fa-spin"></i> Buscando Agenda ...'
         });
 
         $date = $(this).parent().attr('data-date');
@@ -232,7 +233,6 @@ $(document).ready(function () {
 
         //#todaysEvent
     });
-
 
     $('body').on('change', '.appointment_daily_schedule select', function () {
         $.blockUI({
@@ -287,7 +287,7 @@ $(document).ready(function () {
 
     $('body').on('click', '#contentAppointmentRightMenu li a', function () {
         $.blockUI({
-            message: '<i class="fa fa-spinner fa-spin"></i> Updating ...'
+            message: '<i class="fa fa-spinner fa-spin"></i> Atualizando ...'
         });
         $val = $(this).attr('data-id');
         $id = $("#contentAppointmentRightMenu").attr('data-id');

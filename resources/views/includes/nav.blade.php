@@ -59,48 +59,25 @@
 
                     <a href="{{ url('/home')}}"><i class="fa fa-home fa-fw"></i> <span class="title"> Resumo </span> </a>
 
-                        <!-- start: AGENDA -->
-                <?php if($user->hasPermission('calendarcontroller.index')){ ?>
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'appointments') {
-                        echo 'active open';
-                    }
-                }?>">
-
-                    <a href="javascript:void(0)"><i class="fa fa-calendar fa-fw"></i><span class="title"> Agenda </span><i
-                                class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-
-                        <?php if($user->hasPermission('calendarcontroller.index')){ ?>
-                        <li class="">
-                            <a href="{{ url('/calendar') }}">
-                                <span class="title">Agenda</span>
-                            </a>
-                        </li>
-                    <!-- <li class="">
-							<a href="{{ url('/holidays') }}">
-								<span class="title"> Holiday Slots</span>
-							</a>
-						</li> -->
-                        <?php } ?>
-                        <li class="">
-                            <a href="{{ url('/agenda') }}">
-                                <span class="title">Configurar Agenda</span>
-                            </a>
-                        </li>
-
-                        <?php if($user->isAdmin() || $user->hasPermission('appointmenttypesrcontroller.index')){ ?>
-                        <li>
-                            <a href="{{ url('/calendar/appointmentTypes') }}">
-                                <span class="title">Tipos de Agendamentos</span>
-                            </a>
-                        </li>
-                        <?php } ?>
-
-                    </ul>
+                <!-- start: AGENDA -->
+                @role('admin')
+                <li>
+                    <a href="{{ url('/calendar') }}">
+                        <i class="fa fa-calendar fa-fw"></i>
+                        <span class="title">Agenda</span></a>
                 </li>
-                <?php } ?>
-            <!-- end: AGENDA -->
+                @endrole
+                <!-- end: AGENDA -->
+
+                <!-- start: TYPES OF APPOITMENTS -->
+                @role('admin')
+                <li>
+                    <a href="{{ url('/calendar/appointmentTypes') }}">
+                        <i class="fa fa-user fa-fw"></i>
+                        <span class="title">Tipos de Agendamentos</span></a>
+                </li>
+                @endrole
+                <!-- end: TYPES OF APPOITMENTS -->
 
                 <!-- start: CLINICS -->
                 @role('admin')
@@ -136,8 +113,8 @@
             <!-- end: PATIENTS -->
 
                 <!-- start: TREATMENTS -->
-                <?php if($user->isAdmin() || $user->hasPermission('treatmenttypescontroller.index')){ ?>
-                <li class="hide <?php if (isset($activeClass)) {
+                @role('admin')
+                <li class="<?php if (isset($activeClass)) {
                     if ($activeClass == 'treatmenttypes') {
                         echo 'active open';
                     }
@@ -166,7 +143,7 @@
                         <?php } ?>
                     </ul>
                 </li>
-                <?php } ?>
+                @endrole
             <!-- end: TREATMENTS -->
 
                 <!-- start: DENTAL PLANS -->
@@ -181,7 +158,7 @@
             <!-- end: DENTAL PLANS -->
 
                 <!-- start: REMINDERS -->
-                <?php if($user->isAdmin() || $user->hasPermission('remindercontroller.index')){ ?>
+                @role('admin')
                 <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'reminders') {
                         echo 'active open';
@@ -197,11 +174,11 @@
 						</li>
 					</ul> -->
                 </li>
-                <?php } ?>
+                @endrole
             <!-- end: REMINDERS -->
 
                 <!-- start: PAYMENTS -->
-                <?php if($user->isAdmin() || $user->hasPermission('paymentcontroller.index')){ ?>
+                @role('admin')
                 <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'payments') {
                         echo 'active open';
@@ -227,11 +204,11 @@
                         </li>
                     </ul>
                 </li>
-                <?php } ?>
+                @endrole
             <!-- end: PAYMENTS -->
 
                 <!-- start: PERMISSION SETTINGS -->
-                <?php  if($user->isAdmin()){ ?>
+                @role('admin')
                 <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'permissions') {
                         echo 'active open';
@@ -257,7 +234,7 @@
                         </li>
                     </ul>
                 </li>
-                <?php } ?>
+                @endrole
             <!-- end: PERMISSION SETTINGS -->
 
                 <!-- start: STOCK CONTROL -->
@@ -269,6 +246,19 @@
                 }?>">
                     <a href="{{ route('stockcontrol.index') }}"><i class="fa fa-cog fa-fw"></i> <span
                                 class="title"> Controle de Estoque </span></a>
+                </li>
+                @endrole
+            <!-- end: STOCK CONTROL -->
+
+                <!-- start: STOCK CONTROL -->
+                @role('admin')
+                <li class="<?php if (isset($activeClass)) {
+                    if ($activeClass == 'consultation') {
+                        echo 'active open';
+                    }
+                }?>">
+                    <a href="{{ route('consultation.index') }}"><i class="fa fa-briefcase fa-fw"></i> <span
+                                class="title"> Consultoria </span></a>
                 </li>
                 @endrole
                 <!-- end: STOCK CONTROL -->
@@ -285,7 +275,7 @@
                 <!-- end: CONTACTS -->
 
                 <!-- start: SELECT LISTS AVIALBLE -->
-                <?php if($user->isAdmin()){ ?>
+                @role('admin')
                 <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'settings') {
                         echo 'active open';
@@ -301,11 +291,11 @@
                         </li>
                     </ul>
                 </li>
-                <?php } ?>
+                @endrole
             <!-- end: SELECT LISTS AVIALBLE -->
 
                 <!-- start: INVESTORS -->
-                <?php if($user->isAdmin() || $user->hasPermission('potentialclientscontroller.index')){ ?>
+                @role('admin')
                 <li class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'potentialclients') {
                         echo 'active open';
@@ -343,11 +333,11 @@
                         </li>
                     </ul>
                 </li>
-                <?php } ?>
+                @endrole
             <!-- end: INVESTORS -->
 
                 <!-- start: FINANCE -->
-                <?php if($user->isAdmin() || $user->hasPermission('paymentcontroller.index')){ ?>
+                @role('admin')
                 <li style="display:none;" class="hide <?php if (isset($activeClass)) {
                     if ($activeClass == 'finances') {
                         echo 'active open';
@@ -383,7 +373,7 @@
                         </li>
                     </ul>
                 </li>
-            <?php } ?>
+            @endrole
             <!-- end: FINANCE -->
 
                 <!-- <li>

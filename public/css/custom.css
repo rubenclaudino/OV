@@ -1401,7 +1401,7 @@ hr.fc-widget-header{
    float: left;
 }
 .fc-toolbar .fc-center button.fc-next-button{
-   float: right;
+   float: left;
 }
 .fc-toolbar .fc-center button span{
    font-size: 34px;

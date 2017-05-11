@@ -34,6 +34,7 @@
                    style="opacity: 0.7;text-align:left;float:left;margin-top:8px;margin-left:8px;padding: 5px !important;"
                    ng-if="patient.wheel_chair == '1'"><i class="fa fa-wheelchair"></i></label>
             <!-- end: PATIENT OBS -->
+
             <div class="clearfix"></div>
 
             <!-- start: SPECIALTY -->
@@ -86,23 +87,30 @@
 
                 <ul class="dropdown-menu appt_tabs_dropdown pull-right" aria-labelledby="dropdownMenu1"
                     style="opacity:0.8;">
-                    <li><a href="#appointment-summary" aria-controls="appointment-summary" role="tab"
-                           data-toggle="tab" class="appointment-summary"><i class="fa fa-list fa-fw"></i></small>
-                            &nbsp; Appointment Timeline</a></li>
-                    <li><a href="#appointment-details" aria-controls="appointment-details" role="tab"
-                           data-toggle="tab"><i class="fa fa-calendar-o fa-fw"></i></small>&nbsp; Booking
-                            Information</a></li>
-                    <li class="hide"><a href="#appointment-information" aria-controls="appointment-information" role="tab"
-                           data-toggle="tab" class="appointment-information"><i
-                                    class="fa fa-info fa-fw"></i></small>&nbsp; Appointment Information</a></li>
 
-                    <!-- <li><a href="#">Register Payment</a></li> -->
-                    <li><a href="{{ url('/patients/') }}/{[{ patient.id }]}" target="_blank"><i
-                                    class="fa fa-user fa-fw"></i></small>&nbsp; Perfil</a></li>
+                    <li>
+                        <a href="#appointment-summary" aria-controls="appointment-summary" role="tab"
+                           data-toggle="tab" class="appointment-summary"><i class="fa fa-list fa-fw"></i></small>&nbsp; Histórico</a>
+                    </li>
+                    <li>
+                        <a href="#appointment-details" aria-controls="appointment-details" role="tab"
+                           data-toggle="tab"><i class="fa fa-calendar-o fa-fw"></i></small>&nbsp; Agendamento</a>
+                    </li>
+                    <li class="hide">
+                        <a href="#appointment-information" aria-controls="appointment-information" role="tab"
+                           data-toggle="tab" class="appointment-information"><i
+                                    class="fa fa-info fa-fw"></i></small>&nbsp; Atendimento</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/patients/') }}/{[{ patient.id }]}" target="_blank"><i
+                                    class="fa fa-user fa-fw"></i></small>&nbsp; Perfil</a>
+                    </li>
                     <li class="divider"></li>
-                    <li><a href="#" class="delete-event">
+                    <li>
+                        <a href="#" class="delete-event">
                             <small><i class="fa fa-ban fa-fw"></i></small>
-                            &nbsp; Excluír</a></li>
+                            &nbsp; Excluír</a>
+                    </li>
                 </ul>
 
             </div>

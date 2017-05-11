@@ -13,10 +13,11 @@ class DentalplansController extends Controller
 
     public function index()
     {
-        $title = "Dental Plans";
-        $subtitle = "Dental Plans List";
+        $title = "Convênios";
+        $subtitle = "";
         $activeClass = "dentalplans";
         $plans = ClinicDentalPlan::all();
+
         return view('dentalplans.index', compact('title', 'subtitle', 'activeClass', 'plans'));
     }
 

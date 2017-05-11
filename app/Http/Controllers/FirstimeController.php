@@ -13,7 +13,7 @@ class FirstimeController extends Controller
     public function index()
     {
         $title = "Setup Odontovision";
-        $subtitle = 'Informações detalhadas de todos tratamentos';
+        $subtitle = '';
         // getting users
 
         $specialities = Speciality::pluck('title', 'id');

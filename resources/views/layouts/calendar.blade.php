@@ -421,12 +421,12 @@
                     var resultEvent = isOverlapping(event);
 
                     if (resultEvent === false) {
-                        if (confirm("Are you sure about this change?")) {
+                        if (confirm("Confirmar alteração do agendamento?")) {
                             event.starttimestamp = moment(event.start).format('X');
                             event.endtimestamp = moment(event.end).format('X');
                             $('#calendar').fullCalendar('updateEvent', event);
                             $.blockUI({
-                                message: '<i class="fa fa-spinner fa-spin"></i> Updating this event ...'
+                                message: '<i class="fa fa-spinner fa-spin"></i> Atualizando agendamento ...'
                             });
 
                             console.log('Event DRAG n DROP AJAX called')
@@ -497,12 +497,12 @@
                             revertFunc();
                             return false;
                         }
-                        if (confirm("Are you sure about this change?")) {
+                        if (confirm("Confirmar alteração de agendamento?")) {
                             event.starttimestamp = moment(event.start).format('X');
                             event.endtimestamp = moment(event.end).format('X');
                             $('#calendar').fullCalendar('updateEvent', event);
                             $.blockUI({
-                                message: '<i class="fa fa-spinner fa-spin"></i> Updating this event ...'
+                                message: '<i class="fa fa-spinner fa-spin"></i> Atualizando agendamento ...'
                             });
                             //console.log(event);
 
@@ -572,7 +572,10 @@
                     var start = moment(view.start._d).format('YYYY-MM-DD');
                     var end = moment(view.end._d).format('YYYY-MM-DD');
 
+
+
                     $("thead").find("[data-date='" + start + "']").append("");
+
 
                     if (event.className[0] == 'holiday_event') {
                     } else {
@@ -588,10 +591,19 @@
                         // 		element.find('.fc-time').append(' <i class="fa fa-calendar pull-right" data-toggle="tooltip" data-placement="left" title="User Birthday"></i> ');
                         // 	}
                         // }
+                        var a = new Date(event.start).getTime(),
+                            b = new Date(event.end).getTime(),
+                         diff = {};
+
+                        diff.milliseconds = a > b ? a % b : b % a;
+                        diff.seconds = diff.milliseconds / 1000;
+                        diff.minutes = diff.seconds / 60;
+
                         element.find('.fc-time').append('<i class="fa fa-pencil" data-id="' + event.id + '"></i>');
                         element.find('.fc-time').prepend('<i class="fa fa-clock-o" data-id="' + event.id + '"></i>');
-
-
+                        if(diff.minutes == 15){
+                            element.find('.fc-time').hide();
+                        }
                     }
 
                 },
@@ -856,10 +868,10 @@
             $(".delete-event").data("event-id", el);
             $(".delete-event").off().on("click", function () {
                 el = $(this).data("event-id");
-                bootbox.confirm("Are you sure to cancel?", function (result) {
+                bootbox.confirm("Deseja excluír esse agendamento?", function (result) {
                     if (result) {
                         $.blockUI({
-                            message: '<i class="fa fa-spinner fa-spin"></i> Deleting this event ...'
+                            message: '<i class="fa fa-spinner fa-spin"></i> Excluindo ...'
                         });
 
                         console.log('DELETE appointment AJAX called');
@@ -874,7 +886,7 @@
                                     $('#full-calendar').fullCalendar('removeEvents', el);
                                     demoCalendar = $("#full-calendar").fullCalendar("clientEvents");
                                     $.hideSubview();
-                                    toastr.success('The event has been successfully deleted!');
+                                    toastr.success('Agendamento excluído com sucesso!');
                                 }
                             }
                         });
@@ -1085,7 +1097,7 @@
                         newEvent.patient_observation = $('.form-full-event .patientObservation').val();
                     }
                     $.blockUI({
-                        message: '<i class="fa fa-spinner fa-spin"></i> Saving Appointment ...'
+                        message: '<i class="fa fa-spinner fa-spin"></i> Salvando agendamento ...'
                     });
 
                     if ($(".form-full-event .event-id").val() !== "") {
@@ -1301,8 +1313,6 @@ if($user->hasRole('Local Admin') || $user->hasRole('Receptionist')){
         $html1 = "<div class='change_dentist'></div>";
         $('.fc-right').append($html1);
         $('.fc-right .change_dentist').append($html);
-
-
     });
 </script>
 <?php } ?>

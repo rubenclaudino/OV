@@ -30,7 +30,7 @@ class Patient extends Model
 
     public function patient_dental_plans()
     {
-        return $this->hasMany('App\PatientDentalPlan');
+        return $this->hasOne('App\PatientDentalPlan');
     }
 
     public function consultations()

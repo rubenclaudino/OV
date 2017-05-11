@@ -31,14 +31,14 @@ class CalendarController extends Controller
             if (isset($dentists[0]->user_id))
                 return redirect()->action('CalendarController@show', ['id' => $dentists[0]->user_id]);
 
-            echo "No Dentist Found! You Need to create at least one Dentist.";
+            echo "Não existe nenhum usuário cadastrado tente cadastrar um.";
 
         } elseif (Auth::user()->hasRole('Local Admin')) {
 
             if (isset(Auth::user()->id))
                 return redirect()->action('CalendarController@show', ['id' => Auth::user()->id]);
 
-            echo "No Dentist Found! You Need to create at least one Dentist.";
+            echo "Não existe nenhum usuário cadastrado tente cadastrar um.";
         }
         return $this->userAppointments($id);
     }
@@ -145,14 +145,14 @@ class CalendarController extends Controller
     {
         $request['clinic_id'] = Auth::user()->clinic_id;
         Appointment::find($id)->update($request->except('patient', 'patient_telephone', 'patient_mobile', 'patient_observation'));
-        return response()->json(['status' => 'success', 'message' => 'Agendamento atualizado!']);
+        return response()->json(['status' => 'success', 'message' => 'Agendamento atualizado com sucesso!']);
     }
 
     public function updateStatus(Request $request, $id)
     {
         $status = AppointmentStatus::find($request->status);
         Appointment::find($id)->update(['appointment_status_id' => $status->id, 'className' => $status->class_name]);
-        return response()->json(['status' => 'success', 'message' => 'Agendamento Atualizado!']);
+        return response()->json(['status' => 'success', 'message' => 'Agendamento atualizado com sucesso!']);
     }
 
     public function destroy($id)
@@ -197,7 +197,7 @@ class CalendarController extends Controller
         $appointments = Appointment::where([['startdate', $request->date], ['user_id', $request->dentist_id]])->orderBy('starttimestamp', 'asc')->get();
 
         if ($count <= 0)
-            return response()->json(['status' => 'error', 'message' => 'No Appointments found By the given Date.']);
+            return response()->json(['status' => 'error', 'message' => 'Nenhum agendamento encontrado para essa data!']);
 
         $i = 0;
         foreach ($appointments as $data) {
@@ -219,7 +219,7 @@ class CalendarController extends Controller
 
         $appointment_id = $request->appointment_id;
         if ($appointment_id == '')
-            return response()->json(['status' => 'error', 'message' => "Some Error Occured! Please refresh the page."]);
+            return response()->json(['status' => 'error', 'message' => "Ocorreu um erro! Tente recarregar a pagina."]);
 
         $appointment = Appointment::find($appointment_id);
         if (isset($appointment->id)) {
@@ -245,7 +245,7 @@ class CalendarController extends Controller
                 $gettingDocuments = $this->getPatientTreatmentDocuments($request);
                 return response()->json(['status' => 'success', 'message' => $gettingDocuments]);
             } else {
-                return response()->json(['status' => 'error', 'message' => 'Some Error Occured!']);
+                return response()->json(['status' => 'error', 'message' => 'Ocorreu um erro!']);
             }
         }
     }
@@ -259,9 +259,9 @@ class CalendarController extends Controller
         if ($document->id) {
             unlink($document->url);
             $document->delete();
-            return response()->json(['status' => 'success', 'message' => "Deleted."]);
+            return response()->json(['status' => 'success', 'message' => "Excluído."]);
         } else {
-            return response()->json(['status' => 'error', 'message' => "Some Error Occured!"]);
+            return response()->json(['status' => 'error', 'message' => "Ocorreu um erro!"]);
         }
     }
 

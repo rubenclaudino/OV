@@ -14,7 +14,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="clinic_dental_plan_id">Convênio</label>
-                        {!! Form::select('clinic_dental_plan_id', $clinic_dental_plans, 'Dental Plan',['class' => 'form-control dental_plan']) !!}
+                        {!! Form::select('clinic_dental_plan_id', $clinic_dental_plans,'',['class' =>
+                        'form-control','placeholder' => 'Não informado']) !!}
                     </div>
                 </div>
                 <!-- end: DENTAL PLAN -->

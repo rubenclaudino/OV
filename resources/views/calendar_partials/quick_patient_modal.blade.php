@@ -51,7 +51,7 @@
                 <!-- start: MODAL INTERACTIONS -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Fechar
+                        Voltar
                     </button>
                     <button class="btn btn-success btn-save-createnew" type="submit">
                         Salvar Cadastro
@@ -60,8 +60,10 @@
                 <!-- end: MODAL INTERACTIONS -->
 
             </form>
+
         </div>
         <!-- /.modal-content -->
+
     </div>
     <!-- start: MODAL DIALOG -->
 

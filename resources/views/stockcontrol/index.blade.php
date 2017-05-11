@@ -29,7 +29,7 @@
                             <div class="pull-right">
 
                                 <a class="btn" href="{{ url('/stockcontrol/create')}}" style="background: whitesmoke">
-                                    <i class="fa fa-user"></i> Novo Item
+                                    <i class="fa fa-archive"></i> Novo Item
                                 </a>
 
                                 <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
@@ -59,7 +59,7 @@
                             <tr>
                                 <th class="hide">#</th>
                                 <th></th>
-                                <th class="col-md-4">Descrição Item</th>
+                                <th class="col-md-4">Item</th>
                                 <th class="center">Quantidade</th>
                                 <th class="center">Estq. Mínimo</th>
                                 <th>Ult. Movimentação</th>

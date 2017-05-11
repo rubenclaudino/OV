@@ -18,7 +18,7 @@ class CreateBugTable extends Migration
             $table->string('report');
             $table->string('date_fix')->nullable();
             $table->string('user')->nullable();
-            $table->int('status')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

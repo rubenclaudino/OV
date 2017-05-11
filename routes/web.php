@@ -91,6 +91,9 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::put('updateStock/{id}', 'StockControlController@updateStock');
     Route::resource('stockcontrol', 'StockControlController');
 
+    // CONSULTATION
+    Route::resource('consultation', 'ConsultationController');
+
     // CONTACTS
     Route::resource('contacts', 'ContactsController');
 

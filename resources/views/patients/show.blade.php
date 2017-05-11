@@ -565,6 +565,7 @@
                                     <th>Horário</th>
                                     <th>Dentista</th>
                                     <th>Especialidade</th>
+                                    <th>Plano</th>
                                     <th>Tipo</th>
                                     <th>Status</th>
                                     <th>R$</th>
@@ -586,10 +587,28 @@
                                                    style="background: #{{ $appointment->specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $appointment->specialty->name }}</label>
                                         </td>
                                         <td>
+                                            {{ $appointment->plantype->title }}
+                                        </td>
+                                        <td>
                                             {{ $appointment->type->name }}
                                         </td>
                                         <td>
-                                            {{ $appointment->status->name }}
+                                            @if( $appointment->status->id == 1 )
+                                                <span class="label"
+                                                      style="background: #5bc0de;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @elseif( $appointment->status->id == 2 )
+                                                <span class="label"
+                                                      style="background: #5cb85c;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @elseif( $appointment->status->id == 3 )
+                                                <span class="label"
+                                                      style="background: #f0ad4e;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @elseif( $appointment->status->id == 4 )
+                                                <span class="label"
+                                                      style="background: #d9534f;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @elseif( $appointment->status->id == 5 )
+                                                <span class="label"
+                                                      style="background: #5e5e5e;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @endif
                                         </td>
                                         <td>
                                             -

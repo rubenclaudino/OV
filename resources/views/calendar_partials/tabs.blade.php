@@ -4,17 +4,17 @@
 
     <!-- start: APPOINTMENT DETAILS -->
     <li role="presentation" class="active"><a href="#appointment-details" aria-controls="appointment-details"
-                                              role="tab" data-toggle="tab">Booking Information</a></li>
+                                              role="tab" data-toggle="tab">Agendamento</a></li>
     <!-- end: APPOINTMENT DETAILS -->
 
     <!-- start: APPOINTMENT INFO -->
     <li role="presentation"><a href="#appointment-information" aria-controls="appointment-information" role="tab"
-                               data-toggle="tab" class="appointment-information">Appointment Information</a></li>
+                               data-toggle="tab" class="appointment-information">Atendimento</a></li>
     <!-- end: APPOINTMENT INFO -->
 
     <!-- start: APPOINTMENT SUMMARY -->
     <li role="presentation"><a href="#appointment-summary" id="appt-summary" aria-controls="appointment-summary"
-                               role="tab" data-toggle="tab" class="appointment-summary">Appointment Summary</a></li>
+                               role="tab" data-toggle="tab" class="appointment-summary">Resumo do Atendimento</a></li>
     <!-- start: APPOINTMENT SUMMARY -->
 
 </ul>
@@ -1012,7 +1012,7 @@
         <div class="appt_summary">
 
             <!-- start: SUMMARY TITLE -->
-            <h3 style="margin-top:0;background: whitesmoke;padding: 15px;font-weight: 100">Appointment Summary</h3>
+            <h3 style="margin-top:0;background: whitesmoke;padding: 15px;font-weight: 100">Histórico de Agendamentos</h3>
             <!-- end: SUMMARY TITLE -->
 
             <!-- start: ROW -->
@@ -1021,10 +1021,10 @@
                     <!-- start: HISTORY TABLE -->
                     <table class="table table-hover" ng-if="patient.appointments">
                         <thead>
-                        <th>Date</th>
-                        <th>Duration</th>
+                        <th>Data</th>
+                        <th>Duração</th>
                         <th class="center">Status</th>
-                        <th>Professional</th>
+                        <th>Dentista</th>
                         <th></th>
                         </thead>
                         <tbody style="color: #737373">
@@ -1071,9 +1071,11 @@
                         </tbody>
                     </table>
                     <!-- end: HISTORY TABLE -->
+
                     <div class="alert alert-info" ng-if="!patient.appointments">
-                        No Appointments Found
+                        Não tem agendamentos para esse dia
                     </div>
+
                 </div>
 
                 <!-- start: SELECTED APPOITNMENT AREA -->
@@ -1082,16 +1084,16 @@
                         <h3 style="margin-top:0;" class="text-center">Selected Appointment</h3>
                         <table class="table">
                             <tr>
-                                <td><strong>Date</strong></td>
+                                <td><strong>Data</strong></td>
                                 <td>{[{ viewappt.startdate}]}</td>
                             </tr>
                             <tr>
-                                <td><strong>Duration</strong></td>
+                                <td><strong>Duração</strong></td>
                                 <td>{[{ calcDiff(viewappt.appointment_starttime,viewappt.appointment_endtime) }]}
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Professional</strong></td>
+                                <td><strong>Dentista</strong></td>
                                 <td>{[{ viewappt.dentist.first_name}]} {[{ viewappt.dentist.last_name}]}</td>
                             </tr>
                             <tr>

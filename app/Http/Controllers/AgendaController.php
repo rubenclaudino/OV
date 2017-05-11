@@ -41,15 +41,15 @@ class AgendaController extends Controller
             $agenda->save();
 
             if ($agenda->id)
-                return response()->json(['status' => 'success', 'message' => 'Settings Updated!']);
+                return response()->json(['status' => 'success', 'message' => 'Configuração salva com sucesso!']);
 
-            return response()->json(['status' => 'error', 'message' => 'Some Error Occured!']);
+            return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
         }
 
         $agenda = Agenda::create($array);
         if ($agenda->id)
-            return response()->json(['status' => 'success', 'message' => 'Settings Created!']);
+            return response()->json(['status' => 'success', 'message' => 'Configuração salva com sucesso!']);
 
-        return response()->json(['status' => 'error', 'message' => 'Some Error Occured!']);
+        return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
     }
 }

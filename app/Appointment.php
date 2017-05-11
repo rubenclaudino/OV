@@ -38,6 +38,11 @@ class Appointment extends Model
         return $this->belongsTo('App\AppointmentType', 'appointment_type_id', 'id');
     }
 
+    public function plantype()
+    {
+        return $this->belongsTo('App\ClinicDentalPlan', 'clinic_dental_plan_id', 'id');
+    }
+
     public function specialty()
     {
         return $this->belongsTo('App\Specialty');
