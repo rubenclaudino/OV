@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment;
 use Illuminate\Http\Request;
 
 class PaymentsController extends Controller
@@ -9,7 +10,13 @@ class PaymentsController extends Controller
 
     public function index()
     {
-        //
+        $title = "Financeiro";
+
+        $activeClass = "payments";
+
+        $payments = Payment::all();
+
+        return view('payments.index', compact('title', 'payments', 'activeClass'));
     }
 
     public function create()

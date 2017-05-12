@@ -177,30 +177,13 @@
 
                 <!-- start: PAYMENTS -->
                 @role('admin')
-                <li class="hide <?php if (isset($activeClass)) {
+                <li class="<?php if (isset($activeClass)) {
                     if ($activeClass == 'payments') {
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-money fa-fw"></i> <span class="title"> Financeiro </span><i
-                                class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="{{ url('/')}}/payments">
-                                <span class="title"> Balanço </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/')}}/payments/in">
-                                <span class="title"> Entradas </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/')}}/payments/in">
-                                <span class="title"> Saídas </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('payments.index') }}"><i class="fa fa-money fa-fw"></i> <span
+                                class="title"> Financeiro </span></a>
                 </li>
                 @endrole
             <!-- end: PAYMENTS -->

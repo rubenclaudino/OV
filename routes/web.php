@@ -97,6 +97,9 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     // CONTACTS
     Route::resource('contacts', 'ContactsController');
 
+    // FINANCE / PAYMENTS
+    Route::resource('payments', 'PaymentsController');
+
     // POTENTIAL CLIENTS
     Route::put('potentialclients/{id}', 'PotentialClientsController@update');
     Route::resource('potentialclients', 'PotentialClientsController');
