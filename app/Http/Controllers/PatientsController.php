@@ -7,6 +7,7 @@ use App\Clinic;
 use App\ClinicDentalPlan;
 use App\Disease;
 use App\Patient;
+use App\PatientDentalPlan;
 use App\Referral;
 use App\Role;
 use App\Specialty;
@@ -60,12 +61,10 @@ class PatientsController extends Controller
 
     public function store(Request $request)
     {
-        $input = $request->all();
-
         $request['clinic_id'] = Auth::user()->clinic_id;
 
         // TODO: clinic dental plan as foreign key in patient dental plan
-        $patient = Patient::create($request->except('specialty', 'diseases', 'clinic_dental_plan_id'));
+        $patient = Patient::create($request->except('specialty', 'diseases', 'clinic_dental_plan_id', 'dental_plan'));
         if (!$patient->id)
             return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
 
@@ -79,6 +78,11 @@ class PatientsController extends Controller
             $patient->diseases()->sync($diseases);
         }
 
+        if($request->has('dental_plan')){
+            $new = array_merge($request->dental_plan, ['patient_id' => $patient->id]);
+            PatientDentalPlan::create($new);
+        }
+
         if ($request->hasFile('patient_profile_image')) {
             if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
                 mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
@@ -86,7 +90,7 @@ class PatientsController extends Controller
             if (!file_exists('uploads/' . Auth::user()->clinic_id . "/patients/profile/" . $patient->id)) {
                 mkdir('uploads/' . $patient->clinic_id . "/patients/profile/" . $patient->id, 0755, true);
             }
-            $url = $this->upload($input['patient_profile_image'], Auth::user()->clinic_id . "/patients/profile/" . $patient->id);
+            $url = $this->upload($request->patient_profile_image, Auth::user()->clinic_id . "/patients/profile/" . $patient->id);
             $patient->patient_profile_image = $url;
             $patient->save();
         }
@@ -100,7 +104,7 @@ class PatientsController extends Controller
         $subtitle = 'Informações detalhadas de todos tratamentos';
         $activeClass = "patients";
 
-        $patient = Patient::find($id);
+        $patient = Patient::with('patient_dental_plans')->find($id);
         $appointments = Appointment::where('patient_id', $patient->id)->orderBy('starttimestamp', 'desc')->get();
 
         // TODO: filter by patient
