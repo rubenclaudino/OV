@@ -77,6 +77,8 @@
 
         <div class="patient_actions">
 
+            <a href="#" class="btn btn-info btn-light-grey close-subviews" style="opacity: 0.65">Voltar</a>
+
             <div class="dropdown" style="display:inline-block;">
 
                 <button class="btn btn-primary btn-profile dropdown-toggle" type="button" id="dropdownMenu1"
@@ -89,12 +91,12 @@
                     style="opacity:0.8;">
 
                     <li>
-                        <a href="#appointment-summary" aria-controls="appointment-summary" role="tab"
-                           data-toggle="tab" class="appointment-summary"><i class="fa fa-list fa-fw"></i></small>&nbsp; Histórico</a>
-                    </li>
-                    <li>
                         <a href="#appointment-details" aria-controls="appointment-details" role="tab"
                            data-toggle="tab"><i class="fa fa-calendar-o fa-fw"></i></small>&nbsp; Agendamento</a>
+                    </li>
+                    <li>
+                        <a href="#appointment-summary" aria-controls="appointment-summary" role="tab"
+                           data-toggle="tab" class="appointment-summary"><i class="fa fa-list fa-fw"></i></small>&nbsp; Histórico</a>
                     </li>
                     <li class="hide">
                         <a href="#appointment-information" aria-controls="appointment-information" role="tab"

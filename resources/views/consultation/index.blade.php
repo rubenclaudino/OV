@@ -127,7 +127,7 @@
     </div>
     <!-- end: MAIN CONTENT -->
 
-    <!-- Modal -->
+    <!-- start: CONSULTATION -->
     <div class="modal fade" id="myModal" role="dialog">
 
         <div class="modal-dialog modal-lg ">
@@ -276,8 +276,9 @@
         </div>
 
     </div>
+    <!-- end: CONSULTATION -->
 
-    <!-- Modal -->
+    <!-- start: FEEDBACK MODAL -->
     <div class="modal fade" id="myModalrate" role="dialog">
 
         <div class="modal-dialog modal-xs">
@@ -311,5 +312,6 @@
         </div>
 
     </div>
+    <!-- end: FEEDBACK MODAL -->
 
 @endsection

@@ -306,7 +306,7 @@ previous button's border...
 }
 
 .fc th {
-	text-align: center;
+	text-align: left;
 }
 
 .fc th,
@@ -546,8 +546,8 @@ a.fc-more:hover {
 --------------------------------------------------------------------------------------------------*/
 
 .fc-toolbar {
-	text-align: center;
-	margin-bottom: 1em;
+	text-align: left;
+	margin-bottom: 0em;
 }
 
 .fc-toolbar .fc-left {

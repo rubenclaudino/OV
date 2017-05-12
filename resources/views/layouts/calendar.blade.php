@@ -633,7 +633,7 @@
                             }
                         }
                         $("thead").find("[data-date='" + daysCount[j] + "'] .appt_count").remove();
-                        $("thead").find("[data-date='" + daysCount[j] + "']").prepend("<span class='badge badge-primary appt_count'>" + count + "</span>");
+                        $("thead").find("[data-date='" + daysCount[j] + "']").prepend("<span class='label label-primary appt_count'>" + count + "</span>");
                     }
                 }
             });

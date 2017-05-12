@@ -1360,8 +1360,9 @@ label.error{
    float: right !important;
 }
 .fc-center h2{
-   padding-top:7px;
+   padding-top:12px;
     font-weight: normal;
+    font-size: x-large;
 }
 
 .fc-day-header hr,
@@ -1623,12 +1624,8 @@ select.form-control.selectpicker option:nth-child(5) {
 }
 
 .appt_count {
-   font-size: 10px !important;
-   margin-left:10px;
-    margin-top: -2.9px;
-   line-height: 10px;
-    background: #00AAFF;
-    opacity: 0.6;
+   line-height: 18px;
+	margin-bottom: 10px;
 }
 
 .bootstrap-select > .btn{
