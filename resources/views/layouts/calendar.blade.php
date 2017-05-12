@@ -599,7 +599,9 @@
                         diff.seconds = diff.milliseconds / 1000;
                         diff.minutes = diff.seconds / 60;
 
-                        element.find('.fc-time').append('<i class="fa fa-pencil" data-id="' + event.id + '"></i>');
+
+                        element.find('.fc-time-grid-event').attr("data-id",event.id);
+                        //element.find('.fc-time').append('<i class="fa fa-pencil" data-id="' + event.id + '"></i>');
                         element.find('.fc-time').prepend('<i class="fa fa-clock-o" data-id="' + event.id + '"></i>');
                         if(diff.minutes == 15){
                             element.find('.fc-time').hide();
@@ -665,8 +667,29 @@
                     hideEditEvent();
                 }
             });
-        })
+        });
 
+        $('body').on('click', '.fc-time-grid-event', function () {
+            var id = $(this).attr('data-id');
+
+            var calEvent = $("#full-calendar").fullCalendar('clientEvents', id)[0];
+            if (calEvent.className[0] == 'holiday_event') {
+                return false;
+            }
+            $("#contentAppointmentRightMenu").hide();
+            dateToShow = calEvent.start;
+            // opening event
+            subViewContent = "#newFullEvent";
+            $.subview({
+                content: subViewContent,
+                onShow: function () {
+                    editFullEvent(calEvent._id);
+                },
+                onHide: function () {
+                    hideEditEvent();
+                }
+            });
+        })
 
         var editFullEvent = function (el) {
             console.log('Added EDIT event to appointment')
