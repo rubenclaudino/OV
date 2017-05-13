@@ -4,7 +4,7 @@
     <!-- start: MAIN CONTENT -->
     <div class="main-content">
 
-        <!-- start: CONTAINER 1-->
+        <!-- start: CONTAINER BOTH-->
         <div class="container hide">
 
             <!-- start: DIV -->
@@ -144,7 +144,7 @@
 
                         <br>
 
-                        <table class="table table-hover">
+                        <table class="table table-hover" style="font-size: 1.1em">
 
                             <thead style="background: whitesmoke">
                             <tr>
@@ -211,7 +211,7 @@
 
                         <br>
 
-                        <table class="table table-hover">
+                        <table class="table table-hover" style="font-size: 1.1em">
 
                             <thead style="background: whitesmoke">
                             <tr>
@@ -251,10 +251,10 @@
             <!-- end: DIV -->
 
         </div>
-        <!-- end: CONTAINER 1-->
+        <!-- end: CONTAINER BOTH-->
 
-        <!-- start: CONTAINER 2-->
-        <div class="container">
+        <!-- start: CONTAINER IN-->
+        <div class="container hide">
 
             <!-- start: DIV -->
             <div style="margin: 15px 2px">
@@ -265,23 +265,25 @@
                     <!-- start: PANEL HEAD -->
                     <div class="panel-head">
 
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-3 col-md-3">
 
                             <h2 class="table_title">
                                 Entradas<br>
-                                <div class="input-group" style="padding: 10px">
+                                <div class="input-group" style="padding: 10px 0px">
                                     <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
                                     <input type="text" class="form-control date-range">
+
+
                                 </div>
                             </h2>
 
                         </div>
 
-                        <div class="col-lg-6 col-md-6" style="margin-top: 30px">
+                        <div class="col-lg-9 col-md-9" style="margin-top: 30px">
 
                             <div class="pull-right">
 
-                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                <a class="btn" href="#" data-target="#myModal" data-toggle="modal" style="background: whitesmoke">
                                     Entradas
                                 </a>
 
@@ -309,8 +311,8 @@
                     <br>
                     <br>
 
-                    <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px">
-                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Pacientes</h2>
+                    <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px; opacity: 0.8">
+                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Pacientes <label class="label" style="color: forestgreen"> R$ 0</label></h2>
                     </div>
 
                     <!-- start: PANEL BODY -->
@@ -324,7 +326,7 @@
 
                         <br>
 
-                        <table class="table table-hover">
+                        <table class="table table-hover" style="font-size: 1.1em">
 
                             <thead style="background: whitesmoke">
                             <tr>
@@ -363,6 +365,9 @@
                                 <td>
                                     -
                                 </td>
+                                <td>
+                                    -
+                                </td>
                                 <td class="hidden-print">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -370,18 +375,13 @@
                                         </button>
                                         <ul class="dropdown-menu pull-right" style="opacity:0.9;">
                                             <li><a href="#"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
                                             <li class="divider"></li>
-                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Excluír</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
                                         </ul>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr style="font-weight: bold;; ">
-                                <td colspan="7" style="text-align: right;  color: #3d3d3d">
-                                    Totals
-                                </td>
-                                <td colspan="1" style="text-align: left;">
-                                    R$ 0
                                 </td>
                             </tr>
                             </tbody>
@@ -393,12 +393,12 @@
 
                     <!-- SPLIT -->
 
-                    <div class="col-md-12" style="padding-left: 22px">
-                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Outros</h2>
+                    <div class="col-md-12" style="padding-left: 22px; opacity: 0.8">
+                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Outros Rendimentos<label class="label" style="color: forestgreen"> R$ 0</label></h2>
                     </div>
 
                     <!-- start: PANEL BODY -->
-                    <div class="panel-body" style="margin-bottom: 0px; padding-bottom: 0px">
+                    <div class="panel-body">
 
                         <style>
                             .table th, .table td {
@@ -408,52 +408,62 @@
 
                         <br>
 
-                        <table class="table table-hover">
+                        <table class="table table-hover" style="font-size: 1.1em">
 
                             <thead style="background: whitesmoke">
                             <tr>
-                                <th class="col-md-3">Categoria</th>
-                                <th class="col-md-3">Pago</th>
-                                <th class="col-md-3">À pagar</th>
-                                <th class="col-md-3">Total</th>
+                                <th class="col-md-1">Id</th>
+                                <th >Data</th>
+                                <th class="col-md-3">Descrição</th>
+                                <th>Forma Pagamento</th>
+                                <th class="col-md-1">Parcela</th>
+                                <th class="col-md-1">Valor</th>
+                                <th >Data Pago</th>
+                                <th>Status</th>
+                                <th></th>
                             </tr>
                             </thead>
 
                             <tbody>
                             <tr>
-                                <td class="col-md-3">
-                                    Salários
+                                <td>
+                                    -
                                 </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 2860
+                                <td>
+                                    -
                                 </td>
-                                <td class="col-md-3">
-                                    R$ 820
+                                <td>
+                                    -
                                 </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 2040
+                                <td>
+                                    -
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-3">
-                                    Material
+                                <td>
+                                    -
                                 </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 1000
+                                <td>
+                                    -
                                 </td>
-                                <td class="col-md-3">
-                                    R$ 0
+                                <td>
+                                    -
                                 </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 1000
+                                <td>
+                                    -
                                 </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" style="text-align: right; font-weight: bold; color: #3d3d3d">
-                                    Total
-                                </td>
-                                <td colspan="1" style="text-align: left">
-                                    <span class="label" style="background: darkred">R$ 1000</span>
+                                <td class="hidden-print">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opções &nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                            <li><a href="#"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
@@ -470,7 +480,234 @@
             <!-- end: DIV -->
 
         </div>
-        <!-- end: CONTAINER 2-->
+        <!-- end: CONTAINER IN-->
+
+        <!-- start: CONTAINER OUT-->
+        <div class="container">
+
+            <!-- start: DIV -->
+            <div style="margin: 15px 2px">
+
+                <!-- start: PANEL -->
+                <div class="panel">
+
+                    <!-- start: PANEL HEAD -->
+                    <div class="panel-head">
+
+                        <div class="col-lg-3 col-md-3">
+
+                            <h2 class="table_title">
+                                Saídas<br>
+                                <div class="input-group" style="padding: 10px 0px">
+                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                    <input type="text" class="form-control date-range">
+                                </div>
+                            </h2>
+
+                        </div>
+
+                        <div class="col-lg-9 col-md-9" style="margin-top: 30px">
+
+                            <div class="pull-right">
+
+                                <a class="btn" href="#" data-target="#myModal" data-toggle="modal" style="background: whitesmoke">
+                                    Entradas
+                                </a>
+
+                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                    Saídas
+                                </a>
+
+                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                    Fluxo
+                                </a>
+
+                                <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
+                                    <i class="fa fa-print"></i> Imprimir
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end: PANEL HEAD -->
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                    <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px; opacity: 0.8">
+                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Despesas <label class="label" style="color: firebrick"> R$ 0</label></h2>
+                    </div>
+
+                    <!-- start: PANEL BODY -->
+                    <div class="panel-body">
+
+                        <style>
+                            .table th, .table td {
+                                border-top: none !important;
+                            }
+                        </style>
+
+                        <br>
+
+                        <table class="table table-hover" style="font-size: 1.1em">
+
+                            <thead style="background: whitesmoke">
+                            <tr>
+                                <th class="col-md-1">Id</th>
+                                <th >Data</th>
+                                <th class="col-md-3">Descrição</th>
+                                <th>Forma Pagamento</th>
+                                <th class="col-md-1">Parcela</th>
+                                <th class="col-md-1">Valor</th>
+                                <th >Data Pago</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td class="hidden-print">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opções &nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                            <li><a href="#"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                    <!-- start: PANEL BODY -->
+
+                    <!-- SPLIT -->
+
+                    <div class="col-md-12" style="padding-left: 22px; opacity: 0.8">
+                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Salários <label class="label" style="color: firebrick"> R$ 0</label></h2>
+                    </div>
+
+                    <!-- start: PANEL BODY -->
+                    <div class="panel-body">
+
+                        <style>
+                            .table th, .table td {
+                                border-top: none !important;
+                            }
+                        </style>
+
+                        <br>
+
+                        <table class="table table-hover" style="font-size: 1.1em">
+
+                            <thead style="background: whitesmoke">
+                            <tr>
+                                <th class="col-md-1">Id</th>
+                                <th >Data</th>
+                                <th class="col-md-3">Descrição</th>
+                                <th>Forma Pagamento</th>
+                                <th class="col-md-1">Parcela</th>
+                                <th class="col-md-1">Valor</th>
+                                <th >Data Pago</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td class="hidden-print">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opções &nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                            <li><a href="#"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                    <!-- start: PANEL BODY -->
+
+                </div>
+                <!-- end: PANEL -->
+
+            </div>
+            <!-- end: DIV -->
+
+        </div>
+        <!-- end: CONTAINER OUT-->
 
     </div>
     <!-- end: MAIN CONTENT -->
@@ -478,142 +715,104 @@
     <!-- start: CONSULTATION -->
     <div class="modal fade" id="myModal" role="dialog">
 
-        <div class="modal-dialog modal-lg ">
+        <div class="modal-dialog modal-md">
 
             <!-- Modal content-->
             <div class="modal-content" style="border-radius: 1px">
 
                 <div class="modal-header" style="background: whitesmoke">
-                    <h3 class="modal-title">Consulta <br>
-                        <small>Resumo da sua consulta</small>
+                    <h3 class="modal-title">Parcelas <br>
+                        <small>Pagamento Total R$ 0</small>
                     </h3>
                 </div>
 
                 <div class="modal-body">
 
-                    <!-- start: PROCESS STATUS -->
-                    <div class="col-md-2" style="background: forestgreen; width: 20%; height: 45px; opacity: 0.50">
-                        <h4 class="center" style="color: white">Avaliação <br>
-                            <small style="color: whitesmoke">12 horas</small>
-                        </h4>
-                    </div>
+                        <style>
+                            .table th, .table td {
+                                border-top: none !important;
+                            }
+                        </style>
 
-                    <div class="col-md-2" style="background: goldenrod; width: 20%; height: 45px; opacity: 0.50">
-                        <h4 class="center" style="color: white">Aprovação <br>
-                            <small style="color: whitesmoke">4 horas</small>
-                        </h4>
-                    </div>
+                        <table class="table table-hover" style="font-size: 1.1em">
 
-                    <div class="col-md-2" style="background: silver; width: 20%; height: 45px; opacity: 0.50">
-                        <h4 class="center" style="color: white">Planejamento <br>
-                            <small style="color: grey">0 horas</small>
-                        </h4>
-                    </div>
-
-                    <div class="col-md-2" style="background: silver; width: 20%; height: 45px; opacity: 0.50">
-                        <h4 class="center" style="color: white">Duvidas <br>
-                            <small style="color: grey">0 horas</small>
-                        </h4>
-                    </div>
-
-                    <div class="col-md-2" style="background: silver; width: 20%; height: 45px; opacity: 0.50">
-                        <h4 class="center" style="color: white">Concluído <br>
-                            <small style="color: grey">0 horas</small>
-                        </h4>
-                    </div>
-                    <!-- end: PROCESS STATUS -->
-
-                    <!-- start: FORM DATA SECTION -->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background: whitesmoke">
-
-                        <table class="table" style="font-size:1.1em">
-
-                            <style>
-                                .table th, .table td {
-                                    border-top: none !important;
-                                }
-                            </style>
+                            <thead>
+                            <tr>
+                                <th>Parcela</th>
+                                <th>Data à receber</th>
+                                <th>Data Pago</th>
+                                <th class="col-md-2">Valor</th>
+                                <th class="col-md-2">status</th>
+                                <th></th>
+                            </tr>
+                            </thead>
 
                             <tbody>
-
-                            <tr>
-                                <td style="font-weight:bold;">
-                                    Data início
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td style="font-weight:bold;">
-                                    Data Finalizado
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td style="font-weight:bold;">
-                                    Paciente
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td style="font-weight:bold;">
-                                    Professor
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td style="font-weight:bold;">
-                                    Especialização
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td style="font-weight:bold;">
-                                    Idade
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                            </tr>
-
                             <tr>
                                 <td>
-
+                                    1
                                 </td>
                                 <td>
-
-                                </td>
-                                <td style="font-weight:bold;">
-                                    Duração
+                                    18/02/2017
                                 </td>
                                 <td>
-                                    -
-                                </td>
-                                <td style="font-weight:bold;">
-                                    Sexo
+                                    18/02/2017
                                 </td>
                                 <td>
-                                    -
+                                    R$ 100
+                                </td>
+                                <td>
+                                    <span class="label label-success"
+                                          style="opacity: 0.7">Pago</span>
+                                </td>
+                                <td class="hidden-print">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opções &nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
-
+                            <tr>
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    18/03/2017
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                                <td>
+                                    R$ 100
+                                </td>
+                                <td>
+                                    <span class="label label-danger"
+                                          style="opacity: 0.7">Pendente</span>
+                                </td>
+                                <td class="hidden-print">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Opções &nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
+                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
 
                         </table>
-
-                    </div>
-                    <!-- end: FORM DATA SECTION -->
-
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 5px">
-                        <button class="btn btn-primary">Texto</button>
-                        <button class="btn btn-primary">Foto</button>
-                        <button class="btn btn-primary">Anexo</button>
-                        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalrate">
-                            Interaction Button
-                        </button>
-                    </div>
 
                 </div>
 
