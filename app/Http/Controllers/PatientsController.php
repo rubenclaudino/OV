@@ -78,7 +78,7 @@ class PatientsController extends Controller
             $patient->diseases()->sync($diseases);
         }
 
-        if($request->has('dental_plan')){
+        if($request['dental_plan']['clinic_dental_plan_id'] != null){
             $new = array_merge($request->dental_plan, ['patient_id' => $patient->id]);
             PatientDentalPlan::create($new);
         }
@@ -95,7 +95,7 @@ class PatientsController extends Controller
             $patient->save();
         }
 
-        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!"]);
+        return redirect('patients')->with('status', 'Paciente cadastrado com sucesso!');
     }
 
     public function show($id)
@@ -113,16 +113,34 @@ class PatientsController extends Controller
         return view('patients.show', compact('title', 'subtitle', 'patient', 'activeClass', 'patient', 'appointments', 'missedAppointments'));
     }
 
-    public function edit($id)
+    public function edit(Patient $patient)
     {
         $title = "Patients";
         $subtitle = 'Informações detalhadas de todos tratamentos';
         $activeClass = "patients";
 
-        $patient = Patient::find($id);
+        $professionals = [];
+        $diseases = Disease::all();
+
+        foreach ($diseases as $data) {
+            $data->value = "0";
+            $data->action = false;
+        }
+
+        $dentist = Role::where('name', 'dentist')->first()->users()->get();
+        foreach ($dentist as $data) {
+            $name = $data->first_name . " " . $data->last_name;
+            $professionals[$data->id] = $name;
+        }
+
+        $treatments = Specialty::orderBy('name')->pluck('name', 'id');
+        $referrals = Referral::pluck('name', 'id');
+        $clinic_dental_plans = ClinicDentalPlan::pluck('title', 'id');
+
+        $clinics = Clinic::pluck('name', 'id');
 
         // TODO: filter by patient clinic
-        $dentist = Role::where('name', 'dentist')->first()->users()->get();
+        /*$dentist = Role::where('name', 'dentist')->first()->users()->get();
         $professionals = [];
 
         $disease = Disease::all();
@@ -148,13 +166,16 @@ class PatientsController extends Controller
             $professionals[$data->id] = $name;
         }
 
-        $treatments = Specialty::pluck('name', 'id');
+        $treatments = Specialty::pluck('name', 'id');*/
 
-        return view('patients.edit', compact('title', 'subtitle', 'patient', 'activeClass', 'professionals', 'disease', 'patientDisease', 'treatments'));
+        return view('patients.edit', compact('title', 'subtitle', 'patient', 'activeClass', 'professionals',
+            'disease', 'patientDisease', 'treatments', 'referrals', 'clinic_dental_plans', 'clinics', 'professionals', 'diseases'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Patient $patient)
     {
+        $patient->update($request->except('specialty', 'diseases', 'clinic_dental_plan_id', 'dental_plan'));
+/*
         if ($request->action === 'save_profile') {
             $patient = Patient::find($id);
             if (!empty($patient)) {
@@ -233,7 +254,8 @@ class PatientsController extends Controller
             }
         } else {
             return "Ocorreu algum erro!";
-        }
+        }*/
+        return redirect('patients')->with('status', 'Paciente não foi localizado!');
     }
 
     public function destroy($id)

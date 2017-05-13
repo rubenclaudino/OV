@@ -50,7 +50,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="doc">Dentista</label>
-                            {!! Form::select('user_id', $professionals,'',['class' =>
+                            {!! Form::select('user_id', $professionals,null,['class' =>
                             'form-control','placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="hasDentalPlan">Tem Convênio</label>
-                            {!! Form::select('has_dental_plan', array('0' => 'Não','1' => 'Sim'),'',['class'
+                            {!! Form::select('has_dental_plan', array('0' => 'Não','1' => 'Sim'),null,['class'
                             => 'form-control','placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="pSpec">Especialidades</label>
-                            {!! Form::select('specialty[]',$treatments,'',['class' => 'form-control
+                            {!! Form::select('specialty[]',$treatments,null,['class' => 'form-control
                             selectpicker','multiple' => 'true']) !!}
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="referral_id">Indicação</label>
-                            {!! Form::select('referral_id', $referrals,'',['class' =>
+                            {!! Form::select('referral_id', $referrals,null,['class' =>
                             'form-control','placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="confirmation_request">Necessita confirmação</label>
-                            {!! Form::select('confirmation_request', array('0' => 'Não','1' => 'Sim'),'',['class'
+                            {!! Form::select('confirmation_request', array('0' => 'Não','1' => 'Sim'),null,['class'
                            => 'form-control','placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="vip">vip</label>
-                            {!! Form::select('vip', array('0' => 'Não','1' => 'Sim'),'',['class'
+                            {!! Form::select('vip', array('0' => 'Não','1' => 'Sim'),null,['class'
                            => 'form-control','placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
@@ -161,8 +161,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="first_name">Nome</label>
-                                    {{ Form::text('first_name','',array('class' => 'form-control', 'id'
-                                    => 'first_name')) }}
+                                    {{ Form::text('first_name', null, array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: NAME -->
@@ -171,8 +170,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="last_name">Sobrenome</label>
-                                    {{ Form::text('last_name','',array('class' => 'form-control', 'id'
-                                    => 'last_name')) }}
+                                    {{ Form::text('last_name', null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: LAST NAME -->
@@ -184,7 +182,7 @@
                                 <div class="form-group">
                                     <label for="gender">Sexo</label>
                                     {!! Form::select('gender', ['0' => 'Masculino','1' => 'Feminino'],'',['class' => 'form-control', 'placeholder' => 'Não
-                                    informado', 'id' => 'gender']) !!}
+                                    informado']) !!}
                                 </div>
                             </div>
                             <!-- end: GENDER -->
@@ -194,7 +192,7 @@
                                 <div class="form-group">
                                     <label for="date_of_birth">Data de Nascimento</label>
                                     <div class="input-group">
-                                        {{ Form::text('date_of_birth','',array('class' => 'form-control input-mask-date', 'id' => 'date_of_birth')) }}
+                                        {{ Form::text('date_of_birth', null,array('class' => 'form-control datepicker')) }}
                                     </div>
                                 </div>
                             </div>
@@ -204,8 +202,7 @@
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="CPF">CPF</label>
-                                    {{ Form::text('CPF','',array('class' => 'form-control', 'id' =>
-                                    'CPF')) }}
+                                    {{ Form::text('CPF', null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: CPF -->
@@ -214,7 +211,7 @@
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="RG">RG</label>
-                                    {{ Form::text('RG','',array('class' => 'form-control','id' => 'RG'))
+                                    {{ Form::text('RG',null,array('class' => 'form-control'))
                                     }}
                                 </div>
                             </div>
@@ -228,8 +225,7 @@
                                     <label for="marital_status">Estado Civil</label>
                                     {!! Form::select('marital_status', ['0' => 'Solteiro(a)','1'
                                     => 'Casado(a)','2' => 'Divorciado(a)','3' => 'Viúvo(a)'],'',['class'
-                                    => 'form-control','placeholder' => 'Não informado', 'id' =>
-                                    'marital_status']) !!}
+                                    => 'form-control','placeholder' => 'Não informado']) !!}
                                 </div>
                             </div>
                             <!-- end: CIVAL STATUS -->
@@ -238,8 +234,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="nationality">Nacionalidade</label>
-                                    {{ Form::text('nationality','',array('class' => 'form-control', 'id'
-                                    => 'nationality')) }}
+                                    {{ Form::text('nationality', null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: NATIONALTY -->
@@ -250,8 +245,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="profession">Ocupação / Profissão</label>
-                                    {{ Form::text('profession','',array('class' => 'form-control', 'id'
-                                    => 'profession')) }}
+                                    {{ Form::text('profession', null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: PROFESSION -->
@@ -261,9 +255,8 @@
                                 <div class="form-group">
                                     <label for="education">Grau de Instrução</label>
                                     {!! Form::select('education', ['0' => 'Ensino Fundamental','1'
-                                    => 'Ensino Médio','2' => 'Ensino Superior'],'',['class' =>
-                                    'form-control','placeholder' => 'Não informado', 'id' =>
-                                    'education']) !!}
+                                    => 'Ensino Médio','2' => 'Ensino Superior'], null,['class' =>
+                                    'form-control','placeholder' => 'Não informado']) !!}
                                 </div>
                             </div>
                             <!-- end: EDUCATION -->
@@ -274,8 +267,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="observation">Observação</label>
-                                    {{ Form::text('observation','',array('class' => 'form-control', 'id'
-                                    => 'observation')) }}
+                                    {{ Form::text('observation', null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: OBSERVATION -->
@@ -301,7 +293,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                         <span>
-                                        {{ Form::text('phone_landline','',array('class' => 'form-control input-mask-phone1', 'id' => 'phone_landline')) }}
+                                        {{ Form::text('phone_landline',null,array('class' => 'form-control input-mask-phone1', 'id' => 'phone_landline')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -317,7 +309,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                         <span>
-                                             {{ Form::text('work_phone','',array('class' => 'form-control input-mask-phone', 'id' => 'work_phone')) }}
+                                             {{ Form::text('work_phone',null,array('class' => 'form-control input-mask-phone', 'id' => 'work_phone')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -333,7 +325,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                         <span>
-                                            {{ Form::text('phone_1','',array('class' => 'form-control input-mask-phone', 'id' => 'phone_1')) }}
+                                            {{ Form::text('phone_1',null,array('class' => 'form-control input-mask-phone', 'id' => 'phone_1')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -350,7 +342,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                         <span>
-                                            {{Form::text('phone_2','',array('class' => 'form-control input-mask-phone', 'id' => 'phone_2')) }}
+                                            {{Form::text('phone_2',null,array('class' => 'form-control input-mask-phone', 'id' => 'phone_2')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -367,7 +359,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                         <span>
-                                            {{Form::text('whatsapp_number','',array('class' => 'form-control input-mask-phone', 'id' => 'whatsapp_number')) }}
+                                            {{Form::text('whatsapp_number',null,array('class' => 'form-control input-mask-phone', 'id' => 'whatsapp_number')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -383,7 +375,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                         <span>
-                                             {{ Form::text('email','',array('class' => 'form-control input-mask-email', 'id' => 'email')) }}
+                                             {{ Form::text('email',null,array('class' => 'form-control input-mask-email', 'id' => 'email')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -400,7 +392,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                         <span>
-                                            {{Form::text('related_phone_1','',array('class' => 'form-control input-mask-phone', 'id' => 'related_phone_1')) }}
+                                            {{Form::text('related_phone_1',null,array('class' => 'form-control input-mask-phone', 'id' => 'related_phone_1')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -417,7 +409,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                          <span>
-                                            {{Form::text('related_name_1','',array('class' => 'form-control', 'id' => 'related_name_1')) }}
+                                            {{Form::text('related_name_1',null,array('class' => 'form-control', 'id' => 'related_name_1')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -434,7 +426,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                          <span>
-                                            {{Form::text('related_phone_2','',array('class' => 'form-control input-mask-phone', 'id' => 'related_phone_2')) }}
+                                            {{Form::text('related_phone_2',null,array('class' => 'form-control input-mask-phone', 'id' => 'related_phone_2')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -451,7 +443,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                          style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
                                         <span>
-                                            {{Form::text('related_name_2','',array('class' => 'form-control', 'id' => 'related_name_2')) }}
+                                            {{Form::text('related_name_2',null,array('class' => 'form-control', 'id' => 'related_name_2')) }}
                                         </span>
                                     </div>
                                 </div>
@@ -476,7 +468,7 @@
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 ">
                                 <div class="form-group">
                                     <label for="street_address">Rua/Avenida</label>
-                                    {{Form::text('address','',array('class' => 'form-control',
+                                    {{Form::text('address',null,array('class' => 'form-control',
                                     'id' => 'address')) }}
                                 </div>
                             </div>
@@ -486,7 +478,7 @@
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="street_number">Número</label>
-                                    {{Form::text('street_number','',array('class' => 'form-control', 'id' =>
+                                    {{Form::text('street_number',null,array('class' => 'form-control', 'id' =>
                                     'street_number')) }}
                                 </div>
                             </div>
@@ -498,8 +490,7 @@
                                     <label for="borough">
                                         Bairro
                                     </label>
-                                    {{ Form::text('borough','',array('class' => 'form-control', 'id' =>
-                                    'borough')) }}
+                                    {{ Form::text('borough',null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: BOUROUGH -->
@@ -508,8 +499,8 @@
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="zip_code">CEP</label>
-                                    {{Form::text('zip_code','',array('class' => 'form-control
-                                    input-mask-cep', 'id' => 'zip_code')) }}
+                                    {{Form::text('zip_code',null,array('class' => 'form-control
+                                    input-mask-cep')) }}
                                 </div>
                             </div>
                             <!-- end: ZIP -->
@@ -518,8 +509,7 @@
                             <div class="col-lg-9 col-md9 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="city">Cidade</label>
-                                    {{ Form::text('city','',array('class' => 'form-control', 'id' =>
-                                    'city')) }}
+                                    {{ Form::text('city',null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: CITY -->
@@ -569,8 +559,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="observation">Observations</label>
-                                    {{ Form::text('observation','',array('class' => 'form-control', 'id'
-                                    => 'observation')) }}
+                                    {{ Form::text('observation',null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
                             <!-- end: OBSERVATION -->
