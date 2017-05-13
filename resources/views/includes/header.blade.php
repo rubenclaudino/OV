@@ -60,8 +60,8 @@
 
                             <!-- start: REPORT BUG -->
                             <li class="pull-left hidden-xs">
-                                <a data-toggle="tooltip" data-placement="bottom"
-                                   title="Relatar Problema" style="opacity: 0.85;">
+                                <a data-toggle="modal" data-placement="bottom"
+                                   title="Relatar Problema" href="#" data-target="#myModalbug" tyle="opacity: 0.85;">
                                     <i class="fa fa-bug"></i>
                                 </a>
                             </li>
@@ -208,5 +208,45 @@
 
     </div>
     <!-- end: TOPBAR CONTAINER -->
+
+    <!-- start: FEEDBACK MODAL -->
+    <div class="modal fade" id="myModalbug" role="dialog">
+
+        <div class="modal-dialog modal-xs">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="border-radius: 1px">
+
+                <div class="modal-header" style="background: whitesmoke">
+                    <h2 class="modal-title center" style="font-weight: lighter">
+                        Relatar Erros e Fazer Sugestões
+                    </h2>
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="center" style="font-size: 1.5em">Gostariamos de saber se você gostou da sua resposta ?</p>
+
+                    <br>
+
+                    <div class="center">
+
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                                style="padding: 5px; width: 70px">Sim
+                        </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                style="padding: 5px; width: 70px">Não
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- end: FEEDBACK MODAL -->
 
 </header>

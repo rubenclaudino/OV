@@ -10,11 +10,11 @@
             <!-- start: ROW -->
             <div class="row">
 
-            <!-- start: DENTAL PLAN -->
+                <!-- start: DENTAL PLAN -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="clinic_dental_plan_id">Convênio</label>
-                        {!! Form::select('dental_plan[clinic_dental_plan_id]', $clinic_dental_plans,'',['class' =>
+                        {!! Form::select('dental_plan[clinic_dental_plan_id]', $clinic_dental_plans, null,['class' =>
                         'form-control','placeholder' => 'Não informado']) !!}
                     </div>
                 </div>
@@ -24,7 +24,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="card_number">Numero do Cartão</label>
-                        <input type="text" class="form-control" id="card_number" name="dental_plan[card_number]">
+                        {{ Form::text('dental_plan[card_number]', null, array('class' => 'form-control')) }}
+
                     </div>
                 </div>
                 <!-- end: CARD NUMBER -->
@@ -33,7 +34,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="card_owner">Titular</label>
-                        <input type="text" class="form-control" id="card_owner" name="dental_plan[card_owner]">
+                        {{ Form::text('dental_plan[card_owner]', null, array('class' => 'form-control')) }}
+
                     </div>
                 </div>
                 <!-- end: TITLE HOLDER -->
@@ -42,7 +44,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label for="dental_plan_type">Tipo Plano</label>
                     <div class="form-group input-group">
-                        <input type="text" class="form-control" id="dental_plan_type" name="dental_plan[dental_plan_type]">
+                        {{ Form::text('dental_plan[dental_plan_type]', null, array('class' => 'form-control')) }}
+
                     </div>
                 </div>
                 <!-- end: PLAN TYPE -->
@@ -51,7 +54,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="exp_date">Data de Expiração</label>
-                        <input type="date" class="form-control" id="exp_date" name="dental_plan[exp_date]">
+                        {{ Form::text('dental_plan[exp_date]', null, array('class' => 'form-control datepicker')) }}
+
                     </div>
                 </div>
                 <!-- end: EXPIRY DATE -->
