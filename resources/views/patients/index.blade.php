@@ -99,7 +99,7 @@
                                 <td>{{ $patient->id }}</td>
                                 <!-- PROFILE PICTURE -->
                                 <td>
-                                    <div class="image_cont hidden-print" style="opacity: 0.8">
+                                    <div class="image_cont hidden-print" style="opacity: 0.7">
                                         @if($patient->patient_profile_image != '')
                                             {{ Html::image(url('/').'/'.$patient->patient_profile_image) }}
                                         @else
