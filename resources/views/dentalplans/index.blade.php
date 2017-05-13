@@ -58,7 +58,6 @@
                             <!-- start: COLUMN INFO -->
                             <thead style="background: whitesmoke">
                             <tr>
-                                <th class="hide">#</th>
                                 <th class="col-md-3">Convênio</th>
                                 <th>Site</th>
                                 <th>Telefone</th>
@@ -77,14 +76,13 @@
                             foreach($plans as $plan){
                             ?>
                             <tr>
-                                <td class="hide">{{ $i }}<?php $i++;?></td>
                                 <td>{{ $plan->title }}</td>
                                 <td><a href="{{ $plan->url }}" target="_blank">{{ $plan->url }}</a></td>
                                 <td>{{ $plan->phone_1 }}</td>
                                 <td>
                                     <small>{{ $plan->ans_code }}</small>
                                 </td>
-                                <td>0</td>
+                                <td>{{ count($plan->patient_dental_plans) }}</td>
                                 <td class="hidden-print">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
