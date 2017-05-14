@@ -84,7 +84,7 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     // PERMISSIONS
     Route::get('permissions/addPermissions', 'PermissionsController@addPermissions');
     //Route::get('permissions/assign','PermissionsController@assign');
-    Route::get('permissions/assignPermissions', 'PermissionsController@assign');
+    Route::get('permissions/assignPermissions', ['as' => 'permissions.assign_permissions', 'uses' => 'PermissionsController@assign']);
     Route::post('permissions/saveRole', 'PermissionsController@saveRole');
     Route::resource('permissions', 'PermissionsController');
     Route::get('users/permission', 'UsersController@permission');
@@ -130,7 +130,7 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::post('calendar/getTodaysEvents', 'CalendarController@getTodaysEvent');
     Route::get('calendar/appointmentdetails/{id}', 'CalendarController@appointmentdetails');
     Route::put('calendar/updateStatus/{id}', 'CalendarController@updateStatus');
-    Route::get('calendar/appointmentTypes', ['as' => 'calendar.appointment_types', 'controller' => 'CalendarController@appointmentTypes']);
+    Route::get('calendar/appointmentTypes', ['as' => 'calendar.appointment_types', 'uses' => 'CalendarController@appointmentTypes']);
     Route::post('calendar/addAppointmentType', 'CalendarController@addAppointmentTypes');
     Route::post('calendar/updateAppointment/{id}', 'CalendarController@updateAppointment');
     Route::post('calendar/addDocument', 'CalendarController@addDocument');

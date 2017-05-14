@@ -20,9 +20,10 @@
 
     <link rel="stylesheet" href="{{ asset('plugins/angular/toastr/toaster.css')}}">
 
-    <script type="text/javascript" src="{{ asset('plugins/jQuery/jquery-2.1.1.min.js')}}" async></script>
 </head>
 <body>
+
+@include('includes.topbar')
 
 <div class="main_wrapper">
 
@@ -37,6 +38,8 @@
 </div>
 
 @yield('extra_scripts')
+
+<script type="text/javascript" src="{{ asset('plugins/jQuery/jquery-2.1.1.min.js')}}" ></script>
 
 <!--<![endif]-->
 <script type="text/javascript" src="{{ asset('plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js')}}"></script>
@@ -99,7 +102,6 @@
 <script type="text/javascript" src="{{ asset('plugins/sweetalert/lib/sweet-alert.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/jQuery-Tags-Input/jquery.tagsinput.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/dropzone/downloads/dropzone.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/patient_register.js')}}"></script>
 <script type=" text/javascript" src="{{ asset('js/form-elements.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/jscolor/jscolor.js')}}"></script>
 
@@ -112,8 +114,5 @@
         Main.init();
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
-<script type="text/javascript" src="{{ asset('js/patientjs.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/angular/patient.js')}}"></script>
 </body>
 </html>
