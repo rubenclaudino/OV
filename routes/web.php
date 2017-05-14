@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('main', 'HomeController@main');
+
+
 Auth::routes();
 
 // cancelling subscription
@@ -126,7 +130,7 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::post('calendar/getTodaysEvents', 'CalendarController@getTodaysEvent');
     Route::get('calendar/appointmentdetails/{id}', 'CalendarController@appointmentdetails');
     Route::put('calendar/updateStatus/{id}', 'CalendarController@updateStatus');
-    Route::get('calendar/appointmentTypes', 'CalendarController@appointmentTypes');
+    Route::get('calendar/appointmentTypes', ['as' => 'calendar.appointment_types', 'controller' => 'CalendarController@appointmentTypes']);
     Route::post('calendar/addAppointmentType', 'CalendarController@addAppointmentTypes');
     Route::post('calendar/updateAppointment/{id}', 'CalendarController@updateAppointment');
     Route::post('calendar/addDocument', 'CalendarController@addDocument');

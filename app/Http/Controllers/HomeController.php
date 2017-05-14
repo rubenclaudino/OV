@@ -42,4 +42,13 @@ class HomeController extends Controller
 
     }
 
+
+    public function main()
+    {
+        $subtitle = "Book an Appointment";
+        $activeClass = "dashboard";
+
+        return view('main', compact('subtitle', 'activeClass'));
+    }
+
 }

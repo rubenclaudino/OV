@@ -1,16 +1,11 @@
 <a class="closedbar inner hidden-sm hidden-xs" href="#"></a>
-
-<?php $user = Auth::user();?>
-
 <!-- start: NAVBAR OPTIONS -->
 <nav id="pageslide-left" class="pageslide inner">
 
     <!-- start: NAVBAR CONTENT -->
     <div class="navbar-content">
-
         <!-- start: SIDEBAR -->
         <div class="main-navigation left-wrapper transition-left">
-
             <!-- start: USER INTERACTIONS -->
             <div class="user-profile border-top padding-horizontal-10 block">
 
@@ -18,19 +13,23 @@
                     <div class="">
                         <div class="profile_block">
                             <div class="profile_image">
-                                <img src="{{ url('/') }}/images/user/female.png" alt="" style="opacity: 0.85">
+                                <img src="
+                                @if(Auth::user()->gender == 0)
+                                {{ url('/images/user/male.png')}}
+                                @else
+                                {{ url('/images/user/female.png')}}
+                                @endif
+                                        " alt="" style="opacity: 0.85">
                             </div>
                             <div class="profile_information">
                                 <!-- start: DEPENDING HOUR SEND GOOD MORNING - GOOD AFTERNOON - GOOD NIGHT -->
                                 <h5 class="no-margin">
-
                                 </h5>
-
                                 <!-- end: DEPENDING HOUR SEND GOOD MORNING - GOOD AFTERNOON - GOOD NIGHT -->
                                 <h4>
                                     @if(Auth::user()->cro != "")
-                                    {{ Auth::user()->fullName() }}
-                                        @else
+                                        {{ Auth::user()->fullName() }}
+                                    @else
                                         {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                     @endif
                                 </h4>
@@ -51,16 +50,11 @@
             <!-- start: MAIN NAVIGATION MENU -->
             <ul class="main-navigation-menu">
 
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'dashboard') {
-                        echo 'active open';
-                    }
-                }?>">
-
-                    <a href="{{ url('/home')}}"><i class="fa fa-home fa-fw"></i> <span class="title"> Resumo </span> </a>
-
+                <li class="@if(\Route::current()->getName() == 'home.index') {{'active'}}@endif">
+                    <a href="{{ url('/home')}}"><i class="fa fa-home fa-fw"></i> <span class="title"> Resumo </span></a>
+                </li>
                 <!-- start: AGENDA -->
-                <li>
+                <li class="@if(\Route::current()->getName() == 'calendar.index') {{'active'}}@endif">
                     <a href="{{ url('/calendar') }}">
                         <i class="fa fa-calendar fa-fw"></i>
                         <span class="title">Agenda</span></a>
@@ -69,29 +63,21 @@
 
                 <!-- start: TYPES OF APPOITMENTS -->
                 @role('admin')
-                <li>
+                <li class="@if(\Route::current()->getName() == 'calendar.appointment_types') {{'active'}}@endif">
                     <a href="{{ url('/calendar/appointmentTypes') }}">
                         <i class="fa fa-user fa-fw"></i>
                         <span class="title">Tipos de Agendamentos</span></a>
                 </li>
-                @endrole
                 <!-- end: TYPES OF APPOITMENTS -->
 
                 <!-- start: CLINICS -->
-                @role('admin')
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'clinic') {
-                        echo 'active open';
-                    }
-                }?>">
+                <li>
                     <a href="{{ route('clinic.index') }}"><i class="fa fa-h-square fa-fw"></i> <span
                                 class="title"> Clientes </span></a>
                 </li>
-                @endrole
-            <!-- end: CLINICS -->
+                <!-- end: CLINICS -->
 
                 <!-- start: USER MANAGEMENT -->
-                @role('admin')
                 <li>
                     <a href="{{ route('users.index') }}"><i class="fa fa-user fa-fw"></i> <span
                                 class="title"> Gerenciamento </span></a>
@@ -100,23 +86,15 @@
             <!-- end: USER MANAGEMENT -->
 
                 <!-- start: PATIENTS -->
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'patients') {
-                        echo 'active open';
-                    }
-                }?>">
+                <li>
                     <a href="{{ route('patients.index') }}"><i class="fa fa-users fa-fw"></i> <span
                                 class="title"> Pacientes </span></a>
                 </li>
-            <!-- end: PATIENTS -->
+                <!-- end: PATIENTS -->
 
                 <!-- start: TREATMENTS -->
                 @role('admin')
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'treatmenttypes') {
-                        echo 'active open';
-                    }
-                }?>">
+                <li>
                     <a href="javascript:void(0)"><i class="fa fa-folder-open fa-fw"></i> <span
                                 class="title"> Procedimentos </span><i class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
@@ -125,14 +103,14 @@
                                 <span class="title"> Procedimentos </span>
                             </a>
                         </li>
-                        <?php if($user->isAdmin() || $user->hasPermission('treatmenttypescontroller.create')){ ?>
+                        <?php if(Auth::user()->isAdmin() || Auth::user()->hasPermission('treatmenttypescontroller.create')){ ?>
                         <li>
                             <a href="{{ url('/')}}/treatmenttypes/create">
                                 <span class="title"> Registrar Procedimento </span>
                             </a>
                         </li>
                         <?php } ?>
-                        <?php if($user->isAdmin() ){ ?>
+                        <?php if(Auth::user()->isAdmin() ){ ?>
                         <li>
                             <a href="{{ url('/')}}/specialities">
                                 <span class="title"> Especialidades </span>
@@ -145,24 +123,17 @@
             <!-- end: TREATMENTS -->
 
                 <!-- start: DENTAL PLANS -->
-                <li class="<?php if (isset($activeClass)) {
-                    if ($activeClass == 'dentalplans') {
-                        echo 'active open';
-                    }
-                }?>">
+                <li>
                     <a href="{{ route('dentalplans.index') }}"><i class="fa fa-folder-open fa-fw"></i> <span
                                 class="title"> Convênios </span></a>
                 </li>
-            <!-- end: DENTAL PLANS -->
+                <!-- end: DENTAL PLANS -->
 
                 <!-- start: REMINDERS -->
                 @role('admin')
-                <li class="hide <?php if (isset($activeClass)) {
-                    if ($activeClass == 'reminders') {
-                        echo 'active open';
-                    }
-                }?>">
-                    <a href="{{ url('/')}}/reminders"><i class="fa fa-bell fa-fw"></i> <span class="title"> Lembretes </span>
+                <li>
+                    <a href="{{ url('/')}}/reminders"><i class="fa fa-bell fa-fw"></i> <span
+                                class="title"> Lembretes </span>
                         <span class="badge badge-info reminderCount">{{ Auth::user()->reminderCount }}</span></a>
                 <!-- <ul class="sub-menu">
 						<li>
@@ -242,7 +213,7 @@
                                 class="title"> Consultoria </span></a>
                 </li>
                 @endrole
-                <!-- end: STOCK CONTROL -->
+            <!-- end: STOCK CONTROL -->
 
                 <!-- start: CONTACTS -->
                 <li class="<?php if (isset($activeClass)) {
@@ -286,27 +257,27 @@
                                 class="title"> Investidores </span><i class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li class="">
-                            <?php if($user->isAdmin() || $user->hasPermission('investorscontroller.show')){ ?>
+                            <?php if(Auth::user()->isAdmin() || Auth::user()->hasPermission('investorscontroller.show')){ ?>
                             <a href="{{ url('investors/show') }}">
                                 <span class="title">Meu Perfíl</span>
                             </a>
                             <?php } ?>
-                            <?php if($user->isAdmin() || $user->hasPermission('potentialclientscontroller.index')){ ?>
+                            <?php if(Auth::user()->isAdmin() || Auth::user()->hasPermission('potentialclientscontroller.index')){ ?>
                             <a href="{{ url('/potentialclients') }}">
                                 <span class="title">Lista de Clientes</span>
                             </a>
                             <?php } ?>
-                            <?php if($user->isAdmin() || $user->hasPermission('devupdatescontroller.index')){ ?>
+                            <?php if(Auth::user()->isAdmin() || Auth::user()->hasPermission('devupdatescontroller.index')){ ?>
                             <a href="{{ url('/devupdates') }}">
                                 <span class="title">Desenvolvimento</span>
                             </a>
                             <?php } ?>
-                            <?php if($user->isAdmin() || $user->hasPermission('potentialclientscontroller.newclients')){ ?>
+                            <?php if(Auth::user()->isAdmin() || Auth::user()->hasPermission('potentialclientscontroller.newclients')){ ?>
                             <a href="{{ url('/newclients') }}">
                                 <span class="title">Novos Clientes</span>
                             </a>
                             <?php } ?>
-                            <?php if($user->isAdmin() || $user->hasPermission('devupdatescontroller.create')){ ?>
+                            <?php if(Auth::user()->isAdmin() || Auth::user()->hasPermission('devupdatescontroller.create')){ ?>
                             <a href="{{ url('devupdates/create') }}">
                                 <span class="title">Registrar Atualização</span>
                             </a>
@@ -324,7 +295,8 @@
                         echo 'active open';
                     }
                 }?>">
-                    <a href="javascript:void(0)"><i class="fa fa-money fa-fw"></i> <span class="title"> Financeiro </span><i
+                    <a href="javascript:void(0)"><i class="fa fa-money fa-fw"></i> <span
+                                class="title"> Financeiro </span><i
                                 class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li>
