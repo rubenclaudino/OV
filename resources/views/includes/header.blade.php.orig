@@ -158,6 +158,8 @@
         </row>
     </div>
     <!-- end: TOPBAR CONTAINER -->
+<<<<<<< HEAD
+=======
 
     <!-- start: FEEDBACK MODAL -->
     <div class="modal fade" id="myModalbug" role="dialog">
@@ -199,5 +201,5 @@
     </div>
     <!-- end: FEEDBACK MODAL -->
 
-
+>>>>>>> c4e6985d2ab538282d8012723ac1fc633b699869
 </header>
