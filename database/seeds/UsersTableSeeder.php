@@ -15,36 +15,36 @@ class UsersTableSeeder extends Seeder
         $faker = Faker\Factory::create();
         DB::table('users')->insert([
             [
-                'first_name'         => $faker->firstName,
-                'last_name'          => $faker->lastName,
-                'email'              => 'admin@admin.com',
-                'password'           => bcrypt('123456'),
-                'zip_code'           => $faker->countryCode,
-                'address'            => $faker->address,
-                'street_number'      => $faker->numberBetween(1, 100),
-                'phone_1'            => $faker->phoneNumber,
-                'phone_2'            => $faker->phoneNumber,
-                'phone_landline'     => $faker->phoneNumber,
-                'whatsapp_number'    => $faker->phoneNumber,
-                'nationality'        => $faker->word,
-                'date_of_birth'      => $faker->dateTimeThisCentury,
+                'first_name'         => 'Ruben',
+                'last_name'          => 'Matos',
+                'email'              => 'ruben@admin.com',
+                'password'           => bcrypt('000000'),
+                'zip_code'           => '00000000',
+                'address'            => 'Rua Fransisco Veira de Paiva',
+                'street_number'      => '191',
+                'phone_1'            => '34996427629',
+                'phone_2'            => null,
+                'phone_landline'     => '3432240507',
+                'whatsapp_number'    => '34996427629',
+                'nationality'        => 'Portuguese',
+                'date_of_birth'      => '19021985',
                 'gender'             => 0,
                 'stripe_id'          => $faker->bankAccountNumber,
-                'card_brand'         => $faker->word,
-                'card_lasts_for'     => $faker->dateTimeThisCentury,
+                'card_brand'         => 'visa',
+                'card_lasts_for'     => '0000',
                 'thai_ends_at'       => $faker->dateTimeThisCentury,
-                'honors'             => $faker->sentence(5),
-                'percentage'         => $faker->numberBetween(0, 100),
-                'value'              => $faker->numberBetween(50, 100),
-                'earn_percentage'    => $faker->numberBetween(0, 100),
+                'honors'             => null,
+                'percentage'         => null,
+                'value'              => null,
+                'earn_percentage'    => null,
                 'uses_whatsapp'      => true,
                 'resident_in_clinic' => true,
                 'accept_calls'       => true,
                 'clinic_id'          => 1,
-                'cpf'                => $faker->word,
-                'rg'                 => $faker->word,
-                'cro'                => $faker->word,
-                'observation'        => $faker->word,
+                'cpf'                => '01800920652',
+                'rg'                 => null,
+                'cro'                => null,
+                'observation'        => null,
             ],
             [
                 'first_name'         => 'Mariana',
@@ -343,9 +343,9 @@ class UsersTableSeeder extends Seeder
                 'observation'        => null,
             ],
             [
-                'first_name'         => $faker->firstName,
-                'last_name'          => $faker->lastName,
-                'email'              => 'admin2@admin.com',
+                'first_name'         => 'Marko',
+                'last_name'          => 'Dupor',
+                'email'              => 'marko@admin.com',
                 'password'           => bcrypt('123456'),
                 'zip_code'           => $faker->countryCode,
                 'address'            => $faker->address,
@@ -376,7 +376,7 @@ class UsersTableSeeder extends Seeder
             ]
         ]);
 
-        User::find(1)->roles()->attach([1,3]);
+        User::find(1)->roles()->attach([1]);
         User::find(2)->roles()->attach([3]);
         User::find(3)->roles()->attach([2,3]);
         User::find(4)->roles()->attach([3]);
@@ -386,6 +386,7 @@ class UsersTableSeeder extends Seeder
         User::find(8)->roles()->attach([3]);
         User::find(9)->roles()->attach([3]);
         User::find(10)->roles()->attach([3]);
+        User::find(11)->roles()->attach([1]);
 
         User::find(2)->specialties()->attach([12]);
         User::find(2)->specialties()->attach([2]);

@@ -50,7 +50,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendamentos</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
+                        <h1>{{$appointments->where('user_id', Auth::user()->id)->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
                         <p>Ontem</p>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendamentos</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <h1>{{$appointments->where('user_id', Auth::user()->id)->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Essa semana</p>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendamentos</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
+                        <h1>{{$appointments->where('user_id', Auth::user()->id)->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
                         <p>Semana passada</p>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Confirmados</h4>
-                        <h1>{{ $appointments->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 2)->count() }}</h1>
+                        <h1>{{ $appointments->where('user_id', Auth::user()->id)->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 2)->count() }}</h1>
                         <p>Essa semana</p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Desmarcados</h4>
-                        <h1>{{ $appointments->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 3)->count() }}</h1>
+                        <h1>{{ $appointments->where('user_id', Auth::user()->id)->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 3)->count() }}</h1>
                         <p>Essa semana</p>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Você tem</h4>
-                        <h1>{{ $appointments->where('user_id', Auth::user()->id)->count() }}</h1>
+                        <h1>{{ $patients->where('user_id', Auth::user()->id)->count() }}</h1>
                         <p>pacientes cativos</p>
                     </div>
                 </div>
