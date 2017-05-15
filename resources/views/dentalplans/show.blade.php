@@ -262,13 +262,20 @@
                                         </thead>
 
                                         <tbody>
-                                        @foreach($plan->appointments as $appointment)
+                                        @foreach($users as $user)
                                             <tr>
                                                 <td>
+<<<<<<< HEAD
                                                     {{ $appointment->user->fullName() }}
                                                 </td>
                                                 <td>
                                                     {{ $plan->appointments->where('user_id', $appointment->user->id)->count() }}
+=======
+                                                    {{$user['fullName']}}
+                                                </td>
+                                                <td>
+                                                    {{$user['appointment_count']}}
+>>>>>>> db02d984817b8197b1970a255165d7a280dfa4da
                                                 </td>
                                             </tr>
                                         @endforeach

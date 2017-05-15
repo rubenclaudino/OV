@@ -14,7 +14,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="clinic_dental_plan_id">Convênio</label>
-                        {!! Form::select('dental_plan[clinic_dental_plan_id]', $clinic_dental_plans, null,['class' =>
+                        {!! Form::select('patient_dental_plans[clinic_dental_plan_id]', $clinic_dental_plans, null,['class' =>
                         'form-control','placeholder' => 'Não informado']) !!}
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="card_number">Numero do Cartão</label>
-                        {{ Form::text('dental_plan[card_number]', null, array('class' => 'form-control')) }}
+                        {{ Form::text('patient_dental_plans[card_number]', null, array('class' => 'form-control')) }}
 
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="card_owner">Titular</label>
-                        {{ Form::text('dental_plan[card_owner]', null, array('class' => 'form-control')) }}
+                        {{ Form::text('patient_dental_plans[card_owner]', null, array('class' => 'form-control')) }}
 
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label for="dental_plan_type">Tipo Plano</label>
                     <div class="form-group input-group">
-                        {{ Form::text('dental_plan[dental_plan_type]', null, array('class' => 'form-control')) }}
+                        {{ Form::text('patient_dental_plans[dental_plan_type]', null, array('class' => 'form-control')) }}
 
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
                         <label for="exp_date">Data de Expiração</label>
-                        {{ Form::text('dental_plan[exp_date]', null, array('class' => 'form-control datepicker')) }}
+                        {{ Form::text('patient_dental_plans[exp_date]', null, array('class' => 'form-control datepicker')) }}
 
                     </div>
                 </div>
