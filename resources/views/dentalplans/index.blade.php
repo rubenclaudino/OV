@@ -19,7 +19,7 @@
                         <div class="col-lg-6 col-md-6">
 
                             <h2 class="table_title">Convênios<br>
-                                <small style="color: #dddddd">Convênios credenciados</small>
+                                <small style="color: #bbbbbb">Convênios credenciados</small>
                             </h2>
 
                         </div>
@@ -61,7 +61,7 @@
                                 <th class="col-md-3">Convênio</th>
                                 <th>Site</th>
                                 <th>Telefone</th>
-                                <th>Registro ANS</th>
+                                <th>ANS</th>
                                 <th>Associados</th>
                                 <th class="col-md-1 hidden-print"></th>
                             </tr>

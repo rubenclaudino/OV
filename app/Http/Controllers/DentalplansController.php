@@ -46,8 +46,12 @@ class DentalplansController extends Controller
         $title = "Convênio";
         $activeClass = "dentalplans";
 
+        $plans = ClinicDentalPlan::all()->count();
         $plan = ClinicDentalPlan::find($id);
 
+<<<<<<< HEAD
+        return view('dentalplans.show', compact('title', 'activeClass', 'plan', 'plans'));
+=======
         $users = [[]];
         $id = 0;
         foreach ($plan->appointments as $appointment) {
@@ -58,6 +62,7 @@ class DentalplansController extends Controller
 
 
         return view('dentalplans.show', compact('title', 'activeClass', 'plan', 'users'));
+>>>>>>> db02d984817b8197b1970a255165d7a280dfa4da
     }
 
     public function edit($id)

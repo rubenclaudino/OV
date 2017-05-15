@@ -86,7 +86,7 @@
                                         <h5>
                                             @isset($plan->url)
                                             <i class="fa fa-info fa-fw"></i>
-                                            &nbsp;{{ $plan->url }}
+                                            &nbsp;<a href="{{ $plan->url }}" target="_blank">{{ $plan->url }}</a>
                                             @else
                                                 <h5><i class="fa fa-info fa-fw"></i> &nbsp; -</h5>
                                                 @endisset
@@ -137,7 +137,7 @@
                                          style="padding:10px; margin-top: 5px; background: whitesmoke">
                                         <i class="fa fa-line-chart fa-fw"></i>
                                         &nbsp;Ranking
-                                        <span class="pull-right"><strong>  0  </strong>  de  <strong>  0</strong></span>
+                                        <span class="pull-right" style="padding-right: 10px"><strong>  0  </strong>  de  <strong> {{ $plans }} </strong></span>
                                     </div>
                                 </div>
                                 <!-- end: RANKING COMPARED TO OTHER PLANS -->
@@ -201,6 +201,7 @@
                                         </style>
 
                                         <tbody>
+
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px">
                                                 Data Registrado
@@ -237,11 +238,14 @@
                                             </td>
                                             <td>-</td>
                                         </tr>
+
                                         </tbody>
+
                                     </table>
 
                                 </div>
 
+                                <!-- start: DENTISTS APPOINTMENTS COUNT -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
                                     <table class="table table-condensed table-hover" style="font-size: 1.1em">
@@ -261,10 +265,17 @@
                                         @foreach($users as $user)
                                             <tr>
                                                 <td>
+<<<<<<< HEAD
+                                                    {{ $appointment->user->fullName() }}
+                                                </td>
+                                                <td>
+                                                    {{ $plan->appointments->where('user_id', $appointment->user->id)->count() }}
+=======
                                                     {{$user['fullName']}}
                                                 </td>
                                                 <td>
                                                     {{$user['appointment_count']}}
+>>>>>>> db02d984817b8197b1970a255165d7a280dfa4da
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -273,6 +284,7 @@
                                     </table>
 
                                 </div>
+                                <!-- end: DENTISTS APPOINTMENTS COUNT -->
 
                             </div>
 
