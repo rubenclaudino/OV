@@ -61,7 +61,7 @@
                                 <th class="col-md-3">Convênio</th>
                                 <th>Site</th>
                                 <th>Telefone</th>
-                                <th>Registro ANS</th>
+                                <th>ANS</th>
                                 <th>Associados</th>
                                 <th class="col-md-1 hidden-print"></th>
                             </tr>

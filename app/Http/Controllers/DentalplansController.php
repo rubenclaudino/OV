@@ -46,9 +46,10 @@ class DentalplansController extends Controller
         $title = "Convênio";
         $activeClass = "dentalplans";
 
+        $plans = ClinicDentalPlan::all()->count();
         $plan = ClinicDentalPlan::find($id);
 
-        return view('dentalplans.show', compact('title', 'activeClass', 'plan'));
+        return view('dentalplans.show', compact('title', 'activeClass', 'plan', 'plans'));
     }
 
     public function edit($id)
