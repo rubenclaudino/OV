@@ -258,13 +258,13 @@
                                         </thead>
 
                                         <tbody>
-                                        @foreach($plan->appointments as $appointment)
+                                        @foreach($users as $user)
                                             <tr>
                                                 <td>
-                                                    {{$appointment->user->fullname()}}
+                                                    {{$user['fullName']}}
                                                 </td>
                                                 <td>
-                                                    number of appointments done
+                                                    {{$user['appointment_count']}}
                                                 </td>
                                             </tr>
                                         @endforeach

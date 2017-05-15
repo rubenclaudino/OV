@@ -1,4 +1,4 @@
-@extends('layouts.page')
+@extends('layouts.page', ['title' => 'Cadastrar Novo Paciente', 'subtitle' => 'Criar um novo cadastro de paciente'])
 @section('content')
 
     <!-- start: MAIN CONTENT -->

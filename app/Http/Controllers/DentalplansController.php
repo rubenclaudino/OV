@@ -38,7 +38,7 @@ class DentalplansController extends Controller
         $request['clinic_id'] = Auth::user()->clinic_id;
         ClinicDentalPlan::create($request->all());
         return redirect('dentalplans');
-            //response()->json(['status' => 'success', 'message' => 'Dental Plan Created!']);
+        //response()->json(['status' => 'success', 'message' => 'Dental Plan Created!']);
     }
 
     public function show($id)
@@ -48,7 +48,16 @@ class DentalplansController extends Controller
 
         $plan = ClinicDentalPlan::find($id);
 
-        return view('dentalplans.show', compact('title', 'activeClass', 'plan'));
+        $users = [[]];
+        $id = 0;
+        foreach ($plan->appointments as $appointment) {
+            $users[$id]['fullName'] = $appointment->user->fullName();
+            $users[$id]['appointment_count'] = $appointment->user->appointments->count();
+            $id++;
+        }
+
+
+        return view('dentalplans.show', compact('title', 'activeClass', 'plan', 'users'));
     }
 
     public function edit($id)
@@ -68,7 +77,7 @@ class DentalplansController extends Controller
     {
         ClinicDentalPlan::find($id)->update($request->all());
         return redirect('dentalplans')->with('status', "Cadastro atualizado com sucesso!");
-           // response()->json(['status' => 'success', 'message' => "Cadastro atualizado com sucesso!"]);
+        // response()->json(['status' => 'success', 'message' => "Cadastro atualizado com sucesso!"]);
     }
 
     public function destroy($id)
