@@ -1,458 +1,416 @@
 @extends('layouts.page')
 @section('content')
 
-<div class="main-content">
-   <div class="container">
+    <!-- start: MAIN CONTENT -->
+    <div class="main-content">
 
-      <!-- start: TOOLBAR -->
-      <div class="toolbar row">
-   		<div class="col-sm-6 hidden-xs">
-   			<div class="page-header">
-   				<h1>{{ $title }} <small>{{ $subtitle }}</small></h1>
-   			</div>
-   		</div>
-   		<div class="col-sm-6 col-xs-12">
-   			<div class="toolbar-tools pull-right">
-   				<!-- start: TOP NAVIGATION MENU -->
-   				<ul class="nav navbar-right">
-   					<li>
-   						<a href="{{ url('/treatments/treatmentTypes')}}" class="new-event MyToolbar">
-   							<i class="fa fa-medkit"></i> View All Plans
-   						</a>
-   					</li>
-   				</ul>
-   				<!-- end: TOP NAVIGATION MENU -->
-   			</div>
-   		</div>
-   	</div>
-      <!-- end: TOOLBAR -->
+        <!-- start: CONTAINER -->
+        <div class="container">
 
-      <div class="row">
-			<div class="col-md-12">
-				<ol class="breadcrumb">
-					<li>
-						<a href="#">
-							Dashboard
-						</a>
-					</li>
-					<li class="active">
-						{{ $title }}
-					</li>
-				</ol>
-			</div>
-		</div>
+            <!-- start: HEADER INFORMATION NEW-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 15px;margin-bottom: 15px">
 
-      <div class="row">
-         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="row">
-               <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background:#fff; color:#383838;min-height:235px;">
-                  <h2 style="color:#5555ff">{{ $plan->title }}</h2>
-                  <style>
-                     .table th, .table td {
-                        border-top: none !important;
-                     }
+                <!-- start: 2st ROW -->
+                <div class="row">
 
-                  </style>
-                  <table class="table table-condensed" >
-                     <tbody>
-                        <tr>
-                           <td class="make" style="color: #383838;font-weight:bold;line-height:24px;">
-                              Price
-                           </td>
-                           <td>R${{ $plan->price }}</td>
-                        </tr>
-                        <tr>
-                           <td class="make" style="color: #383838;font-weight:bold;line-height:24px;">
-                              Catagory
-                           </td>
-                           <td>{{ $plan->speciality }}</td>
-                        </tr>
-                        <tr>
-                           <td class="make" style="color: #383838;font-weight:bold;line-height:24px;">
-                              Accepted Plans
-                           </td>
-                           <td>{{ $plan->status }}</td>
-                        </tr>
-                        <tr>
-                           <td class="make" style="color: #383838;font-weight:bold;line-height:24px;">
-                              Observation
-                           </td>
-                           <td>{{ $plan->observation }}</td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                  <span class="pull-right">
-                     <div class="col-lg-12 nopadding" style="padding-top:0;">
-                        <div class="profile-div">
-                           <i class="fa fa-calendar-check-o" style="font-size:1.3em"></i>
-                           N&deg; Appointments <strong>120</strong>
+                    <!-- start: DENTAL PLAN INFO RIGHT -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel panel-white">
+
+                        <!-- start: MAIN INFO TAB -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding"
+                             style="border-radius: 3px;background:#fff;">
+
+                            <!-- start: PATIENT MAIN INFO -->
+                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 nopadding">
+
+                                <!-- start: QUICK INFO PANEL -->
+                                <div class="panel panel-white">
+
+                                    <!-- start: DENTAL PLAN NAME -->
+                                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+
+                                        <h2 class="light_black"
+                                            style="margin-top:10px;margin-bottom:5px;font-weight: lighter;opacity: 0.8;text-align:left;float:left;">
+                                            {{ $plan->title }}&nbsp;
+                                            <small>{{ $plan->ans_code }}</small>
+                                        </h2>
+
+                                    </div>
+                                    <!-- end: DENTAL PLAN NAME -->
+
+                                    <!-- start: DENTAL PLAN BUTTON -->
+                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+
+                                        <a style="margin-top: 10px;" class="btn btn-primary"
+                                           href="{{ URL::route('dentalplans.edit', $plan->id) }}">
+                                            Editar
+                                        </a>
+
+                                    </div>
+                                    <!-- end: DENTAL PLAN BUTTON -->
+
+                                    <!-- start: DENTAL PLAN DATA -->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                        <hr style="margin:4px 0 10px;">
+
+                                        <!-- start: ADDRESS -->
+                                        <h5>
+                                            @isset($plan->address)
+                                            <i class="fa fa-map-marker fa-fw"></i>
+                                            &nbsp;{{ $plan->address }} {{ $plan->street_number }}
+                                            , {{ $plan->borough }} , {{ $plan->city }} {{ $plan->state }}
+                                            @else
+                                                <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5>
+                                                @endisset
+                                        </h5>
+                                        <!-- end: ADDRESS -->
+
+                                        <!-- start: PHONE -->
+                                        <h5>
+                                            @isset ($plan->phone_landline)
+                                            <i class="fa fa-phone fa-fw"></i>&nbsp; {{ $plan->phone_landline }}
+                                            &nbsp;@endisset
+                                            @isset ($plan->phone_1)
+                                            <i class="fa fa-mobile fa-fw"></i>&nbsp; {{ $plan->phone_1 }}
+                                            @else
+                                                <i class="fa fa-mobile fa-fw"></i> &nbsp; -
+                                                @endisset
+                                                @isset ($plan->whatsapp_number)
+                                                <i class="fa fa-whatsapp fa-fw"></i>
+                                                &nbsp; {{ $plan->whatsapp_number }}
+                                                @endisset
+                                        </h5>
+                                        <!-- end: PHONE -->
+
+                                        <!-- start: ADDRESS -->
+                                        <h5>
+                                            @isset($plan->url)
+                                            <i class="fa fa-info fa-fw"></i>
+                                            &nbsp;{{ $plan->url }}
+                                            @else
+                                                <h5><i class="fa fa-info fa-fw"></i> &nbsp; -</h5>
+                                                @endisset
+                                        </h5>
+                                        <!-- end: ADDRESS -->
+
+                                    </div>
+                                    <!-- end: DENTAL PLAN DATA -->
+
+                                </div>
+                                <!-- end: QUICK INFO PANEL -->
+
+                            </div>
+                            <!-- end: PATIENT MAIN INFO -->
+
+                            <!-- start: QUICK STATS -->
+                            <div class="col-lg-3 col-md-3" style="margin-top: 13px;opacity:1">
+
+                                <!-- start: PATIENTS WHO HAVE THIS DENTAL PLAN -->
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="panel panel-white"
+                                         style="padding:10px; margin-top: 0px; background: whitesmoke">
+                                        <i class="fa fa-users fa-fw"></i>
+                                        &nbsp;&nbsp;Pacientes
+                                        <span class="pull-right"
+                                              style="padding-right: 10px"><strong>{{ count($plan->patient_dental_plans) }}</strong>
+                              </span>
+                                    </div>
+                                </div>
+                                <!-- end: PATIENTS WHO HAVE THIS DENTAL PLAN -->
+
+                                <!-- start: TOTAL APPOINTMENTS FOR THIS DENTAL PLAN -->
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="panel panel-white"
+                                         style="padding:10px; margin-top: 5px; background: whitesmoke">
+                                        <i class="fa fa-calendar-o fa-fw"></i>
+                                        &nbsp;&nbsp;Agendamentos
+                                        <span class="pull-right"
+                                              style="padding-right: 10px"><strong>{{ count($plan->appointments) }}</strong>
+                              </span>
+                                    </div>
+                                </div>
+                                <!-- end: TOTAL APPOINTMENTS FOR THIS DENTAL PLAN -->
+
+                                <!-- start: RANKING COMPARED TO OTHER PLANS -->
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="panel panel-white"
+                                         style="padding:10px; margin-top: 5px; background: whitesmoke">
+                                        <i class="fa fa-line-chart fa-fw"></i>
+                                        &nbsp;Ranking
+                                        <span class="pull-right"><strong>  0  </strong>  de  <strong>  0</strong></span>
+                                    </div>
+                                </div>
+                                <!-- end: RANKING COMPARED TO OTHER PLANS -->
+
+                            </div>
+
                         </div>
-                     </div>
-                     <div class="col-lg-12 nopadding">
-                        <div class="profile-div">
-                           <i class="fa fa-calendar-check-o" style="font-size:1.3em"></i>
-                           N&deg; Appointments This Week <strong>2</strong>
-                        </div>
-                     </div>
-                     <div class="col-lg-12 nopadding">
-                        <div class="profile-div">
-                           <i class="fa fa-calendar-check-o" style="font-size:1.3em"></i>
-                           N&deg; Appointments Next Week <strong>2</strong>
-                        </div>
-                     </div>
-                     <div class="col-lg-12 nopadding">
-                        <div class="profile-div">
-                           <i class="fa fa-line-chart" style="font-size:1.3em"></i>
-                           Treatment Position <strong>2</strong> Of <strong>18</strong>
-                        </div>
-                     </div>
-                  </span>
-               </div>
+                        <!-- end: MAIN INFO TAB -->
+
+                    </div>
+                    <!-- end: DENTAL PLAN INFO RIGHT -->
+
+                </div>
+                <!-- end: 2st ROW -->
+
             </div>
-         </div>
-            <ul class="nav nav-tabs nav-justified nav-profile">
-               <li class="active">
-                  <a data-toggle="tab" href="#details">
-                     <strong>Details</strong>
-                  </a>
-               </li>
-               <li>
-                  <a data-toggle="tab" href="#appointments">
-                     <strong>Appointments</strong>
-                  </a>
-               </li>
-               <li >
-                  <a data-toggle="tab" href="#finances">
-                     <strong>Finances</strong>
-                  </a>
-               </li>
-            </ul>
-            <div class="tab-content">
-               <div id="details" class="tab-pane fade active in">
-                  <div class="row" style="background:#fff;">
-                     <style>
-                        .table th, .table td {
-                           border-top: none !important;
-                        }
-                      </style>
-                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <table class="table table-condensed" >
-                           <tbody>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Date Created
-                                 </td>
-                                 <td>18/03/2014</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    % Income
-                                 </td>
-                                 <td>32% Of Income Is From This Treatment</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    % Appointments
-                                 </td>
-                                 <td>8% Of Appointments Are Of This Treatment</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    % Quotes Closed
-                                 </td>
-                                 <td>22%</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    # Patients
-                                 </td>
-                                 <td>18</td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-white accepted_plan">
-                           <div class="panel-body fixed-panel">
-                              <table class="table table-condensed" >
-                                 <thead>
-                                    <tr>
-                                       <td class="text-bold">
-                                          Dentist
-                                       </td>
-                                       <td class="text-bold">
-                                          # Caried Out
-                                       </td>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                    <tr>
-                                       <td>
-                                          Dr. Mariana
-                                       </td>
-                                       <td>12</td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          Dr. Alex
-                                       </td>
-                                       <td>9</td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          Dr. Sofia
-                                       </td>
-                                       <td>8</td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          Dr. Marcel
-                                       </td>
-                                       <td>7</td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          Dr. Sarah
-                                       </td>
-                                       <td>6</td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </div>
+            <!-- end: HEADER INFORMATION -->
+
+            <!-- start: INFORMATION BELOW DIV -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <!-- start: ROW -->
+                <div class="row">
+
+                    <!-- start: TAB TITLES -->
+                    <ul class="nav nav-tabs" style="font-size: 1.1em">
+                        <li class="active">
+                            <a data-toggle="tab" href="#details">
+                                <strong>Detalhes</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#appointments">
+                                <strong>Agendamentos</strong>
+                            </a>
+                        </li>
+                        <li class="hide">
+                            <a data-toggle="tab" href="#finances">
+                                <strong>Financeiro</strong>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- end: TAB TITLES -->
+
+                    <!-- start: TAB CONTENT -->
+                    <div class="tab-content panel">
+
+                        <!-- start: GENERAL INFO -->
+                        <div id="details" class="tab-pane fade active in">
+
+                            <div class="row" style="background:#fff;padding: 15px">
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                                    <table class="table table-condensed" style="font-size:1.1em">
+
+                                        <style>
+                                            .table th, .table td {
+                                                border-top: none !important;
+                                            }
+                                        </style>
+
+                                        <tbody>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Data Registrado
+                                            </td>
+                                            <td>{{ $plan->created_at }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Média de agendamentos diário
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Média de agendamentos semanal
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Média de agendamentos mensal
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Porcentagem da Renda Total
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Porcentagem de todos agendamentos
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                                    <table class="table table-condensed table-hover" style="font-size: 1.1em">
+
+                                        <thead style="background: whitesmoke">
+                                        <tr>
+                                            <th>
+                                                Dentista
+                                            </th>
+                                            <th>
+                                                Agendamentos
+                                            </th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        @foreach($plan->appointments as $appointment)
+                                            <tr>
+                                                <td>
+                                                    {{$appointment->user->fullname()}}
+                                                </td>
+                                                <td>
+                                                    number of appointments done
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
                         </div>
-                     </div>
-                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-white accepted_plan">
-                           <div class="panel-body fixed-panel">
-                              <table class="table table-condensed" >
-                                 <thead>
+                        <!-- start: GENERAL INFO -->
+
+                        <!-- start: APPOINTMENTS INFO -->
+                        <div id="appointments" class="tab-pane fade">
+
+                            <table class="table table-hover" style="font-size: 1.1em">
+
+                                <thead style="background: whitesmoke">
+                                <tr>
+                                    <th class="col-md-1">Data</th>
+                                    <th class="col-md-1">Horário</th>
+                                    <th class="col-md-2">Dentista</th>
+                                    <th class="col-md-2">Paciente</th>
+                                    <th class="col-md-3">Status</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                @foreach($plan->appointments as $appointment)
                                     <tr>
-                                       <td class="text-bold">
-                                          Dentist
-                                       </td>
-                                       <td class="text-bold">
-                                          # Caried Out
-                                       </td>
+                                        <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
+                                        <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
+                                        <td> {{ $appointment->user->fullName() }}</td>
+                                        <td>{{ $appointment->patient->first_name }}  {{ $appointment->patient->last_name }}</td>
+                                        <td>
+                                            @if( $appointment->status->id == 1 )
+                                                <span class="label"
+                                                      style="background: #5bc0de;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @elseif( $appointment->status->id == 2 )
+                                                <span class="label"
+                                                      style="background: #5cb85c;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @elseif( $appointment->status->id == 3 )
+                                                <span class="label"
+                                                      style="background: #f0ad4e;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @elseif( $appointment->status->id == 4 )
+                                                <span class="label"
+                                                      style="background: #d9534f;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @elseif( $appointment->status->id == 5 )
+                                                <span class="label"
+                                                      style="background: #5e5e5e;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                            @endif
+                                        </td>
                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                    <tr>
-                                       <td>
-                                          Dr. Mariana
-                                       </td>
-                                       <td>12</td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          Dr. Alex
-                                       </td>
-                                       <td>9</td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          Dr. Sofia
-                                       </td>
-                                       <td>8</td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          Dr. Marcel
-                                       </td>
-                                       <td>7</td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          Dr. Sarah
-                                       </td>
-                                       <td>6</td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </div>
+                                @endforeach
+                                </tbody>
+
+                            </table>
+
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <div id="appointments" class="tab-pane fade">
-                  <table class="table table-striped table-hover" id="sample-table-2">
-                     <thead>
-                        <tr>
-                           <th>Date</th>
-                           <th>Dentist</th>
-                           <th class="hidden-xs">Patient</th>
-                           <th class="center hidden-xs">Paid</th>
-                           <th class="hidden-xs">Pyment Type</th>
-                           <th>R$</th>
-                           <th class="hidden-xs">Installment</th>
-                           <th class="center hidden-xs">Obs</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td>14/02/16</td>
-                           <td>Dr. Mariana</td>
-                           <td class="hidden-xs">Ariya Stark</td>
-                           <td class="center hidden-xs">
-                              <i class="fa fa-times" style="color:red;"></i>
-                           </td>
-                           <td class="hidden-xs">Cash</td>
-                           <td>R$ 450</td>
-                           <td class="hidden-xs">x1</td>
-                           <td class="center hidden-xs"><a><i class="fa fa-info-circle"></i></a></td>
-                        </tr>
-                        <tr>
-                           <td>14/02/16</td>
-                           <td>Dr. Alex</td>
-                           <td class="hidden-xs">Ariya Stark</td>
-                           <td class="center hidden-xs">
-                              <i class="fa fa-check" style="color:green;"></i>
-                           </td>
-                           <td class="hidden-xs">Cash</td>
-                           <td>R$ 450</td>
-                           <td class="hidden-xs">x1</td>
-                           <td class="center hidden-xs"><a><i class="fa fa-info-circle"></i></a></td>
-                        </tr>
-                        <tr>
-                           <td>14/02/16</td>
-                           <td>Dr. Alex</td>
-                           <td class="hidden-xs">Ariya Stark</td>
-                           <td class="center hidden-xs">
-                              <i class="fa fa-check" style="color:green;"></i>
-                           </td>
-                           <td class="hidden-xs">Cash</td>
-                           <td>R$ 450</td>
-                           <td class="hidden-xs">x1</td>
-                           <td class="center hidden-xs"><a><i class="fa fa-info-circle"></i></a></td>
-                        </tr>
-                        <tr>
-                           <td>14/02/16</td>
-                           <td>Dr. Mariana</td>
-                           <td class="hidden-xs">Ariya Stark</td>
-                           <td class="center hidden-xs">
-                              <i class="fa fa-times" style="color:red;"></i>
-                           </td>
-                           <td class="hidden-xs">Cash</td>
-                           <td>R$ 450</td>
-                           <td class="hidden-xs">x1</td>
-                           <td class="center hidden-xs"><a><i class="fa fa-info-circle"></i></a></td>
-                        </tr>
-                        <tr>
-                           <td>14/02/16</td>
-                           <td>Dr. Sofia</td>
-                           <td class="hidden-xs">Ariya Stark</td>
-                           <td class="center hidden-xs">
-                              <i class="fa fa-check" style="color:green;"></i>
-                           </td>
-                           <td class="hidden-xs">Cash</td>
-                           <td>R$ 450</td>
-                           <td class="hidden-xs">x1</td>
-                           <td class="center hidden-xs"><a><i class="fa fa-info-circle"></i></a></td>
-                        </tr>
-                        <tr>
-                           <td>14/02/16</td>
-                           <td>Dr. Sarah</td>
-                           <td class="hidden-xs">Ariya Stark</td>
-                           <td class="center hidden-xs">
-                              <i class="fa fa-times" style="color:red;"></i>
-                           </td>
-                           <td class="hidden-xs">Cash</td>
-                           <td>R$ 450</td>
-                           <td class="hidden-xs">x1</td>
-                           <td class="center hidden-xs"><a><i class="fa fa-info-circle"></i></a></td>
-                        </tr>
-                        <tr>
-                           <td>14/02/16</td>
-                           <td>Dr. Osman</td>
-                           <td class="hidden-xs">Ariya Stark</td>
-                           <td class="center hidden-xs">
-                              <i class="fa fa-check" style="color:green;"></i>
-                           </td>
-                           <td class="hidden-xs">Cash</td>
-                           <td>R$ 450</td>
-                           <td class="hidden-xs">x1</td>
-                           <td class="center hidden-xs"><a><i class="fa fa-info-circle"></i></a></td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-               <div id="finances" class="tab-pane fade">
-                  <div class="row" style="background:#fff;">
-                     <style>
-                        .table th, .table td {
-                           border-top: none !important;
-                        }
-                      </style>
-                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <table class="table table-condensed" >
-                           <tbody>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Treatment Price
-                                 </td>
-                                 <td class="make2">R$ 200</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Average Treatment Price
-                                 </td>
-                                 <td class="make2">R$ 83</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Comission(%) Negotiated
-                                 </td>
-                                 <td class="make2">20%</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Average Daily Earning
-                                 </td>
-                                 <td class="make2">R$ 249</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Average Monthly Earning
-                                 </td>
-                                 <td class="make2">R$ 2490</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Private Earning
-                                 </td>
-                                 <td class="make2">R$ 249</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Dental Plan Earning
-                                 </td>
-                                 <td class="make2">R$ 249</td>
-                              </tr>
-                              <tr>
-                                 <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                    Earning To Date
-                                 </td>
-                                 <td class="make2">R$ 24090</td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 nopadding">
-                        <div class="panel panel-white accepted_plan">
-                           <div class="panel-body">
-                              <div class="convas-container" >
-                                 <canvas  id="treatment"></canvas>
-                              </div>
-                              <div id="js-legend1" class="chart-legend"></div>
-                           </div>
+                        <!-- end: APPOINTMENTS INFO -->
+
+                        <!-- start: FINANCAL INFO -->
+                        <div id="finances hide" class="tab-pane fade">
+
+                            <div class="row" style="background:#fff;">
+
+                                <style>
+                                    .table th, .table td {
+                                        border-top: none !important;
+                                    }
+                                </style>
+
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="padding: 25px">
+
+                                    <table class="table table-condensed" style="font-size:1.1em">
+
+                                        <tbody>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Média diária
+                                            </td>
+                                            <td>R$ 0</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Média semanal
+                                            </td>
+                                            <td>R$ 0</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px">
+                                                Média mensal
+                                            </td>
+                                            <td>R$ 0</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                Retorno Total
+                                            </td>
+                                            <td>-</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
+                                    <div class="panel panel-white accepted_plan">
+                                        <div class="panel-body">
+                                            <div class="convas-container">
+                                                <canvas id="treatment"></canvas>
+                                            </div>
+                                            <div id="js-legend1" class="chart-legend"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
+                                    <div class="panel panel-white accepted_plan">
+                                        <div class="panel-body">
+                                            <div class="convas-container">
+                                                <canvas id="treatment"></canvas>
+                                            </div>
+                                            <div id="js-legend1" class="chart-legend"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
+                        <!-- end: FINANCAL INFO -->
+
+                    </div>
+                    <!-- end: TAB CONTENT -->
+
+                </div>
+                <!-- start: ROW -->
+
             </div>
-         </div>
-      </div>
-   </div>
-</div>
+            <!-- end: INFORMATION BELOW DIV -->
+
+        </div>
+        <!-- end: CONTAINER -->
+
+    </div>
+    <!-- end: MAIN CONTENT -->
+
 @endsection

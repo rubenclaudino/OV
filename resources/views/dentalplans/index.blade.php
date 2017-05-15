@@ -91,11 +91,18 @@
                                             Opções &nbsp;<span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" style="opacity: 0.9">
-                                            <li><a href="{{ url('/dentalplans')}}/{{$plan->id}}"
+                                            <!-- <li>
+                                                <a href="{{ url('/dentalplans')}}/{{$plan->id}}"
                                                    class="edittreatmentType"
                                                    data-id="{{$plan->id}}">
                                                     <small><i class="fa fa-folder-o fa-fw"></i>&nbsp; Perfil</small>
-                                                </a></li>
+                                                </a>
+                                            </li> -->
+                                            <li>
+                                                <a href="{{ url('/dentalplans')}}/{{$plan->id}}">
+                                                    <small><i class="fa fa-folder-o fa-fw"></i>&nbsp; Perfil</small>
+                                                </a>
+                                            </li>
                                             <li><a href="{{ url('/dentalplans')}}/{{ $plan->id}}/edit"
                                                    class="edittreatmentType"
                                                    data-id="{{$plan->id}}">

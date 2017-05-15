@@ -120,7 +120,7 @@
                     </ul>
                 </li>
                 @endrole
-            <!-- end: TREATMENTS -->
+                <!-- end: TREATMENTS -->
 
                 <!-- start: DENTAL PLANS -->
                 <li class="@if(\Route::current()->getName() == 'dentalplans.index') {{'active'}}@endif">
@@ -161,7 +161,7 @@
                     </ul>
                 </li>
                 @endrole
-            <!-- end: PERMISSION SETTINGS -->
+                <!-- end: PERMISSION SETTINGS -->
 
                 <!-- start: STOCK CONTROL -->
                 @role('admin')
@@ -171,13 +171,13 @@
                 </li>
                 <!-- end: STOCK CONTROL -->
 
-                <!-- start: STOCK CONTROL -->
+                <!-- start: CONSULTATION -->
                 <li class="@if(\Route::current()->getName() == 'consultation.index') {{'active'}}@endif">
                     <a href="{{ route('consultation.index') }}"><i class="fa fa-briefcase fa-fw"></i> <span
                                 class="title"> Consultoria </span></a>
                 </li>
                 @endrole
-            <!-- end: STOCK CONTROL -->
+                <!-- end: CONSULTATION -->
 
                 <!-- start: CONTACTS -->
                 <li class="@if(\Route::current()->getName() == 'contacts.index') {{'active'}}@endif">
@@ -242,39 +242,11 @@
 
                 <!-- start: FINANCE -->
                 @role('admin')
-                <li>
-                    <a href="javascript:void(0)"><i class="fa fa-money fa-fw"></i> <span
-                                class="title"> Financeiro </span><i
-                                class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="admin_finance_stats.php">
-                                <span class="title"> Estatísticas </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="admin_finance_in.php">
-                                <span class="title"> Entradas </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="admin_finance_out.php">
-                                <span class="title"> Saídas </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="dentist_payment_search.php">
-                                <span class="title"> Pendentes </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="orto_simulator.php">
-                                <span class="title"> Ortocal </span>
-                            </a>
-                        </li>
-                    </ul>
+                <li class="@if(\Route::current()->getName() == 'contacts.index') {{'active'}}@endif">
+                    <a href="{{ route('payments.index') }}"><i class="fa fa-money fa-fw"></i> <span
+                                class="title"> Financeiro </span></a>
                 </li>
-            @endrole
+                @endrole
             <!-- end: FINANCE -->
 
                 <!-- <li>

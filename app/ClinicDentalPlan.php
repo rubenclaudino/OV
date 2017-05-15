@@ -13,6 +13,11 @@ class ClinicDentalPlan extends Model
         return $this->hasMany('App\PatientDentalPlan');
     }
 
+    public function appointments()
+    {
+        return $this->hasMany('App\Appointment');
+    }
+
     public function clinic()
     {
         return $this->belongsTo('App\Clinic');

@@ -44,14 +44,11 @@ class DentalplansController extends Controller
     public function show($id)
     {
         $title = "Convênio";
-        $subtitle = '';
         $activeClass = "dentalplans";
-        $subtitle = "";
 
-        $user = Auth::user();
         $plan = ClinicDentalPlan::find($id);
 
-        return view('treatments.show', compact('title', 'subtitle', 'patient', 'activeClass', 'plan'));
+        return view('dentalplans.show', compact('title', 'activeClass', 'plan'));
     }
 
     public function edit($id)

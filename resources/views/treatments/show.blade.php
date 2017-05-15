@@ -126,7 +126,7 @@
                      <button type="button" class="btn btn-info btn-md btn-block panel-azure" style="padding: 8px;border-radius: 2px;border: transparent;margin-bottom: 7px">
                            <span class="pull-left">
                               <i class="fa fa-line-chart fa-fw"></i>
-                              &nbsp;Ranking</span>
+                              &nbsp;Rankings</span>
                            <span class="pull-right"><strong>  -  </strong>  de  <strong>  -</strong></span>
                      </button>
                      <!-- end: RANKING BETWEEN TREATMENTS -->

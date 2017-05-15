@@ -31,7 +31,7 @@ class BugController extends Controller
 
         $input['user'] = Auth::user()->first_name;
 
-        $bugs = Bug::create($input);
+        Bug::create($input);
 
         return redirect()->back();
 
