@@ -16,9 +16,10 @@ class CreateBugTable extends Migration
         Schema::create('bug', function (Blueprint $table) {
             $table->increments('id');
             $table->string('report');
-            $table->string('date_fix')->nullable();
+            $table->timestamp('date_fix')->nullable();
             $table->string('user')->nullable();
             $table->integer('status')->nullable();
+            $table->integer('type')->nullable();
             $table->timestamps();
         });
     }

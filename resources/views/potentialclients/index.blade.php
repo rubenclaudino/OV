@@ -106,7 +106,7 @@
                                         <li><a href="{{ URL::route('potentialclients.edit', $data->id) }}"><small><i class="fa fa-pencil fa-fw"></i>&nbsp; Editar</small></a></li>
                                         <li><a href="{{ URL::route('potentialclients.show', $data->id) }}"><small><i class="fa fa-id-badge fa-fw"></i>&nbsp; Resumo</small></a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#" class="deleteClient" data-id="{{$data->id}}"><small><i class="fa fa-ban fa-fw"></i>&nbsp Excluír</small></a></li>
+                                        <li><a href="#" class="deleteClient" data-id="{{$data->id}}"><small><i class="fa fa-ban fa-fw"></i>&nbsp Excluir</small></a></li>
                                     </ul>
                                 </div>
                             </td>

@@ -55,7 +55,7 @@
                                         <li><a href="{{ url('/treatmentPlan')}}/{{$data->id}}" data-id="{{$data->id}}"><small><i class="fa fa-folder-o fa-fw"></i> &nbsp;Perfil</small></a></li>
                                         <li><a href="{{ url('/treatmentPlan')}}/{{ $data->id}}/edit" data-id="{{$data->id}}"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#" data-id="{{ $data->id }}"><small><i class="fa fa-trash fa-fw"></i> &nbsp;Excluír</small></a></li>
+                                        <li><a href="#" data-id="{{ $data->id }}"><small><i class="fa fa-trash fa-fw"></i> &nbsp;Excluir</small></a></li>
                                     </ul>
                                 </div>
                             </td>

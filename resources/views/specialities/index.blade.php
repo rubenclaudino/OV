@@ -82,7 +82,7 @@
                               <ul class="dropdown-menu pull-right" style="opacity:0.9;">
                                  <li><a href="#" ng-click="editSpeciality($index)"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
                                  <li class="divider"></li>
-                                 <li><a href="#" data-id="{! speciality.id !}" ng-click="deleteForm(speciality.id)" ng-confirm-click="Are you sure to delete this record ?"  class="deleteSpeciality"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Excluír</small></a></li>
+                                 <li><a href="#" data-id="{! speciality.id !}" ng-click="deleteForm(speciality.id)" ng-confirm-click="Are you sure to delete this record ?"  class="deleteSpeciality"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Excluir</small></a></li>
                               </ul>
                            </div>
                         </td>

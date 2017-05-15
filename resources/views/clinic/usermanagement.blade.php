@@ -114,7 +114,7 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#" class="deleteClinic" data-id="{{$data->id}}"><i
-                                                        class="fa fa-trash fa-fw"></i> Excluír</a></li>
+                                                        class="fa fa-trash fa-fw"></i> Excluir</a></li>
                                     </ul>
                                 </div>
                             </td>

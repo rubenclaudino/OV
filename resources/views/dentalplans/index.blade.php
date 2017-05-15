@@ -105,7 +105,7 @@
                                             <li><a href="{{ url('/dentalplans')}}/{{ $plan->id}}"
                                                    class="edittreatmentType"
                                                    data-id="{{$plan->id}}">
-                                                    <small><i class="fa fa-ban fa-fw"></i>&nbsp; Excluír</small>
+                                                    <small><i class="fa fa-ban fa-fw"></i>&nbsp; Excluir</small>
                                                 </a></li>
                                         </ul>
                                     </div>

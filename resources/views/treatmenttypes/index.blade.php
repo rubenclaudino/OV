@@ -123,7 +123,7 @@
                                         <?php if($user->isAdmin()){ ?>
                                         <li class="divider"></li>
                                         <li><a href="#" data-id="{{ $data->id }}">
-                                                <small><i class="fa fa-trash fa-fw"></i> &nbsp;Excluír</small>
+                                                <small><i class="fa fa-trash fa-fw"></i> &nbsp;Excluir</small>
                                             </a></li>
                                         <?php } ?>
                                     </ul>

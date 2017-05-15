@@ -132,7 +132,7 @@
                                         </a></li>
                                     <li class="divider"></li>
                                     <li><a class="deleteDentist" href="#" data-id="{{ $data->id }}">
-                                            <small><i class="fa fa-trash fa-fw"></i>&nbsp;&nbsp;Excluír</small>
+                                            <small><i class="fa fa-trash fa-fw"></i>&nbsp;&nbsp;Excluir</small>
                                         </a></li>
                                 </ul>
                             </div>

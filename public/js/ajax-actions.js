@@ -63,8 +63,8 @@ $(document).ready(function () {
         $val = $(this).attr('data-id');
 
         swal({
-                title: "Excluír Clínica",
-                text: "Quer excluír essa Clínica?",
+                title: "Excluir Clínica",
+                text: "Quer excluir essa Clínica?",
                 type: "info",
                 showCancelButton: true,
                 closeOnConfirm: false,
@@ -130,8 +130,8 @@ $(document).ready(function () {
         $val = $(this).attr('data-id');
 
         swal({
-                title: "Excluír Permissão",
-                text: "Quer excluír essa Permissão?",
+                title: "Excluir Permissão",
+                text: "Quer excluir essa Permissão?",
                 type: "info",
                 showCancelButton: true,
                 closeOnConfirm: false,
@@ -219,8 +219,8 @@ $(document).ready(function () {
         $val = $(this).attr('data-id');
 
         swal({
-                title: "Excluír Recepcionista",
-                text: "Quer excluír esssa recepcionista?",
+                title: "Excluir Recepcionista",
+                text: "Quer excluir esssa recepcionista?",
                 type: "info",
                 showCancelButton: true,
                 closeOnConfirm: false,
@@ -294,8 +294,8 @@ $(document).ready(function () {
         $val = $(this).attr('data-id');
 
         swal({
-                title: "Excluír Cliente",
-                text: "Quer excluír esse cliente?",
+                title: "Excluir Cliente",
+                text: "Quer excluir esse cliente?",
                 type: "info",
                 showCancelButton: true,
                 closeOnConfirm: false,
@@ -419,8 +419,8 @@ $(document).ready(function () {
         $t = $(this);
         $val = $(this).attr('data-id');
         swal({
-                title: "Excluír Item",
-                text: "Quer excluír esse item?",
+                title: "Excluir Item",
+                text: "Quer excluir esse item?",
                 type: "info",
                 showCancelButton: true,
                 closeOnConfirm: false,
@@ -458,8 +458,8 @@ $(document).ready(function () {
         $val = $(this).attr('data-id');
 
         swal({
-                title: "Excluír Contato",
-                text: "Quer excluír esse contato?",
+                title: "Excluir Contato",
+                text: "Quer excluir esse contato?",
                 type: "info",
                 showCancelButton: true,
                 closeOnConfirm: false,
@@ -671,8 +671,8 @@ $(document).ready(function () {
         $val = $(this).attr('data-id');
 
         swal({
-                title: "Excluír Paciente",
-                text: "Quer excluír esse paciente?",
+                title: "Excluir Paciente",
+                text: "Quer excluir esse paciente?",
                 type: "info",
                 showCancelButton: true,
                 closeOnConfirm: false,
@@ -747,8 +747,8 @@ $(document).ready(function () {
         $val = $(this).attr('data-id');
 
         swal({
-                title: "Excluír Usuário",
-                text: "Quer excluír esse usuário?",
+                title: "Excluir Usuário",
+                text: "Quer excluir esse usuário?",
                 type: "info",
                 showCancelButton: true,
                 closeOnConfirm: false,

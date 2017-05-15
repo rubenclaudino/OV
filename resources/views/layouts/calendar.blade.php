@@ -891,7 +891,7 @@
             $(".delete-event").data("event-id", el);
             $(".delete-event").off().on("click", function () {
                 el = $(this).data("event-id");
-                bootbox.confirm("Deseja excluír esse agendamento?", function (result) {
+                bootbox.confirm("Deseja excluir esse agendamento?", function (result) {
                     if (result) {
                         $.blockUI({
                             message: '<i class="fa fa-spinner fa-spin"></i> Excluindo ...'

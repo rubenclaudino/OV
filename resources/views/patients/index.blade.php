@@ -171,7 +171,7 @@
                                                 </a></li>
                                             <li class="divider"></li>
                                             <li><a href="#" data-id="{{ $patient->id }}" class="deletePatient">
-                                                    <small><i class="fa fa-ban fa-fw"></i> &nbsp;Excluír</small>
+                                                    <small><i class="fa fa-ban fa-fw"></i> &nbsp;Excluir</small>
                                                 </a></li>
                                         </ul>
                                     </div>

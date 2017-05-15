@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::resource('clinic', 'ClinicController');
     Route::resource('dentists', 'DentistsController');
 
+    // BUGS
+    Route::resource('bugs', 'BugController');
+
     // EXAMS
     Route::post('exams/get', 'PatientExamsController@getExams');
     Route::resource('exams', 'PatientExamsController');

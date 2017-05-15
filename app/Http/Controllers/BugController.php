@@ -22,20 +22,23 @@ class BugController extends Controller
     {
         $activeClass = "bugs";
 
-        return view('bugs.create', compact('activeClass'));
+        return view('header.blade', compact('activeClass'));
     }
 
     public function store(Request $request)
     {
         $input = $request->all();
 
+        $input['user'] = Auth::user()->first_name;
+
         $bugs = Bug::create($input);
 
-        if ($bugs->id)
+        return redirect()->back();
 
-            return response()->json(['status' => 'success', 'message' => 'Relato registrado com sucesso!']);
+       // if ($bugs->id)
+         //   return response()->json(['status' => 'success', 'message' => 'Cadastrado com sucesso!']);
 
-        return response()->json(['status' => 'error', 'message' => 'Ocorreu um erro!']);
+       // return response()->json(['status' => 'error', 'message' => 'Ocorreu um erro!']);
     }
 
     public function edit($id)

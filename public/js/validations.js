@@ -214,6 +214,45 @@ $(document).ready(function(){
       }
    });
 
+    // adding bug
+
+    $("#addBug").validate({
+        errorPlacement: function (error, element) { // render error placement for each input type
+            if (element.attr("type") == "radio" || element.attr("type") == "checkbox") { // for chosen elements, need to insert the error after the chosen container
+                //$(element).closest('.form-group').addClass('has-error');
+                $(element).closest('.form-group').append(error);
+                //error.insertAfter($(element).closest('.form-group').children('div').children().last());
+            } else if (element.attr("name") == "dd" || element.attr("name") == "mm" || element.attr("name") == "yyyy") {
+                //error.insertAfter($(element).closest('.form-group').children('div'));
+                error.insertAfter($(element).closest('.form-group').addClass('has-error'));
+            } else {
+                //$(element).closest('.form-group').addClass('has-error');
+                $(element).closest('.form-group').append(error);
+            }
+        },
+        rules: {
+            report:{required:true}
+        },
+        submitHandler: function(form) {
+            var formData = $('#addBug').serializeObject();
+            $.ajax({
+                type:"POST",
+                url:APP_URL+'/bugs/store',
+                data:formData,
+                success:function(data){
+                    $('#myModalbug').modal('hide');
+                    if(data == 'success'){
+                        $("#addBug")[0].reset();
+                        toastr.success('The Appointment Type Added!');
+                        location.reload();
+                    }else {
+                        toastr.error(data);
+                    }
+                }
+            });
+            return false;
+        }
+    });
 
    // adding Appointment Type
 
@@ -947,7 +986,6 @@ $(document).ready(function(){
       }
    });
 
-
    // update dentist
 
    $("#updateStock").validate({
@@ -1028,6 +1066,7 @@ $(document).ready(function(){
    });
 
    // markdone
+
    $('body').on('click','.markDoneReminder',function(){
      $t  = $(this);
      $id = $(this).attr('data-id');
@@ -1152,7 +1191,7 @@ $(document).ready(function(){
 
                      $reminder = data.data;
                      $html  = '';
-                     $html = '<div class="list-group-item panel" style="border-radius: 1px"><div style="background: #EDEDED;margin: 0px;padding: 15px 15px 1px 15px"><h4 class="list-group-item-heading text-uppercase" style="color: #404040">'+$reminder.title+'<span style="float: right"><button class="btn btn-xs btn-danger deleteReminder" style="padding-right: 10px;opacity: 0.8" data-id="'+$reminder.id+'"><i class="fa fa-trash fa-fw"></i>&nbsp;Excluír</button></span></h4></div><h5 style="color: #4d4d4d;padding: 15px"><i class="fa fa-calendar fa-fw" style="margin: 5px;color: black;opacity: 0.45"></i> <strong>'+$reminder.reminder_date+'</strong><i class="fa fa-user fa-fw" style="margin: 5px;color: black;opacity: 0.45"></i>';
+                     $html = '<div class="list-group-item panel" style="border-radius: 1px"><div style="background: #EDEDED;margin: 0px;padding: 15px 15px 1px 15px"><h4 class="list-group-item-heading text-uppercase" style="color: #404040">'+$reminder.title+'<span style="float: right"><button class="btn btn-xs btn-danger deleteReminder" style="padding-right: 10px;opacity: 0.8" data-id="'+$reminder.id+'"><i class="fa fa-trash fa-fw"></i>&nbsp;Excluir</button></span></h4></div><h5 style="color: #4d4d4d;padding: 15px"><i class="fa fa-calendar fa-fw" style="margin: 5px;color: black;opacity: 0.45"></i> <strong>'+$reminder.reminder_date+'</strong><i class="fa fa-user fa-fw" style="margin: 5px;color: black;opacity: 0.45"></i>';
 
                      // users
 
@@ -1415,8 +1454,5 @@ $(document).ready(function(){
          // return false;
       }
    });
-
-
-
 
 });

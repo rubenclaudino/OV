@@ -194,13 +194,13 @@
         $('a#delete_user').on('click', function () {
             var url = $(this).attr("data-href");
             swal({
-                    title: "Excluír usuário?",
+                    title: "Excluir usuário?",
                     text: "Confirmar exclusão",
                     type: "warning",
                     showCancelButton: true,
                     closeOnConfirm: false,
                     confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Excluír!"
+                    confirmButtonText: "Excluir!"
                 },
                 function () {
                     $.ajax({

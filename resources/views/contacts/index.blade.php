@@ -106,7 +106,7 @@
                                                 </a></li>
                                             <li class="divider"></li>
                                             <li><a href="#" class="deleteContact" data-id="{{$data->id}}">
-                                                    <small><i class="fa fa-ban fa-fw"></i>&nbsp Excluír</small>
+                                                    <small><i class="fa fa-ban fa-fw"></i>&nbsp Excluir</small>
                                                 </a></li>
                                         </ul>
                                     </div>

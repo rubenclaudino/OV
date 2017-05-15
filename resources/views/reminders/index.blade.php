@@ -85,7 +85,7 @@
                         <h4 class="list-group-item-heading text-uppercase" style="color: #404040">{{ $data->title }}
                            <span style="float: right">
                           <!-- <button class="btn btn-xs btn-success markDoneReminder" style="padding-right: 10px;opacity: 0.8" data-id="{{ $data->id }}"><i class="fa fa-check fa-fw"></i>&nbsp;Marcar Feito</button> -->
-                           <button class="btn btn-xs btn-danger deleteReminder" style="padding-right: 10px;opacity: 0.8" data-id="{{ $data->id }}"><i class="fa fa-trash fa-fw"></i>&nbsp;Excluír</button>
+                           <button class="btn btn-xs btn-danger deleteReminder" style="padding-right: 10px;opacity: 0.8" data-id="{{ $data->id }}"><i class="fa fa-trash fa-fw"></i>&nbsp;Excluir</button>
                         </span>
                         </h4>
                         </div>

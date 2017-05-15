@@ -111,7 +111,7 @@
                     <li>
                         <a href="#" class="delete-event">
                             <small><i class="fa fa-ban fa-fw"></i></small>
-                            &nbsp; Excluír</a>
+                            &nbsp; Excluir</a>
                     </li>
                 </ul>
 

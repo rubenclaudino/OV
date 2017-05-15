@@ -36,15 +36,15 @@
             <!-- start: USER WIDGETS -->
             <div class="row" style="margin-top: 10px;margin-right: -5px">
 
-                <!-- start: APPOINTMENTS BOOKED TODAY -->
+                <!-- start: APPOINTMENTS BOOKED TODAY FOR THIS USER-->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">
                         <h4>Agendamentos</h4>
-                        <h1>{{$appointments->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
+                        <h1>{{$appointments->where('user_id', Auth::user()->id)->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
                         <p>Hoje</p>
                     </div>
                 </div>
-                <!-- end: APPOINTMENTS BOOKED TODAY -->
+                <!-- end: APPOINTMENTS BOOKED TODAY FOR THIS USER-->
 
                 <!-- end: APPOINTMENTS BOOKED YESTERDAY -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
@@ -125,19 +125,6 @@
                     </div>
                 </div>
                 <!-- end : CAPTIVE PATIENTS -->
-
-                <!-- start : BIGGEST INTERVAL OF THE DAY -->
-                <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding hide">
-                    <div class="panel partition-white" style="text-align: center;padding: 10px">
-                        <h4>Seu maior intervalo hoje é das</h4>
-                        <h1> <span style="color:silver !important; font-size: 87%">00:00</span>
-                            <span><small>á</small></span>
-                            <span style="color:silver !important; font-size: 87%">00:00</span>
-                        </h1>
-                        <p>-</p>
-                    </div>
-                </div>
-                <!-- end : BIGGEST INTERVAL OF THE DAY -->
 
                 <!-- start : BEST MONTH FOR HOLIDAYS -->
                 <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 nopadding hide">

@@ -209,7 +209,7 @@
     </div>
     <!-- end: TOPBAR CONTAINER -->
 
-    <!-- start: FEEDBACK MODAL -->
+    <!-- start: BUG REPORT MODAL -->
     <div class="modal fade" id="myModalbug" role="dialog">
 
         <div class="modal-dialog modal-xs">
@@ -218,35 +218,68 @@
             <div class="modal-content" style="border-radius: 1px">
 
                 <div class="modal-header" style="background: whitesmoke">
-                    <h2 class="modal-title center" style="font-weight: lighter">
-                        Relatar Erros e Fazer Sugestões
-                    </h2>
+                    <h3 class="modal-title center" style="font-weight: lighter">
+                        Relatar Erros ou Fazer Sugestões
+                    </h3>
                 </div>
+
+
+                {{ Form::open(array('route' => 'bugs.store', 'class' => 'form')) }}
+
+                <input type="hidden" name="_method" value="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="modal-body">
 
-                    <p class="center" style="font-size: 1.5em">Gostariamos de saber se você gostou da sua resposta ?</p>
+
+                    <!-- start: TYPE OF REPORT -->
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <p style="font-size: 1.3em">Tipo de Relato ?</p>
+                            <select class="form-control" id="status" name="status">
+                                <option value="0">Problema</option>
+                                <option value="1">Sugestão</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- end: TYPE OF REPORT -->
+
+                    <!-- start: OBSERVATION -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <p style="font-size: 1.3em">Descrição</p>
+                            <input cols="2" id="report" class="form-control" name="report" type="text">
+                        </div>
+                    </div>
+                    <!-- end: OBSERVATION -->
 
                     <br>
 
                     <div class="center">
 
-                        <button type="button" class="btn btn-success" data-dismiss="modal"
-                                style="padding: 5px; width: 70px">Sim
-                        </button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                style="padding: 5px; width: 70px">Não
-                        </button>
 
                     </div>
 
                 </div>
 
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-submit"
+                            style="padding: 5px; width: 70px">Enviar
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                            style="padding: 5px; width: 70px">Cancelar
+                    </button>
+
+                </div>
+
+                {{ Form::close() }}
+                <!-- end: FORM -->
+
+                </div>
 
         </div>
 
     </div>
-    <!-- end: FEEDBACK MODAL -->
+    <!-- end: BUG REPORT MODAL -->
 
 </header>
