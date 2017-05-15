@@ -13,7 +13,7 @@
 
                 @include('patients.partials.tabs')
 
-                {!! Form::open(['route' => 'patients.store', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['route' => 'patients.store', 'class' => 'form', 'enctype' => 'multipart/form-data', 'id' => 'addPatient']) !!}
                 @include('patients.partials.form')
                 {!! Form::close() !!}
 

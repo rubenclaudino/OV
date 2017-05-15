@@ -58,7 +58,7 @@ class PatientsController extends Controller
         $request['clinic_id'] = Auth::user()->clinic_id;
 
         // TODO: clinic dental plan as foreign key in patient dental plan
-        $patient = Patient::create($request->except('specialty', 'diseases', 'clinic_dental_plan_id', 'dental_plan'));
+        $patient = Patient::create($request->except('specialty', 'diseases', 'clinic_dental_plan_id', 'patient_dental_plans'));
         if (!$patient->id)
             return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
 
@@ -89,7 +89,7 @@ class PatientsController extends Controller
             $patient->save();
         }
 
-        return redirect('patients')->with('status', 'Paciente cadastrado com sucesso!');
+        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!"]);
     }
 
     public function show($id)
@@ -174,7 +174,6 @@ class PatientsController extends Controller
     public function destroy($id)
     {
         Patient::destroy($id);
-
         return response()->json(['status' => 'success', 'message' => "Paciente Excluído com Sucesso!"]);
     }
 
