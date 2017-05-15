@@ -19,7 +19,7 @@
                         <div class="col-lg-6 col-md-6">
 
                             <h2 class="table_title">Contato<br>
-                                <small style="color: #dddddd">Lista de contatos</small>
+                                <small style="color: #bbbbbb">Lista de contatos</small>
                             </h2>
 
                         </div>
@@ -77,7 +77,7 @@
                                 <td class="hide">{{ $data->id }}</td>
                                 <td>{{ $data->name }}</td>
                                 <td>
-                                    <span style="opacity: 0.7">
+                                    <span style="opacity: 0.6">
                                           @if($data->contact_type == 0)
                                             <label class="label" style="background: green">Dental</label>
                                         @elseif($data->contact_type == 1)

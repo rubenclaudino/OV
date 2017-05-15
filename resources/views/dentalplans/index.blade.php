@@ -19,7 +19,7 @@
                         <div class="col-lg-6 col-md-6">
 
                             <h2 class="table_title">Convênios<br>
-                                <small style="color: #dddddd">Convênios credenciados</small>
+                                <small style="color: #bbbbbb">Convênios credenciados</small>
                             </h2>
 
                         </div>

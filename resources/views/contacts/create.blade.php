@@ -21,7 +21,7 @@
                             <div class="col-lg-12 col-md-12">
 
                                 <h2 class="table_title">Contato<br>
-                                    <small style="color: #dddddd">Cadastrar um novo contato</small>
+                                    <small style="color: #bbbbbb">Cadastrar um novo contato</small>
                                 </h2>
 
                                 <hr class="custom_sep">
