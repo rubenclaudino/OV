@@ -18,15 +18,15 @@ class CreateClinicDentalPlansTable extends Migration
             $table->increments('id');
             $table->string('title');
 
-            $table->string('url')->nulable();
-            $table->string('phone_1')->nulable();
-            $table->string('phone_2')->nulable();
-            $table->string('address')->nulable();
-            $table->string('street_number')->nulable();
-            $table->string('borough')->nulable();
+            $table->string('url')->nullable();
+            $table->string('phone_1')->nullable();
+            $table->string('phone_2')->nullable();
+            $table->string('address')->nullable();
+            $table->string('street_number')->nullable();
+            $table->string('borough')->nullable();
 
-            $table->string('ans_code')->nulable();
-            $table->string('cep')->nulable();
+            $table->string('ans_code')->nullable();
+            $table->string('cep')->nullable();
 
             $table->string('obs')->nullable();
 
