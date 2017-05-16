@@ -16,9 +16,9 @@ class CreateProceduresTable extends Migration
         Schema::create('procedures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
-            $table->integer('percentage');
-            $table->integer('amount');
+            $table->string('description')->nullable();;
+            $table->integer('percentage')->nullable();;
+            $table->integer('amount')->nullable();;
 
             $table->integer('appointment_id')->unsigned();
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');

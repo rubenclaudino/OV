@@ -31,6 +31,12 @@ class CreateContactEntitiesTable extends Migration
             $table->tinyInteger('contact_type')->nullable();
             $table->string('obs')->nullable();
             $table->string('whatsapp_number')->nullable();
+
+            $table->integer('clinic_id')->unsigned();
+            $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             // TODO: delete
             $table->string('state_id')->nullable();
 

@@ -811,17 +811,7 @@ $(document).ready(function(){
          }
       },
       rules: {
-         title:{required:true},
-         url:{required:true},
-         phone:{required:true,number:true},
-         alternate_phone:{required:true,number:true},
-         address:{required:true},
-         number:{required:true},
-         cep:{required:true},
-         borough_id:{required:true},
-         state_id:{required:true},
-         city_id:{required:true},
-
+         title:{required:true}
       },
       submitHandler: function(form) {
          var formData = $('#createDentalPlan').serializeObject();
@@ -859,16 +849,6 @@ $(document).ready(function(){
       },
       rules: {
          title:{required:true},
-         url:{required:true},
-         phone:{required:true,number:true},
-         alternate_phone:{required:true,number:true},
-         address:{required:true},
-         number:{required:true},
-         cep:{required:true},
-         borough_id:{required:true},
-         state_id:{required:true},
-         city_id:{required:true},
-
       },
       submitHandler: function(form) {
          var formData = $('#updateDentalPlan').serializeObject();
@@ -909,10 +889,6 @@ $(document).ready(function(){
       },
       rules: {
          title:{required:true},
-         contact_type:{required:true},
-         phone1:{required:true,number:true},
-         phone2:{required:true,number:true},
-
       },
       submitHandler: function(form) {
          var formData = $('#addContact').serializeObject();
@@ -956,10 +932,7 @@ $(document).ready(function(){
          }
       },
       rules: {
-         title:{required:true},
-         contact_type:{required:true},
-         phone1:{required:true,number:true},
-         phone2:{required:true,number:true},
+         title:{required:true}
       },
       submitHandler: function(form) {
          $.blockUI({
