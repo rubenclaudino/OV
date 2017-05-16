@@ -23,7 +23,7 @@ class PatientsController extends Controller
         if (Auth::user()->isAdmin())
             $patients = Patient::all();
         else
-            $patients = Patient::where('clinic_id', Auth::user()->clinic_id);
+            $patients = Patient::where('clinic_id', Auth::user()->clinic_id)->get();
 
         return view('patients.index', compact('patients'));
     }
