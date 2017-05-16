@@ -17,8 +17,6 @@ class CreateContactEntitiesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->nullable();
-            $table->string('state')->nullable();
-            $table->string('city')->nullable();
             $table->string('borough')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('address')->nullable();
@@ -32,15 +30,17 @@ class CreateContactEntitiesTable extends Migration
             $table->string('obs')->nullable();
             $table->string('whatsapp_number')->nullable();
 
+            $table->integer('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->integer('city_id')->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->integer('clinic_id')->unsigned();
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            // TODO: delete
-            $table->string('state_id')->nullable();
-
             $table->boolean('is_public')->nullable();
+
             $table->timestamps();
         });
     }

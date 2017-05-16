@@ -17,6 +17,7 @@ class CreateLoginLogsTable extends Migration
             $table->increments('id');
             $table->string('device');
             $table->string('location');
+            $table->ipAddress('ip');
             $table->timestamps();
 
             $table->integer('user_id')->unsigned();

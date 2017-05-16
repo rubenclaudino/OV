@@ -34,7 +34,7 @@ class DentalplansController extends Controller
         $activeClass = "dentalplans";
 
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('name', 'id');
+        $states = State::pluck('abb', 'id');
 
         return view('dentalplans.create', compact('title', 'subtitle', 'activeClass', 'states', 'cities'));
     }
@@ -70,7 +70,10 @@ class DentalplansController extends Controller
             $id++;
         }
 
-        return view('dentalplans.show', compact('title', 'activeClass', 'plan', 'users', 'plans'));
+        $cities = City::pluck('name', 'id');
+        $states = State::pluck('abb', 'id');
+
+        return view('dentalplans.show', compact('title', 'activeClass', 'plan', 'users', 'plans', 'states', 'cities'));
     }
 
     public function edit($id)
@@ -81,7 +84,7 @@ class DentalplansController extends Controller
 
         $plan = ClinicDentalPlan::find($id);
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('name', 'id');
+        $states = State::pluck('abb', 'id');
 
         return view('dentalplans.edit', compact('title', 'subtitle', 'patient', 'activeClass', 'plan', 'cities', 'states'));
     }

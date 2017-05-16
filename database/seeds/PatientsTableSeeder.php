@@ -21,6 +21,8 @@ class PatientsTableSeeder extends Seeder
                 'user_id' => 1,
                 'observation' => 'Observation XY',
                 'phone_landline' => '23423424',
+                'city_id' => 1,
+                'state_id' => 13,
                 'created_at' => \Carbon\Carbon::now()
             ],
             [
@@ -31,6 +33,8 @@ class PatientsTableSeeder extends Seeder
                 'user_id' => 1,
                 'observation' => null,
                 'phone_landline' => '23423424',
+                'city_id' => 2,
+                'state_id' => 5,
                 'created_at' => \Carbon\Carbon::now()
             ]
         ]);

@@ -249,6 +249,15 @@
                 @endrole
             <!-- end: FINANCE -->
 
+                <!-- start: FINANCE -->
+                @role('admin')
+                <li class="@if(\Route::current()->getName() == 'bugs.index') {{'active'}}@endif">
+                    <a href="{{ route('bugs.index') }}"><i class="fa fa-bug fa-fw"></i> <span
+                                class="title"> User Feedback </span></a>
+                </li>
+            @endrole
+            <!-- end: FINANCE -->
+
                 <!-- <li>
                     <a href="javascript:void(0)"><i class="fa fa-bell"></i> <span class="title"> Reminders </span><i class="icon-arrow"></i> </a>
 

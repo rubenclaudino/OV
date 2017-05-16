@@ -17,4 +17,14 @@ class ContactEntity extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function cities()
+    {
+        return $this->hasOne('App\City');
+    }
+
+    public function states()
+    {
+        return $this->hasOne('App\State');
+    }
 }

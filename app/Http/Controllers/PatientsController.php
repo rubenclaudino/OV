@@ -54,7 +54,7 @@ class PatientsController extends Controller
         $clinics = Clinic::pluck('name', 'id');
 
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('name', 'id');
+        $states = State::pluck('abb', 'id');
 
         return view('patients.create', compact('clinics', 'diseases', 'professionals',
             'treatments', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
@@ -107,7 +107,10 @@ class PatientsController extends Controller
         // TODO: filter by patient
         $missedAppointments = Appointment::with('status')->get()->where('status', '3')->count();
 
-        return view('patients.show', compact('patient', 'appointments', 'missedAppointments'));
+        $cities = City::pluck('name', 'id');
+        $states = State::pluck('abb', 'id');
+
+        return view('patients.show', compact('patient', 'appointments', 'missedAppointments', 'states', 'cities'));
     }
 
     public function edit($id)
@@ -163,8 +166,11 @@ class PatientsController extends Controller
 
         $treatments = Specialty::pluck('name', 'id');*/
 
+        $cities = City::pluck('name', 'id');
+        $states = State::pluck('abb', 'id');
+
         return view('patients.edit', compact('patient', 'professionals',
-            'disease', 'patientDisease', 'treatments', 'referrals', 'clinic_dental_plans', 'clinics', 'diseases'));
+            'disease', 'patientDisease', 'treatments', 'referrals', 'clinic_dental_plans', 'clinics', 'diseases', 'states', 'cities'));
     }
 
     public function update(Request $request, Patient $patient)
