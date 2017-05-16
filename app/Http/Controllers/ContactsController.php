@@ -44,8 +44,8 @@ class ContactsController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input->clinic_id = Auth::user()->clinic_id;
-        $input->user_id = Auth::user()->id;
+        $input['clinic_id'] = Auth::user()->clinic_id;
+        $input['user_id'] = Auth::user()->id;
 
         $contato = ContactEntity::create($input);
 
