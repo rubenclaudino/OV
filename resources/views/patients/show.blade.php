@@ -590,7 +590,6 @@
                                     <th>Plano</th>
                                     <th>Tipo</th>
                                     <th>Status</th>
-                                    <th>R$</th>
                                     <th class="center"></th>
                                     <th class="center"></th>
                                 </tr>
@@ -631,9 +630,6 @@
                                                     <span class="label"
                                                           style="background: #5e5e5e;opacity: 0.8">{{ $appointment->status->name }}</span>
                                                 @endif
-                                            </td>
-                                            <td>
-                                                -
                                             </td>
                                             <td class="center">
                                                 <i class="fa fa-calendar"></i>

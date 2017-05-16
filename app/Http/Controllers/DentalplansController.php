@@ -14,11 +14,17 @@ class DentalplansController extends Controller
     public function index()
     {
         $title = "Convênios";
-        $subtitle = "";
         $activeClass = "dentalplans";
-        $plans = ClinicDentalPlan::all();
 
-        return view('dentalplans.index', compact('title', 'subtitle', 'activeClass', 'plans'));
+        if (Auth::user()->isAdmin())
+            $plans = ClinicDentalPlan::all()->sortByDesc('name');
+        else {
+            $plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)
+                ->get()
+                ->sortByDesc('name');
+        }
+
+        return view('dentalplans.index', compact('title', 'activeClass', 'plans'));
     }
 
     public function create()
@@ -46,7 +52,13 @@ class DentalplansController extends Controller
         $title = "Convênio";
         $activeClass = "dentalplans";
 
-        $plans = ClinicDentalPlan::all()->count();
+        if (Auth::user()->isAdmin())
+            $plans = ClinicDentalPlan::all()->count();
+        else {
+            $plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)
+                ->count();
+        }
+
         $plan = ClinicDentalPlan::find($id);
 
         $users = [[]];
@@ -59,7 +71,6 @@ class DentalplansController extends Controller
         }
 
         return view('dentalplans.show', compact('title', 'activeClass', 'plan', 'users', 'plans'));
-
     }
 
     public function edit($id)
