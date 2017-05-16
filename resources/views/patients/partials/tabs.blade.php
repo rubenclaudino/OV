@@ -18,7 +18,7 @@
     <!-- start: DENTAL PLAN -->
     <li id="dentalPlanTitle">
         <a data-toggle="tab" href="#dentalPlan">
-            <strong>Convênio</strong>
+            <strong>Dados do Convênio</strong>
         </a>
     </li>
     <!-- end: DENTAL PLAN -->

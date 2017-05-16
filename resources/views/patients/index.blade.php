@@ -135,13 +135,7 @@
                                 </td>
                                 <!-- DENTAL PLAN -->
                                 <td>
-                                    <small>
-                                        <?php if ($patient->has_dental_plan == '1') {
-                                            echo 'Convênio';
-                                        } else {
-                                            echo 'Particular';
-                                        } ?>
-                                    </small>
+                                   
                                 </td>
                                 <!-- VIP / WHEELCHAIR -->
                                 <td class="hidden">

@@ -10,16 +10,6 @@
             <!-- start: ROW -->
             <div class="row">
 
-                <!-- start: DENTAL PLAN -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <label for="clinic_dental_plan_id">Convênio</label>
-                        {!! Form::select('patient_dental_plans[clinic_dental_plan_id]', $clinic_dental_plans, null,['class' =>
-                        'form-control','placeholder' => 'Não informado']) !!}
-                    </div>
-                </div>
-                <!-- end: DENTAL PLAN -->
-
                 <!-- start: CARD NUMBER -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group">
