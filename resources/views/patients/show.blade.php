@@ -1158,11 +1158,11 @@
                                                 Ùltimo agendamento á
                                             </td>
                                             <td>
-                                                {{-- str_limit($appointments->max()->start,10) --}}
+                                                {{-- $appointments->max()->start --}}
                                             </td>
                                         </tr>
                                         <!-- MONEY EARNED FROM PATIENT -->
-                                        <tr>
+                                        <tr class="hide">
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">Retorno
                                                 Gerado
                                             </td>

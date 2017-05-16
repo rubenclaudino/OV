@@ -12,6 +12,8 @@ use App\Referral;
 use App\Role;
 use App\Specialty;
 use App\User;
+use App\City;
+use App\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +40,8 @@ class PatientsController extends Controller
             $data->action = false;
         }
 
-        $dentist = Role::where('name', 'dentist')->first()->users()->get();
+        $dentist = Role::where('name', 'dentist')->first()->users()->where('clinic_id', Auth::user()->clinic_id)->get();
+
         foreach ($dentist as $data) {
             $name = $data->first_name . " " . $data->last_name;
             $professionals[$data->id] = $name;
@@ -46,11 +49,15 @@ class PatientsController extends Controller
 
         $treatments = Specialty::orderBy('name')->pluck('name', 'id');
         $referrals = Referral::pluck('name', 'id');
-        $clinic_dental_plans = ClinicDentalPlan::pluck('title', 'id');
+        $clinic_dental_plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->pluck('title', 'id');
 
         $clinics = Clinic::pluck('name', 'id');
+
+        $cities = City::pluck('name', 'id');
+        $states = State::pluck('name', 'id');
+
         return view('patients.create', compact('clinics', 'diseases', 'professionals',
-            'treatments', 'referrals', 'clinic_dental_plans'));
+            'treatments', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
     }
 
     public function store(Request $request)
@@ -168,7 +175,7 @@ class PatientsController extends Controller
             PatientDentalPlan::where('patient_id', $patient->id)->update($request->patient_dental_plans);
         }
 
-        return redirect('patients')->with('status', 'Paciente não foi localizado!');
+        return redirect('patients')->with('status', 'Paciente atualizado com sucesso!');
     }
 
     public function destroy($id)

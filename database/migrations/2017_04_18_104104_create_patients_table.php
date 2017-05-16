@@ -23,8 +23,10 @@ class CreatePatientsTable extends Migration
 
             $table->string('country', 50)->nullable();
             $table->string('borough', 50)->nullable();
-            $table->string('state', 50)->nullable();
-            $table->string('city', 50)->nullable();
+            $table->integer('state_id')->unsigned();
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->integer('city_id')->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('zip_code', 10)->nullable();
             $table->string('address', 100)->nullable();
             $table->string('street_number')->nullable();

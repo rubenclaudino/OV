@@ -62,7 +62,7 @@
                         </div>
                         <!-- end: CONTACT TYPE -->
 
-                        <!-- start: STATE -->
+                        <!-- start: SHARE WITH ALL IN CLINIC -->
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <label for="is_public">Público</label>
@@ -72,7 +72,7 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- end: STATE -->
+                        <!-- end: SHARE WITH ALL IN CLINIC  -->
 
                         <div class="clearfix"></div>
 
