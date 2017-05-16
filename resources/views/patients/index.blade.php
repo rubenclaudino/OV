@@ -135,7 +135,11 @@
                                 </td>
                                 <!-- DENTAL PLAN -->
                                 <td>
-                                   
+                                    @if($patient->patient_dental_plan != null)
+                                    {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                                    @else
+                                        &nbsp;&nbsp;Particular
+                                    @endif
                                 </td>
                                 <!-- VIP / WHEELCHAIR -->
                                 <td class="hidden">
