@@ -135,10 +135,12 @@
                                 </td>
                                 <!-- DENTAL PLAN -->
                                 <td>
-                                    @if($patient->patient_dental_plan != null)
-                                    {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                                    @if(count($patient->patient_dental_plans))
+                                        @isset($patient->patient_dental_plans->first()->clinic_dental_plan->title)
+                                        {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                                        @endisset
                                     @else
-                                        &nbsp;&nbsp;Particular
+                                        Particular
                                     @endif
                                 </td>
                                 <!-- VIP / WHEELCHAIR -->

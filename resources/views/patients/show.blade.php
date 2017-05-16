@@ -182,11 +182,13 @@
                          <!-- start: TYPE PLAN -->
                     <div class="col-lg-12 col-md-12">
                         <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
-                               <i class="fa fa-folder-o fa-fw"></i>
-                            @if($patient->patient_dental_plan != null)
-                                &nbsp;&nbsp;{{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                               <i class="fa fa-folder-o fa-fw"></i>&nbsp;&nbsp;
+                            @if(count($patient->patient_dental_plans))
+                                @isset($patient->patient_dental_plans->first()->clinic_dental_plan->title)
+                                {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                                @endisset
                             @else
-                                &nbsp;&nbsp;Particular
+                                Particular
                             @endif
                             </div>
                          </div>
