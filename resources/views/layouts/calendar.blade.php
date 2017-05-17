@@ -600,7 +600,8 @@
                         diff.minutes = diff.seconds / 60;
 
 
-                        element.find('.fc-time-grid-event').attr("data-id",event.id);
+                        element.find('.fc-content').attr("data-id",event.id);
+
                         //element.find('.fc-time').append('<i class="fa fa-pencil" data-id="' + event.id + '"></i>');
                         element.find('.fc-time').prepend('<i class="fa fa-clock-o" data-id="' + event.id + '"></i>');
                         if(diff.minutes == 15){
@@ -669,7 +670,7 @@
             });
         });
 
-        $('body').on('click', '.fc-time-grid-event', function () {
+        $('body').on('click', '.fc-content', function () {
             var id = $(this).attr('data-id');
 
             var calEvent = $("#full-calendar").fullCalendar('clientEvents', id)[0];
@@ -859,7 +860,7 @@
                 }
 
                 // trigerring summary tab
-                $('a[href="#appointment-summary"]').tab('show');
+                $('a[href="#appointment-details"]').tab('show');
             }
             $('.form-full-event .all-day').bootstrapSwitch();
 

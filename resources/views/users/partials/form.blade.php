@@ -1,13 +1,12 @@
 <input type="hidden" name="id" value="{{  null}}">
 
+
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('clinic_id') ? 'has-error' : '' }}">
         <label for="clinic_id">Select Clinic</label>
         {!! Form::select('clinic_id', $clinics, 'Select A Clinic',['class' => 'form-control','placeholder' => 'Select a Clinic']) !!}
     </div>
 </div>
-
-<div class="clearfix"></div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group">
@@ -17,30 +16,18 @@
 </div>
 
 <div class="clearfix"></div>
-<div class="col-md-12">
-    <hr>
-</div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
         <label for="first_name">Nome</label>
         {{ Form::text('first_name', null,['class' => 'form-control']) }}
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
         <label for="last_name">Sobrenome</label>
         {{ Form::text('last_name', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="clearfix"></div>
-
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-        <label for="fname">E-mail</label>
-        {{ Form::text('email', null,['placeholder' => 'Email usado para seu login','class' => 'form-control']) }}
     </div>
 </div>
 
@@ -57,15 +44,22 @@
 
 <div class="clearfix"></div>
 
-
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+        <label for="fname">E-mail</label>
+        {{ Form::text('email', null,['placeholder' => 'Email usado para seu login','class' => 'form-control']) }}
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
         <label for="fname">Password</label>
         <input class="form-control" id="password" name="password" type="password"
                placeholder="Password" value="{{ old('password') }}">
     </div>
 </div>
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
         <label for="fname">Confirm Password</label>
         <input class="form-control" id="confirm_password" name="password_confirmation"
@@ -73,10 +67,14 @@
                value="{{ old('confirm_password') }}">
     </div>
 </div>
+
 <div class="clearfix"></div>
-<div class="col-md-12">
-    <hr>
+
+<!-- start: ADDRESS -->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h3 class="custom_header1">Endereço</h3>
 </div>
+<!-- end: ADDRESS -->
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('state_id') ? 'has-error' : '' }}">
@@ -121,9 +119,12 @@
 </div>
 
 <div class="clearfix"></div>
-<div class="col-md-12">
-    <hr>
+
+<!-- start: CONTACT -->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h3 class="custom_header1">Contato</h3>
 </div>
+<!-- end: CONTACT -->
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('phone_1') ? 'has-error' : '' }}">

@@ -294,7 +294,7 @@
                                     <th class="col-md-1">Data</th>
                                     <th class="col-md-1">Horário</th>
                                     <th class="col-md-2">Dentista</th>
-                                    <th class="col-md-2">Paciente</th>
+                                    <th class="col-md-3">Paciente</th>
                                     <th class="col-md-3">Status</th>
                                 </tr>
                                 </thead>
