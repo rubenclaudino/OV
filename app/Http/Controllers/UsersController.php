@@ -60,7 +60,11 @@ class UsersController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
+        if ($request->has('password'))
+            $user->update($request->except('password_confirmation'));
+        else
+            $user->update($request->except('password', 'password_confirmation'));
+
         $user->roles()->sync($request->roles);
         return redirect('users')->with('status', 'User Updated!');
     }

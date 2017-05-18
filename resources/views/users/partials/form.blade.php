@@ -3,7 +3,7 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('clinic_id') ? 'has-error' : '' }}">
         <label for="clinic_id">Select Clinic</label>
-        {!! Form::select('clinic_id', $clinics, 'Select A Clinic',['class' => 'form-control','placeholder' => 'Select a Clinic']) !!}
+        {!! Form::select('clinic_id', $clinics, null,['class' => 'form-control','placeholder' => 'Select a Clinic']) !!}
     </div>
 </div>
 
@@ -12,7 +12,7 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group">
         <label for="roles">Roles</label>
-        {!! Form::select('roles[]',$roles,'',['class' => 'form-control selectpicker','multiple' => 'true']) !!}
+        {!! Form::select('roles[]',$roles, null,['class' => 'form-control selectpicker','multiple' => 'true']) !!}
     </div>
 </div>
 
@@ -175,30 +175,23 @@
 <div class="clearfix"></div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('rg') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('personal_id_number') ? 'has-error' : '' }}">
         <label for="fname">RG</label>
-        {{ Form::text('rg', null,['class' => 'form-control']) }}
+        {{ Form::text('personal_id_number', null,['class' => 'form-control']) }}
     </div>
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('observation') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('additional_info') ? 'has-error' : '' }}">
         <label for="fname">Observações</label>
-        {{ Form::text('observation', null,['class' => 'form-control']) }}
+        {{ Form::text('additional_info', null,['class' => 'form-control']) }}
     </div>
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('cro') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('dentist_unique_identifier') ? 'has-error' : '' }}">
         <label for="fname">CRO</label>
-        {{ Form::text('cro', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('honors') ? 'has-error' : '' }}">
-        <label for="fname">Honors</label>
-        {{ Form::text('honors', null,['class' => 'form-control']) }}
+        {{ Form::text('dentist_unique_identifier', null,['class' => 'form-control']) }}
     </div>
 </div>
 

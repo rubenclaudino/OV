@@ -19,38 +19,41 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('profile_url')->nullable();
+            $table->string('nationality');
+            $table->date('date_of_birth');
+            $table->tinyInteger('gender');
+            $table->string('profile_picture')->nullable();
 
             $table->string('borough');
             $table->string('zip_code');
             $table->string('address');
             $table->string('street_number');
 
-            $table->string('phone_1');
+            $table->string('phone_1')->nullable();
             $table->string('phone_2')->nullable();
             $table->string('phone_landline')->nullable();
-            $table->boolean('uses_whatsapp')->nullable();
             $table->string('whatsapp_number')->nullable();
-            $table->string('nationality');
-            $table->date('date_of_birth');
-            $table->tinyInteger('gender');
+            $table->boolean('is_phone_1_public')->nullable();
+            $table->boolean('is_phone_2_public')->nullable();
+            $table->boolean('is_phone_landline_public')->nullable();
+            $table->boolean('is_whatsapp_number_public')->nullable();
 
+            $table->string('personal_id_number')->unique();
+            // addition to personal ID number for Brazil
             $table->string('cpf');
-            $table->string('rg');
-            $table->string('cro');
-            $table->string('observation');
-            $table->string('honors')->nullable();
 
-            // what are those
+            $table->string('dentist_unique_identifier')->unique();
+            $table->string('additional_info')->nullable();
+
+            // for stripe payment integration
             $table->integer('stripe_id')->nullable();
             $table->string('card_brand')->nullable();
             $table->string('card_lasts_for')->nullable();
-            $table->string('thai_ends_at')->nullable();
-            $table->float('percentage')->nullable();
-            $table->string('value')->nullable();
+
             $table->float('earn_percentage')->nullable();
             $table->boolean('resident_in_clinic')->nullable();
-            $table->boolean('accept_calls')->nullable();
+            $table->boolean('accepts_after_hour_calls')->nullable();
+            $table->float('salary');
 
             $table->rememberToken();
             $table->timestamps();

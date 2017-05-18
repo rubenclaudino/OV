@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubscriptionsTable extends Migration
+class CreateHonorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscriptions', function (Blueprint $table) {
+        Schema::create('honors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('number_of_users');
-            $table->float('amount');
+            $table->string('title');
             $table->string('description');
-            $table->string('trial_ends_at')->nullable();
             $table->timestamps();
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscriptions');
+        Schema::dropIfExists('honors');
     }
 }
