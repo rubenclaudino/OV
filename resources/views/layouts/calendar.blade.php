@@ -17,7 +17,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{$title}} | Odontovision</title>
     @include('includes.stylesheets')
-
+    <style>
+        .appt_count{
+            display: none !important;
+        }
+    </style>
 
     <script src="{{ url('/plugins/angular/angular.min.js') }}"></script>
     <script>
@@ -63,6 +67,10 @@
 <div class="main-wrapper">
     @include('includes.header')
     @include('includes.nav')
+    <!--<div class="input-group">
+        <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+        <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+    </div> -->
     @yield('content')
 </div>
 
@@ -1277,6 +1285,20 @@
 <script type="text/javascript" src="{{ url('/') }}/plugins/print/jquery.print.js"></script>
 
 <script type="text/javascript">
+
+    // PICKDATE HEREEEEEEEEEEE ---
+    $(document).ready(function(){
+        $(".fc-center").after('<div class="input-group" style="position:relative;top: 10px;left:20px;width:13%;"><input type=text" class="form-control date-picker-custom">'+
+        '<span class="input-group-addon" style="float:none;"> <i class="fa fa-calendar"></i></span></div>');
+        $('.date-picker-custom').datepicker({
+            autoclose: true
+        }).on("changeDate", function (e) {
+            var d = new Date($(this).val());
+            $('#full-calendar').fullCalendar('gotoDate', d);
+        });
+    });
+
+
     function printData($id) {
         var divToPrint = document.getElementById($id);
         newWin = window.open("");
@@ -1321,14 +1343,12 @@
     });
 </script>
 
-<?php
-$user = Auth::user();
-if($user->hasRole('Local Admin') || $user->hasRole('Receptionist')){
-?>
+<!-- SELECT DENTIST -->
+
 <style>#current_dentist_id {
         display: block;
         float: left;
-        width: 160px;
+        width: 190px;
     }</style>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -1339,8 +1359,6 @@ if($user->hasRole('Local Admin') || $user->hasRole('Receptionist')){
         $('.fc-right .change_dentist').append($html);
     });
 </script>
-<?php } ?>
-
 
 </body>
 <!-- end: BODY -->
