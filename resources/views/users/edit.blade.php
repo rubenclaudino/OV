@@ -18,11 +18,15 @@
 
                     <div class="col-lg-12 col-md-12">
 
+                        <div class="col-lg-12 col-md-12">
+
                         <h2 class="table_title">Meu Cadastro<br>
                             <small style="color: #dddddd">Todas dados do seu cadastro</small>
                         </h2>
 
                         <hr class="custom_sep">
+
+                        </div>
 
                     </div>
 

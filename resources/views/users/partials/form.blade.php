@@ -1,6 +1,5 @@
 <input type="hidden" name="id" value="{{  null}}">
 
-
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('clinic_id') ? 'has-error' : '' }}">
         <label for="clinic_id">Select Clinic</label>
@@ -54,8 +53,7 @@
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
         <label for="fname">Password</label>
-        <input class="form-control" id="password" name="password" type="password"
-               placeholder="Password" value="{{ old('password') }}">
+        <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}">
     </div>
 </div>
 
@@ -63,7 +61,7 @@
     <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
         <label for="fname">Confirm Password</label>
         <input class="form-control" id="confirm_password" name="password_confirmation"
-               type="password" placeholder="Confirm Password"
+               type="password"
                value="{{ old('confirm_password') }}">
     </div>
 </div>
@@ -76,45 +74,45 @@
 </div>
 <!-- end: ADDRESS -->
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('state_id') ? 'has-error' : '' }}">
-        <label for="state_id">Select State</label>
-        {!! Form::select('state_id', $states, 'Select State',['class' => 'form-control','placeholder' => 'Select State']) !!}
+<div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+        <label for="address">Rua / Avendia</label>
+        {{ Form::text('address', null,['class' => 'form-control']) }}
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('city_id') ? 'has-error' : '' }}">
-        <label for="city_id">Select City</label>
-        {!! Form::select('city_id', $cities, 'Select City',['class' => 'form-control','placeholder' => 'Select City']) !!}
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('street_number') ? 'has-error' : '' }}">
+        <label for="street_number">Número</label>
+        {{ Form::number('street_number', null,['class' => 'form-control']) }}
     </div>
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('borough') ? 'has-error' : '' }}">
-        <label for="borough">Select Borough</label>
+        <label for="borough">Bairro</label>
         {{ Form::text('borough', null,['class' => 'form-control']) }}
     </div>
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('zip_code') ? 'has-error' : '' }}">
-        <label for="zip_code">Enter ZIP code</label>
+        <label for="zip_code">CEP</label>
         {{ Form::text('zip_code', null,['class' => 'form-control']) }}
     </div>
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
-        <label for="address">Enter address</label>
-        {{ Form::text('address', null,['class' => 'form-control']) }}
+    <div class="form-group {{ $errors->has('city_id') ? 'has-error' : '' }}">
+        <label for="city_id">Cidade</label>
+        {!! Form::select('city_id', $cities, 'Não informado',['class' => 'form-control']) !!}
     </div>
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('street_number') ? 'has-error' : '' }}">
-        <label for="street_number">Enter street number</label>
-        {{ Form::number('street_number', null,['class' => 'form-control']) }}
+    <div class="form-group {{ $errors->has('state_id') ? 'has-error' : '' }}">
+        <label for="state_id">Estado</label>
+        {!! Form::select('state_id', $states, 'Não informado',['class' => 'form-control']) !!}
     </div>
 </div>
 
@@ -126,28 +124,28 @@
 </div>
 <!-- end: CONTACT -->
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('phone_1') ? 'has-error' : '' }}">
         <label for="phone_1">Enter phone 1</label>
         {{ Form::text('phone_1', null,['class' => 'form-control']) }}
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('phone_2') ? 'has-error' : '' }}">
         <label for="phone_2">Enter phone 2</label>
         {{ Form::text('phone_2', null,['class' => 'form-control']) }}
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('phone_landline') ? 'has-error' : '' }}">
         <label for="phone_landline">Enter landline phone</label>
         {{ Form::text('phone_landline', null,['class' => 'form-control']) }}
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('whatsapp_number') ? 'has-error' : '' }}">
         <label for="whatsapp_number">Enter whatsapp number</label>
         {{ Form::text('whatsapp_number', null,['class' => 'form-control']) }}
