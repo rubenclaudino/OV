@@ -23,9 +23,9 @@ class PatientsController extends Controller
     public function index()
     {
         if (Auth::user()->isAdmin())
-            $patients = Patient::all();
+            $patients = Patient::all()->sortBy('first_name', asc);
         else
-            $patients = Patient::where('clinic_id', Auth::user()->clinic_id)->get();
+            $patients = Patient::where('clinic_id', Auth::user()->clinic_id)->orderBy('first_name')->get();
 
         return view('patients.index', compact('patients'));
     }
@@ -96,7 +96,7 @@ class PatientsController extends Controller
             $patient->save();
         }
 
-        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!"]);
+        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!",'first_name' => $patient->first_name,'last_name' => $patient->last_name,'id' => $patient->id,'data' => $patient ]);
     }
 
     public function show($id)
@@ -202,6 +202,7 @@ class PatientsController extends Controller
             ->orWhere([['last_name', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
             /*->leftJoin('contact', 'contact.id', 'patients.contact_id')
            /* ->select('patients.*', 'contact.celular_1')*/
+            ->orderBy('first_name')
             ->get();
         $i = 0;
 

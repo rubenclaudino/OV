@@ -1,36 +1,88 @@
 <input type="hidden" name="id" value="{{  null}}">
 
+<!-- start: SELECT CLINIC -->
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('clinic_id') ? 'has-error' : '' }}">
-        <label for="clinic_id">Select Clinic</label>
-        {!! Form::select('clinic_id', $clinics, 'Select A Clinic',['class' => 'form-control','placeholder' => 'Select a Clinic']) !!}
+        <label for="clinic_id">Selecione Clinica</label>
+        {!! Form::select('clinic_id', $clinics, 'Select A Clinic',['class' => 'form-control']) !!}
     </div>
 </div>
+<!-- end: SELECT CLINIC -->
 
+<!-- start: USER ROLE -->
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group">
         <label for="roles">Roles</label>
         {!! Form::select('roles[]',$roles,'',['class' => 'form-control selectpicker','multiple' => 'true']) !!}
     </div>
 </div>
+<!-- end: USER ROLE -->
 
 <div class="clearfix"></div>
 
+<!-- start: LOGIN TITLE -->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h3 class="custom_header1">Dados Usuário</h3>
+</div>
+<!-- end: LOGIN TITLE -->
+
+<!-- start: EMAIL -->
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+        <label for="fname">E-mail</label>
+        {{ Form::text('email', null,['placeholder' => 'Email usado para seu login','class' => 'form-control']) }}
+    </div>
+</div>
+<!-- end: EMAIL -->
+
+<!-- start: PASSWORD -->
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+        <label for="fname">Senha</label>
+        <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}">
+    </div>
+</div>
+<!-- end: PASSWORD -->
+
+<!-- start: PASSWORD CONFIRMATION -->
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+        <label for="fname">Confirmar Senha</label>
+        <input class="form-control" id="confirm_password" name="password_confirmation"
+               type="password"
+               value="{{ old('confirm_password') }}">
+    </div>
+</div>
+<!-- end: PASSWORD CONFIRMATION -->
+
+<div class="clearfix"></div>
+
+<!-- start: PERSONAL TITLE -->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h3 class="custom_header1">Dados Pessoais</h3>
+</div>
+<!-- end: PERSONAL TITLE -->
+
+<!-- start: FIRST NAME -->
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
         <label for="first_name">Nome</label>
         {{ Form::text('first_name', null,['class' => 'form-control']) }}
     </div>
 </div>
+<!-- end: FIRST NAME -->
 
+<!-- start: LAST NAME -->
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
         <label for="last_name">Sobrenome</label>
         {{ Form::text('last_name', null,['class' => 'form-control']) }}
     </div>
 </div>
+<!-- end: LAST NAME -->
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<!-- start: SEX -->
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('gender') ? 'has-error' : '' }}">
         <label for="fname">Sexo</label>
 
@@ -40,33 +92,85 @@
         </div>
     </div>
 </div>
+<!-- end: SEX -->
 
-<div class="clearfix"></div>
+<!-- start: DATE OF BIRTH -->
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('date_of_birth') ? 'has-error' : '' }}">
+        <label for="fname">Data de Nascimento</label>
+        {{ Form::text('date_of_birth', null,['class' => 'form-control datepicker']) }}
+    </div>
+</div>
+<!-- end: DATE OF BIRTH -->
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-        <label for="fname">E-mail</label>
-        {{ Form::text('email', null,['placeholder' => 'Email usado para seu login','class' => 'form-control']) }}
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
+        <label for="fname">CPF</label>
+        {{ Form::text('cpf', null,['class' => 'form-control']) }}
     </div>
 </div>
 
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-        <label for="fname">Password</label>
-        <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}">
+    <div class="form-group {{ $errors->has('rg') ? 'has-error' : '' }}">
+        <label for="fname">RG</label>
+        {{ Form::text('rg', null,['class' => 'form-control']) }}
     </div>
 </div>
 
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-        <label for="fname">Confirm Password</label>
-        <input class="form-control" id="confirm_password" name="password_confirmation"
-               type="password"
-               value="{{ old('confirm_password') }}">
+    <div class="form-group {{ $errors->has('honors') ? 'has-error' : '' }}">
+        <label for="fname">Honors</label>
+        {{ Form::text('honors', null,['class' => 'form-control']) }}
     </div>
 </div>
 
-<div class="clearfix"></div>
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('cro') ? 'has-error' : '' }}">
+        <label for="fname">CRO</label>
+        {{ Form::text('cro', null,['class' => 'form-control']) }}
+    </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('observation') ? 'has-error' : '' }}">
+        <label for="fname">Observações</label>
+        {{ Form::text('observation', null,['class' => 'form-control']) }}
+    </div>
+</div>
+
+<!-- start: CONTACT -->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h3 class="custom_header1">Contato</h3>
+</div>
+<!-- end: CONTACT -->
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('phone_landline') ? 'has-error' : '' }}">
+        <label for="phone_landline">Telefone Fixo</label>
+        {{ Form::text('phone_landline', null,['class' => 'form-control']) }}
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('phone_1') ? 'has-error' : '' }}">
+        <label for="phone_1">Celular 1</label>
+        {{ Form::text('phone_1', null,['class' => 'form-control']) }}
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('phone_2') ? 'has-error' : '' }}">
+        <label for="phone_2">Celular 2</label>
+        {{ Form::text('phone_2', null,['class' => 'form-control']) }}
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <div class="form-group {{ $errors->has('whatsapp_number') ? 'has-error' : '' }}">
+        <label for="whatsapp_number">Whatsapp</label>
+        {{ Form::text('whatsapp_number', null,['class' => 'form-control']) }}
+    </div>
+</div>
 
 <!-- start: ADDRESS -->
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -88,28 +192,28 @@
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('borough') ? 'has-error' : '' }}">
         <label for="borough">Bairro</label>
         {{ Form::text('borough', null,['class' => 'form-control']) }}
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('zip_code') ? 'has-error' : '' }}">
         <label for="zip_code">CEP</label>
         {{ Form::text('zip_code', null,['class' => 'form-control']) }}
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('city_id') ? 'has-error' : '' }}">
         <label for="city_id">Cidade</label>
         {!! Form::select('city_id', $cities, 'Não informado',['class' => 'form-control']) !!}
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('state_id') ? 'has-error' : '' }}">
         <label for="state_id">Estado</label>
         {!! Form::select('state_id', $states, 'Não informado',['class' => 'form-control']) !!}
@@ -118,87 +222,9 @@
 
 <div class="clearfix"></div>
 
-<!-- start: CONTACT -->
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <h3 class="custom_header1">Contato</h3>
-</div>
-<!-- end: CONTACT -->
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('phone_1') ? 'has-error' : '' }}">
-        <label for="phone_1">Enter phone 1</label>
-        {{ Form::text('phone_1', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('phone_2') ? 'has-error' : '' }}">
-        <label for="phone_2">Enter phone 2</label>
-        {{ Form::text('phone_2', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('phone_landline') ? 'has-error' : '' }}">
-        <label for="phone_landline">Enter landline phone</label>
-        {{ Form::text('phone_landline', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('whatsapp_number') ? 'has-error' : '' }}">
-        <label for="whatsapp_number">Enter whatsapp number</label>
-        {{ Form::text('whatsapp_number', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
 <div class="clearfix"></div>
 <div class="col-md-12">
     <hr>
-</div>
-
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('date_of_birth') ? 'has-error' : '' }}">
-        <label for="fname">Data de Nascimento</label>
-        {{ Form::text('date_of_birth', null,['class' => 'form-control datepicker']) }}
-    </div>
-</div>
-
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
-        <label for="fname">CPF</label>
-        {{ Form::text('cpf', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="clearfix"></div>
-
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('rg') ? 'has-error' : '' }}">
-        <label for="fname">RG</label>
-        {{ Form::text('rg', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('observation') ? 'has-error' : '' }}">
-        <label for="fname">Observações</label>
-        {{ Form::text('observation', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('cro') ? 'has-error' : '' }}">
-        <label for="fname">CRO</label>
-        {{ Form::text('cro', null,['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('honors') ? 'has-error' : '' }}">
-        <label for="fname">Honors</label>
-        {{ Form::text('honors', null,['class' => 'form-control']) }}
-    </div>
 </div>
 
 <div class="col-md-12 hide">
@@ -226,9 +252,11 @@
 </div>
 
 <div class="clearfix"></div>
+
 <div class="col-md-12">
     <hr>
 </div>
+
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
     <div class="form-group">
         <button class="btn btn-success btn-submit" data-loading-text="Saving..." type="submit">
@@ -236,4 +264,5 @@
         </button>
     </div>
 </div>
+
 <div class="clearfix"></div>

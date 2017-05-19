@@ -385,12 +385,12 @@ $(document).ready(function () {
                         $('#addQuickPatient')[0].reset();
                         // adding patient data
                         $text = $(this).text();
-                        $('.patient_name_dropdown').val(data.json.first_name + " " + data.json.last_name);
-                        $('.getted_patient_id').val(data.json.id);
+                        $('.patient_name_dropdown').val(data.first_name + " " + data.last_name);
+                        $('.getted_patient_id').val(data.id);
                         $('.patient_dropdown').remove();
 
                         // adding data to angular
-                        angular.element(document.getElementById('appointment_profile')).scope().showData(data.json);
+                        angular.element(document.getElementById('appointment_profile')).scope().showData(data.data);
                         $('.appt_patient_top').removeClass("hideDetails");
 
                     } else {

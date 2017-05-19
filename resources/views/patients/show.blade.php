@@ -108,7 +108,9 @@
 
                                         <!-- start: AGE -->
                                         <h5>
-                                            <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;&nbsp; -&nbsp;
+                                            <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;&nbsp;
+                                            {{ \Carbon\Carbon::parse($patient->date_of_birth)->age }} anos
+                                            &nbsp;
                                         </h5>
                                         <!-- end: AGE -->
 
@@ -290,7 +292,7 @@
                                             </td>
                                             <td>
                                                 @isset($patient->date_of_birth)
-                                                {{ $patient->date_of_birth }}
+                                                {{ date('d/m/Y', strtotime($patient->date_of_birth)) }}
                                                 @else
                                                     -
                                                     @endisset
@@ -598,7 +600,9 @@
                                 @if($appointments != null)
                                     @foreach($appointments as $appointment)
                                         <tr>
-                                            <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
+                                            <td>
+                                                {{ date('d/m/y', strtotime($appointment->startdate)) }}
+                                            </td>
                                             <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                             <td>
                                                 {{ $appointment->user->fullName() }}
@@ -1140,7 +1144,7 @@
                                                 È nosso paciente á
                                             </td>
                                             <td>
-                                                {{ $patient->created_at->diffForHumans() }}
+                                                {{ $patient->created_at->diffForHumans(null, true) }}
                                             </td>
                                         </tr>
                                         <!-- DAYS TILL NEXT TEETH CLEANING PERMITTED -->

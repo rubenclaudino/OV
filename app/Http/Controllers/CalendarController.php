@@ -12,6 +12,7 @@ use App\Image;
 use App\Patient;
 use App\Procedure;
 use App\Role;
+use App\Clinic;
 use App\Specialty;
 use App\User;
 use App\UserHoliday;
@@ -108,21 +109,27 @@ class CalendarController extends Controller
         }
 
         // getting current clinic dentists
-        $dentist = Role::where('name', 'dentist')->first()->users()->where('clinic_id', $user->clinic_id)->get();
+        $dentist = Role::where('name', 'dentist')->first()->users()->orderBy('first_name', 'asc')->where('clinic_id', $user->clinic_id)->get();
 
         //$dentist = Role::with('users')->where('name', 'dentist')->orWhere('name', 'local_admin')->get();
 
         foreach ($dentist as $d) {
-            $name = $d->first_name . " " . $d->last_name;
+            $gender = $d->gender == 0 ? 'Dr' : 'Dra';
+            $name = $gender . " " . $d->first_name . " " . $d->last_name;
             $d->name = $name;
         }
+
         $professionals = $dentist->pluck('name', 'id');
 
         $dentist_id = $user->id;
 
+        $clinic_dental_plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->pluck('title', 'id');
+
+        $clinics = Clinic::pluck('name', 'id');
+
         return view('calendar', compact('title', 'subtitle', 'activeClass', 'types', 'treatmentTypes', 'dentalPlans',
             'calendarArray', 'professionals', 'dentist_id', 'treatmentTypesWithPrice', 'report_models', 'treatments', 'agendaSettings', 'specialties',
-            'holidays', 'appointment_statuses', 'user'));
+            'holidays', 'appointment_statuses', 'user' , 'clinics', 'clinic_dental_plans'));
     }
 
     public function store(Request $request)

@@ -42,16 +42,19 @@
                         <div class="row" style="padding-bottom: 0px;margin-bottom: 0px">
 
                             <div class="col-md-6">
+
                                 <div class="form-group" tabindex="-1">
                                     <div class="input-group">
                                         <input name="eventName" type="text" placeholder="Nome do paciente..."
                                                class="event-name form-control patient_name_dropdown">
-                                        <span class="input-group-addon" id="basic-addon1"><i
-                                                    class="fa fa-search"></i></span>
+                                        <span class="input-group-addon" id="basic-addon1" ><a href="javascript:void(0)" data-id="0" data-toggle="modal" data-target="#patientModal">
+                                        <i class="fa fa-plus" style="color: #fff;"></i>
+                                        </a></span>
                                     </div>
                                     <input name="" type="text" placeholder="Nome do paciente..."
                                            class="form-control event-real-name" disabled="true">
                                 </div>
+
                                 <input type="hidden" name="patient_id" class="getted_patient_id">
 
                                 <div class="no-all-day-range">
@@ -64,6 +67,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="all-day-range hidden" style="display: none;">
                                     <div class="col-md-8">
                                         <div class="form-group">
