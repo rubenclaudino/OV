@@ -81,14 +81,14 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('state_id') ? 'has-error' : '' }}">
         <label for="state_id">Select State</label>
-        {!! Form::select('state_id', $states, 'Select State',['class' => 'form-control','placeholder' => 'Select State']) !!}
+        {!! Form::select('state_id', $states, null,['class' => 'form-control','placeholder' => 'Select State']) !!}
     </div>
 </div>
 
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('city_id') ? 'has-error' : '' }}">
         <label for="city_id">Select City</label>
-        {!! Form::select('city_id', $cities, 'Select City',['class' => 'form-control','placeholder' => 'Select City']) !!}
+        {!! Form::select('city_id', $cities, null,['class' => 'form-control','placeholder' => 'Select City']) !!}
     </div>
 </div>
 
