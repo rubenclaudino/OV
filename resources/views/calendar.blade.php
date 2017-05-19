@@ -3,7 +3,6 @@
 
     <!-- start: MAIN CONTAINER -->
     <div class="main-container inner">
-
     @include('calendar_partials.quick_patient_modal')
 
     <!-- start: PAGE -->
@@ -47,12 +46,22 @@
                             <div class="panel-body">
                                 <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
                                     <div class="row">
+                                            <!--<div class="row">
+                                                <div class="col-xs-2"></div>
+                                                <div class="col-xs-2 text-right">
+
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control date-picker-custom">
+                                                        <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                                    </div>
+                                                </div>
+                                                <span class="clearfix"></span>
+                                            </div>-->
                                         @if(Auth::user()->isAdmin() || Auth::user()->hasRole('local_admin') || Auth::user()->hasRole('receptionist'))
-                                            <div id="current_dentist">
-                                                {!! Form::select('dentist_id', $professionals,$dentist_id,['class' => 'form-control','id' => 'current_dentist_id']) !!}
+                                           <div id="current_dentist">
+                                                {!! Form::select('dentist_id', $professionals,$dentist_id,['class' => 'form-control','id' => 'current_dentist_id', 'style' => 'height: 40px; margin-right: 5px;']) !!}
                                             </div>
                                         @endif
-                                        <br>
                                         <div id='full-calendar'></div>
                                     </div>
                                 </div>

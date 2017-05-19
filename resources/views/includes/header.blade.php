@@ -186,7 +186,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <p style="font-size: 1.3em">Tipo de Relato ?</p>
-                            <select class="form-control" id="status" name="status">
+                            <select class="form-control" id="type" name="type">
                                 <option value="0">Problema</option>
                                 <option value="1">Sugestão</option>
                             </select>

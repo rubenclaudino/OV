@@ -7,6 +7,8 @@ use Auth;
 use App\ContactEntity;
 use App\Contact;
 use App\Address;
+use App\City;
+use App\State;
 
 class ContactsController extends Controller
 {
@@ -20,8 +22,6 @@ class ContactsController extends Controller
         if (Auth::user()->isAdmin())
             $contatos = ContactEntity::all()->sortByDesc('name');
         else {
-
-
             $contatos = ContactEntity::where('clinic_id', Auth::user()->clinic_id)
                 ->where('user_id',  Auth::user()->id)
                 ->orwhere('is_public',  true)
@@ -38,7 +38,10 @@ class ContactsController extends Controller
         $subtitle = "Cadastrar novo contato";
         $activeClass = "contacts";
 
-        return view('contacts.create', compact('title', 'subtitle', 'activeClass'));
+        $cities = City::pluck('name', 'id');
+        $states = State::pluck('abb', 'id');
+
+        return view('contacts.create', compact('title', 'subtitle', 'activeClass', 'cities', 'states'));
     }
 
     public function store(Request $request)
@@ -62,9 +65,12 @@ class ContactsController extends Controller
         $subtitle = 'Editar informações do contato';
         $activeClass = "contacts";
 
+        $cities = City::pluck('name', 'id');
+        $states = State::pluck('abb', 'id');
+
         $contact = ContactEntity::find($id);
 
-        return view('contacts.edit', compact('title', 'subtitle', 'activeClass', 'contact'));
+        return view('contacts.edit', compact('title', 'subtitle', 'activeClass', 'contact', 'cities', 'states'));
     }
 
     public function update(Request $request, $id)

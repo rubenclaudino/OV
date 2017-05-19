@@ -62,7 +62,7 @@
                         </div>
                         <!-- end: CONTACT TYPE -->
 
-                        <!-- start: STATE -->
+                        <!-- start: SHARE WITH ALL IN CLINIC -->
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <label for="is_public">Público</label>
@@ -72,7 +72,7 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- end: STATE -->
+                        <!-- end: SHARE WITH ALL IN CLINIC  -->
 
                         <div class="clearfix"></div>
 
@@ -179,8 +179,8 @@
                         <!-- start: CITY -->
                         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <label for="city">Cidade</label>
-                                <input class="form-control" id="city" name="city" type="text">
+                                <label for="city_id">Cidade</label>
+                                {!! Form::select('city_id',$cities,'',['class' => 'select2picker select_city']) !!}
                             </div>
                         </div>
                         <!-- end: CITY -->
@@ -188,37 +188,10 @@
                         <!-- start: STATE -->
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <div class="form-group">
-                                <label for="state_id">Estado</label>
-                                <select class="form-control" id="state_id" name="state_id">
-                                    <option value="0">Não Informado</option>
-                                    <option value="1">AC</option>
-                                    <option value="2">AL</option>
-                                    <option value="3">AP</option>
-                                    <option value="4">AM</option>
-                                    <option value="5">BA</option>
-                                    <option value="6">CE</option>
-                                    <option value="7">DF</option>
-                                    <option value="8">ES</option>
-                                    <option value="9">GO</option>
-                                    <option value="10">MA</option>
-                                    <option value="11">MT</option>
-                                    <option value="12">MS</option>
-                                    <option value="13">MG</option>
-                                    <option value="14">PA</option>
-                                    <option value="15">PB</option>
-                                    <option value="16">PR</option>
-                                    <option value="17">PE</option>
-                                    <option value="18">PI</option>
-                                    <option value="19">RJ</option>
-                                    <option value="20">RN</option>
-                                    <option value="21">RS</option>
-                                    <option value="22">RO</option>
-                                    <option value="23">RR</option>
-                                    <option value="24">SC</option>
-                                    <option value="25">SP</option>
-                                    <option value="26">SE</option>
-                                    <option value="27">TO</option>
-                                </select>
+                                <label for="state_id">
+                                    Estado
+                                </label>
+                                {!! Form::select('state_id',$states,'',['class' => 'select2picker select_state']) !!}
                             </div>
                         </div>
                         <!-- end: STATE -->

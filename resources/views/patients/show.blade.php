@@ -117,7 +117,7 @@
                                             @isset($patient->address)
                                             <i class="fa fa-map-marker fa-fw"></i>
                                             &nbsp;{{ $patient->address }} {{ $patient->street_number }}
-                                            , {{ $patient->borough }} , {{ $patient->city }} {{ $patient->state }}
+                                            , {{ $patient->borough }} , {{ $cities[$patient->city_id] }} {{ $states[$patient->state_id] }}
                                             @else
                                                 <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5>
                                                 @endisset
@@ -182,11 +182,13 @@
                          <!-- start: TYPE PLAN -->
                     <div class="col-lg-12 col-md-12">
                         <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
-                               <i class="fa fa-folder-o fa-fw"></i>
-                            @if($patient->patient_dental_plan != null)
-                                &nbsp;&nbsp;{{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                               <i class="fa fa-folder-o fa-fw"></i>&nbsp;&nbsp;
+                            @if(count($patient->patient_dental_plans))
+                                @isset($patient->patient_dental_plans->first()->clinic_dental_plan->title)
+                                {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                                @endisset
                             @else
-                                &nbsp;&nbsp;Particular
+                                Particular
                             @endif
                             </div>
                          </div>
@@ -588,7 +590,6 @@
                                     <th>Plano</th>
                                     <th>Tipo</th>
                                     <th>Status</th>
-                                    <th>R$</th>
                                     <th class="center"></th>
                                     <th class="center"></th>
                                 </tr>
@@ -629,9 +630,6 @@
                                                     <span class="label"
                                                           style="background: #5e5e5e;opacity: 0.8">{{ $appointment->status->name }}</span>
                                                 @endif
-                                            </td>
-                                            <td>
-                                                -
                                             </td>
                                             <td class="center">
                                                 <i class="fa fa-calendar"></i>
@@ -1160,11 +1158,11 @@
                                                 Ùltimo agendamento á
                                             </td>
                                             <td>
-                                                {{-- str_limit($appointments->max()->start,10) --}}
+                                                {{-- $appointments->max()->start --}}
                                             </td>
                                         </tr>
                                         <!-- MONEY EARNED FROM PATIENT -->
-                                        <tr>
+                                        <tr class="hide">
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">Retorno
                                                 Gerado
                                             </td>

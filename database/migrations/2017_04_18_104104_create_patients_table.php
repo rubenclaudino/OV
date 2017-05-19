@@ -23,8 +23,10 @@ class CreatePatientsTable extends Migration
 
             $table->string('country', 50)->nullable();
             $table->string('borough', 50)->nullable();
-            $table->string('state', 50)->nullable();
-            $table->string('city', 50)->nullable();
+
+            $table->integer('state_id')->unsigned()->nullable();
+            $table->integer('city_id')->unsigned()->nullable();
+
             $table->string('zip_code', 10)->nullable();
             $table->string('address', 100)->nullable();
             $table->string('street_number')->nullable();
@@ -117,7 +119,6 @@ class CreatePatientsTable extends Migration
             $table->boolean('hasProsSpec')->nullable();
             $table->boolean('hasOrtoSpec')->nullable();
             $table->boolean('take_preg_pills')->nullable();
-            $table->integer('state_id')->nullable();
             $table->boolean('has_prev_surgeries')->nullable();
             $table->string('typeOfPlan1', 30)->nullable();
             $table->string('typeOfPlan2', 30)->nullable();
@@ -130,6 +131,7 @@ class CreatePatientsTable extends Migration
             $table->string('vip', 50)->nullable();
             $table->string('observation', 100)->nullable();
             $table->string('profession')->nullable();
+
             $table->integer('referral_id')->unsigned()->nullable();
             $table->foreign('referral_id')->references('id')->on('referrals')->onDelete('cascade');
             $table->integer('clinic_id')->unsigned();

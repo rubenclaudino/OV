@@ -1360,9 +1360,9 @@ label.error{
    float: right !important;
 }
 .fc-center h2{
-   padding-top:12px;
+   padding-top:20px;
     font-weight: normal;
-    font-size: x-large;
+    font-size: large;
 }
 
 .fc-day-header hr,

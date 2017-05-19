@@ -17,7 +17,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{$title}} | Odontovision</title>
     @include('includes.stylesheets')
-
+    <style>
+        .appt_count{
+            display: none !important;
+        }
+    </style>
 
     <script src="{{ url('/plugins/angular/angular.min.js') }}"></script>
     <script>
@@ -63,6 +67,10 @@
 <div class="main-wrapper">
     @include('includes.header')
     @include('includes.nav')
+    <!--<div class="input-group">
+        <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
+        <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+    </div> -->
     @yield('content')
 </div>
 
@@ -601,7 +609,8 @@
                         diff.minutes = diff.seconds / 60;
 
 
-                        element.find('.fc-time-grid-event').attr("data-id",event.id);
+                        element.find('.fc-content').attr("data-id",event.id);
+
                         //element.find('.fc-time').append('<i class="fa fa-pencil" data-id="' + event.id + '"></i>');
                         element.find('.fc-time').prepend('<i class="fa fa-clock-o" data-id="' + event.id + '"></i>');
                         if(diff.minutes == 15){
@@ -670,7 +679,7 @@
             });
         });
 
-        $('body').on('click', '.fc-time-grid-event', function () {
+        $('body').on('click', '.fc-content', function () {
             var id = $(this).attr('data-id');
 
             var calEvent = $("#full-calendar").fullCalendar('clientEvents', id)[0];
@@ -860,7 +869,7 @@
                 }
 
                 // trigerring summary tab
-                $('a[href="#appointment-summary"]').tab('show');
+                $('a[href="#appointment-details"]').tab('show');
             }
             $('.form-full-event .all-day').bootstrapSwitch();
 
@@ -1277,6 +1286,20 @@
 <script type="text/javascript" src="{{ url('/') }}/plugins/print/jquery.print.js"></script>
 
 <script type="text/javascript">
+
+    // PICKDATE HEREEEEEEEEEEE ---
+    $(document).ready(function(){
+        $(".fc-center").after('<div class="input-group" style="position:relative;top: 10px;left:20px;width:13%;"><input type=text" class="form-control date-picker-custom">'+
+        '<span class="input-group-addon" style="float:none;"> <i class="fa fa-calendar"></i></span></div>');
+        $('.date-picker-custom').datepicker({
+            autoclose: true
+        }).on("changeDate", function (e) {
+            var d = new Date($(this).val());
+            $('#full-calendar').fullCalendar('gotoDate', d);
+        });
+    });
+
+
     function printData($id) {
         var divToPrint = document.getElementById($id);
         newWin = window.open("");
@@ -1321,14 +1344,12 @@
     });
 </script>
 
-<?php
-$user = Auth::user();
-if($user->hasRole('Local Admin') || $user->hasRole('Receptionist')){
-?>
+<!-- SELECT DENTIST -->
+
 <style>#current_dentist_id {
         display: block;
         float: left;
-        width: 160px;
+        width: 190px;
     }</style>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -1339,8 +1360,6 @@ if($user->hasRole('Local Admin') || $user->hasRole('Receptionist')){
         $('.fc-right .change_dentist').append($html);
     });
 </script>
-<?php } ?>
-
 
 </body>
 <!-- end: BODY -->

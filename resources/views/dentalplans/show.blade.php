@@ -58,7 +58,7 @@
                                             @isset($plan->address)
                                             <i class="fa fa-map-marker fa-fw"></i>
                                             &nbsp;{{ $plan->address }} {{ $plan->street_number }}
-                                            , {{ $plan->borough }} , {{ $plan->city }} {{ $plan->state }}
+                                            , {{ $plan->borough }} , {{ $cities[$plan->city_id] }} {{ $states[$plan->state_id] }}
                                             @else
                                                 <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5>
                                                 @endisset
@@ -294,7 +294,7 @@
                                     <th class="col-md-1">Data</th>
                                     <th class="col-md-1">Horário</th>
                                     <th class="col-md-2">Dentista</th>
-                                    <th class="col-md-2">Paciente</th>
+                                    <th class="col-md-3">Paciente</th>
                                     <th class="col-md-3">Status</th>
                                 </tr>
                                 </thead>

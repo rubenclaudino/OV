@@ -1037,35 +1037,29 @@
                             </td>
                             <!-- APPOINTMENT STATUS -->
                             <td class="center">
-                                    <span ng-switch="appointment.status">
+                                    <span>
                                      <span class="label label-default"
-                                           style="background: #5bc0de !important;opacity: 0.8" ng-switch-when="Booked">{[{ appointment.status.name }]}</span>
+                                           style="background: #5bc0de !important;opacity: 0.8" >
+                                         {[{ appointment.status.name }]}</span>
                                         <span class="label label-default"
                                               style="background: #5cb85c !important;opacity: 0.8"
-                                              ng-switch-when="Confirmed">{[{ appointment.status.name }]}</span>
+                                              >{[{ appointment.status.name }]}</span>
                                         <span class="label label-default"
                                               style="background: #f0ad4e !important;opacity: 0.8"
-                                              ng-switch-when="Cancelled">{[{ appointment.status.name }]}</span>
+                                              >{[{ appointment.status.name }]}</span>
                                         <span class="label label-default"
                                               style="background: #5e5e5e !important;opacity: 0.8"
-                                              ng-switch-when="Finished ">{[{ appointment.status.name }]}</span>
+                                              >{[{ appointment.status.name }]}</span>
                                         <span class="label label-default"
                                               style="background: #d9534f !important;opacity: 0.8"
-                                              ng-switch-when="Missed">{[{ appointment.status.name }]}</span>
+                                              >{[{ appointment.status.name }]}</span>
                                      <span class="label label-default"
-                                           style="background: #1b6d85 !important;opacity: 0.8" ng-switch-default>{[{ appointment.status.name }]}</span>
+                                           style="background: #1b6d85 !important;opacity: 0.8">{[{ appointment.status.name }]}</span>
                                     </span>
                             </td>
                             <!-- DENTIST NAME -->
                             <td>
                                 {[{ appointment.dentist.first_name }]} {[{ appointment.dentist.last_name }]}
-                            </td>
-                            <!-- OPTIONS -->
-                            <td>
-                                <button class="btn btn-info btn-squared btn-xs"
-                                        style="opacity: 0.6;background: silver;border-color: silver "
-                                        ng-click="showappt($index)">View
-                                </button>
                             </td>
                         </tr>
                         </tbody>
