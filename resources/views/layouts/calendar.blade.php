@@ -213,6 +213,7 @@
 
     var tArray = '<?php print_r($treatments);?>';
     $parsedArray = JSON.parse('<?php print_r($calendarArray);?>');
+
     var mainEventObject = [];
     Date.prototype.addHours = function (h) {
         this.setHours(this.getHours() + h);
