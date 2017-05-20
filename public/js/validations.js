@@ -18,7 +18,7 @@ $(document).ready(function(){
    };
 
    // register dentist
-   $("#registerDentist").validate({
+ /*  $("#registerDentist").validate({
       errorPlacement: function (error, element) { // render error placement for each input type
          if (element.attr("type") == "radio" || element.attr("type") == "checkbox") { // for chosen elements, need to insert the error after the chosen container
             //$(element).closest('.form-group').addClass('has-error');
@@ -213,9 +213,10 @@ $(document).ready(function(){
          return false;
       }
    });
+*/
 
     // adding bug
-
+/*
     $("#addBug").validate({
         errorPlacement: function (error, element) { // render error placement for each input type
             if (element.attr("type") == "radio" || element.attr("type") == "checkbox") { // for chosen elements, need to insert the error after the chosen container
@@ -253,7 +254,7 @@ $(document).ready(function(){
             return false;
         }
     });
-
+*/
    // adding Appointment Type
 
    $("#addAppointmentType").validate({
@@ -679,7 +680,7 @@ $(document).ready(function(){
 
 
    // adding Recepnist
-
+/*
    $("#addRecepnist").validate({
       ignore:[],
       errorPlacement: function (error, element) { // render error placement for each input type
@@ -793,7 +794,7 @@ $(document).ready(function(){
       }
    });
 
-
+*/
    // adding dental Plan
 
    $("#createDentalPlan").validate({
@@ -959,7 +960,6 @@ $(document).ready(function(){
       }
    });
 
-   // update dentist
 
    $("#updateStock").validate({
       errorPlacement: function (error, element) { // render error placement for each input type

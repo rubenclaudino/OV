@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Bug;
-use Auth;
+use App\Http\Requests\BugValidationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BugController extends Controller
 {
@@ -12,29 +13,18 @@ class BugController extends Controller
     public function index()
     {
         $bugs = Bug::all()->sortByDesc('report');
-
         return view('bugs.index', compact('bugs'));
     }
 
-    public function create()
+    public function store(BugValidationRequest $request)
     {
-        return view('header.blade', compact('activeClass'));
-    }
-
-    public function store(Request $request)
-    {
-        $input = $request->all();
-
-        $input['user'] = Auth::user()->first_name;
-
-        Bug::create($input);
-
-        return redirect()->back();
-
-       // if ($bugs->id)
-         //   return response()->json(['status' => 'success', 'message' => 'Cadastrado com sucesso!']);
-
-       // return response()->json(['status' => 'error', 'message' => 'Ocorreu um erro!']);
+        $request['user'] = Auth::user()->first_name;
+        Bug::create($request->all());
+        return redirect()->back()->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Bug Created!'
+            ]);
     }
 
     public function edit($id)
@@ -44,11 +34,14 @@ class BugController extends Controller
         return view('bugs.edit', compact('activeClass', 'bugs'));
     }
 
-    public function update(Request $request, $id)
+    public function update(BugValidationRequest $request, $id)
     {
         Bug::find($id)->update($request->all());
-
-        return response()->json(['status' => 'success', 'message' => 'Relato atualizado com sucesso!']);
+        return redirect()->back()->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Bug Updated!'
+            ]);
     }
 
     public function destroy($id)

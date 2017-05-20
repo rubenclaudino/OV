@@ -66,18 +66,6 @@
             <!-- start: TABLE BODY -->
             <div class="panel-body">
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
-                @if (session('status'))
-                    <script>
-                        $(document).ready(swal("{{ session('status') }}"))
-                    </script>
-            @endif
-
             <!-- start: DISPLAYING USERS -->
                 <table class="table table-hover table-responsive">
 

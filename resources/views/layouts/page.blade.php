@@ -88,7 +88,11 @@
 <script type="text/javascript" src="{{ asset('plugins/toastr/toastr.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-modal/js/bootstrap-modal.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-modal/js/bootstrap-modalmanager.js')}}"></script>
+
+{{--
 <script type="text/javascript" src="{{ asset('plugins/fullcalendar/fullcalendar/fullcalendar.min.js')}}"></script>
+--}}
+
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-switch/dist/js/bootstrap-switch.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/jquery-validation/dist/jquery.validate.min.js')}}"></script>
