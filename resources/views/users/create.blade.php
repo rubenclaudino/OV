@@ -1,4 +1,5 @@
-@extends('layouts.page', ['title' => 'Usuário', 'subtitle' => 'Cadastrar um novo usuário', 'activeClass' => 'users'])
+@extends('layouts.page')
+@section('title', 'Usuário')
 @section('content')
 
     <div class="main-content">

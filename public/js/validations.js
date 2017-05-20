@@ -463,7 +463,7 @@ $(document).ready(function(){
    });
 
    // add Patient
-
+/*
    $("#addPatient").validate({
       ignore: [],
       errorPlacement: function (error, element) { // render error placement for each input type
@@ -504,7 +504,7 @@ $(document).ready(function(){
          borough_id:{required:true},
          state_id:{required:true},
          zip:{required:true},*/
-      },
+ /*     },
       messages: {
          patient_profile_image:{required:"Profile Image is required!"},
          first_name:{required:"First Name is required!"},
@@ -563,7 +563,7 @@ $(document).ready(function(){
          return false;
       }
    });
-
+*/
    // add Item
 
    $("#addItem").validate({

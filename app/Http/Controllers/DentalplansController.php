@@ -13,9 +13,6 @@ class DentalplansController extends Controller
 
     public function index()
     {
-        $title = "Convênios";
-        $activeClass = "dentalplans";
-
         if (Auth::user()->isAdmin())
             $plans = ClinicDentalPlan::all()->sortByDesc('name');
         else {
@@ -24,19 +21,15 @@ class DentalplansController extends Controller
                 ->sortByDesc('name');
         }
 
-        return view('dentalplans.index', compact('title', 'activeClass', 'plans'));
+        return view('dentalplans.index', compact('plans'));
     }
 
     public function create()
     {
-        $title = "Convênio";
-        $subtitle = "Cadastrar novo Convênio";
-        $activeClass = "dentalplans";
-
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('abb', 'id');
+        $states = State::pluck('abbreviation', 'id');
 
-        return view('dentalplans.create', compact('title', 'subtitle', 'activeClass', 'states', 'cities'));
+        return view('dentalplans.create', compact('states', 'cities'));
     }
 
     public function store(Request $request)
@@ -49,9 +42,6 @@ class DentalplansController extends Controller
 
     public function show($id)
     {
-        $title = "Convênio";
-        $activeClass = "dentalplans";
-
         if (Auth::user()->isAdmin())
             $plans = ClinicDentalPlan::all()->count();
         else {
@@ -71,22 +61,18 @@ class DentalplansController extends Controller
         }
 
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('abb', 'id');
+        $states = State::pluck('abbreviation', 'id');
 
-        return view('dentalplans.show', compact('title', 'activeClass', 'plan', 'users', 'plans', 'states', 'cities'));
+        return view('dentalplans.show', compact('plan', 'users', 'plans', 'states', 'cities'));
     }
 
     public function edit($id)
     {
-        $title = "Convênio";
-        $subtitle = "Alterar informação do convênio";
-        $activeClass = "dentalplans";
-
         $plan = ClinicDentalPlan::find($id);
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('abb', 'id');
+        $states = State::pluck('abbreviation', 'id');
 
-        return view('dentalplans.edit', compact('title', 'subtitle', 'patient', 'activeClass', 'plan', 'cities', 'states'));
+        return view('dentalplans.edit', compact('patient', 'plan', 'cities', 'states'));
     }
 
     public function update(Request $request, $id)

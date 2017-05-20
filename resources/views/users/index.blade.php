@@ -1,4 +1,5 @@
-@extends('layouts.page', ['title' => 'Usuários', 'activeClass' => "users"])
+@extends('layouts.page')
+@section('title', 'Usuários')
 @section('content')
 
     <!-- start: MAIN CONTENT -->

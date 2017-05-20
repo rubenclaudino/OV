@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Procedimento')
 @section('content')
 
     <!-- start: MAIN CONTENT -->
@@ -29,8 +30,8 @@
                         <div class="col-sm-6 hidden-xs">
 
                             <div class="table-header">
-                                <h2 style="font-weight: lighter">{{ $title }}</h2>
-                                <p style="font-size: large;">{{ $subtitle }}</p>
+                                <h2 style="font-weight: lighter">Procedimento</h2>
+                                <p style="font-size: large;"></p>
                             </div>
 
                         </div>

@@ -1,4 +1,7 @@
-@extends('layouts.page', ['title' => $user->fullName() . ' profile'])
+@extends('layouts.page')
+@section('title')
+    {{$user->fullName()}}
+@endsection
 @section('content')
 
     <!-- start: MAIN CONTENT -->

@@ -1,4 +1,5 @@
-@extends('layouts.page', ['title' => 'Cadastrar Novo Paciente', 'subtitle' => 'Criar um novo cadastro de paciente'])
+@extends('layouts.page')
+@section('title', 'Cadastrar Novo Paciente')
 @section('content')
 
     <!-- start: MAIN CONTENT -->
@@ -13,7 +14,7 @@
 
                 @include('patients.partials.tabs')
 
-                {!! Form::open(['route' => 'patients.store', 'class' => 'form', 'enctype' => 'multipart/form-data', 'id' => 'addPatient']) !!}
+                {!! Form::open(['route' => 'patients.store', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
                 @include('patients.partials.form')
                 {!! Form::close() !!}
 
@@ -24,4 +25,8 @@
 
     </div>
 
+@endsection
+
+@section('extra_scripts')
+    @include('patients.partials.scripts')
 @endsection

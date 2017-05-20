@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('main', 'HomeController@main');
-
-
 Auth::routes();
 
 // cancelling subscription
@@ -30,10 +26,10 @@ Route::post(
     '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
 );*/
 
-Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firsttime'*/]], function () {
+Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', 'firsttime'*/]], function () {
     //Route::resource('appointment', 'AppointmentController');
 
-    // USER INVOICES
+    // USERS
     Route::get('user/invoices', 'UsersController@invoices');
     Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
         return $request->user()->downloadInvoice($invoiceId, [
@@ -41,14 +37,11 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
             'product' => 'Subscription',
         ]);
     });
-
-    // USERS
     Route::resource('users', 'UsersController');
 
     Route::get('home/joinus', 'HomeController@joinus');
     Route::resource('home', 'HomeController');
     Route::resource('clinic', 'ClinicController');
-    Route::resource('dentists', 'DentistsController');
 
     // BUGS
     Route::resource('bugs', 'BugController');
@@ -79,6 +72,7 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::resource('treatmenttypes', 'TreatmentTypesController');
     Route::resource('holidays', 'HolidaysController');
     Route::resource('recepnists', 'RecepnistsController');
+    Route::resource('dentists', 'DentistsController');
 
     // DENTAL PLANS
     Route::get('dentalplans/permission', 'DentalplansController@permission');
@@ -133,8 +127,10 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
     Route::post('calendar/getTodaysEvents', 'CalendarController@getTodaysEvent');
     Route::get('calendar/appointmentdetails/{id}', 'CalendarController@appointmentdetails');
     Route::put('calendar/updateStatus/{id}', 'CalendarController@updateStatus');
+
     Route::get('calendar/appointmentTypes', ['as' => 'calendar.appointment_types', 'uses' => 'CalendarController@appointmentTypes']);
     Route::post('calendar/addAppointmentType', 'CalendarController@addAppointmentTypes');
+
     Route::post('calendar/updateAppointment/{id}', 'CalendarController@updateAppointment');
     Route::post('calendar/addDocument', 'CalendarController@addDocument');
     Route::post('calendar/deleteDocument/{id}', 'CalendarController@deleteDocument');
@@ -146,7 +142,6 @@ Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firstti
 
     // USER FIRST TIME
     Route::resource('firsttime', 'FirstimeController');
-
 });
 
 Route::get('billing/subscribe', 'UserBilling@subscribeuser');

@@ -108,3 +108,7 @@
 </div>
 
 @endsection
+
+@section('extra_scripts')
+   @include('patients.partials.scripts')
+@endsection

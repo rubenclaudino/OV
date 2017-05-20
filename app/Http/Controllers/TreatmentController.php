@@ -17,29 +17,10 @@ class TreatmentController extends Controller
 
     public function index()
     {
-        $title = "Procedures";
-        $subtitle = 'Informações detalhadas de todos tratamentos';
-        $activeClass = "treatments";
-        $user = Auth::user();
-        $subtitle = "Informações detalhadas de todos tratamentos";
-        $pUsers = array();
-
-        $users = Patient::all();
-
-        // getting all roles
-        return view('patients.index', compact('title', 'subtitle', 'users', 'activeClass'));
     }
 
     public function create()
     {
-        $title = "Add New Patient";
-        $subtitle = "Add New user by Dentist User";
-        $activeClass = "patients";
-
-        // getting clinics
-
-        $clinics = Clinic::pluck('name', 'id');
-        return view('patients.create', compact('title', 'subtitle', 'activeClass', 'clinics'));
     }
 
     public function store(Request $request)
@@ -88,16 +69,6 @@ class TreatmentController extends Controller
 
     public function edit($id)
     {
-        $title = "Patients";
-        $subtitle = 'Informações detalhadas de todos tratamentos';
-        $activeClass = "patients";
-        $user = Auth::user();
-        $subtitle = "Informações detalhadas de todos tratamentos";
-        $pUsers = array();
-
-        $dentist = Patient::find($id);
-
-        return view('patients.edit', compact('title', 'subtitle', 'dentist', 'activeClass'));
     }
 
     public function update(Request $request, $id)
@@ -128,6 +99,7 @@ class TreatmentController extends Controller
     /**
      * TREATMENT TYPES
      */
+    // TODO: refactor (delete) this, keep treatment types -> index
     public function treatmentTypes()
     {
         $title = "Procedure Type";

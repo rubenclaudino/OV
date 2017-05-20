@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', '')
 @section('content')
 
     <!-- start: MAIN CONTENT -->

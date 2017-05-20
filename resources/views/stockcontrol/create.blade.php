@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Cadastrar novo Item')
 @section('content')
 
     <!-- start: MAIN CONTENT -->

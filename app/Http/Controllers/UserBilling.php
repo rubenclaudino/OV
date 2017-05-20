@@ -13,13 +13,7 @@ class UserBilling extends Controller
 
     public function index()
     {
-        //
-        $title = "Billing";
-        $subtitle = 'Todas informações do seu relacionadas ao seu estoque';
-        $activeClass = "billing";
-
-        // getting all roles
-        return view('billing.index', compact('title', 'subtitle', 'activeClass'));
+        return view('billing.index', compact());
     }
 
     public function create()

@@ -10,24 +10,12 @@ class SpecialityController extends Controller
 
     public function index()
     {
-        $title = "Especialidades";
-        $subtitle = 'Todas especialidades cadastradas';
-        $activeClass = "treatmenttypes";
-
-        // getting specialiities
-        $items = Specialty::all();
-
-        // getting all roles
-        return view('specialities.index', compact('title', 'subtitle', 'activeClass', 'specialities'));
+        return view('specialities.index');
     }
 
     public function create()
     {
-        $title = "Especialidades";
-        $subtitle = "Novo Item";
-        $activeClass = "treatmenttypes";
-
-        return view('specialities.create', compact('title', 'subtitle', 'activeClass'));
+        return view('specialities.create');
     }
 
     public function store(Request $request)
@@ -44,23 +32,14 @@ class SpecialityController extends Controller
 
     public function show($id)
     {
-        $title = "Especialidade";
-        $subtitle = '';
-        $activeClass = "treatmenttypes";
-
         $speciality = Specialty::find($id);
-        // getting all roles
-        return view('specialities.show', compact('title', 'speciality'));
+        return view('specialities.show', compact('speciality'));
     }
 
     public function edit($id)
     {
-        $title = "Especialidade";
-        $subtitle = "Editar informações relacionadas a especialidade";
-        $activeClass = "treatmenttypes";
-        //
         $speciality = Specialty::find($id);
-        return view('specialities.edit', compact('title', 'subtitle', 'speciality', 'activeClass'));
+        return view('specialities.edit', compact('speciality'));
     }
 
     public function update(Request $request, $id)

@@ -140,6 +140,6 @@ class User extends Authenticatable
 
     public function fullName()
     {
-        return (($this->gender == 0) ? 'Dr.' : 'Dra.') . ' ' . $this->first_name . ' ' . $this->last_name;
+        return (($this->gender == 0) ? 'Dr.' : 'Dra.') . ' ' . $this->last_name . ' ' . $this->first_name;
     }
 }

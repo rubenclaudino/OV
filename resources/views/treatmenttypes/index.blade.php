@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Procedimentos')
 @section('content')
 
     <!-- start: MAIN CONTENT -->
@@ -18,8 +19,8 @@
                         <div class="col-sm-6 hidden-xs">
 
                             <div class="table-header">
-                                <h2 style="font-weight: lighter">{{ $title }}</h2>
-                                <p style="font-size: large">{{ $subtitle }}</p>
+                                <h2 style="font-weight: lighter">Procedimentos</h2>
+                                <p style="font-size: large">Visualização de todos procedimentos</p>
                             </div>
 
                         </div>
@@ -85,13 +86,11 @@
                             <!-- ID -->
                             <td class="hide">{{ $i }}<?php $i++;?></td>
                             <!-- TITLE -->
-                            <td>{{ $data->title }}</td>
+                            <td>{{ $data->name }}</td>
                             <!-- SPECIALTY -->
                             <td>
-                                @foreach($data->speciality as $d)
                                     <span class="label label-default"
-                                          style="@if($d->color_code != '')background:#{{$d->color_code}} !important @endif;opacity: 0.8">{{$d->title }}</span>
-                                @endforeach
+                                          style="@if($data->color != '')background:#{{$data->color}} !important @endif;opacity: 0.8">{{$data->name }}</span>
                             </td>
                             <!-- PRICE -->
                             <td>R$ {{ $data->price }}</td>

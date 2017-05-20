@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Appointment Type')
 @section('content')
 
     <div class="main-content">

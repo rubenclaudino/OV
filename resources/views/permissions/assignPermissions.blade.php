@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Assign Permissions')
 @section('content')
 	<div class="main-content">
 		<div class="container">

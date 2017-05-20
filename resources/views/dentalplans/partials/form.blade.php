@@ -14,7 +14,7 @@
 
         <!-- start: TABLE HEADER -->
         <div class="panel-heading header_t1">
-            <h2 class="table_title">{{ $title }}</h2>
+            <h2 class="table_title">Convênio</h2>
             <hr class="custom_sep">
         </div>
         <!-- end: TABLE HEADER -->

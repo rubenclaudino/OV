@@ -159,18 +159,20 @@
 
                             <!-- start: NAME -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                                <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
                                     <label for="first_name">Nome</label>
                                     {{ Form::text('first_name', null, array('class' => 'form-control')) }}
+                                    {!! $errors->first('first_name', '<p class="help-block">:message</p>') !!}
                                 </div>
                             </div>
                             <!-- end: NAME -->
 
                             <!-- start: LAST NAME -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                                <div class="form-group  {{ $errors->has('last_name') ? 'has-error' : '' }}">
                                     <label for="last_name">Sobrenome</label>
                                     {{ Form::text('last_name', null,array('class' => 'form-control')) }}
+                                    {!! $errors->first('last_name', '<p class="help-block">:message</p>') !!}
                                 </div>
                             </div>
                             <!-- end: LAST NAME -->

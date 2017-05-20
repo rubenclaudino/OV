@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Configurações da Agenda')
 @section('content')
 
    <div class="main-content">
@@ -10,7 +11,7 @@
 
             <!-- start: PANEL HEADING -->
             <div class="panel-heading header_t1" style="margin-bottom: 0px">
-               <h2 class="table_title">{{ $title }}<br>
+               <h2 class="table_title">Configurações da Agenda<br>
                   <small style="color: #dddddd">Customização da sua agenda</small>
                </h2>
                <hr class="custom_sep" style="padding: 0;margin: 0">

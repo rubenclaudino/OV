@@ -15,10 +15,6 @@ class ContactsController extends Controller
 
     public function index()
     {
-        $title = "Contatos";
-        $subtitle = 'Lista de contatos';
-        $activeClass = "contacts";
-
         if (Auth::user()->isAdmin())
             $contatos = ContactEntity::all()->sortByDesc('name');
         else {
@@ -29,19 +25,14 @@ class ContactsController extends Controller
                 ->sortByDesc('name');
         }
 
-        return view('contacts.index', compact('title', 'subtitle', 'activeClass', 'contatos'));
+        return view('contacts.index', compact('contatos'));
     }
 
     public function create()
     {
-        $title = "Contato";
-        $subtitle = "Cadastrar novo contato";
-        $activeClass = "contacts";
-
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('abb', 'id');
-
-        return view('contacts.create', compact('title', 'subtitle', 'activeClass', 'cities', 'states'));
+        $states = State::pluck('abbreviation', 'id');
+        return view('contacts.create', compact('cities', 'states'));
     }
 
     public function store(Request $request)
@@ -61,16 +52,10 @@ class ContactsController extends Controller
 
     public function edit($id)
     {
-        $title = "Contato";
-        $subtitle = 'Editar informações do contato';
-        $activeClass = "contacts";
-
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('abb', 'id');
-
+        $states = State::pluck('abbreviation', 'id');
         $contact = ContactEntity::find($id);
-
-        return view('contacts.edit', compact('title', 'subtitle', 'activeClass', 'contact', 'cities', 'states'));
+        return view('contacts.edit', compact('contact', 'cities', 'states'));
     }
 
     public function update(Request $request, $id)

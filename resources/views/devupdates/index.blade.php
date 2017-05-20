@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Atualizações do Sistema')
 @section('content')
 
     <!-- start: MAIN CONTENT -->
@@ -13,7 +14,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="table-header" style="color: #aaaaaa !important;">
                         <h2 style="font-weight: lighter">
-                            {{ $title }} <br>  <small style="color: #CCCCCC">{{ $subtitle }}</small>
+                            Atualizações do Sistema <br>  <small style="color: #CCCCCC">Aqui você pode seguir o progresso de Odontovision ao vivo.</small>
                         </h2>
                         <hr class="custom_sep">
                     </div>

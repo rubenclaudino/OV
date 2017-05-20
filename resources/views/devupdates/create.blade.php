@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Registrar Atualização')
 @section('content')
 
     <!-- start: MAIN CONTENT -->
@@ -12,8 +13,8 @@
 
                 <!-- start: PANEL HEADING -->
                 <div class="panel-heading header_t1" style="margin-bottom: 0px">
-                    <h2 class="table_title">{{ $title }}<br>
-                        <small style="color: #dddddd">{{ $subtitle }}</small>
+                    <h2 class="table_title">Registrar Atualização<br>
+                        <small style="color: #dddddd"></small>
                     </h2>
                     <hr class="custom_sep" style="padding: 0;margin: 0">
                 </div>

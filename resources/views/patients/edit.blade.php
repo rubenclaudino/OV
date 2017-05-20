@@ -1,4 +1,5 @@
-@extends('layouts.page', ['title' => 'Pacientes', 'subtitle' => 'Informações detalhadas de todos tratamentos'])
+@extends('layouts.page')
+@section('title', 'Pacientes')
 @section('content')
 
     <!-- start: MAIN CONTENT -->
@@ -26,4 +27,8 @@
     </div>
     <!-- end: MAIN CONTENT -->
 
+@endsection
+
+@section('extra_scripts')
+    @include('patients.partials.scripts')
 @endsection

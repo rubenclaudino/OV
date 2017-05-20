@@ -11,20 +11,13 @@ class HolidaysController extends Controller
 
     public function index()
     {
-        $title = "Calendar Holidays";
-        $subtitle = "Reserve a Slot in Calendar";
-        $activeClass = "appointments";
         $holidays = UserHoliday::all();
-
-        return view('holidays.index', compact('title', 'subtitle', 'activeClass', 'holidays'));
+        return view('holidays.index', compact('holidays'));
     }
 
     public function create()
     {
-        $title = "Add New Holiday Slot";
-        $subtitle = "Add New Slot";
-        $activeClass = "appointments";
-        return view('holidays.create', compact('title', 'subtitle', 'activeClass'));
+        return view('holidays.create');
     }
 
     public function store(Request $request)

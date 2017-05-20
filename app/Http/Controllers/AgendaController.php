@@ -11,10 +11,6 @@ class AgendaController extends Controller
 {
     public function index()
     {
-        $title = "Configurações da Agenda";
-        $subtitle = "Define como melhor visualizar a sua agenda";
-        $activeClass = "appointments";
-
         $holidays = UserHoliday::where('user_id', Auth::user()->id)->get();
 
         if (Agenda::where('user_id', Auth::user()->id)->count() > 0) {
@@ -22,7 +18,7 @@ class AgendaController extends Controller
             $agenda = json_decode($agenda->settings);
             return view('agenda.settings', compact('title', 'subtitle', 'activeClass', 'agenda', 'holidays'));
         }
-        return view('agenda.settings', compact('title', 'subtitle', 'activeClass', 'holidays'));
+        return view('agenda.settings', compact('holidays'));
     }
 
     public function store(Request $request)

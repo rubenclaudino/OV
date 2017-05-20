@@ -2,57 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Speciality;
-use Auth;
-use App\Dentist;
+use App\Specialty;
+use Illuminate\Support\Facades\Auth;
 
 class FirstimeController extends Controller
 {
 
     public function index()
     {
-        $title = "Setup Odontovision";
-        $subtitle = '';
-        // getting users
-
-        $specialities = Speciality::pluck('title', 'id');
+        $specialities = Specialty::pluck('title', 'id');
         if (Auth::user()->hasRole('dentistadmin')) {
             $user = Dentist::where('user_id', '=', Auth::user()->id)->first();
         }
-
-        // getting all roles
-        return view('firsttime.index', compact('title', 'subtitle', 'specialities', 'user'));
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        return view('firsttime.index', compact('specialities', 'user'));
     }
 
 }

@@ -11,18 +11,13 @@ class BugController extends Controller
 
     public function index()
     {
-        $activeClass = "bugs";
-        $title = "";
-
         $bugs = Bug::all()->sortByDesc('report');
 
-        return view('bugs.index', compact('activeClass', 'bugs' , 'title'));
+        return view('bugs.index', compact('bugs'));
     }
 
     public function create()
     {
-        $activeClass = "bugs";
-
         return view('header.blade', compact('activeClass'));
     }
 
@@ -44,8 +39,6 @@ class BugController extends Controller
 
     public function edit($id)
     {
-        $activeClass = "bugs";
-
         $bugs = Bug::find($id);
 
         return view('bugs.edit', compact('activeClass', 'bugs'));

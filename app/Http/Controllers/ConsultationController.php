@@ -3,28 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Consultation;
+use App\Item;
 use Illuminate\Http\Request;
 
 class ConsultationController extends Controller
 {
     public function index()
     {
-        $title = "Controle de Estoque";
-
-        $activeClass = "consultation";
-
         $consultations = Consultation::all();
-
-        return view('consultation.index', compact('title', 'consultations', 'activeClass'));
+        return view('consultation.index', compact('consultations'));
     }
 
     public function create()
     {
-        $title = "Cadastrar novo Item";
-        $subtitle = "Preencher informações do cadastro do item";
-        $activeClass = "stockcontrol";
-
-        return view('stockcontrol.create', compact('title', 'subtitle', 'activeClass'));
+        return view('stockcontrol.create');
     }
 
     public function store(Request $request)
@@ -44,13 +36,8 @@ class ConsultationController extends Controller
 
     public function edit($id)
     {
-        $title = "Cadastro de Item";
-        $subtitle = 'Informações do item';
-        $activeClass = "stockcontrol";
-        // getting users
         $item = Item::find($id);
-        // getting all roles
-        return view('stockcontrol.edit', compact('title', 'subtitle', 'activeClass', 'item'));
+        return view('stockcontrol.edit', compact('item'));
     }
 
     public function update(Request $request, $id)
