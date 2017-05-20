@@ -55,7 +55,8 @@ class UsersController extends Controller
         $roles = Role::pluck('display_name', 'id');
         $states = State::pluck('name', 'id');
         $cities = City::pluck('name', 'id');
-        return view('users.edit', compact('user', 'clinics', 'states', 'cities', 'roles'));
+        $user_roles = $user->roles->pluck('id')->toArray();
+        return view('users.edit', compact('user', 'clinics', 'states', 'cities', 'roles', 'user_roles'));
     }
 
     public function update(Request $request, User $user)

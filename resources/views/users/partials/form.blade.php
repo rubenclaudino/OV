@@ -13,7 +13,7 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <div class="form-group">
         <label for="roles">Roles</label>
-        {!! Form::select('roles[]',$roles, null,['class' => 'form-control selectpicker','multiple' => 'true']) !!}
+        {!! Form::select('roles[]',$roles, isset($user_roles) ? $user_roles : null,['class' => 'form-control selectpicker','multiple' => 'true']) !!}
     </div>
 </div>
 <!-- end: USER ROLE -->
