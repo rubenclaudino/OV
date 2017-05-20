@@ -19,16 +19,16 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('first_name' , 'ASC')->get();
         return view('users.index', compact('users'));
     }
 
     public function create()
     {
-        $clinics = Clinic::pluck('name', 'id');
-        $roles = Role::pluck('display_name', 'id');
-        $states = State::pluck('name', 'id');
-        $cities = City::pluck('name', 'id');
+        $clinics = Clinic::orderBy('name' , 'ASC')->pluck('name', 'id');
+        $roles = Role::orderBy('display_name' , 'ASC')->pluck('display_name', 'id');
+        $states = State::orderBy('name' , 'ASC')->pluck('name', 'id');
+        $cities = City::orderBy('name' , 'ASC')->pluck('name', 'id');
 
         return view('users.create', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
@@ -42,19 +42,19 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        $clinics = Clinic::pluck('name', 'id');
-        $roles = Role::pluck('display_name', 'id');
-        $states = State::pluck('name', 'id');
-        $cities = City::pluck('name', 'id');
+        $clinics = Clinic::orderBy('name' , 'ASC')->pluck('name', 'id');
+        $roles = Role::orderBy('display_name' , 'ASC')->pluck('display_name', 'id');
+        $states = State::orderBy('name' , 'ASC')->pluck('name', 'id');
+        $cities = City::orderBy('name' , 'ASC')->pluck('name', 'id');
         return view('users.show', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
 
     public function edit(User $user)
     {
-        $clinics = Clinic::pluck('name', 'id');
-        $roles = Role::pluck('display_name', 'id');
-        $states = State::pluck('name', 'id');
-        $cities = City::pluck('name', 'id');
+        $clinics = Clinic::orderBy('name' , 'ASC')->pluck('name', 'id');
+        $roles = Role::orderBy('display_name' , 'ASC')->pluck('display_name', 'id');
+        $states = State::orderBy('name' , 'ASC')->pluck('name', 'id');
+        $cities = City::orderBy('name' , 'ASC')->pluck('name', 'id');
         return view('users.edit', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
 
@@ -72,7 +72,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect('users')->with('status', 'User Deleted!');
+        return redirect('users')->with('status', 'Usuário Excluido!');
     }
 
     /**

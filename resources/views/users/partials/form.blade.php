@@ -121,15 +121,6 @@
 </div>
 <!-- end: PERSONAL ID NUMBER -->
 
-<!-- start: HONORS -->
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('honors') ? 'has-error' : '' }}">
-        <label for="fname">Honors</label>
-        {{ Form::text('honors', null,['class' => 'form-control']) }}
-    </div>
-</div>
-<!-- end: HONORS -->
-
 <!-- start: CRO / DENTIST UNIQUE REGISTERATION -->
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('dentist_unique_identifier') ? 'has-error' : '' }}">
@@ -209,7 +200,7 @@
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('street_number') ? 'has-error' : '' }}">
         <label for="street_number">Número</label>
-        {{ Form::number('street_number', null,['class' => 'form-control']) }}
+        {{ Form::text('street_number', null,['class' => 'form-control']) }}
     </div>
 </div>
 <!-- end: ROAD NUMBER -->
@@ -274,6 +265,36 @@
     <div class="form-group {{ $errors->has('accept_calls') ? 'has-error' : '' }}">
         <label style="font-size: 1.1em">Accept Calls
             &nbsp;&nbsp; {{ Form::checkbox('accept_calls',1) }} </label>
+    </div>
+
+    <div class="form-group {{ $errors->has('is_phone_1_public') ? 'has-error' : '' }}">
+        <label style="font-size: 1.1em">Deixar contato via celular
+            &nbsp;&nbsp; {{ Form::checkbox('is_phone_1_public',1) }} </label>
+    </div>
+
+    <div class="form-group {{ $errors->has('is_phone_landline_public') ? 'has-error' : '' }}">
+        <label style="font-size: 1.1em">Deixar contato via telefone casa
+            &nbsp;&nbsp; {{ Form::checkbox('is_phone_landline_public',1) }} </label>
+    </div>
+
+    <div class="form-group {{ $errors->has('is_whatsapp_number_public') ? 'has-error' : '' }}">
+        <label style="font-size: 1.1em">Deixar contato via whatsapp
+            &nbsp;&nbsp; {{ Form::checkbox('	is_whatsapp_number_public',1) }} </label>
+    </div>
+
+    <div class="form-group {{ $errors->has('earn_percentage') ? 'has-error' : '' }}">
+        <label style="font-size: 1.1em">Trabalha com porcentagem
+            &nbsp;&nbsp; {{ Form::checkbox('	earn_percentage',1) }} </label>
+    </div>
+
+    <div class="form-group {{ $errors->has('resident_in_clinic') ? 'has-error' : '' }}">
+        <label style="font-size: 1.1em">Aluga Sala na Clínica
+            &nbsp;&nbsp; {{ Form::checkbox('resident_in_clinic',1) }} </label>
+    </div>
+
+    <div class="form-group {{ $errors->has('accepts_after_hour_calls') ? 'has-error' : '' }}">
+        <label style="font-size: 1.1em">Aceita ligações depois de horario comercial
+            &nbsp;&nbsp; {{ Form::checkbox('accepts_after_hour_calls',1) }} </label>
     </div>
 
 </div>

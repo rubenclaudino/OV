@@ -109,7 +109,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-dark">
                                 <li>
-                                    <a href="{{ url('/user/profile') }}">
+                                    <a href="{{ URL::route('users.show', Auth::user()->id) }}">
                                         <i class='fa fa-user fa-fw'></i>
                                         &nbsp;Meu Perfil
                                     </a>

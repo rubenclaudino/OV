@@ -65,24 +65,49 @@
                                         <!-- end: USER NAME -->
 
                                         <!-- start: DENTIST OPTIONS BUTTON -->
-                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
-                                            <div class="btn-group pull-right" style="margin-top:10px;">
-                                                <button class="btn dropdown-toggle btn-primary" data-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                    Opções &nbsp; <span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="{{ URL::route('users.edit', $user->id) }}"><i
-                                                                    class="fa fa-pencil fa-fw text-info"
-                                                                    style="color: #404040"></i>&nbsp;&nbsp;Editar</a>
+                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 " style="margin-top:10px;">
+
+                                            <div class="btn-group">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-sm dropdown-toggle"
+                                                        style="opacity: 0.9" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                    Opções &nbsp;<span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                                    <li>
+                                                        <a href="{{ URL::route('users.edit', $user->id) }}">
+                                                            <small><i class="fa fa-pencil fa-fw"></i>&nbsp; Editar</small>
+                                                        </a>
                                                     </li>
-                                                    <li><a href="#"><i class="fa fa-money fa-fw text-info"
-                                                                       style="color: #404040"></i>&nbsp; Pagamento</a>
+                                                    <li class="hide">
+                                                        <a href="#">
+                                                            <small><i class="fa fa-eye fa-fw"></i>&nbsp; Pagamentos
+                                                            </small>
+                                                        </a>
                                                     </li>
-                                                    <li><a href="#"><i class="fa fa-print fa-fw text-info"
-                                                                       style="color: #404040"></i>&nbsp; Imprimir</a>
+                                                    <li class="hide">
+                                                        <a href="#">
+                                                            <small><i class="fa fa-info fa-fw"></i>&nbsp; Log</small>
+                                                        </a>
+                                                    </li>
+                                                    <li class="hide">
+                                                        <a href="#">
+                                                            <small><i class="fa fa-check fa-fw"></i>&nbsp; Permissões
+                                                            </small>
+                                                        </a>
+                                                    </li>
+                                                    <li class="divider hide"></li>
+                                                    <li class="hide">
+                                                        <a id="delete_user" href="#"
+                                                           data-href="{{ url('users', $user->id) }}">
+                                                            <small><i class="fa fa-ban fa-fw"></i>&nbsp; Desativar
+                                                            </small>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
+
                                         </div>
                                         <!-- end: DENTIS OPTIONS BUTTON -->
 
@@ -137,7 +162,7 @@
                         <div class="panel panel-white" style="padding:10px; background: whitesmoke">
                               <i class="fa fa-user fa-fw"></i>
                                &nbsp;&nbsp;CRO
-                              <span class="pull-right" style="padding-right: 10px"><strong>{{ $user->cro }}</strong></span>
+                              <span class="pull-right" style="padding-right: 10px"><strong>{{ $user->dentist_unique_identifier }}</strong></span>
                         </div>
                      </div>
                          <!-- end: CRO -->
@@ -245,7 +270,7 @@
                                     }
                                 </style>
 
-                                <!-- start: LEFT SIDE INFO -->
+                                <!-- start: PERSONAL DATA -->
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                     <table class="table">
                                         <tbody>
@@ -259,7 +284,7 @@
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
                                                 Data de Nascimento
                                             </td>
-                                            <td style="font-size:1.1em">{{ $user->date_of_birth }}</td>
+                                            <td style="font-size:1.1em">{{ \Carbon\Carbon::parse($user->date_of_birth)->format('d/m/y') }}</td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
@@ -271,7 +296,7 @@
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
                                                 RG
                                             </td>
-                                            <td style="font-size:1.1em">{{ $user->rg }}</td>
+                                            <td style="font-size:1.1em">{{ $user->personal_id_number }}</td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
@@ -282,7 +307,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- end: LEFT SIDE INFO -->
+                                <!-- end: PERSONAL DATA -->
 
                                 <!-- start: RIGHT SIDE INFO -->
                                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
@@ -302,11 +327,11 @@
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">Rua /
                                                             Avendia
                                                         </td>
-                                                        <td style="font-size:1.1em">@if( $user->street_address ) {{ $user->street_address }} @else
+                                                        <td style="font-size:1.1em">@if( $user->address ) {{ $user->address }} @else
                                                                 - @endif</td>
                                                         <td style="font-weight:bold;font-size:1.1em;width: 15%">Número
                                                         </td>
-                                                        <td style="font-size:1.1em">@if( $user->number ) {{ $user->number }} @else
+                                                        <td style="font-size:1.1em">@if( $user->street_number ) {{ $user->street_number }} @else
                                                                 - @endif</td>
                                                     </tr>
                                                     <tr>
@@ -321,11 +346,11 @@
                                                     <tr>
                                                         <td style="font-weight:bold;font-size:1.1em;width: 25%">Cidade
                                                         </td>
-                                                        <td style="font-size:1.1em">@if( $user->city ) {{ $user->city }} @else
+                                                        <td style="font-size:1.1em">@if( $user->city_id > 0 ) {{ $cities[$user->city_id] }}  @else
                                                                 - @endif</td>
                                                         <td style="font-weight:bold;font-size:1.1em;width: 15%">Estado
                                                         </td>
-                                                        <td style="font-size:1.1em">@if( $user->state ) {{ $user->state }} @else
+                                                        <td style="font-size:1.1em">@if( $user->state_id > 0 ) {{ $states[$user->state_id] }} @else
                                                                 - @endif</td>
                                                     </tr>
 
