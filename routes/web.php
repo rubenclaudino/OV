@@ -26,7 +26,7 @@ Route::post(
     '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
 );*/
 
-Route::group(['middleware' => ['auth' /*'subscriptions', 'permissions', 'firsttime'*/]], function () {
+Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', 'firsttime'*/]], function () {
     //Route::resource('appointment', 'AppointmentController');
 
     // USERS

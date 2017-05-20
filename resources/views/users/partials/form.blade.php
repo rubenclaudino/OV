@@ -122,12 +122,14 @@
 <!-- end: PERSONAL ID NUMBER -->
 
 <!-- start: HONORS -->
+{{--
 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('honors') ? 'has-error' : '' }}">
         <label for="fname">Honors</label>
         {{ Form::text('honors', null,['class' => 'form-control']) }}
     </div>
 </div>
+--}}
 <!-- end: HONORS -->
 
 <!-- start: CRO / DENTIST UNIQUE REGISTERATION -->
@@ -286,6 +288,7 @@
 </div>
 
 <!-- start: INTERACTIONS -->
+
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
     <div class="form-group">
         <button class="btn btn-success btn-submit" data-loading-text="Salvando..." type="submit">

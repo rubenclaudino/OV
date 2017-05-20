@@ -25,16 +25,6 @@
                     <!-- start: PANEL HEAD -->
                     <div class="panel-head">
 
-                        <div class="col-lg-12">
-                            <br>
-                            @if (session('status'))
-                                <div class="alert alert-success alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                        </div>
-
                         <div class="col-lg-6 col-md-6">
                             <h2 class="table_title">Pacientes<br>
                                 <small style="color: #dddddd">Lista de pacientes</small>
@@ -200,4 +190,8 @@
     </div>
     <!-- end: MAIN CONTENT -->
 
+@endsection
+
+@section('extra_scripts')
+    @include('patients.partials.scripts')
 @endsection

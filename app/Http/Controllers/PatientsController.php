@@ -6,6 +6,7 @@ use App\Appointment;
 use App\Clinic;
 use App\ClinicDentalPlan;
 use App\Disease;
+use App\Http\Requests\PatientValidationRequest;
 use App\Patient;
 use App\PatientDentalPlan;
 use App\Referral;
@@ -23,9 +24,9 @@ class PatientsController extends Controller
     public function index()
     {
         if (Auth::user()->isAdmin())
-            $patients = Patient::all()->sortBy('first_name');
+            $patients = Patient::all()->sortBy('last_name');
         else
-            $patients = Patient::where('clinic_id', Auth::user()->clinic_id->orderBy('first_name')->get());
+            $patients = Patient::where('clinic_id', Auth::user()->clinic_id->orderBy('last_name')->get());
 
         return view('patients.index', compact('patients'));
     }
@@ -60,7 +61,7 @@ class PatientsController extends Controller
             'treatments', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
     }
 
-    public function store(Request $request)
+    public function store(PatientValidationRequest $request)
     {
         $request['clinic_id'] = Auth::user()->clinic_id;
 
@@ -78,12 +79,12 @@ class PatientsController extends Controller
             $diseases = array_keys(array_filter(json_decode($request->diseases, true)));
             $patient->diseases()->sync($diseases);
         }
-
-        if ($request['patient_dental_plans']['clinic_dental_plan_id'] != null) {
-            $new = array_merge($request->patient_dental_plans, ['patient_id' => $patient->id]);
-            PatientDentalPlan::create($new);
-        }
-
+        /*
+                if ($request['patient_dental_plans']['clinic_dental_plan_id'] != null) {
+                    $new = array_merge($request->patient_dental_plans, ['patient_id' => $patient->id]);
+                    PatientDentalPlan::create($new);
+                }
+        */
         if ($request->hasFile('patient_profile_image')) {
             if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
                 mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
@@ -96,7 +97,11 @@ class PatientsController extends Controller
             $patient->save();
         }
 
-        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!",'first_name' => $patient->first_name,'last_name' => $patient->last_name,'id' => $patient->id,'data' => $patient ]);
+        return redirect('patients')->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Paciente cadastrado com sucesso!'
+            ]);
     }
 
     public function show($id)
@@ -173,7 +178,7 @@ class PatientsController extends Controller
             'disease', 'patientDisease', 'treatments', 'referrals', 'clinic_dental_plans', 'clinics', 'diseases', 'states', 'cities'));
     }
 
-    public function update(Request $request, Patient $patient)
+    public function update(PatientValidationRequest $request, Patient $patient)
     {
         $patient->update($request->except('specialty', 'diseases', 'clinic_dental_plan_id', 'dental_plan', 'patient_dental_plans'));
 
@@ -181,7 +186,11 @@ class PatientsController extends Controller
             PatientDentalPlan::where('patient_id', $patient->id)->update($request->patient_dental_plans);
         }
 
-        return redirect('patients')->with('status', 'Paciente atualizado com sucesso!');
+        return redirect('patients')->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Paciente atualizado com sucesso!'
+            ]);
     }
 
     public function destroy($id)

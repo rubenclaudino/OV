@@ -14,7 +14,7 @@
 
                 @include('patients.partials.tabs')
 
-                {!! Form::open(['route' => 'patients.store', 'class' => 'form', 'enctype' => 'multipart/form-data', 'id' => 'addPatient']) !!}
+                {!! Form::open(['route' => 'patients.store', 'class' => 'form', 'enctype' => 'multipart/form-data']) !!}
                 @include('patients.partials.form')
                 {!! Form::close() !!}
 
@@ -25,4 +25,8 @@
 
     </div>
 
+@endsection
+
+@section('extra_scripts')
+    @include('patients.partials.scripts')
 @endsection

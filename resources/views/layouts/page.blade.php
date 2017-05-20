@@ -20,11 +20,10 @@
     </script>
 
     <link rel="stylesheet" href="{{ asset('plugins/angular/toastr/toaster.css')}}">
+
     <script type="text/javascript" src="{{ asset('plugins/jQuery/jquery-2.1.1.min.js')}}"></script>
     <script src="{{ asset('plugins/angular/angular.min.js')}}"></script>
     <script src="{{ asset('plugins/angular/angular-animate.min.js')}}"></script>
-    <script src="{{ asset('plugins/angular/ui-bootstrap-tpls-2.5.0.min.js')}}"></script>
-    <script src="{{ asset('plugins/angular/angular-ui-bootstrap-modal.js')}}"></script>
     <script src="{{ asset('plugins/angular/toastr/toaster.js')}}"></script>
     <script>
         var app = angular.module('patients', ["ngAnimate", "ui.bootstrap.modal", "toaster"]).config(function ($interpolateProvider) {
@@ -32,11 +31,11 @@
         });
     </script>
     <script type="text/javascript" src="{{ asset('js/angular/pages.js')}}"></script>
+    <script src="{{ asset('plugins/angular/ui-bootstrap-tpls-2.5.0.min.js')}}"></script>
+    <script src="{{ asset('plugins/angular/angular-ui-bootstrap-modal.js')}}"></script>
 
 </head>
-<body ng-app="patients">
-<toaster-container
-        toaster-options="{'close-button':false, 'position-class':'toast-bottom-right', 'show-duration': '300', 'time-out':{ 'toast-warning': 2000, 'toast-error': 0 } }"></toaster-container>
+<body>
 
 @include('includes.topbar')
 
@@ -69,12 +68,14 @@
 <script type="text/javascript" src="{{ asset('plugins/velocity/jquery.velocity.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/TouchSwipe/jquery.touchSwipe.min.js')}}"></script>
 <!-- end: MAIN JAVASCRIPTS -->
+
+
+
 <!-- start: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
 <script type="text/javascript" src="{{ asset('plugins/owl-carousel/owl-carousel/owl.carousel.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/jquery-mockjax/jquery.mockjax.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/sweetalert/lib/sweet-alert.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/toastr/toastr.js')}}"></script>
-<script type="text/javascript" src="{{ asset('plugins/select2/select2.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-modal/js/bootstrap-modal.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-modal/js/bootstrap-modalmanager.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/fullcalendar/fullcalendar/fullcalendar.min.js')}}"></script>
@@ -82,9 +83,13 @@
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/jquery-validation/dist/jquery.validate.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-fileupload/bootstrap-fileupload.min.js')}}"></script>
+
 <script type="text/javascript" src="{{ asset('plugins/DataTables/media/js/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/DataTables/media/js/dataTables.buttons.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/DataTables/media/js/buttons.print.min.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('plugins/select2/select2.min.js')}}"></script>
+
 
 <script type="text/javascript"
         src="{{ asset('plugins/bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js')}}"></script>
@@ -123,7 +128,6 @@
 <script type="text/javascript"
         src="{{ asset('plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/dropzone/downloads/dropzone.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/patient_register.js')}}"></script>
 <script type=" text/javascript" src="{{ asset('js/form-elements.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/jscolor/jscolor.js')}}"></script>
 <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
@@ -137,11 +141,14 @@
         Main.init();
     });
 </script>
+
+{{--
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
-<script type="text/javascript" src="{{ asset('js/patientjs.js')}}"></script>
-<script type="text/javascript" src="{{ asset('js/angular/patient.js')}}"></script>
+--}}
 
 @yield('extra_scripts')
+
+@include('partials.toast_message')
 
 </body>
 </html>
