@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Registrar Nova Clínica')
 @section('content')
 
     <!-- start: MAIN CONTENT -->

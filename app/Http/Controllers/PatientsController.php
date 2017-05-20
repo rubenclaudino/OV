@@ -23,9 +23,9 @@ class PatientsController extends Controller
     public function index()
     {
         if (Auth::user()->isAdmin())
-            $patients = Patient::all()->sortBy('first_name', asc);
+            $patients = Patient::all()->sortBy('first_name');
         else
-            $patients = Patient::where('clinic_id', Auth::user()->clinic_id)->orderBy('first_name')->get();
+            $patients = Patient::where('clinic_id', Auth::user()->clinic_id->orderBy('first_name')->get());
 
         return view('patients.index', compact('patients'));
     }
@@ -54,7 +54,7 @@ class PatientsController extends Controller
         $clinics = Clinic::pluck('name', 'id');
 
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('abb', 'id');
+        $states = State::pluck('abbreviation', 'id');
 
         return view('patients.create', compact('clinics', 'diseases', 'professionals',
             'treatments', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
@@ -108,7 +108,7 @@ class PatientsController extends Controller
         $missedAppointments = Appointment::with('status')->get()->where('status', '3')->count();
 
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('abb', 'id');
+        $states = State::pluck('abbreviation', 'id');
 
         return view('patients.show', compact('patient', 'appointments', 'missedAppointments', 'states', 'cities'));
     }
@@ -167,7 +167,7 @@ class PatientsController extends Controller
         $treatments = Specialty::pluck('name', 'id');*/
 
         $cities = City::pluck('name', 'id');
-        $states = State::pluck('abb', 'id');
+        $states = State::pluck('abbreviation', 'id');
 
         return view('patients.edit', compact('patient', 'professionals',
             'disease', 'patientDisease', 'treatments', 'referrals', 'clinic_dental_plans', 'clinics', 'diseases', 'states', 'cities'));

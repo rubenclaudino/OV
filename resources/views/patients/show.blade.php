@@ -1,4 +1,5 @@
-@extends('layouts.page', ['title' => 'View Patient', 'subtitle' => 'Informações detalhadas de todos tratamentos'])
+@extends('layouts.page')
+@section('title', 'View Patient')
 @section('content')
 
     <!-- start: MAIN CONTENT -->

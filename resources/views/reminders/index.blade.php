@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Lembretes')
 @section('content')
 <div class="main-content">
    <div class="container">
@@ -13,7 +14,7 @@
 
                <div class="col-sm-6 hidden-xs">
                   <div class="table-header">
-                     <h2 style="font-weight: lighter">{{ $title }}</h2>
+                     <h2 style="font-weight: lighter">Lembretes</h2>
                   </div>
                </div>
 

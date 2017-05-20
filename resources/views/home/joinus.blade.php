@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Join Us')
 @section('content')
 <div class="main-content">
    <div class="container">
@@ -7,7 +8,7 @@
       <div class="toolbar row">
    		<div class="col-sm-6 hidden-xs">
    			<div class="page-header">
-   				<h1>{{ $title }} <small>{{ $subtitle }}</small></h1>
+   				<h1>Join Us <small>Book an Appointment</small></h1>
    			</div>
    		</div>
    		<div class="col-sm-6 col-xs-12">
@@ -35,7 +36,7 @@
 						</a>
 					</li>
 					<li class="active">
-						{{ $title }}
+						Join Us
 					</li>
 				</ol>
 			</div>
@@ -43,7 +44,7 @@
 
       <div class="panel panel-white" style="margin-top:8px;">
          <div class="panel-heading">
-   			<h2 class="panel-title"><i class="fa fa-users"></i> Users List</span></h2>
+   			<h2 class="panel-title"><i class="fa fa-users"></i> Users List</h2>
 		   </div>
          <div class="panel-body">
             Join us

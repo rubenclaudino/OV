@@ -175,13 +175,8 @@ class CalendarController extends Controller
     {
         $user = Auth::user();
         if ($user->isAdmin() || $user->hasPermission('appointments.types')) {
-            $title = "Appointment Type";
-            $subtitle = "Appointment Types List";
-            $activeClass = "appointments";
-
             $types = AppointmentType::all();
-
-            return view('appointments.types', compact('title', 'subtitle', 'activeClass', 'types'));
+            return view('appointments.types', compact('types'));
         } else {
             //# code...
             abort(404, 'Unauthorized action.');

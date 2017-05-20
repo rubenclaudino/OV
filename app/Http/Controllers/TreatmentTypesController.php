@@ -9,52 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class TreatmentTypesController extends Controller
 {
+    public function index()
+    {
+        $treatments = Specialty::all();
+        return view('treatmenttypes.index', compact('treatments'));
+    }
 
     public function create()
     {
-        $title = "Procedimento";
-        $subtitle = "Cadastrar um novo procedimento";
-        $activeClass = "treatmenttypes";
         $speciality = Specialty::pluck('name', 'id');
-
-        return view('treatmenttypes.create', compact('title', 'subtitle', 'activeClass', 'speciality'));
-    }
-
-    public function index()
-    {
-        $title = "Procedimentos";
-        $subtitle = "Visualização de todos procedimentos";
-        $activeClass = "treatmenttypes";
-        $user = Auth::user();
-        // getting users
-        $pUsers = array();
-
-        $treatments = Specialty::all();
-
-        /*$i = 0;
-        foreach ($treatments as $data) {
-            $dd = DB::select("SELECT `specialities`.*, `treatment_specialities`.`treatment_type_id` from `specialities` inner join `treatment_specialities` on `treatment_specialities`.`speciality_id` = `specialities`.`id` where `treatment_specialities`.`treatment_type_id` = '" . $data->id . "'");
-            $treatments[$i]->speciality = $dd;
-
-            // treatment type customization so that if a clinic have customized their treatment type
-            if ($user->hasRole('admin')) {
-            } else {
-                $t = SpecialtyClinic::where([['treatment_type_id', '=', $data->id], ['clinic_id', '=', $user->clinic_id]])->count();
-                if ($t > 0) {
-                    $tt = SpecialtyClinic::where([['treatment_type_id', '=', $data->id], ['clinic_id', '=', $user->clinic_id]])->first();
-                    $treatments[$i]->price = $tt->price;
-                    $treatments[$i]->observation = $tt->observation;
-                    $treatments[$i]->alert_message = $tt->alert_message;
-                    $treatments[$i]->status = $tt->status;
-                    $treatments[$i]->default_percentage = $tt->default_percentage;
-                    $treatments[$i]->standard_dentist_percentage = $tt->standard_dentist_percentage;
-                }
-            }
-
-            $i++;
-        }*/
-
-        return view('treatmenttypes.index', compact('title', 'subtitle', 'treatments', 'activeClass'));
+        return view('treatmenttypes.create', compact('speciality'));
     }
 
     public function store(Request $request)
@@ -84,31 +48,17 @@ class TreatmentTypesController extends Controller
 
     public function show($id)
     {
-        $title = "Treatment Plan";
-        $subtitle = 'Informações detalhadas de todos tratamentos';
-        $activeClass = "treatments";
-        $user = Auth::user();
-        $subtitle = "Informações detalhadas de todos tratamentos";
         $plan = Specialty::find($id);
-
         $specialities = DB::select("SELECT `specialities`.*, `treatment_specialities`.`treatment_type_id` from `specialities` inner join `treatment_specialities` on `treatment_specialities`.`speciality_id` = `specialities`.`id` where `treatment_specialities`.`treatment_type_id` = '" . $plan->id . "'");
         $plan->speciality = $specialities;
 
-        return view('treatmenttypes.show', compact('title', 'subtitle', 'patient', 'activeClass', 'plan'));
+        return view('treatmenttypes.show', compact('patient','plan'));
     }
 
     public function edit($id)
     {
-        $title = "Procedimento";
-        $subtitle = 'Editar os dados do procedimento';
-        $activeClass = "treatmenttypes";
         $user = Auth::user();
-
-        // getting users
-        $pUsers = array();
-
         $speciality = Specialty::pluck('title', 'id');
-
         $dentists = User::where('clinic_id', '=', $user->clinic_id)->get();
         /*if (!empty($dentists)) {
             $i = 0;
@@ -138,7 +88,7 @@ class TreatmentTypesController extends Controller
                 $plan->standard_dentist_percentage = $tt->standard_dentist_percentage;
             }
         }*/
-        return view('treatmenttypes.edit', compact('title', 'subtitle', 'patient', 'activeClass', 'plan', 'dentists', 'speciality'));
+        return view('treatmenttypes.edit', compact('patient', 'plan', 'dentists', 'speciality'));
     }
 
     public function update(Request $request, $id)

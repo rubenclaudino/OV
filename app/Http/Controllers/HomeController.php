@@ -15,10 +15,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        $title = "Appointment";
-        $subtitle = "Book an Appointment";
-        $activeClass = "dashboard";
-
         // TODO: filter based on clinic
         $appointments = Appointment::all();
         $patients = Patient::with('patient_dental_plans');
@@ -30,25 +26,11 @@ class HomeController extends Controller
                 $patients_with_dental_plan++;
         }
 
-        return view('home', compact('title', 'subtitle', 'activeClass', 'appointments', 'patients', 'clinic', 'patients_with_dental_plan'));
+        return view('home', compact('appointments', 'patients', 'clinic', 'patients_with_dental_plan'));
     }
 
     public function joinus()
     {
-        $title = "join us";
-        $subtitle = "Book an Appointment";
-        $activeClass = "dashboard";
-        return view('home', compact('title', 'subtitle', 'activeClass'));
-
+        return view('home.joinus');
     }
-
-
-    public function main()
-    {
-        $subtitle = "Book an Appointment";
-        $activeClass = "dashboard";
-
-        return view('main', compact('subtitle', 'activeClass'));
-    }
-
 }

@@ -15,22 +15,13 @@ class PotentialClientsController extends Controller
 
     public function index()
     {
-        $title = "Lista de Potenciais Clientes";
-        $subtitle = '';
-        $activeClass = "potentialclients";
-
         $clients = PotentialClient::all();
-
-        return view('potentialclients.index', compact('title', 'subtitle', 'clients', 'activeClass'));
+        return view('potentialclients.index', compact('clients'));
     }
 
     public function create()
     {
-        $title = "Cliente";
-        $subtitle = "Cadastrar um cliente";
-        $activeClass = "potentialclients";
-
-        return view('potentialclients.create', compact('title', 'subtitle', 'activeClass'));
+        return view('potentialclients.create');
     }
 
     public function store(Request $request)
@@ -70,17 +61,13 @@ class PotentialClientsController extends Controller
 
     public function edit($id)
     {
-        $title    = 'Cliente';
-        $subtitle = 'Editar cadastro do cliente';
-        $activeClass = "potentialclients";
-
         $client = PotentialClient::find($id);
 
         $client = PotentialClient::find($client->id);
         $client->contact = Contact::find($client->contact_id);
         $client->address = Address::find($client->address_id);
 
-        return view('potentialclients.edit', compact('title','subtitle','activeClass','client'));
+        return view('potentialclients.edit', compact('client'));
     }
 
     public function update(Request $request, $id)
@@ -108,24 +95,14 @@ class PotentialClientsController extends Controller
 
     public function show($id)
     {
-        $title = "";
-        $subtitle = '';
-        $activeClass = "potentialclients";
-
         $client = PotentialClient::find($id);
-
-        return view('potentialclients.show', compact('title', 'subtitle', 'client', 'activeClass'));
+        return view('potentialclients.show', compact('client'));
     }
 
     public function newclients()
     {
-        $title = "Timeline de Potenciais Clientes";
-        $subtitle = "Vejá em ordem de mais recente os clientes cadastrados.";
-        $activeClass = "potentialclients";
-
         $clients = PotentialClient::all()->sortByDesc('created_at');
-
-        return view('potentialclients.newclients', compact('title', 'subtitle', 'clients', 'activeClass'));
+        return view('potentialclients.newclients', compact('clients'));
     }
 
 }

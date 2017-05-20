@@ -8,12 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ url('/imaicon.png') }}" type="image/png">
-    <title>{{$title}} | Odontovision</title>
-    @include('includes.stylesheets')
+    <title>@yield('title') | Odontovision</title>
 
-            <!-- Scripts -->
+@include('includes.stylesheets')
+
+<!-- Scripts -->
     <script type="text/javascript">
-        window.Laravel = '<?php echo json_encode(['csrfToken' => csrf_token(), ]); ?>';
+        window.Laravel = '<?php echo json_encode(['csrfToken' => csrf_token(),]); ?>';
         var csrf_token = '{{ csrf_token() }}';
         var APP_URL = '{{ url('/') }}';
     </script>

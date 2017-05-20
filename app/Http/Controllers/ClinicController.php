@@ -18,10 +18,6 @@ class ClinicController extends Controller
         $u = Auth::User();
         $user = User::find($u->id);
         if ($user->isAdmin() || $user->hasPermission('clinic.index')) {
-            $title = "Clinics";
-            $subtitle = "View All Clinics";
-            $activeClass = 'clinic';
-
             $clinics = Clinic::all();
             return view('clinic.index', compact('title', 'subtitle', 'activeClass', 'clinics'));
         } else {
@@ -33,10 +29,6 @@ class ClinicController extends Controller
     {
         $user = Auth::User();
         if ($user->isAdmin() || $user->hasPermission('clinic.create')) {
-            $title = "Registrar Nova Clínica";
-            $subtitle = "Fill up the details for clinic.";
-            $activeClass = 'clinic';
-
             return view('clinic.create', compact('title', 'subtitle', 'activeClass'));
         } else {
             return redirect('/home');

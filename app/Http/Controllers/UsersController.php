@@ -81,13 +81,9 @@ class UsersController extends Controller
      */
     public function invoices()
     {
-        $title = "User Invoices";
-        $subtitle = "Download All User Invoices";
-        $activeClass = "users";
-
         $user = Auth::user();
         //$invoices = $user->invoices();
-        return view('users.invoices', compact('title', 'subtitle', 'invoices', 'activeClass'));
+        return view('users.invoices', compact('invoices'));
     }
 
     public function permission()

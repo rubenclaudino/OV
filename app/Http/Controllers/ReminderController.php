@@ -11,10 +11,6 @@ class ReminderController extends Controller
 
     public function index()
     {
-        $title = "Lembretes";
-        $subtitle = 'Lembretes criados por você e parâ você';
-        $activeClass = "reminders";
-
         /*$myReminders = ReminderUsers::where([['user_id', '=', Auth::user()->id], ['status', '=', '1']])->get();
         $reminders = Reminder::where([['user_id', '=', Auth::user()->id], ['status', '=', '1']])->get();
         $creminders = Reminder::where([['user_id', '=', Auth::user()->id], ['status', '=', '0']])->get();*/
@@ -24,16 +20,12 @@ class ReminderController extends Controller
         /*unset($users[Auth::user()->id]);
         $users = array(Auth::user()->id => 'Me') + $users;*/
 
-        return view('reminders.index', compact('title', 'subtitle', 'reminders', 'activeClass', 'users', 'creminders', 'myReminders'));
+        return view('reminders.index', compact('reminders', 'users', 'creminders', 'myReminders'));
     }
 
     public function create()
     {
-        $title = "Add New Reminder";
-        $subtitle = "Add New Reminder User";
-        $activeClass = "reminders";
-
-        return view('reminders.create', compact('title', 'subtitle', 'activeClass'));
+        return view('reminders.create');
     }
 
     public function store(Request $request)
@@ -86,13 +78,8 @@ class ReminderController extends Controller
 
     public function edit($id)
     {
-        $title = "Edit Reminder";
-        $subtitle = 'Informações detalhadas de todos tratamentos';
-        $activeClass = "reminders";
-        // getting users
         $reminder = Reminder::find($id);
-        // getting all roles
-        return view('reminders.edit', compact('title', 'subtitle', 'activeClass', 'reminder'));
+        return view('reminders.edit', compact('reminder'));
     }
 
     public function update(Request $request, $id)

@@ -17,14 +17,8 @@ class PermissionsController extends Controller
     {
         $user = Auth::user();
         if ($user->isAdmin() || $user->hasPermission('permissions.index')) {
-            //
-            $title = "Permissions";
-            $subtitle = 'Informações detalhadas de todos tratamentos';
-            $activeClass = "permissions";
-
             $permissions = Permission::all();
-
-            return view('permissions.index', compact('title', 'subtitle', 'activeClass', 'permissions'));
+            return view('permissions.index', compact('permissions'));
         } else {
             //# code...
             abort(404, 'Unauthorized action.');
@@ -35,10 +29,6 @@ class PermissionsController extends Controller
     {
         $user = Auth::user();
         if ($user->isAdmin() || $user->hasPermission('permissions.create')) {
-            $title = "Create Permissions";
-            $subtitle = "Add Permissions";
-            $activeClass = "permissions";
-
             $controllers = [];
 
             foreach (Route::getRoutes()->getRoutes() as $route) {
@@ -81,7 +71,7 @@ class PermissionsController extends Controller
             $models = getModels($path);
 
 
-            return view('permissions.create', compact('title', 'subtitle', 'activeClass', 'controllers', 'models'));
+            return view('permissions.create', compact('controllers', 'models'));
         } else {
             //# code...
             abort(404, 'Unauthorized action.');
@@ -147,14 +137,6 @@ class PermissionsController extends Controller
 
     public function edit($id)
     {
-        $title = "Permissions";
-        $subtitle = 'Informações detalhadas de todos tratamentos';
-        $activeClass = "permissions";
-        $user = Auth::user();
-        $subtitle = "Informações detalhadas de todos tratamentos";
-        // getting users
-        $pUsers = array();
-
         $controllers = [];
 
         foreach (Route::getRoutes()->getRoutes() as $route) {
@@ -198,7 +180,7 @@ class PermissionsController extends Controller
 
         $permission = Permission::find($id);
         // getting all roles
-        return view('permissions.edit', compact('title', 'subtitle', 'permission', 'activeClass', 'controllers', 'models'));
+        return view('permissions.edit', compact('permission', 'controllers', 'models'));
     }
 
     public function update(Request $request, $id)
@@ -234,17 +216,13 @@ class PermissionsController extends Controller
     {
         $user = Auth::user();
         if ($user->isAdmin() || $user->hasPermission('permissions.assignPermissions')) {
-            $title = "Assign Permissions";
-            $subtitle = "Assign Permissions";
-            $activeClass = "permissions";
-
             $role = Role::all();
             $permissions = DB::table('permissions')
                 ->orderBy('name', 'asc')->get();
 
             $permissionRole = DB::table('permission_role')->get();
 
-            return view('permissions.assignpermissions', compact('title', 'subtitle', 'activeClass', 'role', 'permissions', 'permissionRole'));
+            return view('permissions.assignpermissions', compact('role', 'permissions', 'permissionRole'));
         } else {
             //# code...
             abort(404, 'Unauthorized action.');
@@ -307,12 +285,7 @@ class PermissionsController extends Controller
 
     public function assign()
     {
-        $title = "Assign Permissions";
-        $subtitle = "Assign Permissions";
-        $activeClass = "permissions";
-
         $role = DB::table('roles')->get();
-
 
         $path = app_path();
         function getModels($path)
@@ -344,7 +317,7 @@ class PermissionsController extends Controller
             $i++;
         }
 
-        return view('permissions.assign', compact('title', 'subtitle', 'activeClass', 'role', 'models'));
+        return view('permissions.assign', compact('role', 'models'));
     }
 
 }

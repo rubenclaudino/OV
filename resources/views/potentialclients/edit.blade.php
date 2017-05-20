@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', '')
 @section('content')
 
     <div class="main-content">
@@ -10,8 +11,8 @@
 
                 <!-- start: PANEL HEADING -->
                 <div class="panel-heading header_t1" style="margin-bottom: 0px">
-                    <h2 class="table_title">{{ $title }}<br>
-                        <small style="color: #dddddd">{{ $subtitle }}</small>
+                    <h2 class="table_title">Cliente<br>
+                        <small style="color: #dddddd">Editar cadastro do cliente</small>
                     </h2>
                     <hr class="custom_sep" style="padding: 0;margin: 0">
                 </div>

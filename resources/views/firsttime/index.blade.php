@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Setup Odontovision')
 @section('content')
 
    <!-- start: MAIN CONTENT -->

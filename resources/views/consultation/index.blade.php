@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Controle de Estoque')
 @section('content')
 
     <!-- start: MAIN CONTENT -->

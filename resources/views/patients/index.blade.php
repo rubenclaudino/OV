@@ -1,4 +1,5 @@
-@extends('layouts.page', ['title' => 'Pacientes', 'subtitle' => 'Informações dos Pacientes'])
+@extends('layouts.page')
+@section('title', 'Pacientes')
 @section('content')
 
     <style>

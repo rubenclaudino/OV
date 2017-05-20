@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Convênio')
 @section('content')
 
     <!-- start: MAIN CONTAINER -->

@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', '')
 @section('content')
 
     <!-- start: MAIN CONTENT -->
@@ -8,7 +9,8 @@
         <div class="container">
 
             <!-- start: CLIENT INFORMATION -->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel panel-white" style="padding: 15px;margin-top: 15px">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 panel panel-white"
+                 style="padding: 15px;margin-top: 15px">
 
                 <!-- start: CLIENT INFO -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -77,7 +79,8 @@
                     <table class="table">
                         <tbody>
                         <tr>
-                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">Especialidade</td>
+                            <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">Especialidade
+                            </td>
                             <td style="font-size:1.1em;opacity: 0.5">
                                 @if($client->spec == 0)
                                     <label class="label" style="background: #3d3d3d">Não Informado</label>

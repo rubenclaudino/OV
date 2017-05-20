@@ -3,32 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use Auth;
-use Validator;
-use App\DevUpdate;
+use Illuminate\Support\Facades\Auth;
 
 class DevUpdatesController extends Controller
 {
 
     public function index()
     {
-        $title = "Atualizações do Sistema";
-        $subtitle = "Aqui você pode seguir o progresso de Odontovision ao vivo.";
-        $activeClass = "devupdates";
-
         $updates = DevUpdate::all()->sortByDesc('created_at');
-
-        return view('devupdates.index', compact('title', 'subtitle', 'updates', 'activeClass'));
+        return view('devupdates.index', compact('updates'));
     }
 
     public function create()
     {
-        $title = "Registrar Atualização";
-        $subtitle = "";
-        $activeClass = "devupdates";
-
-        return view('devupdates.create', compact('title', 'subtitle', 'activeClass'));
+        return view('devupdates.create');
     }
 
     public function store(Request $request)

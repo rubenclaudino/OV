@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', 'Timeline de Potenciais Clientes')
 @section('content')
 
     <!-- start: MAIN CONTENT -->
@@ -13,7 +14,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="table-header" style="color: #aaaaaa !important;">
                         <h2 style="font-weight: lighter">
-                            {{ $title }} <br>  <small style="color: #CCCCCC">{{ $subtitle }}</small>
+                            Timeline de Potenciais Clientes <br>  <small style="color: #CCCCCC">Vejá em ordem de mais recente os clientes cadastrados.</small>
                         </h2>
                         <hr class="custom_sep">
                     </div>
