@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ url('/imaicon.png') }}" type="image/png">
     <title>@yield('title') | Odontovision</title>
 
 @include('includes.stylesheets')
+
 
 <!-- Scripts -->
     <script type="text/javascript">
@@ -18,7 +18,7 @@
         var csrf_token = '{{ csrf_token() }}';
         var APP_URL = '{{ url('/') }}';
     </script>
-   
+
     <script type="text/javascript" src="{{ asset('plugins/jQuery/jquery-2.1.1.min.js')}}"></script>
 
     {{--

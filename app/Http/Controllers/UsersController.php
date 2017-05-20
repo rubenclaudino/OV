@@ -19,7 +19,11 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        if (Auth::user()->isAdmin())
+            $users = User::all();
+        else
+            $users = User::where('clinic_id', Auth::user()->clinic_id);
+
         return view('users.index', compact('users'));
     }
 
