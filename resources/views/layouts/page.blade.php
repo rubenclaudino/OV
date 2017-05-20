@@ -25,15 +25,22 @@
     <script src="{{ asset('plugins/angular/angular.min.js')}}"></script>
     <script src="{{ asset('plugins/angular/angular-animate.min.js')}}"></script>
     <script src="{{ asset('plugins/angular/toastr/toaster.js')}}"></script>
+
+    {{--
     <script>
         var app = angular.module('patients', ["ngAnimate", "ui.bootstrap.modal", "toaster"]).config(function ($interpolateProvider) {
             $interpolateProvider.startSymbol('{!').endSymbol('!}');
         });
     </script>
+    --}}
+    {{--
+    THIS ONE HAS ONLY DETAILS FOR SPECIALTIES
     <script type="text/javascript" src="{{ asset('js/angular/pages.js')}}"></script>
+
+
     <script src="{{ asset('plugins/angular/ui-bootstrap-tpls-2.5.0.min.js')}}"></script>
     <script src="{{ asset('plugins/angular/angular-ui-bootstrap-modal.js')}}"></script>
-
+    --}}
 </head>
 <body>
 
