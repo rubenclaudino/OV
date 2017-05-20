@@ -2,25 +2,13 @@
 @section('title', 'Convênio')
 @section('content')
 
-    <!-- start: MAIN CONTAINER -->
-    <div class="main-content">
+    <!-- start: ROW -->
+    <div class="row" style="margin-top: 15px">
 
-        <!-- start: CONTAINER -->
-        <div class="container">
-
-            <!-- start: ROW -->
-            <div class="row" style="margin-top: 15px">
-
-                <!-- start: FORM -->
-                {{ Form::model($plan, ['route' => ['dentalplans.update', $plan->id], 'method' => 'PUT']) }}
-
-                @include('dentalplans.partials.form')
-
-                {{Form::close()}}
-
-            </div>
-
-        </div>
+        <!-- start: FORM -->
+        {{ Form::model($plan, ['route' => ['dentalplans.update', $plan->id], 'method' => 'PUT']) }}
+        @include('dentalplans.partials.form')
+        {{Form::close()}}
 
     </div>
 

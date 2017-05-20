@@ -4,60 +4,48 @@
 @endsection
 @section('content')
 
-    <!-- start: MAIN CONTAINER -->
-    <div class="main-content">
+    <!-- start: DIV -->
+    <div style="margin: 15px 2px">
 
-        <!-- start: CONTAINER -->
-        <div class="container">
+        <!-- start: PANEL -->
+        <div class="panel">
 
-            <!-- start: DIV -->
-            <div style="margin: 15px 2px">
+            <!-- start: PANEL HEAD -->
+            <div class="panel-head">
 
-                <!-- start: PANEL -->
-                <div class="panel">
+                <div class="col-lg-12 col-md-12">
 
-                    <!-- start: PANEL HEAD -->
-                    <div class="panel-head">
+                    <div class="col-lg-12 col-md-12">
 
-                        <div class="col-lg-12 col-md-12">
+                        <h2 class="table_title">Meu Cadastro<br>
+                            <small style="color: #dddddd">Todas dados do seu cadastro</small>
+                        </h2>
 
-                            <div class="col-lg-12 col-md-12">
-
-                                <h2 class="table_title">Meu Cadastro<br>
-                                    <small style="color: #dddddd">Todas dados do seu cadastro</small>
-                                </h2>
-
-                                <hr class="custom_sep">
-
-                            </div>
-
-                        </div>
+                        <hr class="custom_sep">
 
                     </div>
-                    <!-- end: PANEL HEAD -->
-
-                    <!-- start: BODY INFORMATION -->
-                    <div class="panel-body">
-
-                        @include('errors.list')
-
-                        {{ Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) }}
-                        @include('users.partials.form')
-                        {{ Form::close() }}
-
-                    </div>
-                    <!-- end: BODY INFORMATION -->
 
                 </div>
-                <!-- end: MAIN INFORMATION PANEL -->
 
             </div>
-            <!-- end: DIV -->
+            <!-- end: PANEL HEAD -->
+
+            <!-- start: BODY INFORMATION -->
+            <div class="panel-body">
+
+                @include('errors.list')
+
+                {{ Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) }}
+                @include('users.partials.form')
+                {{ Form::close() }}
+
+            </div>
+            <!-- end: BODY INFORMATION -->
 
         </div>
-        <!-- end: CONTAINER -->
+        <!-- end: MAIN INFORMATION PANEL -->
 
     </div>
-    <!-- start: MAIN CONTAINER -->
+    <!-- end: DIV -->
 
 @endsection

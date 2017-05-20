@@ -2,104 +2,101 @@
 @section('title', 'Financeiro')
 @section('content')
 
-    <!-- start: MAIN CONTENT -->
-    <div class="main-content">
+    <!-- start: CONTAINER BOTH-->
+    <div class="container hide">
 
-        <!-- start: CONTAINER BOTH-->
-        <div class="container hide">
+        <!-- start: DIV -->
+        <div style="margin: 15px 2px">
 
-            <!-- start: DIV -->
-            <div style="margin: 15px 2px">
+            <!-- start: PANEL -->
+            <div class="panel">
 
-                <!-- start: PANEL -->
-                <div class="panel">
+                <!-- start: PANEL HEAD -->
+                <div class="panel-head">
 
-                    <!-- start: PANEL HEAD -->
-                    <div class="panel-head">
+                    <div class="col-lg-6 col-md-6">
 
-                        <div class="col-lg-6 col-md-6">
+                        <h2 class="table_title">
+                            Financeiro<br>
+                            <small style="color: #dddddd">Visual informações de pagamentos</small>
+                        </h2>
 
-                            <h2 class="table_title">
-                                Financeiro<br>
-                                <small style="color: #dddddd">Visual informações de pagamentos</small>
-                            </h2>
+                    </div>
 
-                        </div>
+                    <div class="col-lg-6 col-md-6" style="margin-top: 30px">
 
-                        <div class="col-lg-6 col-md-6" style="margin-top: 30px">
+                        <div class="pull-right">
 
-                            <div class="pull-right">
+                            <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                Entradas
+                            </a>
 
-                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
-                                    Entradas
-                                </a>
+                            <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                Saídas
+                            </a>
 
-                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
-                                    Saídas
-                                </a>
+                            <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                Fluxo
+                            </a>
 
-                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
-                                    Fluxo
-                                </a>
-
-                                <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
-                                    <i class="fa fa-print"></i> Imprimir
-                                </a>
-
-                            </div>
+                            <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
+                                <i class="fa fa-print"></i> Imprimir
+                            </a>
 
                         </div>
 
                     </div>
-                    <!-- end: PANEL HEAD -->
+
+                </div>
+                <!-- end: PANEL HEAD -->
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px">
+                    <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Entradas</h2>
+                </div>
+
+                <!-- start: PANEL BODY -->
+                <div class="panel-body">
+
+                    <style>
+                        .table th, .table td {
+                            border-top: none !important;
+                        }
+                    </style>
 
                     <br>
-                    <br>
-                    <br>
-                    <br>
 
-                    <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px">
-                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Entradas</h2>
-                    </div>
+                    <table class="table table-hover">
 
-                    <!-- start: PANEL BODY -->
-                    <div class="panel-body">
+                        <thead style="background: whitesmoke">
+                        <tr>
+                            <th class="col-md-3">Categoria</th>
+                            <th class="col-md-3">Recibido</th>
+                            <th class="col-md-3">À receber</th>
+                            <th class="col-md-3">Total</th>
+                        </tr>
+                        </thead>
 
-                        <style>
-                            .table th, .table td {
-                                border-top: none !important;
-                            }
-                        </style>
-
-                        <br>
-
-                        <table class="table table-hover">
-
-                            <thead style="background: whitesmoke">
-                            <tr>
-                                <th class="col-md-3">Categoria</th>
-                                <th class="col-md-3">Recibido</th>
-                                <th class="col-md-3">À receber</th>
-                                <th class="col-md-3">Total</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td class="col-md-3">
-                                    Pacientes
-                                </td>
-                                <td class="col-md-3" style="color: forestgreen">
-                                    R$ 2860
-                                </td>
-                                <td class="col-md-3">
-                                    R$ 820
-                                </td>
-                                <td class="col-md-3" style="color: forestgreen">
-                                    R$ 2040
-                                </td>
-                            </tr>
-                            <tr>
+                        <tbody>
+                        <tr>
+                            <td class="col-md-3">
+                                Pacientes
+                            </td>
+                            <td class="col-md-3" style="color: forestgreen">
+                                R$ 2860
+                            </td>
+                            <td class="col-md-3">
+                                R$ 820
+                            </td>
+                            <td class="col-md-3" style="color: forestgreen">
+                                R$ 2040
+                            </td>
+                        </tr>
+                        <tr>
                             <td>
                                 Comissões
                             </td>
@@ -112,760 +109,659 @@
                             <td style="color: forestgreen">
                                 R$ 1000
                             </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" style="text-align: right; font-weight: bold; color: #3d3d3d">
-                                    Total
-                                </td>
-                                <td colspan="1" style="text-align: left;">
-                                    <span class="label" style="background: forestgreen">R$ 3040</span>
-                                </td>
-                            </tr>
-                            </tbody>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right; font-weight: bold; color: #3d3d3d">
+                                Total
+                            </td>
+                            <td colspan="1" style="text-align: left;">
+                                <span class="label" style="background: forestgreen">R$ 3040</span>
+                            </td>
+                        </tr>
+                        </tbody>
 
-                        </table>
-
-                    </div>
-                    <!-- start: PANEL BODY -->
-
-                    <!-- SPLIT -->
-
-                    <div class="col-md-12" style="padding-left: 22px">
-                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Saídas</h2>
-                    </div>
-
-                    <!-- start: PANEL BODY -->
-                    <div class="panel-body" style="margin-bottom: 0px; padding-bottom: 0px">
-
-                        <style>
-                            .table th, .table td {
-                                border-top: none !important;
-                            }
-                        </style>
-
-                        <br>
-
-                        <table class="table table-hover" style="font-size: 1.1em">
-
-                            <thead style="background: whitesmoke">
-                            <tr>
-                                <th class="col-md-3">Categoria</th>
-                                <th class="col-md-3">Pago</th>
-                                <th class="col-md-3">À pagar</th>
-                                <th class="col-md-3">Total</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td class="col-md-3">
-                                    Salários
-                                </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 2860
-                                </td>
-                                <td class="col-md-3">
-                                    R$ 820
-                                </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 2040
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-md-3">
-                                    Material
-                                </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 1000
-                                </td>
-                                <td class="col-md-3">
-                                    R$ 0
-                                </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 1000
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" style="text-align: right; font-weight: bold; color: #3d3d3d">
-                                    Total
-                                </td>
-                                <td colspan="1" style="text-align: left">
-                                    <span class="label" style="background: darkred">R$ 1000</span>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-
-                    </div>
-                    <!-- start: PANEL BODY -->
-
-                    <!-- start: PANEL BODY -->
-                    <div class="panel-body" style="margin-top: 0px; padding-top: 0px">
-
-                        <style>
-                            .table th, .table td {
-                                border-top: none !important;
-                                border-bottom: none !important;
-                            }
-                        </style>
-
-                        <br>
-
-                        <table class="table table-hover" style="font-size: 1.1em">
-
-                            <thead style="background: whitesmoke">
-                            <tr>
-                                <th class="col-md-3" rowspan="2"></th>
-                                <th class="col-md-3">Entradas</th>
-                                <th class="col-md-3">Saídas</th>
-                                <th class="col-md-3">Total</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td class="col-md-3">
-                                    <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Saldo Final</h2>
-                                </td>
-                                <td class="col-md-3" style="color: forestgreen">
-                                    R$ 2860
-                                </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 1000
-                                </td>
-                                <td class="col-md-3" style="color: darkred">
-                                    R$ 820
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-
-                    </div>
-                    <!-- start: PANEL BODY -->
+                    </table>
 
                 </div>
-                <!-- end: PANEL -->
+                <!-- start: PANEL BODY -->
+
+                <!-- SPLIT -->
+
+                <div class="col-md-12" style="padding-left: 22px">
+                    <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Saídas</h2>
+                </div>
+
+                <!-- start: PANEL BODY -->
+                <div class="panel-body" style="margin-bottom: 0px; padding-bottom: 0px">
+
+                    <style>
+                        .table th, .table td {
+                            border-top: none !important;
+                        }
+                    </style>
+
+                    <br>
+
+                    <table class="table table-hover" style="font-size: 1.1em">
+
+                        <thead style="background: whitesmoke">
+                        <tr>
+                            <th class="col-md-3">Categoria</th>
+                            <th class="col-md-3">Pago</th>
+                            <th class="col-md-3">À pagar</th>
+                            <th class="col-md-3">Total</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td class="col-md-3">
+                                Salários
+                            </td>
+                            <td class="col-md-3" style="color: darkred">
+                                R$ 2860
+                            </td>
+                            <td class="col-md-3">
+                                R$ 820
+                            </td>
+                            <td class="col-md-3" style="color: darkred">
+                                R$ 2040
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-3">
+                                Material
+                            </td>
+                            <td class="col-md-3" style="color: darkred">
+                                R$ 1000
+                            </td>
+                            <td class="col-md-3">
+                                R$ 0
+                            </td>
+                            <td class="col-md-3" style="color: darkred">
+                                R$ 1000
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right; font-weight: bold; color: #3d3d3d">
+                                Total
+                            </td>
+                            <td colspan="1" style="text-align: left">
+                                <span class="label" style="background: darkred">R$ 1000</span>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <!-- start: PANEL BODY -->
+
+                <!-- start: PANEL BODY -->
+                <div class="panel-body" style="margin-top: 0px; padding-top: 0px">
+
+                    <style>
+                        .table th, .table td {
+                            border-top: none !important;
+                            border-bottom: none !important;
+                        }
+                    </style>
+
+                    <br>
+
+                    <table class="table table-hover" style="font-size: 1.1em">
+
+                        <thead style="background: whitesmoke">
+                        <tr>
+                            <th class="col-md-3" rowspan="2"></th>
+                            <th class="col-md-3">Entradas</th>
+                            <th class="col-md-3">Saídas</th>
+                            <th class="col-md-3">Total</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td class="col-md-3">
+                                <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Saldo Final</h2>
+                            </td>
+                            <td class="col-md-3" style="color: forestgreen">
+                                R$ 2860
+                            </td>
+                            <td class="col-md-3" style="color: darkred">
+                                R$ 1000
+                            </td>
+                            <td class="col-md-3" style="color: darkred">
+                                R$ 820
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <!-- start: PANEL BODY -->
 
             </div>
-            <!-- end: DIV -->
+            <!-- end: PANEL -->
 
         </div>
-        <!-- end: CONTAINER BOTH-->
+        <!-- end: DIV -->
 
-        <!-- start: CONTAINER IN-->
-        <div class="container hide">
+    </div>
+    <!-- end: CONTAINER BOTH-->
 
-            <!-- start: DIV -->
-            <div style="margin: 15px 2px">
+    <!-- start: CONTAINER IN-->
+    <div class="container hide">
 
-                <!-- start: PANEL -->
-                <div class="panel">
+        <!-- start: DIV -->
+        <div style="margin: 15px 2px">
 
-                    <!-- start: PANEL HEAD -->
-                    <div class="panel-head">
+            <!-- start: PANEL -->
+            <div class="panel">
 
-                        <div class="col-lg-3 col-md-3">
+                <!-- start: PANEL HEAD -->
+                <div class="panel-head">
 
-                            <h2 class="table_title">
-                                Entradas<br>
-                                <div class="input-group" style="padding: 10px 0px">
-                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                    <input type="text" class="form-control date-range">
+                    <div class="col-lg-3 col-md-3">
 
+                        <h2 class="table_title">
+                            Entradas<br>
+                            <div class="input-group" style="padding: 10px 0px">
+                                <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                <input type="text" class="form-control date-range">
 
-                                </div>
-                            </h2>
-
-                        </div>
-
-                        <div class="col-lg-9 col-md-9" style="margin-top: 30px">
-
-                            <div class="pull-right">
-
-                                <a class="btn" href="#" data-target="#myModal" data-toggle="modal" style="background: whitesmoke">
-                                    Entradas
-                                </a>
-
-                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
-                                    Saídas
-                                </a>
-
-                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
-                                    Fluxo
-                                </a>
-
-                                <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
-                                    <i class="fa fa-print"></i> Imprimir
-                                </a>
 
                             </div>
+                        </h2>
+
+                    </div>
+
+                    <div class="col-lg-9 col-md-9" style="margin-top: 30px">
+
+                        <div class="pull-right">
+
+                            <a class="btn" href="#" data-target="#myModal" data-toggle="modal"
+                               style="background: whitesmoke">
+                                Entradas
+                            </a>
+
+                            <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                Saídas
+                            </a>
+
+                            <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                Fluxo
+                            </a>
+
+                            <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
+                                <i class="fa fa-print"></i> Imprimir
+                            </a>
 
                         </div>
 
                     </div>
-                    <!-- end: PANEL HEAD -->
-
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-                    <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px; opacity: 0.8">
-                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Pacientes <label class="label" style="color: forestgreen"> R$ 0</label></h2>
-                    </div>
-
-                    <!-- start: PANEL BODY -->
-                    <div class="panel-body">
-
-                        <style>
-                            .table th, .table td {
-                                border-top: none !important;
-                            }
-                        </style>
-
-                        <br>
-
-                        <table class="table table-hover" style="font-size: 1.1em">
-
-                            <thead style="background: whitesmoke">
-                            <tr>
-                                <th class="col-md-1">Id</th>
-                                <th >Data</th>
-                                <th class="col-md-3">Paciente</th>
-                                <th>Forma Pagamento</th>
-                                <th class="col-md-1">Parcela</th>
-                                <th class="col-md-1">Valor</th>
-                                <th >Data Pago</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td class="hidden-print">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Opções &nbsp;<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                            <li><a href="#"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-
-                    </div>
-                    <!-- start: PANEL BODY -->
-
-                    <!-- SPLIT -->
-
-                    <div class="col-md-12" style="padding-left: 22px; opacity: 0.8">
-                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Outros Rendimentos<label class="label" style="color: forestgreen"> R$ 0</label></h2>
-                    </div>
-
-                    <!-- start: PANEL BODY -->
-                    <div class="panel-body">
-
-                        <style>
-                            .table th, .table td {
-                                border-top: none !important;
-                            }
-                        </style>
-
-                        <br>
-
-                        <table class="table table-hover" style="font-size: 1.1em">
-
-                            <thead style="background: whitesmoke">
-                            <tr>
-                                <th class="col-md-1">Id</th>
-                                <th >Data</th>
-                                <th class="col-md-3">Descrição</th>
-                                <th>Forma Pagamento</th>
-                                <th class="col-md-1">Parcela</th>
-                                <th class="col-md-1">Valor</th>
-                                <th >Data Pago</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td class="hidden-print">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Opções &nbsp;<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                            <li><a href="#"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-
-                    </div>
-                    <!-- start: PANEL BODY -->
 
                 </div>
-                <!-- end: PANEL -->
+                <!-- end: PANEL HEAD -->
 
-            </div>
-            <!-- end: DIV -->
+                <br>
+                <br>
+                <br>
+                <br>
 
-        </div>
-        <!-- end: CONTAINER IN-->
+                <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px; opacity: 0.8">
+                    <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Pacientes <label class="label"
+                                                                                                      style="color: forestgreen">
+                            R$ 0</label></h2>
+                </div>
 
-        <!-- start: CONTAINER OUT-->
-        <div class="container">
+                <!-- start: PANEL BODY -->
+                <div class="panel-body">
 
-            <!-- start: DIV -->
-            <div style="margin: 15px 2px">
+                    <style>
+                        .table th, .table td {
+                            border-top: none !important;
+                        }
+                    </style>
 
-                <!-- start: PANEL -->
-                <div class="panel">
+                    <br>
 
-                    <!-- start: PANEL HEAD -->
-                    <div class="panel-head">
+                    <table class="table table-hover" style="font-size: 1.1em">
 
-                        <div class="col-lg-3 col-md-3">
+                        <thead style="background: whitesmoke">
+                        <tr>
+                            <th class="col-md-1">Id</th>
+                            <th>Data</th>
+                            <th class="col-md-3">Paciente</th>
+                            <th>Forma Pagamento</th>
+                            <th class="col-md-1">Parcela</th>
+                            <th class="col-md-1">Valor</th>
+                            <th>Data Pago</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
 
-                            <h2 class="table_title">
-                                Saídas<br>
-                                <div class="input-group" style="padding: 10px 0px">
-                                    <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
-                                    <input type="text" class="form-control date-range">
+                        <tbody>
+                        <tr>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td class="hidden-print">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Opções &nbsp;<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                        <li><a href="#">
+                                                <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small>
+                                            </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small>
+                                            </a></li>
+                                    </ul>
                                 </div>
-                            </h2>
+                            </td>
+                        </tr>
+                        </tbody>
 
-                        </div>
+                    </table>
 
-                        <div class="col-lg-9 col-md-9" style="margin-top: 30px">
+                </div>
+                <!-- start: PANEL BODY -->
 
-                            <div class="pull-right">
+                <!-- SPLIT -->
 
-                                <a class="btn" href="#" data-target="#myModal" data-toggle="modal" style="background: whitesmoke">
-                                    Entradas
-                                </a>
+                <div class="col-md-12" style="padding-left: 22px; opacity: 0.8">
+                    <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Outros Rendimentos<label
+                                class="label" style="color: forestgreen"> R$ 0</label></h2>
+                </div>
 
-                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
-                                    Saídas
-                                </a>
+                <!-- start: PANEL BODY -->
+                <div class="panel-body">
 
-                                <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
-                                    Fluxo
-                                </a>
+                    <style>
+                        .table th, .table td {
+                            border-top: none !important;
+                        }
+                    </style>
 
-                                <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
-                                    <i class="fa fa-print"></i> Imprimir
-                                </a>
+                    <br>
 
+                    <table class="table table-hover" style="font-size: 1.1em">
+
+                        <thead style="background: whitesmoke">
+                        <tr>
+                            <th class="col-md-1">Id</th>
+                            <th>Data</th>
+                            <th class="col-md-3">Descrição</th>
+                            <th>Forma Pagamento</th>
+                            <th class="col-md-1">Parcela</th>
+                            <th class="col-md-1">Valor</th>
+                            <th>Data Pago</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td class="hidden-print">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Opções &nbsp;<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                        <li><a href="#">
+                                                <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small>
+                                            </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <!-- start: PANEL BODY -->
+
+            </div>
+            <!-- end: PANEL -->
+
+        </div>
+        <!-- end: DIV -->
+
+    </div>
+    <!-- end: CONTAINER IN-->
+
+    <!-- start: CONTAINER OUT-->
+    <div class="container">
+
+        <!-- start: DIV -->
+        <div style="margin: 15px 2px">
+
+            <!-- start: PANEL -->
+            <div class="panel">
+
+                <!-- start: PANEL HEAD -->
+                <div class="panel-head">
+
+                    <div class="col-lg-3 col-md-3">
+
+                        <h2 class="table_title">
+                            Saídas<br>
+                            <div class="input-group" style="padding: 10px 0px">
+                                <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
+                                <input type="text" class="form-control date-range">
                             </div>
+                        </h2>
+
+                    </div>
+
+                    <div class="col-lg-9 col-md-9" style="margin-top: 30px">
+
+                        <div class="pull-right">
+
+                            <a class="btn" href="#" data-target="#myModal" data-toggle="modal"
+                               style="background: whitesmoke">
+                                Entradas
+                            </a>
+
+                            <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                Saídas
+                            </a>
+
+                            <a class="btn" href="{{ url('/dentalplans/create') }}" style="background: whitesmoke">
+                                Fluxo
+                            </a>
+
+                            <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
+                                <i class="fa fa-print"></i> Imprimir
+                            </a>
 
                         </div>
 
                     </div>
-                    <!-- end: PANEL HEAD -->
-
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-                    <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px; opacity: 0.8">
-                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Despesas <label class="label" style="color: firebrick"> R$ 0</label></h2>
-                    </div>
-
-                    <!-- start: PANEL BODY -->
-                    <div class="panel-body">
-
-                        <style>
-                            .table th, .table td {
-                                border-top: none !important;
-                            }
-                        </style>
-
-                        <br>
-
-                        <table class="table table-hover" style="font-size: 1.1em">
-
-                            <thead style="background: whitesmoke">
-                            <tr>
-                                <th class="col-md-1">Id</th>
-                                <th >Data</th>
-                                <th class="col-md-3">Descrição</th>
-                                <th>Forma Pagamento</th>
-                                <th class="col-md-1">Parcela</th>
-                                <th class="col-md-1">Valor</th>
-                                <th >Data Pago</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td class="hidden-print">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Opções &nbsp;<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                            <li><a href="#"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-
-                    </div>
-                    <!-- start: PANEL BODY -->
-
-                    <!-- SPLIT -->
-
-                    <div class="col-md-12" style="padding-left: 22px; opacity: 0.8">
-                        <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Salários <label class="label" style="color: firebrick"> R$ 0</label></h2>
-                    </div>
-
-                    <!-- start: PANEL BODY -->
-                    <div class="panel-body">
-
-                        <style>
-                            .table th, .table td {
-                                border-top: none !important;
-                            }
-                        </style>
-
-                        <br>
-
-                        <table class="table table-hover" style="font-size: 1.1em">
-
-                            <thead style="background: whitesmoke">
-                            <tr>
-                                <th class="col-md-1">Id</th>
-                                <th >Data</th>
-                                <th class="col-md-3">Descrição</th>
-                                <th>Forma Pagamento</th>
-                                <th class="col-md-1">Parcela</th>
-                                <th class="col-md-1">Valor</th>
-                                <th >Data Pago</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td class="hidden-print">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Opções &nbsp;<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                            <li><a href="#"><small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-
-                    </div>
-                    <!-- start: PANEL BODY -->
 
                 </div>
-                <!-- end: PANEL -->
+                <!-- end: PANEL HEAD -->
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div class="col-md-12" style="padding-left: 22px; margin-bottom: 10px; opacity: 0.8">
+                    <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Despesas <label class="label"
+                                                                                                     style="color: firebrick">
+                            R$ 0</label></h2>
+                </div>
+
+                <!-- start: PANEL BODY -->
+                <div class="panel-body">
+
+                    <style>
+                        .table th, .table td {
+                            border-top: none !important;
+                        }
+                    </style>
+
+                    <br>
+
+                    <table class="table table-hover" style="font-size: 1.1em">
+
+                        <thead style="background: whitesmoke">
+                        <tr>
+                            <th class="col-md-1">Id</th>
+                            <th>Data</th>
+                            <th class="col-md-3">Descrição</th>
+                            <th>Forma Pagamento</th>
+                            <th class="col-md-1">Parcela</th>
+                            <th class="col-md-1">Valor</th>
+                            <th>Data Pago</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td class="hidden-print">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Opções &nbsp;<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                        <li><a href="#">
+                                                <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small>
+                                            </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <!-- start: PANEL BODY -->
+
+                <!-- SPLIT -->
+
+                <div class="col-md-12" style="padding-left: 22px; opacity: 0.8">
+                    <h2 class="panel-title" style="color: #00a5b3; font-size: 1.6em">Salários <label class="label"
+                                                                                                     style="color: firebrick">
+                            R$ 0</label></h2>
+                </div>
+
+                <!-- start: PANEL BODY -->
+                <div class="panel-body">
+
+                    <style>
+                        .table th, .table td {
+                            border-top: none !important;
+                        }
+                    </style>
+
+                    <br>
+
+                    <table class="table table-hover" style="font-size: 1.1em">
+
+                        <thead style="background: whitesmoke">
+                        <tr>
+                            <th class="col-md-1">Id</th>
+                            <th>Data</th>
+                            <th class="col-md-3">Descrição</th>
+                            <th>Forma Pagamento</th>
+                            <th class="col-md-1">Parcela</th>
+                            <th class="col-md-1">Valor</th>
+                            <th>Data Pago</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td class="hidden-print">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Opções &nbsp;<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" style="opacity:0.9;">
+                                        <li><a href="#">
+                                                <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-info fa-fw"></i> &nbsp;Detalhes</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small>
+                                            </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">
+                                                <small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <!-- start: PANEL BODY -->
 
             </div>
-            <!-- end: DIV -->
+            <!-- end: PANEL -->
 
         </div>
-        <!-- end: CONTAINER OUT-->
+        <!-- end: DIV -->
 
     </div>
-    <!-- end: MAIN CONTENT -->
+    <!-- end: CONTAINER OUT-->
 
-    <!-- start: CONSULTATION -->
-    <div class="modal fade" id="myModal" role="dialog">
+    @include('modals.payment_consultation')
+    @include('modals.payment_feedback')
 
-        <div class="modal-dialog modal-md">
-
-            <!-- Modal content-->
-            <div class="modal-content" style="border-radius: 1px">
-
-                <div class="modal-header" style="background: whitesmoke">
-                    <h3 class="modal-title">Parcelas <br>
-                        <small>Pagamento Total R$ 0</small>
-                    </h3>
-                </div>
-
-                <div class="modal-body">
-
-                        <style>
-                            .table th, .table td {
-                                border-top: none !important;
-                            }
-                        </style>
-
-                        <table class="table table-hover" style="font-size: 1.1em">
-
-                            <thead>
-                            <tr>
-                                <th>Parcela</th>
-                                <th>Data à receber</th>
-                                <th>Data Pago</th>
-                                <th class="col-md-2">Valor</th>
-                                <th class="col-md-2">status</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    18/02/2017
-                                </td>
-                                <td>
-                                    18/02/2017
-                                </td>
-                                <td>
-                                    R$ 100
-                                </td>
-                                <td>
-                                    <span class="label label-success"
-                                          style="opacity: 0.7">Pago</span>
-                                </td>
-                                <td class="hidden-print">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Opções &nbsp;<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    18/03/2017
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                                <td>
-                                    R$ 100
-                                </td>
-                                <td>
-                                    <span class="label label-danger"
-                                          style="opacity: 0.7">Pendente</span>
-                                </td>
-                                <td class="hidden-print">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Opções &nbsp;<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                            <li><a href="#"><small><i class="fa fa-check fa-fw"></i> &nbsp;Marcar Pago</small></a></li>
-                                            <li><a href="#"><small><i class="fa fa-print fa-fw"></i> &nbsp;Imprimir Recibo</small></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><small><i class="fa fa-ban fa-fw"></i> &nbsp;Cancelar Pagamento</small></a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-    <!-- end: CONSULTATION -->
-
-    <!-- start: FEEDBACK MODAL -->
-    <div class="modal fade" id="myModalrate" role="dialog">
-
-        <div class="modal-dialog modal-xs">
-
-            <!-- Modal content-->
-            <div class="modal-content" style="border-radius: 1px">
-
-                <div class="modal-header" style="background: whitesmoke">
-                    <h2 class="modal-title center" style="font-weight: lighter">
-                        FEEDBACK
-                    </h2>
-                </div>
-
-                <div class="modal-body">
-
-                    <p class="center" style="font-size: 1.5em">Gostariamos de saber se você gostou da sua resposta ?</p>
-
-                    <br>
-
-                    <div class="center">
-
-                        <button type="button" class="btn btn-success" data-dismiss="modal"
-                                style="padding: 5px; width: 70px">Sim
-                        </button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                style="padding: 5px; width: 70px">Não
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-    <!-- end: FEEDBACK MODAL -->
 
 @endsection

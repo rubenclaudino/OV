@@ -53,7 +53,11 @@
     @include('includes.rightbar')
 
     <div class="main-container inner">
-        @yield('content')
+        <div class="main-content">
+            <div class="container">
+                @yield('content')
+            </div>
+        </div>
     </div>
 
 </div>
@@ -75,7 +79,6 @@
 <script type="text/javascript" src="{{ asset('plugins/velocity/jquery.velocity.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/TouchSwipe/jquery.touchSwipe.min.js')}}"></script>
 <!-- end: MAIN JAVASCRIPTS -->
-
 
 
 <!-- start: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->

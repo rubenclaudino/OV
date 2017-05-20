@@ -2,30 +2,18 @@
 @section('title', 'Convênio')
 @section('content')
 
-    <!-- start: MAIN CONTENT -->
-    <div class="main-content">
+    <!-- start: DIV -->
+    <div style="margin: 15px 2px">
 
-        <!-- start: CONTAINER -->
-        <div class="container">
+        <!-- start: FORM -->
+    {{ Form::open(['route' => 'dentalplans.store', 'class' => 'form']) }}
 
-            <!-- start: DIV -->
-            <div style="margin: 15px 2px">
+    @include('dentalplans.partials.form')
 
-                <!-- start: FORM -->
-            {{ Form::open(['route' => 'dentalplans.store', 'class' => 'form']) }}
-
-            @include('dentalplans.partials.form')
-
-            {{Form::close()}}
-            <!-- end: FORM -->
-
-            </div>
-            <!-- end: DIV -->
-
-        </div>
-        <!-- end: CONTAINER -->
+    {{Form::close()}}
+    <!-- end: FORM -->
 
     </div>
-    <!-- end: MAIN CONTENT -->
+    <!-- end: DIV -->
 
 @endsection
