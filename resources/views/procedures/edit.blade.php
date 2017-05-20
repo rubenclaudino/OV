@@ -229,7 +229,7 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                 <button type="button" class="btn btn-danger">
-                    <a href="{{ url('treatments/treatmentTypes')}}" style="color: white"> Cancel Changes</a>
+                    <a href="{{ url('procedures')}}" style="color: white"> Cancel Changes</a>
                 </button>
             </div>
 

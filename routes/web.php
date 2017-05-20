@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', '
     Route::resource('clinic', 'ClinicController');
 
     // BUGS
-    Route::resource('bugs', 'BugController');
+    Route::resource('bugs', 'BugsController');
 
     // EXAMS
     Route::post('exams/get', 'PatientExamsController@getExams');
@@ -59,24 +59,24 @@ Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', '
     Route::get('patients/stats', 'PatientsController@stats');
     Route::resource('patients', 'PatientsController');
 
-    // Route::get('treatments/treatmentTypes','TreatmentController@treatmentTypes');
-    // Route::post('treatments/addTreatmentType','TreatmentController@addTreatmentTypes');
-    Route::post('treatments/getPatientTreatment', 'TreatmentController@getPatientTreatment');
-    Route::resource('treatments', 'TreatmentController');
+    // Route::get('procedures/treatmentTypes','ProceduresController@treatmentTypes');
+    // Route::post('procedures/addTreatmentType','ProceduresController@addTreatmentTypes');
+    Route::post('procedures/getPatientTreatment', 'ProceduresController@getPatientTreatment');
+    Route::resource('procedures', 'ProceduresController');
 
     // SPECIALTIES
     Route::get('specialities/get', 'SpecialityController@get');
     Route::resource('specialities', 'SpecialityController');
 
     // REVIEW --- POSSIBLE DELETE
-    Route::resource('treatmenttypes', 'TreatmentTypesController');
+    Route::resource('treatmenttypes', 'SpecialtiesController');
     Route::resource('holidays', 'HolidaysController');
     Route::resource('recepnists', 'RecepnistsController');
     Route::resource('dentists', 'DentistsController');
 
     // DENTAL PLANS
-    Route::get('dentalplans/permission', 'DentalplansController@permission');
-    Route::resource('dentalplans', 'DentalplansController');
+    Route::get('dentalplans/permission', 'ClinicDentalPlansController@permission');
+    Route::resource('dentalplans', 'ClinicDentalPlansController');
 
     // PERMISSIONS
     Route::get('permissions/addPermissions', 'PermissionsController@addPermissions');
@@ -141,8 +141,8 @@ Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', '
     Route::resource('calendar', 'CalendarController');
 
     // USER FIRST TIME
-    Route::resource('firsttime', 'FirstimeController');
+    Route::resource('firsttime', 'FirstTimeController');
 });
 
-Route::get('billing/subscribe', 'UserBilling@subscribeuser');
-Route::resource('billing', 'UserBilling');
+Route::get('billing/subscribe', 'UserBillingController@subscribeuser');
+Route::resource('billing', 'UserBillingController');

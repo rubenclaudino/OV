@@ -233,10 +233,10 @@ class CalendarController extends Controller
             if (!file_exists('uploads/' . $patient->clinic_id)) {
                 mkdir('uploads/' . $patient->clinic_id, 0755, true);
             }
-            if (!file_exists('uploads/' . $patient->clinic_id . "/patients/treatments/" . $appointment_id)) {
-                mkdir('uploads/' . $patient->clinic_id . "/patients/treatments/" . $appointment_id, 0755, true);
+            if (!file_exists('uploads/' . $patient->clinic_id . "/patients/procedures/" . $appointment_id)) {
+                mkdir('uploads/' . $patient->clinic_id . "/patients/procedures/" . $appointment_id, 0755, true);
             }
-            $url = $this->upload($input['upload_document'], $patient->clinic_id . "/patients/treatments/" . $appointment_id);
+            $url = $this->upload($input['upload_document'], $patient->clinic_id . "/patients/procedures/" . $appointment_id);
 
             $image = Image::create([
                 'url' => $url,

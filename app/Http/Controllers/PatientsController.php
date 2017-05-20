@@ -169,7 +169,7 @@ class PatientsController extends Controller
             $professionals[$data->id] = $name;
         }
 
-        $treatments = Specialty::pluck('name', 'id');*/
+        $procedures = Specialty::pluck('name', 'id');*/
 
         $cities = City::pluck('name', 'id');
         $states = State::pluck('abbreviation', 'id');

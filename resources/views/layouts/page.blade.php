@@ -18,13 +18,17 @@
         var csrf_token = '{{ csrf_token() }}';
         var APP_URL = '{{ url('/') }}';
     </script>
+   
+    <script type="text/javascript" src="{{ asset('plugins/jQuery/jquery-2.1.1.min.js')}}"></script>
 
+    {{--
     <link rel="stylesheet" href="{{ asset('plugins/angular/toastr/toaster.css')}}">
 
-    <script type="text/javascript" src="{{ asset('plugins/jQuery/jquery-2.1.1.min.js')}}"></script>
     <script src="{{ asset('plugins/angular/angular.min.js')}}"></script>
     <script src="{{ asset('plugins/angular/angular-animate.min.js')}}"></script>
     <script src="{{ asset('plugins/angular/toastr/toaster.js')}}"></script>
+    --}}
+
 
     {{--
     <script>
@@ -98,10 +102,13 @@
 <script type="text/javascript" src="{{ asset('plugins/jquery-validation/dist/jquery.validate.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-fileupload/bootstrap-fileupload.min.js')}}"></script>
 
+{{-- --}}
 <script type="text/javascript" src="{{ asset('plugins/DataTables/media/js/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/DataTables/media/js/dataTables.buttons.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/DataTables/media/js/buttons.print.min.js')}}"></script>
 
+
+{{-- --}}
 <script type="text/javascript" src="{{ asset('plugins/select2/select2.min.js')}}"></script>
 
 
@@ -118,6 +125,7 @@
 <!-- end: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
 <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 <script type="text/javascript" src="{{ asset('plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js')}}"></script>
+{{----}}
 <script type="text/javascript" src="{{ asset('js/main1.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/validations.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/ajax-actions.js')}}"></script>
@@ -149,6 +157,7 @@
 <script src="{{ asset('plugins/fileinput/js/fileinput.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('plugins/print/jquery.print.js')}}"></script>
 
+{{----}}
 <script>
     jQuery(document).ready(function () {
         // stopping holiday Events

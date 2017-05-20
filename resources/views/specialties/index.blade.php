@@ -108,7 +108,7 @@
                                 <li><a href="{{ url('/treatmenttypes')}}/{{$data->id}}" data-id="{{$data->id}}">
                                         <small><i class="fa fa-folder-o fa-fw"></i> &nbsp;Perfil</small>
                                     </a></li>
-                                <li><a href="{{ url('/treatmenttypes')}}/{{ $data->id}}/edit"
+                                <li><a href="{{ url('specialties')}}/{{ $data->id}}/edit"
                                        data-id="{{$data->id}}">
                                         <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
                                     </a></li>

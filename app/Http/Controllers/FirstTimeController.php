@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Specialty;
 use Illuminate\Support\Facades\Auth;
 
-class FirstimeController extends Controller
+class FirstTimeController extends Controller
 {
 
     public function index()

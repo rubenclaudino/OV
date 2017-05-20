@@ -1,5 +1,5 @@
 
-   // loading treatments
+   // loading procedures
    function appointmentTreatment(el){
       $('a[href="#treatment"],a[href="#appointment-information"]').unbind('click').click(function(){
          // loading treatment
@@ -22,7 +22,7 @@
          }
 
          $.ajax({
-             url: APP_URL+'/treatments/getPatientTreatment',
+             url: APP_URL+'/procedures/getPatientTreatment',
              data:{'appointment_id':el.id,'patient_id':el.patient_id,dentist_id:el.dentist_id,"_method":"POST","_token":csrf_token},
              method:"POST",
              success: function (data) {
@@ -54,7 +54,7 @@
             formData.appointment_id     = el.id;
             $.ajax({
                   type:"POST",
-                  url:APP_URL+'/treatments',
+                  url:APP_URL+'/procedures',
                   data:formData,
                   success:function(data){
                      $('#register_procedure').modal('hide');
@@ -79,7 +79,7 @@
             });
             $.ajax({
                   type:"GET",
-                  url:APP_URL+'/treatments/'+$id,
+                  url:APP_URL+'/procedures/'+$id,
                   success:function(data){
                      $.unblockUI();
                      $data = data.message;
@@ -116,7 +116,7 @@
             formData._token     = csrf_token;
             $.ajax({
                   type:"PUT",
-                  url:APP_URL+'/treatments/'+$id,
+                  url:APP_URL+'/procedures/'+$id,
                   data:formData,
                   success:function(data){
                      if(data.status == 'success'){
@@ -151,7 +151,7 @@
             if(confirm('Are you Sure ?')){
                $.ajax({
                      type:"POST",
-                     url:APP_URL+'/treatments/'+$id,
+                     url:APP_URL+'/procedures/'+$id,
                      data:{"_method":"DELETE","_token":csrf_token},
                      success:function(data){
                         if (data.status === 'success') {

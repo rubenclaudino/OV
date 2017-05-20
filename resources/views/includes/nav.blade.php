@@ -99,7 +99,7 @@
                                 class="title"> Procedimentos </span><i class="icon-arrow"></i> </a>
                     <ul class="sub-menu">
                         <li class="@if(\Route::current()->getName() == 'treatmenttypes.index') {{'active'}}@endif">
-                            <a href="{{ url('/treatmenttypes')}}">
+                            <a href="{{ url('specialties')}}">
                                 <span class="title"> Procedimentos </span>
                             </a>
                         </li>

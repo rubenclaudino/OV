@@ -7,7 +7,7 @@ use App\Http\Requests\BugValidationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BugController extends Controller
+class BugsController extends Controller
 {
 
     public function index()
@@ -47,7 +47,11 @@ class BugController extends Controller
     public function destroy($id)
     {
         Bug::destroy($id);
-        return response()->json(['status' => 'success', 'message' => 'Relato excluído com sucesso!']);
+        return redirect()->back()->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Relato excluído com sucesso!'
+            ]);
     }
 
 }

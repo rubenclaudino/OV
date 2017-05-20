@@ -12,7 +12,7 @@ use App\Clinic;
 use App\DentalPlan;
 use Illuminate\Support\Facades\Auth;
 
-class TreatmentController extends Controller
+class ProceduresController extends Controller
 {
 
     public function index()
@@ -104,10 +104,10 @@ class TreatmentController extends Controller
     {
         $title = "Procedure Type";
         $subtitle = "Procedure Types List";
-        $activeClass = "treatments";
+        $activeClass = "procedures";
         $types = Specialty::all();
         $dental_plans = DentalPlan::pluck('title', 'id');
-        return view('treatments.types', compact('title', 'subtitle', 'activeClass', 'types', 'dental_plans'));
+        return view('procedures.types', compact('title', 'subtitle', 'activeClass', 'types', 'dental_plans'));
     }
 
     public function addSpecialtys(Request $request)

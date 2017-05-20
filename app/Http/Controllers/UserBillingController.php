@@ -8,12 +8,12 @@ use Carbon\Carbon;
 use App\SubscriptionHistory;
 use Illuminate\Http\Request;
 
-class UserBilling extends Controller
+class UserBillingController extends Controller
 {
 
     public function index()
     {
-        return view('billing.index', compact());
+        return view('billing.index');
     }
 
     public function create()

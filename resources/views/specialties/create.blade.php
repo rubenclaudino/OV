@@ -108,7 +108,7 @@
             </button>
 
             <button type="button" class="btn btn-danger">
-                <a href="{{ url('treatments/treatmentTypes')}}" style="color: white"> Cancelar</a>
+                <a href="{{ url('procedures')}}" style="color: white"> Cancelar</a>
             </button>
 
         </div>

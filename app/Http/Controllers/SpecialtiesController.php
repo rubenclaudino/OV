@@ -7,18 +7,18 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TreatmentTypesController extends Controller
+class SpecialtiesController extends Controller
 {
     public function index()
     {
         $treatments = Specialty::all();
-        return view('treatmenttypes.index', compact('treatments'));
+        return view('specialties.index', compact('treatments'));
     }
 
     public function create()
     {
         $speciality = Specialty::pluck('name', 'id');
-        return view('treatmenttypes.create', compact('speciality'));
+        return view('specialties.create', compact('speciality'));
     }
 
     public function store(Request $request)
@@ -52,7 +52,7 @@ class TreatmentTypesController extends Controller
         $specialities = DB::select("SELECT `specialities`.*, `treatment_specialities`.`treatment_type_id` from `specialities` inner join `treatment_specialities` on `treatment_specialities`.`speciality_id` = `specialities`.`id` where `treatment_specialities`.`treatment_type_id` = '" . $plan->id . "'");
         $plan->speciality = $specialities;
 
-        return view('treatmenttypes.show', compact('patient','plan'));
+        return view('specialties.show', compact('patient','plan'));
     }
 
     public function edit($id)
@@ -88,7 +88,7 @@ class TreatmentTypesController extends Controller
                 $plan->standard_dentist_percentage = $tt->standard_dentist_percentage;
             }
         }*/
-        return view('treatmenttypes.edit', compact('patient', 'plan', 'dentists', 'speciality'));
+        return view('specialties.edit', compact('patient', 'plan', 'dentists', 'speciality'));
     }
 
     public function update(Request $request, $id)
@@ -106,8 +106,8 @@ class TreatmentTypesController extends Controller
 
                 $treatmentTypeByClinic = SpecialtyClinic::where([['treatment_type_id', '=', $treatmentPlan->id], ['clinic_id', '=', $user->clinic_id]])->count();
                 if ($treatmentTypeByClinic > 0) {
-                    $treatments = SpecialtyClinic::where([['treatment_type_id', '=', $treatmentPlan->id], ['clinic_id', '=', $user->clinic_id]])->first();
-                    $treatments->fill($input)->save();
+                    $procedures = SpecialtyClinic::where([['treatment_type_id', '=', $treatmentPlan->id], ['clinic_id', '=', $user->clinic_id]])->first();
+                    $procedures->fill($input)->save();
                 } else {
                     $input['clinic_id'] = Auth::user()->clinic_id;
                     $input['treatment_type_id'] = $treatmentPlan->id;

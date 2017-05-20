@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\ClinicDentalPlan;
 use Illuminate\Support\Facades\Auth;
 
-class DentalplansController extends Controller
+class ClinicDentalPlansController extends Controller
 {
 
     public function index()

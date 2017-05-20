@@ -66,7 +66,7 @@
         <!-- end: TAB TITLE -->
 
         <!-- start: TAB CONTENT -->
-        {{ Form::model($plan, ['route' => ['treatmenttypes.update', $plan->id], 'method' => 'PUT','id' => 'editTreatmentPlan']) }}
+        {{ Form::model($plan, ['route' => ['specialties', $plan->id], 'method' => 'PUT','id' => 'editTreatmentPlan']) }}
         <div class="tab-content" style="font-size: 1.1em;border: none">
 
             <!-- start: DETAILS TAB -->
@@ -287,7 +287,7 @@
                 </button>
 
                 <button type="button" class="btn btn-danger">
-                    <a href="{{ url('treatments/treatmentTypes')}}" style="color: white"> Cancelar</a>
+                    <a href="{{ url('procedures')}}" style="color: white"> Cancelar</a>
                 </button>
 
             </div>
