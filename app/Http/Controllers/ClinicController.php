@@ -35,6 +35,11 @@ class ClinicController extends Controller
         }
     }
 
+    public function show(Clinic $clinic)
+    {
+        return view('clinic.show', compact('clinic'));
+    }
+
     public function store(Request $request)
     {
         $input = $request->all();

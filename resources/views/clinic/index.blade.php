@@ -136,7 +136,7 @@
                                     Options &nbsp;<span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                    <li><a href="#">
+                                    <li><a href="{{route('clinic.show', $data->id)}}">
                                             <small><i class="fa fa-user fa-fw"></i>&nbsp; Perfil</small>
                                         </a></li>
                                     <li><a href="#">
