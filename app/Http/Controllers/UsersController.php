@@ -19,11 +19,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->isAdmin())
-            $users = User::all();
-        else
-            $users = User::where('clinic_id', Auth::user()->clinic_id);
-
+        $users = User::roleFilter()->get();
         return view('users.index', compact('users'));
     }
 
@@ -37,11 +33,7 @@ class UsersController extends Controller
     {
         $user = User::create($request->except('password_confirmation'));
         $user->roles()->sync($request->roles);
-        return redirect('users')->with(
-            [
-                'alert-type' => 'success',
-                'message' => 'User Created!'
-            ]);
+        return redirect('users')->with(['alert-type' => 'success', 'message' => 'User Created!']);
     }
 
     public function show(User $user)
@@ -65,21 +57,13 @@ class UsersController extends Controller
             $user->update($request->except('password', 'password_confirmation'));
 
         $user->roles()->sync($request->roles);
-        return redirect('users')->with(
-            [
-                'alert-type' => 'success',
-                'message' => 'User Updated!'
-            ]);
+        return redirect('users')->with(['alert-type' => 'success', 'message' => 'User Updated!']);
     }
 
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect('users')->with(
-            [
-                'alert-type' => 'success',
-                'message' => 'User Deleted!'
-            ]);
+        return redirect('users')->with(['alert-type' => 'success', 'message' => 'User Deleted!']);
     }
 
     /**

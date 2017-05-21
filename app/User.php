@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
@@ -141,5 +142,13 @@ class User extends Authenticatable
     public function fullName()
     {
         return (($this->gender == 0) ? 'Dr.' : 'Dra.') . ' ' . $this->last_name . ' ' . $this->first_name;
+    }
+
+    public function scopeRoleFilter($query)
+    {
+        $user = Auth::user();
+        if(!$user->isAdmin())
+            return $query->where('clinic_id', $user->clinic_id);
+        return $query;
     }
 }

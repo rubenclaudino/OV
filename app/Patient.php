@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Patient extends Model
 {
@@ -169,5 +170,13 @@ class Patient extends Model
     public function getEmailAttribute($value)
     {
         return ucfirst($value);
+    }
+
+    public function scopeRoleFilter($query)
+    {
+        $user = Auth::user();
+        if(!$user->isAdmin())
+            return $query->where('clinic_id', $user->clinic_id);
+        return $query;
     }
 }

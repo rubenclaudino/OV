@@ -23,11 +23,7 @@ class PatientsController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->isAdmin())
-            $patients = Patient::all()->sortBy('last_name');
-        else
-            $patients = Patient::where('clinic_id', Auth::user()->clinic_id->orderBy('last_name')->get());
-
+        $patients = Patient::roleFilter()->get()->sortBy('last_name');
         return view('patients.index', compact('patients'));
     }
 
