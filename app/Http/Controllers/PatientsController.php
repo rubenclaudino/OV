@@ -33,30 +33,7 @@ class PatientsController extends Controller
 
     public function create()
     {
-        $professionals = [];
-        $diseases = Disease::all();
-
-        foreach ($diseases as $data) {
-            $data->value = "0";
-            $data->action = false;
-        }
-
-        $dentist = Role::where('name', 'dentist')->first()->users()->where('clinic_id', Auth::user()->clinic_id)->get();
-
-        foreach ($dentist as $data) {
-            $name = $data->first_name . " " . $data->last_name;
-            $professionals[$data->id] = $name;
-        }
-
-        $treatments = Specialty::orderBy('name')->pluck('name', 'id');
-        $referrals = Referral::pluck('name', 'id');
-        $clinic_dental_plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->pluck('title', 'id');
-
-        $clinics = Clinic::pluck('name', 'id');
-
-        $cities = City::pluck('name', 'id');
-        $states = State::pluck('abbreviation', 'id');
-
+        list($professionals, $diseases, $treatments, $referrals, $clinic_dental_plans, $clinics, $cities, $states) = $this->import_related_models();
         return view('patients.create', compact('clinics', 'diseases', 'professionals',
             'treatments', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
     }
@@ -85,17 +62,8 @@ class PatientsController extends Controller
                     PatientDentalPlan::create($new);
                 }
         */
-        if ($request->hasFile('patient_profile_image')) {
-            if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
-                mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
-            }
-            if (!file_exists('uploads/' . Auth::user()->clinic_id . "/patients/profile/" . $patient->id)) {
-                mkdir('uploads/' . $patient->clinic_id . "/patients/profile/" . $patient->id, 0755, true);
-            }
-            $url = $this->upload($request->patient_profile_image, Auth::user()->clinic_id . "/patients/profile/" . $patient->id);
-            $patient->patient_profile_image = $url;
-            $patient->save();
-        }
+
+        $this->upload_image($request, $patient);
 
         return redirect('patients')->with(
             [
@@ -186,6 +154,8 @@ class PatientsController extends Controller
             PatientDentalPlan::where('patient_id', $patient->id)->update($request->patient_dental_plans);
         }
 
+        $this->upload_image($request, $patient);
+
         return redirect('patients')->with(
             [
                 'alert-type' => 'success',
@@ -255,20 +225,6 @@ class PatientsController extends Controller
         return $patients;
     }
 
-    public function upload($file, $id)
-    {
-        // getting all of the post data
-        $destinationPath = 'uploads/' . $id; // upload path
-        if (!file_exists('uploads/' . $id)) {
-            mkdir('uploads/' . $id, 0755, true);
-        }
-        $extension = $file->getClientOriginalExtension(); // getting image extension
-        $fileName = rand(11111, 99999) . '.' . $extension; // renameing image
-        $file->move($destinationPath, $fileName); // uploading file to given path
-        // sending back with message
-        return 'uploads/' . $id . "/" . $fileName;
-    }
-
     /**
      * PATIENT STATS
      **/
@@ -296,6 +252,69 @@ class PatientsController extends Controller
         // getting all roles
 
         return view('patients.stats', compact('title', 'subtitle', 'patients'));
+    }
+
+    private function upload_image(PatientValidationRequest $request, $patient)
+    {
+        if ($request->hasFile('patient_profile_image')) {
+            if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
+                mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
+            }
+            if (!file_exists('uploads/' . Auth::user()->clinic_id . "/patients/profile/" . $patient->id)) {
+                mkdir('uploads/' . $patient->clinic_id . "/patients/profile/" . $patient->id, 0755, true);
+            }
+            $url = $this->upload($request->patient_profile_image, Auth::user()->clinic_id . "/patients/profile/" . $patient->id);
+            $patient->patient_profile_image = $url;
+            $patient->save();
+        }
+    }
+
+    private function upload($file, $id)
+    {
+        // getting all of the post data
+        $destinationPath = 'uploads/' . $id; // upload path
+        if (!file_exists('uploads/' . $id)) {
+            mkdir('uploads/' . $id, 0755, true);
+        }
+        $extension = $file->getClientOriginalExtension(); // getting image extension
+        $fileName = rand(11111, 99999) . '.' . $extension; // renameing image
+        $file->move($destinationPath, $fileName); // uploading file to given path
+        // sending back with message
+        return 'uploads/' . $id . "/" . $fileName;
+    }
+
+    /**
+     * @return array
+     */
+    public function import_related_models()
+    {
+        $professionals = [];
+        $diseases = disease::all();
+
+        foreach ($diseases as $data) {
+            $data->value = "0";
+            $data->action = false;
+        }
+
+        $dentist = User::whereHas('roles', function ($query) {
+            $query->where('name', 'dentist');
+        })->where('clinic_id', Auth::user()->clinic_id)->get();
+
+        foreach ($dentist as $data) {
+            $name = $data->first_name . " " . $data->last_name;
+            $professionals[$data->id] = $name;
+        }
+
+
+        $treatments = specialty::orderby('name')->pluck('name', 'id');
+        $referrals = referral::pluck('name', 'id');
+        $clinic_dental_plans = clinicdentalplan::where('clinic_id', auth::user()->clinic_id)->pluck('title', 'id');
+
+        $clinics = clinic::pluck('name', 'id');
+
+        $cities = city::pluck('name', 'id');
+        $states = state::pluck('abbreviation', 'id');
+        return array($professionals, $diseases, $treatments, $referrals, $clinic_dental_plans, $clinics, $cities, $states);
     }
 
 }

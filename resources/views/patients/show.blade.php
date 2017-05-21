@@ -25,7 +25,7 @@
                                 <div class="fileupload-new thumbnail"
                                      style="border: white 1px solid;border-radius: 1px;padding-top:15px; width: 150px;">
                                     @if($patient->patient_profile_image != '')
-                                        <img src="{{ url('/')}}/{{$patient->patient_profile_image }}"
+                                        <img src="{{ url('/' . $patient->patient_profile_image) }}"
                                              alt="{{ $patient->first_name }} {{ $patient->last_name }}">
                                     @else
                                         <img src="http://placehold.it/130xx130"

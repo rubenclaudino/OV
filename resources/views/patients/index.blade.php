@@ -2,14 +2,6 @@
 @section('title', 'Pacientes')
 @section('content')
 
-    <style>
-        .image_cont {
-            width: 30px;
-            height: 30px;
-            overflow: hidden;
-        }
-    </style>
-
     <!-- start: DIV -->
     <div style="margin: 15px 2px">
 
@@ -77,17 +69,15 @@
                                 <!-- PROFILE PICTURE -->
                                 <td>
                                     <div class="hidden-print">
-                                        <div class="image_cont" style="opacity: 0.7">
-                                            @if($patient->patient_profile_image != '')
-                                                {{ Html::image(url('/' . $patient->patient_profile_image), '', ['width' => 30, 'height' => 30]) }}
+                                        @if($patient->patient_profile_image != '')
+                                            {{ Html::image(url('/' . $patient->patient_profile_image), '', ['width' => 30, 'height' => 30]) }}
+                                        @else
+                                            @if($patient->gender == '1')
+                                                {{ Html::image(url('/images/user/female.png'), '', ['width' => 30, 'height' => 30]) }}
                                             @else
-                                                @if($patient->gender == '1')
-                                                    {{ Html::image(url('/images/user/female.png'), '', ['width' => 30, 'height' => 30]) }}
-                                                @else
-                                                    {{ Html::image(url('/images/user/male.png'), '', ['width' => 30, 'height' => 30]) }}
-                                                @endif
+                                                {{ Html::image(url('/images/user/male.png'), '', ['width' => 30, 'height' => 30]) }}
                                             @endif
-                                        </div>
+                                        @endif
                                     </div>
                                 </td>
                                 <!-- FULL NAME -->
@@ -108,32 +98,33 @@
                                 <!-- SPECIALTIES -->
                                 <td>
                                     @foreach($patient->specialties as $specialty)
-                                        <label class="label label-warning"
-                                               style="background: #{{$specialty->color}} !important;opacity: 0.7;">{{ $specialty->name }}</label>
+                                        <label class="label"
+                                               style="background: {{$specialty->color}} ">{{ $specialty->name }}</label>
                                     @endforeach
                                 </td>
                                 <!-- DENTAL PLAN -->
                                 <td>
                                     @if(count($patient->patient_dental_plans))
-                                        @isset($patient->patient_dental_plans->first()->clinic_dental_plan->title)
-                                            {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
-                                        @endisset
+                                        {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
                                     @else
                                         Particular
                                     @endif
                                 </td>
-                                <!-- VIP / WHEELCHAIR -->
-                                <td class="hidden">
-                                    @if($patient->vip == 1)<label class="label label-warning tooltips"
-                                                                  data-title="Paciente Importante"
-                                                                  data-placement="bottom"
-                                                                  style="background: gold !important;opacity: 0.6;letter-spacing: 1px">VIP</label>@endif
-                                    @if($patient->wheel_chair == 1)<label class="label label-info tooltips hidden-print"
-                                                                          data-title="Paciente Cadeirante"
-                                                                          data-placement="bottom" style="opacity: 0.6;"><i
-                                                class="fa fa-wheelchair"></i></label>@endif
-                                </td>
-                                <!-- start: OPTIONS -->
+
+                            {{--
+                            <!-- VIP / WHEELCHAIR -->
+                            <td>
+                                @if($patient->vip == 1)<label class="label label-warning tooltips"
+                                                              data-title="Paciente Importante"
+                                                              data-placement="bottom"
+                                                              style="background: gold !important;opacity: 0.6;letter-spacing: 1px">VIP</label>@endif
+                                @if($patient->wheel_chair == 1)<label class="label label-info tooltips hidden-print"
+                                                                      data-title="Paciente Cadeirante"
+                                                                      data-placement="bottom" style="opacity: 0.6;"><i
+                                            class="fa fa-wheelchair"></i></label>@endif
+                            </td>
+                            --}}
+                            <!-- start: OPTIONS -->
                                 <td class="hidden-print">
                                     <div class="btn-group pull-right">
                                         <button type="button" class="btn btn-sm btn-primary dropdown-toggle"
@@ -142,10 +133,10 @@
                                             Opções &nbsp;<span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                            <li><a href="{{ URL::route('patients.show', $patient->id) }}">
+                                            <li><a href="{{ route('patients.show', $patient->id) }}">
                                                     <small><i class="fa fa-user fa-fw"></i> &nbsp;Perfil</small>
                                                 </a></li>
-                                            <li><a href="{{ URL::route('patients.edit', $patient->id) }}">
+                                            <li><a href="{{ route('patients.edit', $patient->id) }}">
                                                     <small><i class="fa fa-pencil fa-fw"></i> &nbsp;Editar</small>
                                                 </a></li>
                                             <li class="divider"></li>

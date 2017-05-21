@@ -29,11 +29,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        $clinics = Clinic::pluck('name', 'id');
-        $roles = Role::pluck('display_name', 'id');
-        $states = State::pluck('name', 'id');
-        $cities = City::pluck('name', 'id');
-
+        list($clinics, $roles, $states, $cities) = $this->import_related_models();
         return view('users.create', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
 
@@ -50,19 +46,13 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        $clinics = Clinic::pluck('name', 'id');
-        $roles = Role::pluck('display_name', 'id');
-        $states = State::pluck('name', 'id');
-        $cities = City::pluck('name', 'id');
+        list($clinics, $roles, $states, $cities) = $this->import_related_models();
         return view('users.show', compact('user', 'clinics', 'states', 'cities', 'roles'));
     }
 
     public function edit(User $user)
     {
-        $clinics = Clinic::pluck('name', 'id');
-        $roles = Role::pluck('display_name', 'id');
-        $states = State::pluck('name', 'id');
-        $cities = City::pluck('name', 'id');
+        list($clinics, $roles, $states, $cities) = $this->import_related_models();
         $user_roles = $user->roles->pluck('id')->toArray();
         return view('users.edit', compact('user', 'clinics', 'states', 'cities', 'roles', 'user_roles'));
     }
@@ -85,7 +75,11 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect('users')->with('status', 'User Deleted!');
+        return redirect('users')->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'User Deleted!'
+            ]);
     }
 
     /**
@@ -120,6 +114,15 @@ class UsersController extends Controller
             }
         }
         exit;
+    }
+
+    private function import_related_models()
+    {
+        $clinics = Clinic::roleFilter()->pluck('name', 'id');
+        $roles = Role::roleFilter()->pluck('display_name', 'id');
+        $states = State::pluck('name', 'id');
+        $cities = City::pluck('name', 'id');
+        return array($clinics, $roles, $states, $cities);
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Clinic extends Model
 {
@@ -41,5 +42,13 @@ class Clinic extends Model
     public function subscription()
     {
         return $this->belongsTo('App\Subscription');
+    }
+
+    public function scopeRoleFilter($query)
+    {
+        $user = Auth::user();
+        if(!$user->isAdmin())
+            return $query->where('id', $user->clinic_id);
+        return $query;
     }
 }
