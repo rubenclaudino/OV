@@ -90,7 +90,7 @@
                                 <!-- PROFESSIONAL - DENTIST -->
                                 <td>
                                     @if(isset($patient->user))
-                                        {{ $patient->user->Fullname() }}
+                                        {{ $patient->user->full_name }}
                                     @else
                                         Clínica
                                     @endif
