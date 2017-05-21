@@ -89,14 +89,14 @@ class Patient extends Model
         $this->attributes['last_name'] = ucfirst($value);
     }
 
-    public function cities()
+    public function city()
     {
-        return $this->hasOne('App\City');
+        return $this->belongsTo('App\City');
     }
 
-    public function states()
+    public function state()
     {
-        return $this->hasOne('App\State');
+        return $this->belongsTo('App\State');
     }
 
 // public function getPhone1Attribute($value)

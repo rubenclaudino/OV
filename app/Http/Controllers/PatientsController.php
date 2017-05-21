@@ -29,9 +29,9 @@ class PatientsController extends Controller
 
     public function create()
     {
-        list($professionals, $diseases, $treatments, $referrals, $clinic_dental_plans, $clinics, $cities, $states) = $this->import_related_models();
+        list($professionals, $diseases, $specialties, $referrals, $clinic_dental_plans, $clinics, $cities, $states) = $this->import_related_models();
         return view('patients.create', compact('clinics', 'diseases', 'professionals',
-            'treatments', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
+            'specialties', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
     }
 
     public function store(PatientValidationRequest $request)
@@ -68,78 +68,18 @@ class PatientsController extends Controller
             ]);
     }
 
-    public function show($id)
+    public function show(Patient $patient)
     {
-        $patient = Patient::with('patient_dental_plans')->find($id);
         $appointments = Appointment::where('patient_id', $patient->id)->orderBy('starttimestamp', 'desc')->get();
-
-        // TODO: filter by patient
-        $missedAppointments = Appointment::with('status')->get()->where('status', '3')->count();
-
-        $cities = City::pluck('name', 'id');
-        $states = State::pluck('abbreviation', 'id');
-
-        return view('patients.show', compact('patient', 'appointments', 'missedAppointments', 'states', 'cities'));
+        return view('patients.show', compact('patient', 'appointments'));
     }
 
-    public function edit($id)
+    public function edit(Patient $patient)
     {
-        $patient = Patient::with('patient_dental_plans')->find($id);
-
-        $professionals = [];
-        $diseases = Disease::all();
-
-        foreach ($diseases as $data) {
-            $data->value = "0";
-            $data->action = false;
-        }
-
-        $dentist = Role::where('name', 'dentist')->first()->users()->get();
-        foreach ($dentist as $data) {
-            $name = $data->first_name . " " . $data->last_name;
-            $professionals[$data->id] = $name;
-        }
-
-        $treatments = Specialty::orderBy('name')->pluck('name', 'id');
-        $referrals = Referral::pluck('name', 'id');
-        $clinic_dental_plans = ClinicDentalPlan::pluck('title', 'id');
-
-        $clinics = Clinic::pluck('name', 'id');
-
-        // TODO: filter by patient clinic
-        /*$dentist = Role::where('name', 'dentist')->first()->users()->get();
-        $professionals = [];
-
-        $disease = Disease::all();
-
-        foreach ($disease as $data) {
-            $patientDisease = $patient->diseases();
-            if (isset($patientDisease->id)) {
-                if ($patientDisease->status == "1") {
-                    $data->value = "1";
-                    $data->action = true;
-                } else {
-                    $data->value = "0";
-                    $data->action = false;
-                };
-            } else {
-                $data->value = "0";
-                $data->action = false;
-            }
-        }
-
-        foreach ($dentist as $data) {
-            $name = $data->first_name . " " . $data->last_name;
-            $professionals[$data->id] = $name;
-        }
-
-        $procedures = Specialty::pluck('name', 'id');*/
-
-        $cities = City::pluck('name', 'id');
-        $states = State::pluck('abbreviation', 'id');
+        list($professionals, $diseases, $specialties, $referrals, $clinic_dental_plans, $clinics, $cities, $states) = $this->import_related_models();
 
         return view('patients.edit', compact('patient', 'professionals',
-            'disease', 'patientDisease', 'treatments', 'referrals', 'clinic_dental_plans', 'clinics', 'diseases', 'states', 'cities'));
+            'specialties', 'referrals', 'clinic_dental_plans', 'clinics', 'diseases', 'states', 'cities'));
     }
 
     public function update(PatientValidationRequest $request, Patient $patient)
@@ -284,7 +224,7 @@ class PatientsController extends Controller
      */
     public function import_related_models()
     {
-        $diseases = disease::all();
+        $diseases = Disease::all();
 
         foreach ($diseases as $data) {
             $data->value = "0";
@@ -295,15 +235,14 @@ class PatientsController extends Controller
             $query->where('name', 'dentist');
         })->where('clinic_id', Auth::user()->clinic_id)->get()->pluck('full_name', 'id');
 
-        $treatments = specialty::orderby('name')->pluck('name', 'id');
-        $referrals = referral::pluck('name', 'id');
-        $clinic_dental_plans = clinicdentalplan::where('clinic_id', auth::user()->clinic_id)->pluck('title', 'id');
+        $specialties = Specialty::orderBy('name')->pluck('name', 'id');
+        $referrals = Referral::pluck('name', 'id');
+        $clinic_dental_plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->pluck('title', 'id');
+        $clinics = Clinic::roleFilter()->pluck('name', 'id');
+        $cities = City::pluck('name', 'id');
+        $states = State::pluck('abbreviation', 'id');
 
-        $clinics = clinic::pluck('name', 'id');
-
-        $cities = city::pluck('name', 'id');
-        $states = state::pluck('abbreviation', 'id');
-        return array($professionals, $diseases, $treatments, $referrals, $clinic_dental_plans, $clinics, $cities, $states);
+        return array($professionals, $diseases, $specialties, $referrals, $clinic_dental_plans, $clinics, $cities, $states);
     }
 
 }

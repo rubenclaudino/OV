@@ -105,14 +105,10 @@
 
                                 <!-- start: ADDRESS -->
                                 <h5>
-                                    @isset($patient->address)
-                                        <i class="fa fa-map-marker fa-fw"></i>
-                                        &nbsp;{{ $patient->address }} {{ $patient->street_number }}
-                                        , {{ $patient->borough }}
-                                        , {{ $cities[$patient->city_id] }} {{ $states[$patient->state_id] }}
-                                        @else
-                                            <h5><i class="fa fa-map-marker fa-fw"></i> &nbsp; -</h5>
-                                            @endisset
+                                    <i class="fa fa-map-marker fa-fw"></i>
+                                    &nbsp;{{ $patient->address }} {{ $patient->street_number }},
+                                    {{ $patient->borough }},
+                                    {{ $patient->city->name }} {{ $patient->state->name }}
                                 </h5>
                                 <!-- end: ADDRESS -->
 
