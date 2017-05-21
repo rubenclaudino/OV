@@ -284,7 +284,6 @@ class PatientsController extends Controller
      */
     public function import_related_models()
     {
-        $professionals = [];
         $diseases = disease::all();
 
         foreach ($diseases as $data) {
@@ -292,15 +291,9 @@ class PatientsController extends Controller
             $data->action = false;
         }
 
-        $dentist = User::whereHas('roles', function ($query) {
+        $professionals = User::whereHas('roles', function ($query) {
             $query->where('name', 'dentist');
-        })->where('clinic_id', Auth::user()->clinic_id)->get();
-
-        foreach ($dentist as $data) {
-            $name = $data->first_name . " " . $data->last_name;
-            $professionals[$data->id] = $name;
-        }
-
+        })->where('clinic_id', Auth::user()->clinic_id)->get()->pluck('full_name', 'id');
 
         $treatments = specialty::orderby('name')->pluck('name', 'id');
         $referrals = referral::pluck('name', 'id');

@@ -104,7 +104,7 @@
                                 @endif
                                         " class="img-circle" alt=""> <span
                                         class="username hidden-xs" style="margin-right: 0px">
-								&nbsp;{{Auth::user()->fullName()}}
+								&nbsp;{{Auth::user()->full_name}}
 							</span> <i class="fa fa-caret-down "></i>
                             </a>
                             <ul class="dropdown-menu dropdown-dark">

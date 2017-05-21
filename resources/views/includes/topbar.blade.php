@@ -4,7 +4,11 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2>My Info</h2>
                     <address class="margin-bottom-40">
-                        {{Auth::user()->name}}
+                        @if(Auth::user()->hasRole(['dentist']))
+                            {{ Auth::user()->doctor_full_name }}
+                        @else
+                            {{ Auth::user()->full_name }}
+                        @endif
                         <br>
                         Email:
                         <a href="mailto:{{Auth::user()->email}}">

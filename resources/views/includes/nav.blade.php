@@ -27,11 +27,7 @@
                                 </h5>
                                 <!-- end: DEPENDING HOUR SEND GOOD MORNING - GOOD AFTERNOON - GOOD NIGHT -->
                                 <h4>
-                                    @if(Auth::user()->cro != "")
-                                        {{ Auth::user()->fullName() }}
-                                    @else
-                                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
-                                    @endif
+                                    {{ Auth::user()->full_name }}
                                 </h4>
 
                                 <a class="btn user-options sb_toggle hide" data-toggle="tooltip" data-placement="bottom"
@@ -120,7 +116,7 @@
                     </ul>
                 </li>
                 @endrole
-                <!-- end: TREATMENTS -->
+            <!-- end: TREATMENTS -->
 
                 <!-- start: DENTAL PLANS -->
                 <li class="@if(\Route::current()->getName() == 'dentalplans.index') {{'active'}}@endif">
@@ -161,7 +157,7 @@
                     </ul>
                 </li>
                 @endrole
-                <!-- end: PERMISSION SETTINGS -->
+            <!-- end: PERMISSION SETTINGS -->
 
                 <!-- start: STOCK CONTROL -->
                 @role('admin')
@@ -177,7 +173,7 @@
                                 class="title"> Consultoria </span></a>
                 </li>
                 @endrole
-                <!-- end: CONSULTATION -->
+            <!-- end: CONSULTATION -->
 
                 <!-- start: CONTACTS -->
                 <li class="@if(\Route::current()->getName() == 'contacts.index') {{'active'}}@endif">

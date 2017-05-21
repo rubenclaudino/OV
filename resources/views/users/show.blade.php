@@ -1,6 +1,6 @@
 @extends('layouts.page')
 @section('title')
-    {{$user->fullName()}}
+    {{$user->full_name}}
 @endsection
 @section('content')
 
@@ -61,7 +61,7 @@
 
                                             <h2 class="light_black"
                                                 style="margin-top:10px;margin-bottom:5px;font-weight: lighter;opacity: 0.8;text-align:left;float:left;">
-                                                {{ $user->Fullname() }}
+                                                {{ $user->full_name }}
                                             </h2>
 
                                         </div>

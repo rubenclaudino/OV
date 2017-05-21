@@ -139,15 +139,18 @@ class User extends Authenticatable
         return ucfirst($value);
     }
 
-    public function fullName()
+    public function getFullNameAttribute()
     {
-        return (($this->gender == 0) ? 'Dr.' : 'Dra.') . ' ' . $this->last_name . ' ' . $this->first_name;
+        if (Auth::user()->hasRole('dentist'))
+            return (($this->gender == 0) ? 'Dr.' : 'Dra.') . ' ' . $this->last_name . ' ' . $this->first_name;
+        else
+            return $this->last_name . ' ' . $this->first_name;
     }
 
     public function scopeRoleFilter($query)
     {
         $user = Auth::user();
-        if(!$user->isAdmin())
+        if (!$user->isAdmin())
             return $query->where('clinic_id', $user->clinic_id);
         return $query;
     }
