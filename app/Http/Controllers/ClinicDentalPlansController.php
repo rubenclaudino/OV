@@ -55,7 +55,7 @@ class ClinicDentalPlansController extends Controller
         $id = 0;
 
         foreach ($plan->appointments as $appointment) {
-            $users[$id]['fullName'] = $appointment->user->fullName();
+            $users[$id]['fullName'] = $appointment->user->getFullNameAttribute();
             $users[$id]['appointment_count'] = $appointment->user->appointments->count();
             $id++;
         }

@@ -90,7 +90,7 @@
                                 <!-- PROFESSIONAL - DENTIST -->
                                 <td>
                                     @if(isset($patient->user))
-                                        {{ $patient->user->full_name }}
+                                        {{ $patient->user->getFullNameAttribute() }}
                                     @else
                                         Clínica
                                     @endif
@@ -147,16 +147,23 @@
                                     </div>
                                 </td>
                                 <!-- end: OPTIONS -->
+
                             </tr>
                         @endforeach
+
                     @endif
+
                     </tbody>
+
                 </table>
                 <!-- end: PATIENT TABLE -->
+
             </div>
             <!-- end: PANEL BODY -->
+
         </div>
         <!-- end: PANEL -->
+
     </div>
     <!-- end: DIV -->
 

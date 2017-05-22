@@ -27,7 +27,7 @@
                                 <h2 class="light_black"
                                     style="margin-top:10px;margin-bottom:5px;font-weight: lighter;opacity: 0.8;text-align:left;float:left;">
                                     {{ $plan->title }}&nbsp;
-                                    <small>{{ $plan->ans_code }}</small>
+                                    <small>({{ $plan->ans_code }})</small>
                                 </h2>
 
                             </div>
@@ -69,7 +69,7 @@
                                     @isset ($plan->phone_1)
                                         <i class="fa fa-mobile fa-fw"></i>&nbsp; {{ $plan->phone_1 }}
                                         @else
-                                            <i class="fa fa-mobile fa-fw"></i> &nbsp; -
+                                            <i class="fa fa-phone fa-fw"></i> &nbsp; -
                                             @endisset
                                             @isset ($plan->whatsapp_number)
                                                 <i class="fa fa-whatsapp fa-fw"></i>
@@ -81,7 +81,7 @@
                                 <!-- start: ADDRESS -->
                                 <h5>
                                     @isset($plan->url)
-                                        <i class="fa fa-info fa-fw"></i>
+                                        <i class="fa fa-globe fa-fw"></i>
                                         &nbsp;<a href="{{ $plan->url }}" target="_blank">{{ $plan->url }}</a>
                                         @else
                                             <h5><i class="fa fa-info fa-fw"></i> &nbsp; -</h5>
@@ -301,7 +301,7 @@
                             <tr>
                                 <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
                                 <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
-                                <td> {{ $appointment->user->fullName() }}</td>
+                                <td> {{ $appointment->user->getFullNameAttribute() }}</td>
                                 <td>{{ $appointment->patient->first_name }}  {{ $appointment->patient->last_name }}</td>
                                 <td>
                                     @if( $appointment->status->id == 1 )

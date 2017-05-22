@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Clinic;
 use App\User;
+use App\Role;
+use App\State;
+use App\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -37,7 +40,8 @@ class ClinicController extends Controller
 
     public function show(Clinic $clinic)
     {
-        return view('clinic.show', compact('clinic'));
+        list($users, $roles, $states, $cities) = $this->import_related_models();
+        return view('clinic.show', compact('clinic', 'users', 'roles', 'states', 'cities'));
     }
 
     public function store(Request $request)
@@ -93,6 +97,15 @@ class ClinicController extends Controller
         $file->move($destinationPath, $fileName); // uploading file to given path
         // sending back with message
         return 'uploads/' . $id . "/" . $fileName;
+    }
+
+    private function import_related_models()
+    {
+        $users = User::roleFilter()->pluck('first_name', 'id');
+        $roles = Role::roleFilter()->pluck('display_name', 'id');
+        $states = State::pluck('name', 'id');
+        $cities = City::pluck('name', 'id');
+        return array($users, $roles, $states, $cities);
     }
 
 }

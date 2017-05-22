@@ -29,7 +29,7 @@
                                              alt="{{ $patient->first_name }} {{ $patient->last_name }}">
                                     @else
                                         <img src="http://placehold.it/130xx130"
-                                             style="border-radius:100px;">
+                                             style="border-radius:0px;">
                                     @endif
                                 </div>
 
@@ -86,8 +86,8 @@
 
                                 <!-- start: SPEACIAL TAGS INFO -->
                                 <p>
-                                    @if($patient->specialty)
-                                        @foreach($patient->specialty as $specialty)
+                                    @if($patient->specialties)
+                                        @foreach($patient->specialties as $specialty)
                                             <label class="label label-warning"
                                                    style="background: #{{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
                                         @endforeach
@@ -108,24 +108,24 @@
                                     <i class="fa fa-map-marker fa-fw"></i>
                                     &nbsp;{{ $patient->address }} {{ $patient->street_number }},
                                     {{ $patient->borough }},
-                                    {{ $patient->city->name }} {{ $patient->state->name }}
+                                    {{ $patient->city->name }} {{ $patient->state->abbreviation }}
                                 </h5>
                                 <!-- end: ADDRESS -->
 
                                 <!-- start: PHONE -->
                                 <h5>
                                     @isset ($patient->phone_landline)
-                                        <i class="fa fa-phone fa-fw"></i>&nbsp; {{ $patient->phone_landline }}
-                                        &nbsp;@endisset
+                                    <i class="fa fa-phone fa-fw"></i>&nbsp; {{ $patient->phone_landline }}
+                                    &nbsp;@endisset
                                     @isset ($patient->phone_1)
-                                        <i class="fa fa-mobile fa-fw"></i>&nbsp; {{ $patient->phone_1 }}
-                                        @else
-                                            <i class="fa fa-mobile fa-fw"></i> &nbsp; -
-                                            @endisset
-                                            @isset ($patient->whatsapp_number)
-                                                <i class="fa fa-whatsapp fa-fw"></i>
-                                                &nbsp; {{ $patient->whatsapp_number }}
-                                            @endisset
+                                    <i class="fa fa-mobile fa-fw"></i>&nbsp; {{ $patient->phone_1 }}
+                                    @else
+                                        <i class="fa fa-mobile fa-fw"></i> &nbsp; -
+                                        @endisset
+                                        @isset ($patient->whatsapp_number)
+                                        <i class="fa fa-whatsapp fa-fw"></i>
+                                        &nbsp; {{ $patient->whatsapp_number }}
+                                        @endisset
                                 </h5>
                                 <!-- end: PHONE -->
 
@@ -157,7 +157,7 @@
 
                          <!-- start: TOTAL APPOINTMENTS -->
                     <div class="col-lg-12 col-md-12">
-                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 10px; background: whitesmoke">
                               <i class="fa fa-calendar fa-fw"></i>
                                &nbsp;&nbsp;Agendamentos
                               <span class="pull-right"
@@ -169,11 +169,11 @@
 
                          <!-- start: TYPE PLAN -->
                     <div class="col-lg-12 col-md-12">
-                        <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
+                        <div class="panel panel-white" style="padding:10px; margin-top: 10px; background: whitesmoke">
                                <i class="fa fa-folder-o fa-fw"></i>&nbsp;&nbsp;
                             @if(count($patient->patient_dental_plans))
                                 @isset($patient->patient_dental_plans->first()->clinic_dental_plan->title)
-                                    {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                                {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
                                 @endisset
                             @else
                                 Particular
@@ -278,10 +278,10 @@
                                     </td>
                                     <td>
                                         @isset($patient->date_of_birth)
-                                            {{ date('d/m/Y', strtotime($patient->date_of_birth)) }}
-                                            @else
-                                                -
-                                                @endisset
+                                        {{ date('d/m/Y', strtotime($patient->date_of_birth)) }}
+                                        @else
+                                            -
+                                            @endisset
                                     </td>
                                 </tr>
                                 <tr>
@@ -290,10 +290,10 @@
                                     </td>
                                     <td>
                                         @isset($patient->CPF)
-                                            {{ $patient->CPF }}
-                                            @else
-                                                -
-                                                @endisset
+                                        {{ $patient->CPF }}
+                                        @else
+                                            -
+                                            @endisset
                                     </td>
                                 </tr>
                                 <tr>
@@ -302,10 +302,10 @@
                                     </td>
                                     <td>
                                         @isset($patient->RG)
-                                            {{ $patient->RG }}
-                                            @else
-                                                -
-                                                @endisset
+                                        {{ $patient->RG }}
+                                        @else
+                                            -
+                                            @endisset
                                     </td>
                                 </tr>
                                 <tr>
@@ -314,10 +314,10 @@
                                     </td>
                                     <td>
                                         @isset($patient->profession)
-                                            {{ $patient->profession }}
-                                            @else
-                                                -
-                                                @endisset
+                                        {{ $patient->profession }}
+                                        @else
+                                            -
+                                            @endisset
                                     </td>
                                 </tr>
                                 <tr>
@@ -326,10 +326,10 @@
                                     </td>
                                     <td>
                                         @isset($patient->maritial_status)
-                                            {{ $patient->maritial_status }}
-                                            @else
-                                                -
-                                                @endisset
+                                        {{ $patient->maritial_status }}
+                                        @else
+                                            -
+                                            @endisset
                                     </td>
                                 </tr>
                                 <tr>
@@ -338,10 +338,10 @@
                                     </td>
                                     <td>
                                         @isset($patient->email)
-                                            {{ $patient->email }}
-                                            @else
-                                                -
-                                                @endisset
+                                        {{ $patient->email }}
+                                        @else
+                                            -
+                                            @endisset
                                     </td>
                                 </tr>
                                 <tr>
@@ -350,10 +350,10 @@
                                     </td>
                                     <td>
                                         @isset($patient->nationality)
-                                            {{ $patient->nationality }}
-                                            @else
-                                                -
-                                                @endisset
+                                        {{ $patient->nationality }}
+                                        @else
+                                            -
+                                            @endisset
                                     </td>
                                 </tr>
                                 </tbody>
@@ -369,7 +369,7 @@
                             <!-- start: DENTAL PLAN INFO -->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 
-                                <div class="panel panel-white accepted_plan">
+                                <div class="accepted_plan">
 
                                     <div class="panel-body" style="">
 
@@ -383,7 +383,7 @@
                                                 <td>
                                                     @if(count($patient->patient_dental_plans))
                                                         @isset($patient->patient_dental_plans->first()->clinic_dental_plan->title)
-                                                            {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                                                        {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
                                                         @endisset
                                                     @else
                                                         -
@@ -395,7 +395,7 @@
                                                 <td>
                                                     @if(count($patient->patient_dental_plans))
                                                         @isset($patient->patient_dental_plans->first()->exp_date)
-                                                            {{ $patient->patient_dental_plans->first()->exp_date }}
+                                                        {{ $patient->patient_dental_plans->first()->exp_date }}
                                                         @endisset
                                                     @else
                                                         -
@@ -410,7 +410,7 @@
                                                 <td>
                                                     @if(count($patient->patient_dental_plans))
                                                         @isset($patient->patient_dental_plans->first()->card_number)
-                                                            {{ $patient->patient_dental_plans->first()->card_number }}
+                                                        {{ $patient->patient_dental_plans->first()->card_number }}
                                                         @endisset
                                                     @else
                                                         -
@@ -423,7 +423,7 @@
                                                 <td>
                                                     @if(count($patient->patient_dental_plans))
                                                         @isset($patient->patient_dental_plans->first()->card_owner)
-                                                            {{ $patient->patient_dental_plans->first()->card_owner }}
+                                                        {{ $patient->patient_dental_plans->first()->card_owner }}
                                                         @endisset
                                                     @else
                                                         -
@@ -445,7 +445,7 @@
                             <!-- start: DEMOGRAPHICS -->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 
-                                <div class="panel panel-white accepted_plan">
+                                <div class="accepted_plan">
 
                                     <div class="panel-body">
 
@@ -458,10 +458,7 @@
                                                 </td>
                                                 <td>
                                                     @if(isset($patient->user))
-                                                        @if ($patient->user->gender == 0)
-                                                            <small>Dr.</small> @else
-                                                            <small>Dra.
-                                                            </small> @endif {{ $patient->user->first_name }} {{ $patient->user->last_name }}
+                                                        {{ $patient->user->getFullNameAttribute() }}
                                                     @else
                                                         Clínica
                                                     @endif
@@ -492,7 +489,7 @@
                             <!-- start: CONTACTS -->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 
-                                <div class="panel panel-white accepted_plan">
+                                <div class="accepted_plan">
 
                                     <div class="panel-body">
 
@@ -591,7 +588,7 @@
                                     </td>
                                     <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                     <td>
-                                        {{ $appointment->user->fullName() }}
+                                        {{ $appointment->user->getFullNameAttribute() }}
                                     </td>
                                     <td style="font-size:0.9em">
                                         <label class="label label-warning"
