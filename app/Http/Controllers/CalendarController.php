@@ -55,7 +55,7 @@ class CalendarController extends Controller
         $treatmentTypes = Specialty::pluck('name', 'id'); //TreatmentType::pluck('title', 'id');
         $treatments = Specialty::pluck('name', 'id')->toJson(); //TreatmentType::pluck('price', 'id')->toJson();
         $treatmentTypesWithPrice = Specialty::all(); // TreatmentType::all();
-        $dentalPlans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->orderBy('title')->pluck('title', 'id')->prepend('Não informado','');
+        $clinic_dental_plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->orderBy('title')->pluck('title', 'id')->prepend('Não informado','');
         $appointments = Appointment::where('user_id', $id)->where('clinic_id', $user->clinic_id)->with(['patient', 'status'])->get();
         $report_models = CustomReport::pluck('name', 'id');
         $specialties = Specialty::orderBy('name')->pluck('name', 'id');
@@ -63,6 +63,7 @@ class CalendarController extends Controller
 
         $calendarArray = array();
         if (!empty($appointments)) {
+
             foreach ($appointments as $data) {
                 $data->title = $data->patient->first_name . " " . $data->patient->last_name;
 
@@ -123,11 +124,9 @@ class CalendarController extends Controller
 
         $dentist_id = $user->id;
 
-        $clinic_dental_plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->pluck('title', 'id');
-
         $clinics = Clinic::pluck('name', 'id');
 
-        return view('calendar', compact('title', 'subtitle', 'activeClass', 'types', 'treatmentTypes', 'dentalPlans',
+        return view('calendar', compact('title', 'subtitle', 'activeClass', 'types', 'treatmentTypes',
             'calendarArray', 'professionals', 'dentist_id', 'treatmentTypesWithPrice', 'report_models', 'treatments', 'agendaSettings', 'specialties',
             'holidays', 'appointment_statuses', 'user' , 'clinics', 'clinic_dental_plans'));
     }

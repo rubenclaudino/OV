@@ -18,7 +18,7 @@
     <title>{{$title}} | Odontovision</title>
     @include('includes.stylesheets')
     <style>
-        .appt_count{
+        .appt_count {
             display: none !important;
         }
     </style>
@@ -65,9 +65,9 @@
 @include('includes.topbar')
 
 <div class="main-wrapper">
-    @include('includes.header')
-    @include('includes.nav')
-    <!--<div class="input-group">
+@include('includes.header')
+@include('includes.nav')
+<!--<div class="input-group">
         <input type="text" data-date-format="dd-mm-yyyy" data-date-viewmode="years" class="form-control date-picker">
         <span class="input-group-addon"> <i class="fa fa-calendar"></i> </span>
     </div> -->
@@ -145,7 +145,8 @@
 <script type="text/javascript"
         src="{{ url('/') }}/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="{{ url('/') }}/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+<script type="text/javascript"
+        src="{{ url('/') }}/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/plugins/truncate/jquery.truncate.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/plugins/summernote/dist/summernote.min.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/js/subview.js"></script>
@@ -231,9 +232,10 @@
         var setFullCalendarEvents = function () {
             var date = new Date();
             dateToShow = date;
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
+            /* REFACTOR
+             var d = date.getDate();
+             var m = date.getMonth();
+             var y = date.getFullYear();*/
 
             demoCalendar = $parsedArray;
         };
@@ -254,7 +256,7 @@
                 });
             });
 
-            $('#event-categories div.event-category').each(function () {
+            $('#event-categories').find('div.event-category').each(function () {
                 // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
                 // it doesn't need to have a start or end
                 var eventObject = {
@@ -273,15 +275,16 @@
             /* initialize the calendar
              -----------------------------------------------------------------*/
             var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
+            /* REFACTOR
+             var d = date.getDate();
+             var m = date.getMonth();
+             var y = date.getFullYear();*/
             var calEventDiff = 60;
             @if(isset($agendaSettings))
                 calEventDiff = {{ $agendaSettings->interval }};
             @else
                 calEventDiff = 15;
-            @endif;
+                    @endif
             var form = '';
             $('#full-calendar').fullCalendar({
                 dayRightclick: function (date, jsEvent, view) {
@@ -376,32 +379,33 @@
                 },
                 eventClick: function (calEvent, jsEvent, view) {
                     return false;
-                    if (calEvent.className[0] == 'holiday_event') {
-                        return false;
-                    }
-                    $("#contentAppointmentRightMenu").hide();
-                    dateToShow = calEvent.start;
-                    // $.subview({
-                    //      content: "#readFullEvent",
-                    //      startFrom: "right",
-                    //      onShow: function() {
-                    //          readFullEvents(calEvent._id);
-                    //      }
-                    // });
+                    /* REFACTOR
+                     if (calEvent.className[0] == 'holiday_event') {
+                     return false;
+                     }
+                     $("#contentAppointmentRightMenu").hide();
+                     dateToShow = calEvent.start;
+                     // $.subview({
+                     //      content: "#readFullEvent",
+                     //      startFrom: "right",
+                     //      onShow: function() {
+                     //          readFullEvents(calEvent._id);
+                     //      }
+                     // });
 
 
-                    // opening event
-                    subViewContent = "#newFullEvent";
-                    $.subview({
-                        content: subViewContent,
-                        onShow: function () {
-                            editFullEvent(calEvent._id);
-                        },
-                        onHide: function () {
-                            hideEditEvent();
-                        }
-                    });
-
+                     // opening event
+                     subViewContent = "#newFullEvent";
+                     $.subview({
+                     content: subViewContent,
+                     onShow: function () {
+                     editFullEvent(calEvent._id);
+                     },
+                     onHide: function () {
+                     hideEditEvent();
+                     }
+                     });
+                     */
 
                 },
                 eventDrop: function (event, delta, revertFunc) {
@@ -580,15 +584,14 @@
                     var calendar = $('#full-calendar').fullCalendar('getCalendar');
                     var view = calendar.view;
                     var start = moment(view.start._d).format('YYYY-MM-DD');
-                    var end = moment(view.end._d).format('YYYY-MM-DD');
 
-
+                    // REFACTOR
+                    //var end = moment(view.end._d).format('YYYY-MM-DD');
 
                     $("thead").find("[data-date='" + start + "']").append("");
 
 
-                    if (event.className[0] == 'holiday_event') {
-                    } else {
+                    if (event.className[0] != 'holiday_event') {
 
                         // checkif the appointment is booked by r
                         if (event.booked_by == 'receptionist') {
@@ -603,18 +606,18 @@
                         // }
                         var a = new Date(event.start).getTime(),
                             b = new Date(event.end).getTime(),
-                         diff = {};
+                            diff = {};
 
                         diff.milliseconds = a > b ? a % b : b % a;
                         diff.seconds = diff.milliseconds / 1000;
                         diff.minutes = diff.seconds / 60;
 
 
-                        element.find('.fc-content').attr("data-id",event.id);
+                        element.find('.fc-content').attr("data-id", event.id);
 
                         //element.find('.fc-time').append('<i class="fa fa-pencil" data-id="' + event.id + '"></i>');
                         element.find('.fc-time').prepend('<i class="fa fa-clock-o" data-id="' + event.id + '"></i>');
-                        if(diff.minutes == 15){
+                        if (diff.minutes == 15) {
                             element.find('.fc-time').hide();
                         }
                     }
@@ -792,6 +795,7 @@
                         $(".form-full-event .patient_telephone").val(demoCalendar[i].patient_telephone);
                         $(".form-full-event .patient_mobile").val(demoCalendar[i].patient_mobile);
                         $(".form-full-event .patientObservation").val(demoCalendar[i].patient_observation);
+                        $(".form-full-event .dental_plan").val(demoCalendar[i].clinic_dental_plan_id);
                         $(".form-full-event .all-day").bootstrapSwitch('state', demoCalendar[i].allDay);
                         $(".form-full-event .event-start-date").val(moment(demoCalendar[i].start));
                         $(".form-full-event .event-end-date").val(moment(demoCalendar[i].end));
@@ -929,6 +933,8 @@
                 });
             });
         };
+
+        /* REFACTOR
         var readFullEvents = function (el) {
 
             $(".edit-event").off().on("click", function () {
@@ -996,7 +1002,7 @@
             }
 
         };
-
+*/
         var runFullCalendarValidation = function (el) {
             var formEvent = $('.form-full-event');
             var errorHandler2 = $('.errorHandler', formEvent);
@@ -1288,9 +1294,9 @@
 <script type="text/javascript">
 
     // PICKDATE HEREEEEEEEEEEE ---
-    $(document).ready(function(){
-        $(".fc-center").after('<div class="input-group" style="position:relative;top: 10px;left:20px;width:13%;"><input type=text" class="form-control date-picker-custom">'+
-        '<span class="input-group-addon" style="float:none;"> <i class="fa fa-calendar"></i></span></div>');
+    $(document).ready(function () {
+        $(".fc-center").after('<div class="input-group" style="position:relative;top: 10px;left:20px;width:13%;"><input type=text" class="form-control date-picker-custom">' +
+            '<span class="input-group-addon" style="float:none;"> <i class="fa fa-calendar"></i></span></div>');
 
 
         $('.date-picker-custom').datepicker({

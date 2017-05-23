@@ -33,12 +33,12 @@ class Appointment extends Model
         return $this->belongsTo('App\AppointmentStatus', 'appointment_status_id', 'id');
     }
 
-    public function type()
+    public function appointment_type()
     {
         return $this->belongsTo('App\AppointmentType', 'appointment_type_id', 'id');
     }
 
-    public function plantype()
+    public function clinic_dental_plan()
     {
         return $this->belongsTo('App\ClinicDentalPlan', 'clinic_dental_plan_id', 'id');
     }

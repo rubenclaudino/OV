@@ -111,7 +111,7 @@
 
                                         <!-- start: DENTAL PLAN SELECT -->
                                         <div class="form-group">
-                                            {!! Form::select('clinic_dental_plan_id', $dentalPlans, 'Dental Plan',['class' => 'form-control dental_plan']) !!}
+                                            {!! Form::select('clinic_dental_plan_id', $clinic_dental_plans, 'Dental Plan',['class' => 'form-control dental_plan']) !!}
                                         </div>
                                         <!-- end: DENTAL PLAN SELECT -->
 
