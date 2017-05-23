@@ -99,7 +99,7 @@
                                 @role('admin')
                                 <td>{{ $user->clinic->name }}</td>
                                 @endrole
-                                <td>@if($user->gender == 0) Dr. @else Dra. @endif {{ $user->first_name }} {{ $user->last_name }}</td>
+                                <td>{{ $user->full_name }}</td>
                                 <td><a>{{ $user->email }}</a></td>
                                 <td>
                                     @foreach($user->roles as $role)
