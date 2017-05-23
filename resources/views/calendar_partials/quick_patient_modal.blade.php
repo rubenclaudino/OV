@@ -59,12 +59,14 @@
 
                 <!-- start: MODAL INTERACTIONS -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Voltar
-                    </button>
+
                     <button class="btn btn-success btn-save-createnew" type="submit">
                         Salvar Cadastro
                     </button>
+                    <button type="button" class="btn btn-grey" data-dismiss="modal">
+                        Voltar
+                    </button>
+
                 </div>
                 <!-- end: MODAL INTERACTIONS -->
 

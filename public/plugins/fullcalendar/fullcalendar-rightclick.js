@@ -24,7 +24,7 @@
                  if (eventElt.length) {
                      var seg = eventElt.data('fc-seg');
                      if ($.fullCalendar.version == "3.1.0") {
-                        $('#contentAppointmentRightMenu').css('top',ev.clientY);
+                        $('#contentAppointmentRightMenu').css('top',ev.clientY-45);
                         $('#contentAppointmentRightMenu').css('left',ev.clientX);
                          return that.publiclyTrigger('eventRightclick', this, seg.event, ev);
                      }

@@ -55,7 +55,7 @@ class CalendarController extends Controller
         $treatmentTypes = Specialty::pluck('name', 'id'); //TreatmentType::pluck('title', 'id');
         $treatments = Specialty::pluck('name', 'id')->toJson(); //TreatmentType::pluck('price', 'id')->toJson();
         $treatmentTypesWithPrice = Specialty::all(); // TreatmentType::all();
-        $dentalPlans = ClinicDentalPlan::orderBy('title')->pluck('title', 'id')->prepend('Não informado','');
+        $dentalPlans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->orderBy('title')->pluck('title', 'id')->prepend('Não informado','');
         $appointments = Appointment::where('user_id', $id)->where('clinic_id', $user->clinic_id)->with(['patient', 'status'])->get();
         $report_models = CustomReport::pluck('name', 'id');
         $specialties = Specialty::orderBy('name')->pluck('name', 'id');

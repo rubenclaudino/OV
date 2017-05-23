@@ -82,30 +82,43 @@
                                     </div>
                                 </div>
 
+                                <!-- start: APPOINTMENT INFORMATION -->
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <!-- <label>Appointment Status</label> -->
-                                            {!! Form::select('appointment_status_id', $appointment_statuses, 'Appointment Status',['class' => 'form-control appointment_type']) !!}
 
-                                        </div>
+                                    <div class="col-md-6">
+
+                                        <!-- start: APPOINTMENT STATUS SELECT -->
                                         <div class="form-group">
-                                            <!-- <label>Treatment Type</label> -->
+                                            {!! Form::select('appointment_status_id', $appointment_statuses, 'Appointment Status',['class' => 'form-control appointment_type']) !!}
+                                        </div>
+                                        <!-- end: APPOINTMENT STATUS SELECT -->
+
+                                        <!-- start: APPOINTMENT SPECIALTY SELECT -->
+                                        <div class="form-group">
                                             {!! Form::select('specialty_id', $specialties, 2,['class' => 'form-control treatment_type']) !!}
                                         </div>
+                                        <!-- end: APPOINTMENT SPECIALTY SELECT -->
+
                                     </div>
+
                                     <div class="col-md-6">
+
+                                        <!-- start: APPOINTMENT TYPE SELECT -->
                                         <div class="form-group">
-                                            <!-- <label>Appointment Type</label> -->
                                             {!! Form::select('appointment_type_id', $types, 'Appointment Type',['class' => 'form-control appointment_type']) !!}
                                         </div>
-                                        <div class="form-group">
-                                            <!-- <label>Dental Plan</label> -->
-                                            {!! Form::select('clinic_dental_plan_id', $dentalPlans, 'Dental Plan',['class' => 'form-control dental_plan']) !!}
+                                        <!-- end: APPOINTMENT TYPE SELECT -->
 
+                                        <!-- start: DENTAL PLAN SELECT -->
+                                        <div class="form-group">
+                                            {!! Form::select('clinic_dental_plan_id', $dentalPlans, 'Dental Plan',['class' => 'form-control dental_plan']) !!}
                                         </div>
+                                        <!-- end: DENTAL PLAN SELECT -->
+
                                     </div>
+
                                 </div>
+                                <!-- end: APPOINTMENT INFORMATION -->
 
                             </div>
 

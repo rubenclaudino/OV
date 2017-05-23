@@ -145,6 +145,7 @@
 <script type="text/javascript"
         src="{{ url('/') }}/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="{{ url('/') }}/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/plugins/truncate/jquery.truncate.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/plugins/summernote/dist/summernote.min.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/js/subview.js"></script>
@@ -1293,7 +1294,8 @@
 
 
         $('.date-picker-custom').datepicker({
-            autoclose: true
+            autoclose: true,
+            language: 'pt-BR'
         }).on("changeDate", function (e) {
             var d = new Date($(this).val());
             $('#full-calendar').fullCalendar('gotoDate', d);
