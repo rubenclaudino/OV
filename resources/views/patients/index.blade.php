@@ -20,13 +20,18 @@
                 <div class="col-lg-6 col-md-6" style="margin-top: 30px">
                     <div class="pull-right">
 
+                        <a class="btn" href="{{ route('patients.create') }}"
+                           style="background: whitesmoke">
+                            <i class="fa fa-user fa-fw"></i> Novo Paciente
+                        </a>
+
                         <a class="btn" href="#"
                            style="background: whitesmoke">
-                            <i class="fa fa-filter"></i> Filtros
+                            <i class="fa fa-filter fa-fw"></i> Filtros
                         </a>
 
                         <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
-                            <i class="fa fa-print"></i> Imprimir
+                            <i class="fa fa-print fa-fw"></i> Imprimir
                         </a>
                     </div>
                 </div>
@@ -39,7 +44,7 @@
             <div class="panel-body">
 
                 <!-- start: PATIENT TABLE -->
-                <table class="table table-hover table-condensed {{--datatable--}}" id="mainInfo">
+                <table class="table table-hover table-condensed" id="mainInfo">
 
                     <!-- start: COLUMN INFORMATION -->
                     <thead style="background: whitesmoke">
@@ -90,7 +95,7 @@
                                 <!-- PROFESSIONAL - DENTIST -->
                                 <td>
                                     @if(isset($patient->user))
-                                        {{ $patient->user->getFullNameAttribute() }}
+                                        {{ $patient->user->fullName }}
                                     @else
                                         Clínica
                                     @endif
@@ -110,20 +115,6 @@
                                         Particular
                                     @endif
                                 </td>
-
-                            {{--
-                            <!-- VIP / WHEELCHAIR -->
-                            <td>
-                                @if($patient->vip == 1)<label class="label label-warning tooltips"
-                                                              data-title="Paciente Importante"
-                                                              data-placement="bottom"
-                                                              style="background: gold !important;opacity: 0.6;letter-spacing: 1px">VIP</label>@endif
-                                @if($patient->wheel_chair == 1)<label class="label label-info tooltips hidden-print"
-                                                                      data-title="Paciente Cadeirante"
-                                                                      data-placement="bottom" style="opacity: 0.6;"><i
-                                            class="fa fa-wheelchair"></i></label>@endif
-                            </td>
-                            --}}
                             <!-- start: OPTIONS -->
                                 <td class="hidden-print">
                                     <div class="btn-group pull-right">

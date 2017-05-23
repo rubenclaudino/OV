@@ -23,7 +23,9 @@ class PatientsController extends Controller
 {
     public function index()
     {
-        $patients = Patient::roleFilter()->get()->sortBy('last_name');
+        $patients = Patient::roleFilter()
+            ->get()
+            ->sortBy('last_name');
         return view('patients.index', compact('patients'));
     }
 

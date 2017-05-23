@@ -26,8 +26,8 @@
 
                                 <h2 class="light_black"
                                     style="margin-top:10px;margin-bottom:5px;font-weight: lighter;opacity: 0.8;text-align:left;float:left;">
-                                    {{ $plan->title }}&nbsp;
-                                    <small>({{ $plan->ans_code }})</small>
+                                    {{ $plan->title }}
+                                    <small>(  {{ $plan->ans_code }}  )</small>
                                 </h2>
 
                             </div>
@@ -201,7 +201,7 @@
 
                                 <tr>
                                     <td style="color: #383838;font-weight:bold;line-height:30px">
-                                        Data Registrado
+                                        Data Cadastrado
                                     </td>
                                     <td>{{ $plan->created_at }}</td>
                                 </tr>
@@ -225,7 +225,7 @@
                                 </tr>
                                 <tr>
                                     <td style="color: #383838;font-weight:bold;line-height:30px">
-                                        Porcentagem da Renda Total
+                                        Porcentagem da renda total
                                     </td>
                                     <td>-</td>
                                 </tr>
@@ -259,13 +259,13 @@
                                 </thead>
 
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($dentists as $dentist)
                                     <tr>
                                         <td>
-
+                                            @if($dentist->gender == 1) Dra. @else Dr. @endif  {{ $dentist->first_name }} {{ $dentist->last_name }}
                                         </td>
                                         <td>
-
+                                            {{ $dentist->count }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -290,9 +290,10 @@
                         <tr>
                             <th class="col-md-1">Data</th>
                             <th class="col-md-1">Horário</th>
-                            <th class="col-md-2">Dentista</th>
-                            <th class="col-md-3">Paciente</th>
-                            <th class="col-md-3">Status</th>
+                            <th>Dentista</th>
+                            <th>Paciente</th>
+                            <th>Especialide</th>
+                            <th class="col-md-2">Status</th>
                         </tr>
                         </thead>
 
@@ -301,8 +302,12 @@
                             <tr>
                                 <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
                                 <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
-                                <td> {{ $appointment->user->getFullNameAttribute() }}</td>
+                                <td> {{ $appointment->user->fullName }}</td>
                                 <td>{{ $appointment->patient->first_name }}  {{ $appointment->patient->last_name }}</td>
+                                <td style="font-size:0.9em">
+                                    <label class="label label-warning"
+                                           style="background: {{ $appointment->specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $appointment->specialty->name }}</label>
+                                </td>
                                 <td>
                                     @if( $appointment->status->id == 1 )
                                         <span class="label"
@@ -374,6 +379,7 @@
                             </table>
                         </div>
 
+                        <!-- start: CHART 1 -->
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
                             <div class="panel panel-white accepted_plan">
                                 <div class="panel-body">
@@ -384,7 +390,9 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- end: CHART 1 -->
 
+                        <!-- start: CHART 2 -->
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
                             <div class="panel panel-white accepted_plan">
                                 <div class="panel-body">
@@ -395,14 +403,19 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- end: CHART 2 -->
 
                     </div>
+
                 </div>
                 <!-- end: FINANCAL INFO -->
+
             </div>
             <!-- end: TAB CONTENT -->
+
         </div>
         <!-- start: ROW -->
+
     </div>
     <!-- end: INFORMATION BELOW DIV -->
 

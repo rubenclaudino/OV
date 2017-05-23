@@ -43,11 +43,11 @@ class ContactsController extends Controller
 
         $contato = ContactEntity::create($input);
 
-        if ($contato->id)
-            return response()->json(['status' => 'success', 'message' => 'Cadastrado com sucesso!']);
-
-        return response()->json(['status' => 'error', 'message' => 'Ocorreu um erro!']);
-
+        return redirect('contacts')->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Contato cadastrado com sucesso!'
+            ]);
     }
 
     public function edit($id)
@@ -67,6 +67,7 @@ class ContactsController extends Controller
     public function destroy($id)
     {
         ContactEntity::destroy($id);
+
         return response()->json(['status' => 'success', 'message' => 'Cadastro excluído com sucesso!']);
     }
 

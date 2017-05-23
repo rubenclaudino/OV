@@ -19,8 +19,8 @@
 
                 <div class="col-lg-12 col-md-12">
 
-                    <h2 class="table_title">Convênio<br>
-                        <small style="color: #bbbbbb">Dados do Convênio</small>
+                    <h2 class="table_title">Contato<br>
+                        <small style="color: #bbbbbb">Dados do Contato</small>
                     </h2>
 
                     <hr class="custom_sep">
@@ -41,34 +41,34 @@
                 <!-- start: ROW -->
                 <div class="row">
 
-                    <!-- start: DENTAL PLAN -->
+                    <!-- start: CONTACT NAME -->
                     <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="title">Convênio</label>
-                            {{ Form::text('title', null,['class' => 'form-control']) }}
+                            <label for="name">Nome</label>
+                            {{ Form::text('name', null,['class' => 'form-control']) }}
                         </div>
                     </div>
-                    <!-- end: DENTAL PLAN -->
+                    <!-- end: CONTACT NAME -->
 
-                    <!-- start: SITE -->
+                    <!-- start: CONTACT TYPE -->
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="url">Site</label>
-                            {{ Form::text('url', null,['class' => 'form-control']) }}
-
+                            <label for="contact_type">Tipo</label>
+                            {!! Form::select('contact_type', array('0' => 'Dental','1' => 'Protético','2' => 'Instituto de Radiologia','3' => 'Outro'),null,['class'
+                         => 'form-control']) !!}
                         </div>
                     </div>
-                    <!-- end: SITE -->
+                    <!-- end: CONTACT TYPE -->
 
-                    <!-- start: ANS CODE -->
+                    <!-- start: SHARE WITH ALL IN CLINIC -->
                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="ans_code">Código ANS</label>
-                            {{ Form::text('ans_code', null,['class' => 'form-control']) }}
-
+                            <label for="is_public">Público</label>
+                            {!! Form::select('is_public', array('0' => 'Não','1' => 'Sim'),null,['class'
+                          => 'form-control']) !!}
                         </div>
                     </div>
-                    <!-- end: ANS CODE -->
+                    <!-- end: SHARE WITH ALL IN CLINIC  -->
 
                     <!-- start: ADDITIONAL INFORMATION -->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -91,7 +91,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="phone_landline">Telefone Fixo</label>
-                            {{ Form::text('phone_landline', null,['class' => 'form-control input-mask-phone1']) }}
+                            {{ Form::text('phone_landline', null,['class' => 'form-control']) }}
                         </div>
                     </div>
                     <!-- end: LANDLINE -->
@@ -100,7 +100,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="phone_1">Celular</label>
-                            {{ Form::text('phone_1', null,['class' => 'form-control input-mask-phone']) }}
+                            {{ Form::text('phone_1', null,['class' => 'form-control']) }}
                         </div>
                     </div>
                     <!-- end: PHONE 1 -->
@@ -109,7 +109,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="whatsapp_number">Whatsapp</label>
-                            {{ Form::text('whatsapp_number', null,['class' => 'form-control input-mask-phone']) }}
+                            {{ Form::text('whatsapp_number', null,['class' => 'form-control']) }}
                         </div>
                     </div>
                     <!-- end: WHATSAPP -->

@@ -1,5 +1,5 @@
 
-<!-- start: TAB TITLES START -->
+<!-- start: TAB TITLES -->
 <ul id="mainEventTabs" class="nav nav-tabs new-event-tabs" role="tablist" data-tabs="tabs" style="display:none;">
 
     <!-- start: APPOINTMENT DETAILS -->
@@ -18,7 +18,7 @@
     <!-- start: APPOINTMENT SUMMARY -->
 
 </ul>
-<!-- end: TAB TITLES START -->
+<!-- end: TAB TITLES -->
 
 <!-- start: TAB CONTENT START -->
 <div class="tab-content panel" style="margin-bottom: 15px">
@@ -74,7 +74,7 @@
                                             <div class="form-group">
 													<span class="input-icon">
 														<input class="event-range-date form-control"
-                                                               name="ad_eventRangeDate" placeholder="Range date"
+                                                               name="ad_eventRangeDate" placeholder="Data"
                                                                type="text">
 														<i class="fa fa-calendar"></i> </span>
                                             </div>

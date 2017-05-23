@@ -37,13 +37,13 @@
 
                     <div class="pull-right">
 
-                        <a class="btn" href="#" style="background: whitesmoke">
-                            <i class="fa fa-filter"></i> Filtros
-                        </a>
-
                         <a class="btn" href="{{ url('/users/create') }}"
                            style="background: whitesmoke">
-                            <i class="fa fa-user"></i> Novo Contato
+                            <i class="fa fa-user"></i> Novo Usuário
+                        </a>
+
+                        <a class="btn" href="#" style="background: whitesmoke">
+                            <i class="fa fa-filter"></i> Filtros
                         </a>
 
                         <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
@@ -72,7 +72,9 @@
                     <thead style="background: whitesmoke">
                     <tr>
                         <th class="center">#</th>
+                        @role('admin')
                         <th>Clínica</th>
+                        @endrole
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Tipo Usuário</th>
@@ -94,13 +96,15 @@
                                         @endif
                                     </div>
                                 </td>
+                                @role('admin')
                                 <td>{{ $user->clinic->name }}</td>
-                                <td>{{ $user->first_name . ' ' . $user->last_name}}</td>
-                                <td><span style="color: #0a91ff">{{ $user->email }}</span></td>
+                                @endrole
+                                <td>@if($user->gender == 0) Dr. @else Dra. @endif {{ $user->first_name }} {{ $user->last_name }}</td>
+                                <td><a>{{ $user->email }}</a></td>
                                 <td>
                                     @foreach($user->roles as $role)
                                         <span class="label label-default"
-                                              style="background: {{$role->color}} !important;opacity: 0.8"> {{$role->display_name}} </span>
+                                              style="background: {{$role->color}} !important;opacity: 0.8; margin-right: 5px"> {{$role->display_name}} </span>
                                     @endforeach
                                 </td>
                                 <td>{{ date('d/m/Y', strtotime($user->created_at)) }}</td>

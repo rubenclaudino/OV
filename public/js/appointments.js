@@ -209,8 +209,64 @@ $(document).ready(function () {
                     for ($i = 0; $i < $appointments.length; $i++) {
                         $html += "<div class='call_block'><div class='col-md-7'><h3>" + $appointments[$i].patient.first_name + " " + $appointments[$i].patient.last_name + "</h3>";
                         $html += "<div class='information'><p><i class='fa fa-clock-o'></i> " + new Date($appointments[$i].start).toString('h:mm tt') + " </p>";
-                        $html += "<p><i class='fa fa-phone'></i> " + $appointments[$i].patient.phone_landline + " </p>";
-                        $html += "<p><i class='fa fa-mobile'></i> " + $appointments[$i].patient.phone_1 + " </p>";
+                        // MAKE SHOW SPECIALTY
+                        $specId = $appointments[$i].specialty_id;
+                        $spec = 'none';
+                        switch($specId) {
+                            case 1:
+                                $spec = 'Diagnóstico'
+                                break;
+                            case 2:
+                                $spec = 'Clinica Geral'
+                                break;
+                            case 3:
+                                $spec = 'Radiologia'
+                                break;
+                            case 4:
+                                $spec = 'Testes e Exames de Laboratório'
+                                break;
+                            case 5:
+                                $spec = 'Prevenção'
+                                break;
+                            case 6:
+                                $spec = 'Odontopediatria'
+                                break;
+                            case 7:
+                                $spec = 'Dentística'
+                                break;
+                            case 8:
+                                $spec = 'Endodontia'
+                                break;
+                            case 9:
+                                $spec = 'Periodontia'
+                                break;
+                            case 10:
+                                $spec = 'Prótese'
+                                break;
+                            case 11:
+                                $spec = 'Cirurgia'
+                                break;
+                            case 12:
+                                $spec = 'Ortodontia'
+                                break;
+                            case 13:
+                                $spec = 'Implantodontia'
+                                break;
+                            default:
+                                $spec = '-'
+                        }
+                        $html += "<p><i class='fa fa-info'></i> " + "<label class='label label-info'>" + $spec + "</label>" + " </p>";
+                        // END
+                        if($appointments[$i].patient.phone_landline == null)
+                        {}
+                        else {
+                            $html += "<p><i class='fa fa-phone'></i> " + $appointments[$i].patient.phone_landline + " </p>";
+                        }
+                        if($appointments[$i].patient.phone_1 == null)
+                        {}
+                        else {
+                            $html += "<p><i class='fa fa-phone'></i> " + $appointments[$i].patient.phone_1 + " </p>";
+                        }
                         $html += "</div></div><div class='col-md-5'><select class='form-control selectpicker' data-selected='" + $appointments[$i].status + "' data-id = '" + $appointments[$i].id + "'><option value='1' selected='selected'>Agendado</option><option value='2'>Confirmado</option><option value='3'>Desmarcado</option><option value='4'>Falta</option><option value='5'>Finalizado</option></select></div><div class='clearfix'></div></div>";
 
                         //console.log($html);

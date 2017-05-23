@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use App\City;
 use App\State;
 use Illuminate\Http\Request;
 use App\ClinicDentalPlan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ClinicDentalPlansController extends Controller
 {
@@ -35,9 +37,14 @@ class ClinicDentalPlansController extends Controller
     public function store(Request $request)
     {
         $request['clinic_id'] = Auth::user()->clinic_id;
+
         ClinicDentalPlan::create($request->all());
-        return redirect('dentalplans');
-        //response()->json(['status' => 'success', 'message' => 'Dental Plan Created!']);
+
+        return redirect('dentalplans')->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Convênio cadastrado com sucesso!'
+            ]);
     }
 
     public function show($id)
@@ -50,20 +57,16 @@ class ClinicDentalPlansController extends Controller
         }
 
         $plan = ClinicDentalPlan::find($id);
-
-        $users = [[]];
-        $id = 0;
-
-        foreach ($plan->appointments as $appointment) {
-            $users[$id]['fullName'] = $appointment->user->getFullNameAttribute();
-            $users[$id]['appointment_count'] = $appointment->user->appointments->count();
-            $id++;
-        }
+        $dentists = Appointment::select('users.gender', 'users.first_name', 'users.last_name', DB::raw('count(*) as count'))
+            ->join('users', 'users.id', '=', 'appointments.user_id')
+            ->where('clinic_dental_plan_id', $id)
+            ->groupBy('appointments.user_id')
+            ->get();
 
         $cities = City::pluck('name', 'id');
         $states = State::pluck('abbreviation', 'id');
 
-        return view('dentalplans.show', compact('plan', 'users', 'plans', 'states', 'cities'));
+        return view('dentalplans.show', compact('plan', 'plans', 'states', 'cities', 'dentists'));
     }
 
     public function edit($id)
@@ -78,8 +81,12 @@ class ClinicDentalPlansController extends Controller
     public function update(Request $request, $id)
     {
         ClinicDentalPlan::find($id)->update($request->all());
-        return redirect('dentalplans')->with('status', "Cadastro atualizado com sucesso!");
-        // response()->json(['status' => 'success', 'message' => "Cadastro atualizado com sucesso!"]);
+
+        return redirect('dentalplans')->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Convênio atualizado com sucesso!'
+            ]);
     }
 
     public function destroy($id)

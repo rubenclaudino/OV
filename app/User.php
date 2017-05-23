@@ -142,9 +142,9 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         if (Auth::user()->hasRole('dentist'))
-            return (($this->gender == 0) ? 'Dr.' : 'Dra.') . ' ' . $this->last_name . ' ' . $this->first_name;
+            return (($this->gender == 0) ? 'Dr.' : 'Dra.') . ' ' . $this->first_name . ' ' . $this->last_name;
         else
-            return $this->last_name . ' ' . $this->first_name;
+            return $this->first_name . ' ' . $this->last_name;
     }
 
     public function scopeRoleFilter($query)

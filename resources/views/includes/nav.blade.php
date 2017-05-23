@@ -57,8 +57,8 @@
                 </li>
                 <!-- end: AGENDA -->
 
+            @role('admin')
                 <!-- start: TYPES OF APPOITMENTS -->
-                @role('admin')
                 <li class="@if(\Route::current()->getName() == 'calendar.appointment_types') {{'active'}}@endif">
                     <a href="{{ url('/calendar/appointmentTypes') }}">
                         <i class="fa fa-user fa-fw"></i>
@@ -72,16 +72,18 @@
                                 class="title"> Clientes </span></a>
                 </li>
                 <!-- end: CLINICS -->
+                @endrole
 
-                <!-- start: USER MANAGEMENT -->
+                @role('local_admin')
+            <!-- start: USER MANAGEMENT -->
                 <li class="@if(\Route::current()->getName() == 'users.index') {{'active'}}@endif">
                     <a href="{{ route('users.index') }}"><i class="fa fa-user fa-fw"></i> <span
                                 class="title"> Gerenciamento </span></a>
                 </li>
+                <!-- end: USER MANAGEMENT -->
                 @endrole
-            <!-- end: USER MANAGEMENT -->
 
-                <!-- start: PATIENTS -->
+            <!-- start: PATIENTS -->
                 <li class="@if(\Route::current()->getName() == 'patients.index') {{'active'}}@endif">
                     <a href="{{ route('patients.index') }}"><i class="fa fa-users fa-fw"></i> <span
                                 class="title"> Pacientes </span></a>

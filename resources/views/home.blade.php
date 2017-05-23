@@ -4,38 +4,11 @@
 
     <div class="main-content">
 
-        <!-- start: PANEL CONFIGURATION MODAL FORM -->
-        <div class="modal fade" id="panel-config" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title">Panel Configuration</h4>
-                    </div>
-                    <div class="modal-body">
-                        Here will be a configuration form
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            Save changes
-                        </button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- end: PANEL CONFIGURATION MODAL FORM -->
-
         <div class="container" style="opacity: 0.7">
 
             <!-- start: USER WIDGETS -->
             <div class="row" style="margin-top: 10px;margin-right: -5px">
+
 
                 <!-- start: APPOINTMENTS BOOKED TODAY FOR THIS USER-->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
@@ -101,7 +74,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Convênio</h4>
-                        <h1>{{$patients_with_dental_plan}}</h1>
+                        <h1>0</h1>
                         <p>-</p>
                     </div>
                 </div>
@@ -111,7 +84,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-white" style="text-align: center;padding: 10px">
                         <h4>Particular</h4>
-                        <h1>{{$patients->count() - $patients_with_dental_plan}}</h1>
+                        <h1>0</h1>
                         <p>-</p>
                     </div>
                 </div>
@@ -185,8 +158,9 @@
             </div>
             <!-- end: USER WIDGETS -->
 
-            <!-- start: CLINIC ADMIN WIDGETS -->
-            <div class="row hide" style="margin-top: 10px;margin-right: -5px;">
+        @role('local_admin')
+        <!-- start: CLINIC ADMIN WIDGETS -->
+            <div class="row" style="margin-top: 10px;margin-right: -5px;">
 
                 <!-- start:  -->
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 nopadding">
@@ -258,6 +232,7 @@
 
             </div>
             <!-- end: BOOKED TODAY -->
+            @endrole
 
         </div>
 

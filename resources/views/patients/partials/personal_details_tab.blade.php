@@ -80,8 +80,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="referral_id">Indicação</label>
-                            {!! Form::select('referral_id', $referrals,null,['class' =>
-                            'form-control','placeholder' => 'Não informado']) !!}
+                            {!! Form::select('referral_id', $referrals, null, ['class' =>
+                            'form-control', 'placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
                     <!-- end: INDICATION -->
@@ -90,8 +90,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="confirmation_request">Necessita confirmação</label>
-                            {!! Form::select('confirmation_request', array('0' => 'Não','1' => 'Sim'),null,['class'
-                           => 'form-control','placeholder' => 'Não informado']) !!}
+                            {!! Form::select('confirmation_request', array('0' => 'Não','1' => 'Sim'), null, ['class'
+                           => 'form-control', 'placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
                     <!-- end: ALLWAYS CONFIRM APPOINTMENT -->
@@ -100,8 +100,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="vip">vip</label>
-                            {!! Form::select('vip', array('0' => 'Não','1' => 'Sim'),null,['class'
-                           => 'form-control','placeholder' => 'Não informado']) !!}
+                            {!! Form::select('vip', array('0' => 'Não','1' => 'Sim'), null, ['class'
+                           => 'form-control', 'placeholder' => 'Não informado']) !!}
                         </div>
                     </div>
                     <!-- end: VIP -->
@@ -150,7 +150,7 @@
             <!-- start: TAB CONTENT -->
             <div class="tab-content" style="border:none;">
 
-                <!-- start: MAIN DETIALS -->
+                <!-- start: PERSONAL DETIALS -->
                 <div id="pDetails" class="tab-pane fade active in">
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
@@ -268,7 +268,7 @@
                             <!-- start: OBSERVATION -->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="observation">Observação</label>
+                                    <label for="observation">Observações</label>
                                     {{ Form::text('observation', null,array('class' => 'form-control')) }}
                                 </div>
                             </div>
@@ -279,91 +279,56 @@
                     </div>
 
                 </div>
-                <!-- end: MAIN DETIALS -->
+                <!-- end: PERSONAL DETIALS -->
 
                 <!-- start: CONTACT INFO -->
                 <div id="pContact" class="tab-pane fade">
+
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+
                         <div class="row">
 
                             <!-- start: LANDLINE PHONE -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label for="phone_landline">
-                                    Telefone Fixo
-                                </label>
                                 <div class="form-group">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                        <span>
-                                        {{ Form::text('phone_landline',null,array('class' => 'form-control input-mask-phone1', 'id' => 'phone_landline')) }}
-                                        </span>
-                                    </div>
+                                    <label for="phone_landline">Telefone Fixo</label>
+                                    {{ Form::text('phone_landline', null,['class' => 'form-control input-mask-phone1', 'id' => 'phone_landline']) }}
                                 </div>
                             </div>
                             <!-- end: LANDLINE PHONE -->
 
                             <!-- start: WORK PHONE -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label for="celular_1">
-                                    Telefone Trabalho
-                                </label>
                                 <div class="form-group">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                        <span>
-                                             {{ Form::text('work_phone',null,array('class' => 'form-control input-mask-phone', 'id' => 'work_phone')) }}
-                                        </span>
-                                    </div>
+                                    <label for="work_phone">Telefone Trabalho</label>
+                                    {{ Form::text('work_phone', null,['class' => 'form-control input-mask-phone', 'id' => 'work_phone']) }}
                                 </div>
                             </div>
                             <!-- end: WORK PHONE -->
 
                             <!-- start: CEL 1 -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label for="celular_1">
-                                    Celular 1
-                                </label>
                                 <div class="form-group">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                        <span>
-                                            {{ Form::text('phone_1',null,array('class' => 'form-control input-mask-phone', 'id' => 'phone_1')) }}
-                                        </span>
-                                    </div>
+                                    <label for="phone_1">Celular 1</label>
+                                    {{ Form::text('phone_1', null,['class' => 'form-control input-mask-phone', 'id' => 'phone_1']) }}
                                 </div>
                             </div>
                             <!-- end: CEL 1 -->
 
                             <!-- start: CEL 2 -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group"
-                                     style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                    <label for="celular_2">
-                                        Celular 2
-                                    </label>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                        <span>
-                                            {{Form::text('phone_2',null,array('class' => 'form-control input-mask-phone', 'id' => 'phone_2')) }}
-                                        </span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="phone_2">Celular 2</label>
+                                    {{ Form::text('phone_2', null,['class' => 'form-control input-mask-phone', 'id' => 'phone_2']) }}
                                 </div>
                             </div>
                             <!-- end: CEL 2 -->
 
                             <!-- start: WHATSAPP -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group"
-                                     style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                    <label for="patient_whatsapp">
-                                        Whatsapp
-                                    </label>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                        <span>
-                                            {{Form::text('whatsapp_number',null,array('class' => 'form-control input-mask-phone', 'id' => 'whatsapp_number')) }}
-                                        </span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="whatsapp_number">Whatsapp</label>
+                                    {{ Form::text('whatsapp_number', null,['class' => 'form-control input-mask-phone', 'id' => 'whatsapp_number']) }}
                                 </div>
                             </div>
                             <!-- end: WHATSAPP -->
@@ -371,83 +336,44 @@
                             <!-- start: EMAIL -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="email">
-                                        Email
-                                    </label>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                        <span>
-                                             {{ Form::text('email',null,array('class' => 'form-control input-mask-email', 'id' => 'email')) }}
-                                        </span>
-                                    </div>
+                                    <label for="email">Email</label>
+                                    {{ Form::email('email', null,['class' => 'form-control', 'id' => 'email']) }}
                                 </div>
                             </div>
                             <!-- end: EMAIL -->
 
                             <!-- start: CONTACT 1 NUMBER -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group"
-                                     style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                    <label for="related_phone_1">
-                                        Contato 1
-                                    </label>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                        <span>
-                                            {{Form::text('related_phone_1',null,array('class' => 'form-control input-mask-phone', 'id' => 'related_phone_1')) }}
-                                        </span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="related_phone_1">Contato 1</label>
+                                    {{ Form::text('related_phone_1', null,['class' => 'form-control input-mask-phone', 'id' => 'related_phone_1']) }}
                                 </div>
                             </div>
                             <!-- end: CONTACT 1 NUMBER -->
 
                             <!-- start: CONTACT 1 TYPE -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group"
-                                     style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                    <label for="related_name_1">
-                                        Relação
-                                    </label>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                         <span>
-                                            {{Form::text('related_name_1',null,array('class' => 'form-control', 'id' => 'related_name_1')) }}
-                                        </span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="related_name_1">Relação</label>
+                                    {{ Form::text('related_name_1', null,['class' => 'form-control', 'id' => 'related_name_1']) }}
                                 </div>
                             </div>
                             <!-- end: CONTACT 1 TYPE -->
 
                             <!-- start: CONTACT 2 NUMBER -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group"
-                                     style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                    <label for="related_phone_2">
-                                        Contato 2
-                                    </label>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                         <span>
-                                            {{Form::text('related_phone_2',null,array('class' => 'form-control input-mask-phone', 'id' => 'related_phone_2')) }}
-                                        </span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="related_phone_2">Contato 2</label>
+                                    {{ Form::text('related_phone_2', null,['class' => 'form-control input-mask-phone', 'id' => 'related_phone_2']) }}
                                 </div>
                             </div>
                             <!-- end: CONTACT 2 NUMBER -->
 
                             <!-- start: CONTACT 2 TYPE -->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group"
-                                     style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;">
-                                    <label for="related_name_2">
-                                        Relação
-                                    </label>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                         style="padding-left:0px;padding-right:0px;margin-left:0px;margin-right:0px;margin-bottom:12px;">
-                                        <span>
-                                            {{Form::text('related_name_2',null,array('class' => 'form-control', 'id' => 'related_name_2')) }}
-                                        </span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="related_name_2">Relação</label>
+                                    {{ Form::text('related_name_2', null,['class' => 'form-control', 'id' => 'related_name_2']) }}
                                 </div>
                             </div>
                             <!-- end: CONTACT 2 TYPE -->
@@ -459,7 +385,7 @@
                 </div>
                 <!-- end: CONTACT INFO -->
 
-                <!-- start: ADDRESS -->
+                <!-- start: ADDRESS INFO -->
                 <div id="pAddress" class="tab-pane fade">
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
@@ -469,7 +395,7 @@
                             <!-- start: ROAD -->
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 ">
                                 <div class="form-group">
-                                    <label for="street_address">Rua/Avenida</label>
+                                    <label for="street_address">Rua / Avenida</label>
                                     {{Form::text('address',null,array('class' => 'form-control',
                                     'id' => 'address')) }}
                                 </div>
@@ -489,10 +415,9 @@
                             <!-- start: BOUROUGH -->
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="borough">
-                                        Bairro
-                                    </label>
-                                    {{ Form::text('borough',null,array('class' => 'form-control')) }}
+                                    <label for="borough">Bairro</label>
+                                    {{ Form::text('borough',null,array('class' => 'form-control', 'id' =>
+                                    'borough')) }}
                                 </div>
                             </div>
                             <!-- end: BOUROUGH -->
@@ -502,7 +427,7 @@
                                 <div class="form-group">
                                     <label for="zip_code">CEP</label>
                                     {{Form::text('zip_code',null,array('class' => 'form-control
-                                    input-mask-cep')) }}
+                                    input-mask-cep', 'id' => 'zip_code')) }}
                                 </div>
                             </div>
                             <!-- end: ZIP -->
@@ -511,7 +436,7 @@
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label for="city_id">Cidade</label>
-                                    {!! Form::select('city_id',$cities,'',['class' => 'select2picker select_city']) !!}
+                                    {!! Form::select('city_id',$cities,'',['class' => 'select2picker select_city', 'id' => 'city_id']) !!}
                                 </div>
                             </div>
                             <!-- end: CITY -->
@@ -519,10 +444,8 @@
                             <!-- start: STATE -->
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="state_id">
-                                        Estado
-                                    </label>
-                                    {!! Form::select('state_id',$states,'',['class' => 'select2picker select_state']) !!}
+                                    <label for="state_id">Estado</label>
+                                    {!! Form::select('state_id',$states,'',['class' => 'select2picker select_state', 'id' => 'state_id']) !!}
                                 </div>
                             </div>
                             <!-- end: STATE -->
@@ -530,8 +453,8 @@
                             <!-- start: OBSERVATION -->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <label for="observation">Observations</label>
-                                    {{ Form::text('observation',null,array('class' => 'form-control')) }}
+                                    <label for="observation">Observação</label>
+                                    {{ Form::text('observation',null,array('class' => 'form-control', 'id' => 'state_id')) }}
                                 </div>
                             </div>
                             <!-- end: OBSERVATION -->
@@ -541,7 +464,7 @@
                     </div>
 
                 </div>
-                <!-- end: ADDRESS -->
+                <!-- end: ADDRESS INFO -->
 
             </div>
             <!-- end: TAB CONTENT -->

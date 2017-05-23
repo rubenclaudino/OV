@@ -458,7 +458,7 @@
                                                 </td>
                                                 <td>
                                                     @if(isset($patient->user))
-                                                        {{ $patient->user->getFullNameAttribute() }}
+                                                        {{ $patient->user->fullName }}
                                                     @else
                                                         Clínica
                                                     @endif
@@ -588,11 +588,11 @@
                                     </td>
                                     <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
                                     <td>
-                                        {{ $appointment->user->getFullNameAttribute() }}
+                                        {{ $appointment->user->fullName }}
                                     </td>
                                     <td style="font-size:0.9em">
                                         <label class="label label-warning"
-                                               style="background: #{{ $appointment->specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $appointment->specialty->name }}</label>
+                                               style="background: {{ $appointment->specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $appointment->specialty->name }}</label>
                                     </td>
                                     <td>
                                         {{ $appointment->plantype->title }}

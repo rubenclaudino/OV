@@ -358,7 +358,7 @@
                     if (dDiff > {{ $agendaSettings->interval }}) {
                         defaultRange.end = moment(end);
                     } else {
-                        defaultRange.end = moment(start).add({{ $agendaSettings->interval }}, 'minutes');
+                        defaultRange.end = moment(start).add( {{ $agendaSettings->interval }}, 'minutes');
                     }
                     @else
                         defaultRange.end = moment(end);
@@ -1284,13 +1284,14 @@
 <script type="text/javascript" src="{{ url('/') }}/js/main1.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/js/appointments.js"></script>
 <script type="text/javascript" src="{{ url('/') }}/plugins/print/jquery.print.js"></script>
-
 <script type="text/javascript">
 
     // PICKDATE HEREEEEEEEEEEE ---
     $(document).ready(function(){
         $(".fc-center").after('<div class="input-group" style="position:relative;top: 10px;left:20px;width:13%;"><input type=text" class="form-control date-picker-custom">'+
         '<span class="input-group-addon" style="float:none;"> <i class="fa fa-calendar"></i></span></div>');
+
+
         $('.date-picker-custom').datepicker({
             autoclose: true
         }).on("changeDate", function (e) {
