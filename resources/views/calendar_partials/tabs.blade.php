@@ -89,7 +89,7 @@
 
                                         <!-- start: APPOINTMENT STATUS SELECT -->
                                         <div class="form-group">
-                                            {!! Form::select('appointment_status_id', $appointment_statuses, 'Appointment Status',['class' => 'form-control appointment_type']) !!}
+                                            {!! Form::select('appointment_status_id', $appointment_statuses, 'Appointment Status',['class' => 'form-control appointment_type_status']) !!}
                                         </div>
                                         <!-- end: APPOINTMENT STATUS SELECT -->
 

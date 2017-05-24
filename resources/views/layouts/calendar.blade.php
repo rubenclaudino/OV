@@ -795,7 +795,6 @@
                         $(".form-full-event .patient_telephone").val(demoCalendar[i].patient_telephone);
                         $(".form-full-event .patient_mobile").val(demoCalendar[i].patient_mobile);
                         $(".form-full-event .patientObservation").val(demoCalendar[i].patient_observation);
-                        $(".form-full-event .dental_plan").val(demoCalendar[i].clinic_dental_plan_id);
                         $(".form-full-event .all-day").bootstrapSwitch('state', demoCalendar[i].allDay);
                         $(".form-full-event .event-start-date").val(moment(demoCalendar[i].start));
                         $(".form-full-event .event-end-date").val(moment(demoCalendar[i].end));
@@ -845,6 +844,7 @@
                         $('.form-full-event .treatment_type').val(demoCalendar[i].specialty_id);
                         // selecting appointment status
                         $('.form-full-event .appointment_type_status').val(demoCalendar[i].appointment_status_id);
+                        $(".form-full-event .dental_plan").val(demoCalendar[i].clinic_dental_plan_id);
 
                         $('.form-full-event').find('.selectpicker').selectpicker('refresh');
 
@@ -1093,7 +1093,7 @@
                     newEvent.category = $(".form-full-event .event-categories option:checked").text();
                     //newEvent.specialty = $(".form-full-event .treatment_type option:checked").text();
                     newEvent.observation = $('.form-full-event .appointmentObservation').val();
-                    newEvent.user_id = <?php echo $dentist_id;?>;
+                    newEvent.user_id = '<?php echo $dentist_id;?>';
 
                     newEvent._token = csrf_token,
                         newEvent._method = "POST";
