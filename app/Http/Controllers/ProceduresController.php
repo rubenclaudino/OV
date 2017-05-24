@@ -17,6 +17,8 @@ class ProceduresController extends Controller
 
     public function index()
     {
+        $procedures = Procedure::all();
+        return view('procedures.index', compact('procedures'));
     }
 
     public function create()

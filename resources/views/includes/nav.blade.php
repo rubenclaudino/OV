@@ -90,6 +90,43 @@
                 </li>
                 <!-- end: PATIENTS -->
 
+                <!-- start: PROCEDURES -->
+                @role('admin')
+                <li class="@if(\Route::current()->getName() == 'procedures.index') {{'active'}}@endif">
+                    <a href="{{ route('procedures.index') }}"><i class="fa fa-arrow fa-fw"></i> <span
+                                class="title"> Procedimentos </span></a>
+                </li>
+                @endrole
+
+                @role('admin')
+                <li>
+                    <a href="#"><i class="fa fa-folder-open fa-fw"></i> <span
+                                class="title"> Procedimentos </span><i class="icon-arrow"></i> </a>
+                    <ul class="sub-menu">
+                        <li class="@if(\Route::current()->getName() == 'treatmenttypes.index') {{'active'}}@endif">
+                            <a href="{{ url('specialties')}}">
+                                <span class="title"> Procedimentos </span>
+                            </a>
+                        </li>
+                        @if(Auth::user()->isAdmin() || Auth::user()->hasPermission('treatmenttypescontroller.create'))
+                            <li class="@if(\Route::current()->getName() == 'treatmenttypes.create') {{'active'}}@endif">
+                                <a href="{{ url('/treatmenttypes/create')}}">
+                                    <span class="title"> Registrar Procedimento </span>
+                                </a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->isAdmin() )
+                            <li class="@if(\Route::current()->getName() == 'specialities.index') {{'active'}}@endif">
+                                <a href="{{ url('/specialities')}}">
+                                    <span class="title"> Especialidades </span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+                @endrole
+            <!-- end: PROCEDURES -->
+
                 <!-- start: TREATMENTS -->
                 @role('admin')
                 <li>

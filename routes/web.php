@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', '
     Route::get('patients/stats', 'PatientsController@stats');
     Route::resource('patients', 'PatientsController');
 
+    // PROCEDURES
     // Route::get('procedures/treatmentTypes','ProceduresController@treatmentTypes');
     // Route::post('procedures/addTreatmentType','ProceduresController@addTreatmentTypes');
     Route::post('procedures/getPatientTreatment', 'ProceduresController@getPatientTreatment');
