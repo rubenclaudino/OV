@@ -104,13 +104,13 @@
                                 <td>
                                     @foreach($patient->specialties as $specialty)
                                         <label class="label"
-                                               style="background: {{$specialty->color}} ">{{ $specialty->name }}</label>
+                                               style="background: {{$specialty->color}};opacity:0.7">{{ $specialty->name }}</label>
                                     @endforeach
                                 </td>
                                 <!-- DENTAL PLAN -->
                                 <td>
                                     @if(count($patient->patient_dental_plans))
-                                        {{ $patient->patient_dental_plans->first()->clinic_dental_plan->title }}
+                                        {{ $patient->patient_dental_plans->clinic_dental_plan->title }}
                                     @else
                                         Particular
                                     @endif
