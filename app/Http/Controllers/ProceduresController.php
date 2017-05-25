@@ -23,20 +23,19 @@ class ProceduresController extends Controller
 
     public function create()
     {
-        $specialities = Specialty::all();
+        $specialities = Specialty::pluck('name', 'id');
         return view('procedures.create',compact('specialities'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $request['clinic_id'] = Auth::user()->clinic_id;
-
-        Procedure::create($request->all());
+        $input = $request->all();
+        Procedure::create($input);
 
         return redirect('procedures')->with(
             [
                 'alert-type' => 'success',
-                'message' => 'Convênio cadastrado com sucesso!'
+                'message' => 'Procedimento cadastrado com sucesso!'
             ]);
     }
 

@@ -14,6 +14,11 @@ class Specialty extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function procedures()
+    {
+        return $this->belongsToMany('App\Procedure');
+    }
+
     public function patients()
     {
         return $this->belongsToMany('App\Patient');

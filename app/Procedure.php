@@ -17,4 +17,9 @@ class Procedure extends Model
     {
         return $this->belongsTo('App\Appointment');
     }
+
+    public function specialities()
+    {
+        return $this->belongsTo('App\Specialty');
+    }
 }

@@ -55,8 +55,8 @@
                     <!-- start: SPECIALTY -->
                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="specialty_id	">Especialidade</label>
-                            {!! Form::select('specialty_id	',$specialities,'',['class' => 'form-control']) !!}
+                            <label for="specialty_id">Especialidade</label>
+                            {!! Form::select('specialty_id',$specialities,'',['class' => 'form-control']) !!}
                         </div>
                     </div>
                     <!-- end: SPECIALTY -->
