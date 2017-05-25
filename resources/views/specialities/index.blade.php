@@ -1,5 +1,5 @@
 @extends('layouts.page')
-@section('title', 'Procedimentos')
+@section('title', 'Specialities')
 @section('content')
 
     <!-- start: DIV -->
@@ -13,8 +13,8 @@
 
                 <div class="col-lg-6 col-md-6">
 
-                    <h2 class="table_title">Procedimentos<br>
-                        <small style="color: #bbbbbb">Lista de procedimentos</small>
+                    <h2 class="table_title">Especialidades<br>
+                        <small style="color: #bbbbbb">Lista de especialidades</small>
                     </h2>
 
                 </div>
@@ -23,9 +23,9 @@
 
                     <div class="pull-right">
 
-                        <a class="btn" href="{{ URL::route('procedures.create') }}"
+                        <a class="btn" href="{{ URL::route('specialities.create') }}"
                            style="background: whitesmoke">
-                            <i class="fa fa-user fa-fw"></i> Novo Procedimento
+                            <i class="fa fa-user fa-fw"></i> Nova Especialidade
                         </a>
 
                         <a class="btn" href="#" class="print" data-id="mainInfo" style="background: whitesmoke">
@@ -48,47 +48,31 @@
             <!-- start: PANEL BODY -->
             <div class="panel-body" id="mainInfo">
 
-                <!-- start: PROCEDURE TABLE DATA -->
+                <!-- start: SPECIALTY TABLE DATA -->
                 <table class="table table-hover table-responsive">
 
                     <thead style="background: whitesmoke">
                     <tr>
                         <th class="hide">#</th>
-                        <th>Procedimento</th>
                         <th>Especialidade</th>
-                        @role('admin' == false)
-                        <th>Valor</th>
-                        <th class="hide">% Pago</th>
-                        <th>N° Executado</th>
-                        <th>Código TISS</th>
-                        @endrole
+                        <th>Cor</th>
                         <th></th>
                     </tr>
                     </thead>
-                    @foreach($procedures as $procedure)
+
+                    @foreach($specialities as $speciality)
+
                         <tbody>
                         <tr>
                             <!-- ID -->
                             <td class="hide"></td>
-                            <!-- TITLE -->
-                            <td>{{ $procedure->name }}</td>
                             <!-- SPECIALTY -->
+                            <td>{{ $speciality->name }}</td>
+                            <!-- COLOR -->
                             <td>
                                     <span class="label label-default"
-                                          style="@if($data->color != '')background:#{{$data->color}} !important @endif;opacity: 0.8">{{$procedure->name }}</span>
+                                          style="@if($speciality->color != '')background: {{$speciality->color}} !important @endif;opacity: 0.7">{{ $speciality->color }}</span>
                             </td>
-                        @role('admin' == false)
-                            <!-- PRICE -->
-                            <td>R$ {{ $procedure->price }}</td>
-                            <!-- PERCENTAGE -->
-                            <td class="hide">{{ $procedure->default_percentage }}&nbsp;%</td>
-                            <!-- TIMES PRATICISED -->
-                            <td>0</td>
-                            <!-- TISS -->
-                            <td>
-                                <small>{{ $procedure->tuss_code }}</small>
-                            </td>
-                        @endrole
                             <!-- INTERACTIONS -->
                             <td>
                                 <div class="btn-group hidden-print">
@@ -98,14 +82,11 @@
                                         Opções &nbsp;<span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                        <li><a href="{{ URL::route('procedures.show', $procedure->id) }}">
-                                                <small><i class="fa fa-info fa-fw"></i>&nbsp; Editar</small>
-                                            </a></li>
-                                        <li><a href="{{ URL::route('procedures.edit', $procedure->id) }}">
+                                        <li><a href="{{ URL::route('specialities.edit', $speciality->id) }}">
                                                 <small><i class="fa fa-pencil fa-fw"></i>&nbsp; Editar</small>
                                             </a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#" class="deleteProcedure" data-id="{{$procedure->id}}">
+                                        <li><a href="#" class="deleteProcedure" data-id="{{$speciality->id}}">
                                                 <small><i class="fa fa-ban fa-fw"></i>&nbsp Excluir</small>
                                             </a></li>
                                     </ul>
@@ -113,9 +94,11 @@
                             </td>
                         </tr>
                         </tbody>
+
                     @endforeach
+
                 </table>
-                <!-- start: PROCEDURE TABLE DATA -->
+                <!-- start: SPECIALTY TABLE DATA -->
 
             </div>
             <!-- end: PANEL BODY -->

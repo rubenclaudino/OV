@@ -39,6 +39,6 @@ class PatientsTableSeeder extends Seeder
             ]
         ]);
 
-        Patient::find(2)->specialties()->attach([12]);
+        Patient::find(2)->specialities()->attach([12]);
     }
 }

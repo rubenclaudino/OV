@@ -57,7 +57,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Appointment');
     }
 
-    public function specialties()
+    public function specialities()
     {
         return $this->belongsToMany('App\Specialty');
     }
@@ -65,6 +65,16 @@ class User extends Authenticatable
     public function holidays()
     {
         return $this->hasMany('App\UserHoliday');
+    }
+
+    public function ovcosts()
+    {
+        return $this->hasMany('App\Ovcosts');
+    }
+
+    public function ovmodules()
+    {
+        return $this->hasMany('App\Ovmodules');
     }
 
     public function isAdmin()

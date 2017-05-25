@@ -21,6 +21,7 @@ class RolesTableSeeder extends Seeder
             ['color' => '#E03D19', 'name' => 'receptionist', 'display_name' => 'Recepcionista'],
             ['color' => '#E03D19', 'name' => 'auxiliar', 'display_name' => 'Auxiliar'],
             ['color' => '#3D4236', 'name' => 'accountant', 'display_name' => 'Contador/a'],
+            ['color' => '#3D4236', 'name' => 'investor', 'display_name' => 'Investidor/a'],
         ]);
     }
 }

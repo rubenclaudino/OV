@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', '
     Route::post('patients/getPatients', 'PatientsController@getPatientList');
     Route::get('patients/stats', 'PatientsController@stats');
     Route::resource('patients', 'PatientsController');
+    Route::post('patients/saveQuickpatient', 'PatientsController@saveQuickpatient');
 
     // PROCEDURES
     // Route::get('procedures/treatmentTypes','ProceduresController@treatmentTypes');
@@ -65,14 +66,12 @@ Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', '
     Route::post('procedures/getPatientTreatment', 'ProceduresController@getPatientTreatment');
     Route::resource('procedures', 'ProceduresController');
 
-    // SPECIALTIES
-    Route::get('specialities/get', 'SpecialityController@get');
-    Route::resource('specialities', 'SpecialityController');
+    // SPECIALITIES
+    Route::get('specialities/get', 'SpecialitiesController@get');
+    Route::resource('specialities', 'SpecialitiesController');
 
     // REVIEW --- POSSIBLE DELETE
-    Route::resource('treatmenttypes', 'SpecialtiesController');
     Route::resource('holidays', 'HolidaysController');
-    Route::resource('recepnists', 'RecepnistsController');
     Route::resource('dentists', 'DentistsController');
 
     // DENTAL PLANS

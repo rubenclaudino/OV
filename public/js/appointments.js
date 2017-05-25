@@ -404,7 +404,7 @@ $(document).ready(function () {
         window.location = $url;
     })
 
-    // SAVE QUICK PATIENT
+    // SAVE QUICKPATIENT
 
     $("#addQuickPatient").validate({
         errorPlacement: function (error, element) { // render error placement for each input type
@@ -431,7 +431,7 @@ $(document).ready(function () {
             formData._token = csrf_token;
             $.ajax({
                 type: "POST",
-                url: APP_URL + '/patients',
+                url: APP_URL + '/patients/saveQuickpatient',
                 data: formData,
                 success: function (data) {
                     if (data.status == 'success') {

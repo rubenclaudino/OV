@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Specialty extends Model
 {
+    public $table = "specialities";
     protected $guarded = ['id'];
 
     public function users()

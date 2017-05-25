@@ -1,14 +1,14 @@
 @extends('layouts.page')
-@section('title', '')
+@section('title', 'Especialidade')
 @section('content')
 
     <!-- start: DIV -->
     <div style="margin: 15px 2px">
 
         <!-- start: FORM -->
-    {{ Form::open(['route' => 'procedures.store', 'class' => 'form']) }}
+    {{ Form::open(['route' => 'specialities.store', 'class' => 'form']) }}
 
-    @include('procedures.partials.form')
+    @include('specialities.partials.form')
 
     {{Form::close()}}
     <!-- end: FORM -->
@@ -19,7 +19,6 @@
 @endsection
 
 @section('extra_scripts')
-    @include('procedures.partials.scripts')
+    @include('specialities.partials.scripts')
 @endsection
-
 

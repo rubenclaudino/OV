@@ -87,7 +87,6 @@
 
         <!-- start: TAB CONTENT -->
         <div class="tab-content panel" style="border: none;padding-bottom: 15px">
-            {{--
                         <!-- start: DETAILS -->
                         <div id="details" class="tab-pane fade active in">
 
@@ -408,7 +407,7 @@
 
                 </div>
                 <!-- end: CLIENT INFORMATION -->
-            --}}
+
         </div>
         <!-- end: CONTAINER -->
 

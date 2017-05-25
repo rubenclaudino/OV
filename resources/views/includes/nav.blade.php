@@ -58,30 +58,30 @@
                 <!-- end: AGENDA -->
 
             @role('admin')
-                <!-- start: TYPES OF APPOITMENTS -->
+            <!-- start: TYPES OF APPOITMENTS -->
                 <li class="@if(\Route::current()->getName() == 'calendar.appointment_types') {{'active'}}@endif">
                     <a href="{{ url('/calendar/appointmentTypes') }}">
-                        <i class="fa fa-user fa-fw"></i>
+                        <i class="fa fa-bookmark-o fa-fw"></i>
                         <span class="title">Tipos de Agendamentos</span></a>
                 </li>
                 <!-- end: TYPES OF APPOITMENTS -->
 
                 <!-- start: CLINICS -->
                 <li class="@if(\Route::current()->getName() == 'clinic.index') {{'active'}}@endif">
-                    <a href="{{ route('clinic.index') }}"><i class="fa fa-h-square fa-fw"></i> <span
+                    <a href="{{ route('clinic.index') }}"><i class="fa fa-id-badge fa-fw"></i> <span
                                 class="title"> Clientes </span></a>
                 </li>
                 <!-- end: CLINICS -->
-                @endrole
+            @endrole
 
-                @role('local_admin' || 'admin')
+            @role('local_admin' || 'admin')
             <!-- start: USER MANAGEMENT -->
                 <li class="@if(\Route::current()->getName() == 'users.index') {{'active'}}@endif">
                     <a href="{{ route('users.index') }}"><i class="fa fa-user fa-fw"></i> <span
                                 class="title"> Gerenciamento </span></a>
                 </li>
                 <!-- end: USER MANAGEMENT -->
-                @endrole
+            @endrole
 
             <!-- start: PATIENTS -->
                 <li class="@if(\Route::current()->getName() == 'patients.index') {{'active'}}@endif">
@@ -93,69 +93,20 @@
                 <!-- start: PROCEDURES -->
                 @role('admin')
                 <li class="@if(\Route::current()->getName() == 'procedures.index') {{'active'}}@endif">
-                    <a href="{{ route('procedures.index') }}"><i class="fa fa-arrow fa-fw"></i> <span
+                    <a href="{{ route('procedures.index') }}"><i class="fa fa-briefcase fa-fw"></i> <span
                                 class="title"> Procedimentos </span></a>
-                </li>
-                @endrole
-
-                @role('admin')
-                <li>
-                    <a href="#"><i class="fa fa-folder-open fa-fw"></i> <span
-                                class="title"> Procedimentos </span><i class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li class="@if(\Route::current()->getName() == 'treatmenttypes.index') {{'active'}}@endif">
-                            <a href="{{ url('specialties')}}">
-                                <span class="title"> Procedimentos </span>
-                            </a>
-                        </li>
-                        @if(Auth::user()->isAdmin() || Auth::user()->hasPermission('treatmenttypescontroller.create'))
-                            <li class="@if(\Route::current()->getName() == 'treatmenttypes.create') {{'active'}}@endif">
-                                <a href="{{ url('/treatmenttypes/create')}}">
-                                    <span class="title"> Registrar Procedimento </span>
-                                </a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->isAdmin() )
-                            <li class="@if(\Route::current()->getName() == 'specialities.index') {{'active'}}@endif">
-                                <a href="{{ url('/specialities')}}">
-                                    <span class="title"> Especialidades </span>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
                 </li>
                 @endrole
             <!-- end: PROCEDURES -->
 
-                <!-- start: TREATMENTS -->
+                <!-- start: SPECIALITIES -->
                 @role('admin')
-                <li>
-                    <a href="#"><i class="fa fa-folder-open fa-fw"></i> <span
-                                class="title"> Procedimentos </span><i class="icon-arrow"></i> </a>
-                    <ul class="sub-menu">
-                        <li class="@if(\Route::current()->getName() == 'treatmenttypes.index') {{'active'}}@endif">
-                            <a href="{{ url('specialties')}}">
-                                <span class="title"> Procedimentos </span>
-                            </a>
-                        </li>
-                        @if(Auth::user()->isAdmin() || Auth::user()->hasPermission('treatmenttypescontroller.create'))
-                            <li class="@if(\Route::current()->getName() == 'treatmenttypes.create') {{'active'}}@endif">
-                                <a href="{{ url('/treatmenttypes/create')}}">
-                                    <span class="title"> Registrar Procedimento </span>
-                                </a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->isAdmin() )
-                            <li class="@if(\Route::current()->getName() == 'specialities.index') {{'active'}}@endif">
-                                <a href="{{ url('/specialities')}}">
-                                    <span class="title"> Especialidades </span>
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
+                <li class="@if(\Route::current()->getName() == 'specialities') {{'active'}}@endif">
+                    <a href="{{ route('specialities.index') }}"><i class="fa fa-tag fa-fw"></i> <span
+                                class="title"> Especialidades </span></a>
                 </li>
                 @endrole
-            <!-- end: TREATMENTS -->
+            <!-- end: SPECIALITIES -->
 
                 <!-- start: DENTAL PLANS -->
                 <li class="@if(\Route::current()->getName() == 'dentalplans.index') {{'active'}}@endif">
@@ -238,7 +189,7 @@
             <!-- end: SELECT LISTS AVIALBLE -->
 
                 <!-- start: INVESTORS -->
-                @role('admin')
+                @role('admin' || 'investor')
                 <li>
                     <a href="javascript:void(0)"><i class="fa fa-address-book-o fa-fw"></i><span
                                 class="title"> Investidores </span><i class="icon-arrow"></i> </a>
@@ -284,14 +235,14 @@
                 @endrole
             <!-- end: FINANCE -->
 
-                <!-- start: FINANCE -->
+                <!-- start: FEEDBACK -->
                 @role('admin')
                 <li class="@if(\Route::current()->getName() == 'bugs.index') {{'active'}}@endif">
                     <a href="{{ route('bugs.index') }}"><i class="fa fa-bug fa-fw"></i> <span
                                 class="title"> User Feedback </span></a>
                 </li>
             @endrole
-            <!-- end: FINANCE -->
+            <!-- end: FEEDBACK -->
 
                 <!-- <li>
                     <a href="javascript:void(0)"><i class="fa fa-bell"></i> <span class="title"> Reminders </span><i class="icon-arrow"></i> </a>

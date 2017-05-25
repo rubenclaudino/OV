@@ -329,6 +329,34 @@ class UsersTableSeeder extends Seeder
                 'personal_id_number' => $faker->word,
                 'dentist_unique_identifier' => $faker->word,
                 'additional_info' => $faker->word,
+            ],
+            [
+                'first_name' => 'Ed',
+                'last_name' => 'Enzo',
+                'email' => 'ed@admin.com',
+                'password' => bcrypt('123456'),
+                'zip_code' => $faker->countryCode,
+                'address' => $faker->address,
+                'street_number' => $faker->numberBetween(1, 100),
+                'phone_1' => $faker->phoneNumber,
+                'phone_2' => $faker->phoneNumber,
+                'phone_landline' => $faker->phoneNumber,
+                'whatsapp_number' => $faker->phoneNumber,
+                'nationality' => $faker->word,
+                'date_of_birth' => $faker->dateTimeThisCentury,
+                'gender' => 0,
+                'stripe_id' => $faker->bankAccountNumber,
+                'card_brand' => $faker->word,
+                'card_lasts_for' => $faker->dateTimeThisCentury,
+                'earn_percentage' => $faker->numberBetween(0, 100),
+                'is_whatsapp_number_public' => true,
+                'resident_in_clinic' => true,
+                'accepts_after_hour_calls' => true,
+                'clinic_id' => 1,
+                'cpf' => $faker->word,
+                'personal_id_number' => $faker->word,
+                'dentist_unique_identifier' => $faker->word,
+                'additional_info' => $faker->word,
             ]
         ]);
 
@@ -343,18 +371,19 @@ class UsersTableSeeder extends Seeder
         User::find(9)->roles()->attach([3]);
         User::find(10)->roles()->attach([3]);
         User::find(11)->roles()->attach([1]);
+        User::find(12)->roles()->attach([10]);
 
-        User::find(2)->specialties()->attach([12]);
-        User::find(2)->specialties()->attach([2]);
-        User::find(3)->specialties()->attach([2]);
-        User::find(4)->specialties()->attach([8]);
-        User::find(4)->specialties()->attach([2]);
-        User::find(7)->specialties()->attach([11]);
-        User::find(7)->specialties()->attach([2]);
-        User::find(8)->specialties()->attach([2]);
-        User::find(9)->specialties()->attach([12]);
-        User::find(9)->specialties()->attach([2]);
-        User::find(10)->specialties()->attach([2]);
+        User::find(2)->specialities()->attach([12]);
+        User::find(2)->specialities()->attach([2]);
+        User::find(3)->specialities()->attach([2]);
+        User::find(4)->specialities()->attach([8]);
+        User::find(4)->specialities()->attach([2]);
+        User::find(7)->specialities()->attach([11]);
+        User::find(7)->specialities()->attach([2]);
+        User::find(8)->specialities()->attach([2]);
+        User::find(9)->specialities()->attach([12]);
+        User::find(9)->specialities()->attach([2]);
+        User::find(10)->specialities()->attach([2]);
 
     }
 }

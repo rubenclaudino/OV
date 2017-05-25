@@ -25,7 +25,7 @@ class CreateProceduresTable extends Migration
             $table->integer('clinic_id')->unsigned();
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
             $table->integer('specialty_id')->unsigned();
-            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
+            $table->foreign('specialty_id')->references('id')->on('specialities')->onDelete('cascade');
 
             $table->timestamps();
         });

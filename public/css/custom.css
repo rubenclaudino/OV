@@ -1352,15 +1352,23 @@ label.error{
    padding:0 15px;
    text-align: center;
 }
+
 .fc-right .change_dentist{
    float:left;
    padding-top:5px;
 }
+
+@media (max-width: 480px) {
+    .fc-right .change_dentist{
+        display: none;
+    }
+}
+
 .fc-right .fc-button-group{
    float: right !important;
 }
 .fc-center h2{
-   padding-top:20px;
+   padding-top:16px;
     font-weight: normal;
     font-size: large;
 }
@@ -1384,9 +1392,17 @@ hr.fc-widget-header{
 .fc-left{
    display: none;
 }
+
 .fc-toolbar .fc-center{
    float:left;
 }
+
+@media (max-width: 480px) {
+	.fc-toolbar .fc-center{
+		display: none;
+	}
+}
+
 .fc-toolbar .fc-center div{
    width: 100%;
    float: left;
@@ -1772,6 +1788,26 @@ select.form-control.selectpicker option:nth-child(5) {
 	display: block;
 }
 
+.custom_dp{
+	width:13%;
+	position: relative;
+	top: 10px;
+	left: 20px;
+}
+
+.date-picker-custom {
+	border-radius: 1px;
+}
+
+.input-group-addon {
+	border-radius: 1px;
+}
+
+@media (max-width: 480px) {
+	.custom_dp{
+		width:40%;
+	}
+}
 
 
 /* ANGULAR VALIDATION */

@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemTypesTableSeeder::class);
         $this->call(ReferralsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
-        $this->call(SpecialtiesTableSeeder::class);
+        $this->call(SpecialitiesTableSeeder::class);
         $this->call(SubscriptionsTableSeeder::class);
         $this->call(ClinicsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AppointmentStatusesTableSeeder::class);
         $this->call(PatientsTableSeeder::class);
         $this->call(DiseasesTableSeeder::class);
+        $this->call(OvModulesTableSeeder::class);
 
         $this->call(StatesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);

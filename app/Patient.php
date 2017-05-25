@@ -74,7 +74,7 @@ class Patient extends Model
         return $this->hasMany('App\Image');
     }
 
-    public function specialties()
+    public function specialities()
     {
         return $this->belongsToMany('App\Specialty', 'patient_specialty');
     }

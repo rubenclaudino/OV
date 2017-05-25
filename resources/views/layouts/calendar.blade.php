@@ -1295,7 +1295,7 @@
 
     // PICKDATE HEREEEEEEEEEEE ---
     $(document).ready(function () {
-        $(".fc-center").after('<div class="input-group" style="position:relative;top: 10px;left:20px;width:13%;"><input type=text" class="form-control date-picker-custom">' +
+        $(".fc-center").after('<div class="input-group custom_dp"><input type=text" class="form-control date-picker-custom">' +
             '<span class="input-group-addon" style="float:none;"> <i class="fa fa-calendar"></i></span></div>');
 
 

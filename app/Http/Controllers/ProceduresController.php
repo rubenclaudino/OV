@@ -23,50 +23,61 @@ class ProceduresController extends Controller
 
     public function create()
     {
+        $specialities = Specialty::all();
+        return view('procedures.create',compact('specialities'));
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        $appointment = Appointment::find($request->appointment_id);
+        $request['clinic_id'] = Auth::user()->clinic_id;
 
-        if ($appointment) {
+        Procedure::create($request->all());
 
-            // adding payment
-            $payment = Payment::create([
-                'amount' => $request->price,
-                'payment_type' => $request->payment_type,
-                'status' => $request->payment_action
+        return redirect('procedures')->with(
+            [
+                'alert-type' => 'success',
+                'message' => 'Convênio cadastrado com sucesso!'
             ]);
-            if ($payment->id) {
-                // adding treatment
-                $u = Procedure::create([
-                    'treatment_type_id' => $request->treatment_type_id,
-                    'patient_id' => $request->patient_id,
-                    'start_date' => date('Y-m-d'),
-                    'dentist_id' => $request->dentist_id,
-                    'appointment_id' => $request->appointment_id,
-                    'observation' => $request->observation,
-                    'payment_id' => $payment->id,
-                ]);
-
-                if ($u->id) {
-                    $treatments = $this->getPatientProcedure($request);
-                    return $treatments;
-                }
-            }
-        } else {
-            return "error";
-        }
     }
+
+    //  public function store(Request $request)
+    //  {
+    //     $appointment = Appointment::find($request->appointment_id);
+
+    //      if ($appointment) {
+    // adding payment
+    //         $payment = Payment::create([
+    //              'amount' => $request->price,
+    //             'payment_type' => $request->payment_type,
+    //              'status' => $request->payment_action
+    //          ]);
+    //        if ($payment->id) {
+    // adding treatment
+    //             $u = Procedure::create([
+    //               'treatment_type_id' => $request->treatment_type_id,
+    //               'patient_id' => $request->patient_id,
+    //               'start_date' => date('Y-m-d'),
+    //               'dentist_id' => $request->dentist_id,
+    //               'appointment_id' => $request->appointment_id,
+    //               'observation' => $request->observation,
+    //              'payment_id' => $payment->id,
+    //          ]);
+
+    //          if ($u->id) {
+    //              $treatments = $this->getPatientProcedure($request);
+    //              return $treatments;
+    //          }
+    //      }
+    //    } else {
+    //         return "error";
+    //    }
+    //   }
 
     public function show($id)
     {
-        $treatment = Procedure::find($id);
-        if ($treatment->id) {
-            return response()->json(['status' => 'success', 'message' => $treatment]);
-        } else {
-            return response()->json(['status' => 'error', 'message' => "Some Error Occured!"]);
-        }
+        $procedure = Procedure::where('procedure_id', $id)->get();
+
+        return view('procedures.show', compact('procedure'));
     }
 
     public function edit($id)

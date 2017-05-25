@@ -31,9 +31,9 @@ class PatientsController extends Controller
 
     public function create()
     {
-        list($professionals, $diseases, $specialties, $referrals, $clinic_dental_plans, $clinics, $cities, $states) = $this->import_related_models();
+        list($professionals, $diseases, $specialities, $referrals, $clinic_dental_plans, $clinics, $cities, $states) = $this->import_related_models();
         return view('patients.create', compact('clinics', 'diseases', 'professionals',
-            'specialties', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
+            'specialities', 'referrals', 'clinic_dental_plans', 'cities', 'states'));
     }
 
     public function store(PatientValidationRequest $request)
@@ -47,7 +47,7 @@ class PatientsController extends Controller
 
         // TODO: adding dynamic tabs on specialty select
         if ($request->has('specialty')) {
-            $patient->specialties()->sync($request->specialty);
+            $patient->specialities()->sync($request->specialty);
         }
 
         if ($request->has('diseases')) {
@@ -70,6 +70,37 @@ class PatientsController extends Controller
             ]);
     }
 
+
+    public function saveQuickpatient(PatientValidationRequest $request)
+    {
+        $request['clinic_id'] = Auth::user()->clinic_id;
+
+        // TODO: clinic dental plan as foreign key in patient dental plan
+        $patient = Patient::create($request->except('specialty', 'diseases', 'clinic_dental_plan_id', 'patient_dental_plans'));
+        if (!$patient->id)
+            return response()->json(['status' => 'error', 'message' => 'Ocorreu algum erro!']);
+
+        // TODO: adding dynamic tabs on specialty select
+        if ($request->has('specialty')) {
+            $patient->specialities()->sync($request->specialty);
+        }
+
+        if ($request->has('diseases')) {
+            $diseases = array_keys(array_filter(json_decode($request->diseases, true)));
+            $patient->diseases()->sync($diseases);
+        }
+        /*
+                if ($request['patient_dental_plans']['clinic_dental_plan_id'] != null) {
+                    $new = array_merge($request->patient_dental_plans, ['patient_id' => $patient->id]);
+                    PatientDentalPlan::create($new);
+                }
+        */
+
+        $this->upload_image($request, $patient);
+        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!",'data' => $patient,'first_name' => $patient->first_name,'last_name' => $patient->last_name,'id' => $patient->id]);
+
+    }
+
     public function show(Patient $patient)
     {
         $appointments = Appointment::where('patient_id', $patient->id)->orderBy('starttimestamp', 'desc')->get();
@@ -78,10 +109,10 @@ class PatientsController extends Controller
 
     public function edit(Patient $patient)
     {
-        list($professionals, $diseases, $specialties, $referrals, $clinic_dental_plans, $clinics, $cities, $states) = $this->import_related_models();
+        list($professionals, $diseases, $specialities, $referrals, $clinic_dental_plans, $clinics, $cities, $states) = $this->import_related_models();
 
         return view('patients.edit', compact('patient', 'professionals',
-            'specialties', 'referrals', 'clinic_dental_plans', 'clinics', 'diseases', 'states', 'cities'));
+            'specialities', 'referrals', 'clinic_dental_plans', 'clinics', 'diseases', 'states', 'cities'));
     }
 
     public function update(PatientValidationRequest $request, Patient $patient)
@@ -129,8 +160,8 @@ class PatientsController extends Controller
             $patients[$i]->address = $data->address;
 
             $patients[$i]->speciality =
-                DB::select("SELECT `specialties`.*, `patient_specialty`.`patient_id` from `specialties`
-                inner join `patient_specialty` on `patient_specialty`.`specialty_id` = `specialties`.`id`
+                DB::select("SELECT `specialities`.*, `patient_specialty`.`patient_id` from `specialities`
+                inner join `patient_specialty` on `patient_specialty`.`specialty_id` = `specialities`.`id`
                 where `patient_specialty`.`patient_id` ='" . $data->id . "'");
 
             $k = 0;
@@ -237,14 +268,14 @@ class PatientsController extends Controller
             $query->where('name', 'dentist');
         })->where('clinic_id', Auth::user()->clinic_id)->get()->pluck('full_name', 'id');
 
-        $specialties = Specialty::orderBy('name')->pluck('name', 'id');
+        $specialities = Specialty::orderBy('name')->pluck('name', 'id');
         $referrals = Referral::pluck('name', 'id');
         $clinic_dental_plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->pluck('title', 'id');
         $clinics = Clinic::roleFilter()->pluck('name', 'id');
         $cities = City::pluck('name', 'id');
         $states = State::pluck('abbreviation', 'id');
 
-        return array($professionals, $diseases, $specialties, $referrals, $clinic_dental_plans, $clinics, $cities, $states);
+        return array($professionals, $diseases, $specialities, $referrals, $clinic_dental_plans, $clinics, $cities, $states);
     }
 
 }

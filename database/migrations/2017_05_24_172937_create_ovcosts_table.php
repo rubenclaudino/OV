@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSpecialtiesTable extends Migration
+class CreateOvcostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateSpecialtiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('specialties', function (Blueprint $table) {
+        Schema::create('ovcosts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('color');
+            $table->string('cost_description')->nullable();
+            $table->float('value')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSpecialtiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('specialties');
+        Schema::dropIfExists('ovcosts');
     }
 }

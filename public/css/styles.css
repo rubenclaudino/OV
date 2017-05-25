@@ -276,7 +276,17 @@ h1, h2, h3, h4 {
 .topbar .container .topbar-tools > ul {
   list-style: none;
   margin: 0;
+  float: right;
 }
+@media screen and (max-width: 480px) and (min-width: 319px) {
+  .topbar .container .topbar-tools > ul {
+    margin-top: -5px;
+  }
+  .topbar  {
+    height: 35px !important;
+  }
+}
+
 /* line 64, ../sass/partials/layout-elements/_header.scss */
 .topbar .container .topbar-tools > ul > li {
   float: left;
@@ -5995,6 +6005,12 @@ div.timeline .column_center .timeline_element:before, div.timeline .column_cente
 /* line 70, ../sass/partials/_calendar.scss */
 .fc-state-down, .fc-state-active {
   opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .fc-state-down, .fc-state-active{
+    display: none;
+  }
 }
 
 /* line 73, ../sass/partials/_calendar.scss */

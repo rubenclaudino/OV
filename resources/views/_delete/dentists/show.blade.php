@@ -92,8 +92,8 @@
 
                                             <!-- start: SPEACIAL TAGS INFO -->
                                             <p>
-                                                @if($dentist->specialties)
-                                                    @foreach($dentist->specialties as $specialty)
+                                                @if($dentist->specialities)
+                                                    @foreach($dentist->specialities as $specialty)
                                                         <label class="label label-warning"
                                                                style="background: #{{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
                                                     @endforeach

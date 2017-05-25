@@ -120,10 +120,10 @@
 
                                             <!-- start: SPEACIAL TAGS INFO -->
                                             <p>
-                                                @if($user->specialties)
-                                                    @foreach($user->specialties as $specialty)
+                                                @if($user->specialities)
+                                                    @foreach($user->specialities as $specialty)
                                                         <label class="label label-warning"
-                                                               style="background: #{{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
+                                                               style="background: {{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
                                                     @endforeach
                                                 @endif
                                             </p>
