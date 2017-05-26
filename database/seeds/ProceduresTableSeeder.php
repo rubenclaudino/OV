@@ -148,7 +148,7 @@ Incompleta','specialty_id' => 8,'procedure_code' => '85200131'],
             ['name' => 'Guia Cirúrgico para Prótese Imediata','specialty_id' => 10,'procedure_code' => '85400203'],
             ['name' => 'Jig ou Front-Plato','specialty_id' => 10,'procedure_code' => '90090645'],
             ['name' => 'Conserto em Prótese Total (em Consultório e em Laboratório)','specialty_id' => 10,'procedure_code' => '85400050'],
-            ['name' => 'Órtese Miorrelaxante (Placa Oclusal Estabilizadora)','specialty_id' => 10,'procedure_code' => '85400246']],
+            ['name' => 'Órtese Miorrelaxante (Placa Oclusal Estabilizadora)','specialty_id' => 10,'procedure_code' => '85400246'],
             /* CIRURGIA */
             ['name' => 'Bridectomia','specialty_id' => 11,'procedure_code' => '82000298'],
             ['name' => 'Acompanhamento de Tratamento / Procedimento Cirúrgico em Ontologia','specialty_id' => 11,'procedure_code' => '82000026'],
@@ -221,7 +221,7 @@ Região Buco-Maxilo-Facial','specialty_id' => 11,'procedure_code' => '82001022']
             ['name' => 'Aparelho de Thurow','specialty_id' => 12,'procedure_code' => '86000047'],
             ['name' => 'Aparelho de Disfunção Têmpero-Mandibular (DTM)','specialty_id' => 12,'procedure_code' => '90110863'],
             ['name' => 'Distalizador de Hilgers','specialty_id' => 12,'procedure_code' => '86000250'],
-            /* ORTODONTIA */
+            /* IMPLANTE */
             ['name' => 'Implante Ósseo Integrado','specialty_id' => 13,'procedure_code' => '82000980'],
             ['name' => 'Coroa Total Metalo-Cerâmica sobre Implante','specialty_id' => 13,'procedure_code' => '85500038'],
             ['name' => 'Sedação Medicamentosa Ambulatorial em Odontologia','specialty_id' => 13,'procedure_code' => '82001456'],
@@ -230,6 +230,6 @@ Região Buco-Maxilo-Facial','specialty_id' => 11,'procedure_code' => '82001022']
             ['name' => 'Protocolo Branemark 5 Implantes','specialty_id' => 13,'procedure_code' => '85500178'],
             ['name' => 'Protocolo Branemark 4 Implantes','specialty_id' => 13,'procedure_code' => '85500160'],
             ['name' => 'Elemento suspenso de prótese fixa em metalo ceramica – Pontico','specialty_id' => 13,'procedure_code' => '90120935']
-        );
+        ]);
     }
 }
