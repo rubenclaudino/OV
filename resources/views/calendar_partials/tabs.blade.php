@@ -95,7 +95,7 @@
 
                                         <!-- start: APPOINTMENT SPECIALTY SELECT -->
                                         <div class="form-group">
-                                            {!! Form::select('specialty_id', $specialities, 2,['class' => 'form-control treatment_type']) !!}
+                                            {!! Form::select('specialty_id', $specialties, 2,['class' => 'form-control treatment_type']) !!}
                                         </div>
                                         <!-- end: APPOINTMENT SPECIALTY SELECT -->
 

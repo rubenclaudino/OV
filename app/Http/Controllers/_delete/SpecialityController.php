@@ -10,12 +10,12 @@ class SpecialityController extends Controller
 
     public function index()
     {
-        return view('specialities.index');
+        return view('specialties.index');
     }
 
     public function create()
     {
-        return view('specialities.create');
+        return view('specialties.create');
     }
 
     public function store(Request $request)
@@ -33,13 +33,13 @@ class SpecialityController extends Controller
     public function show($id)
     {
         $speciality = Specialty::find($id);
-        return view('specialities.show', compact('speciality'));
+        return view('specialties.show', compact('speciality'));
     }
 
     public function edit($id)
     {
         $speciality = Specialty::find($id);
-        return view('specialities.edit', compact('speciality'));
+        return view('specialties.edit', compact('speciality'));
     }
 
     public function update(Request $request, $id)

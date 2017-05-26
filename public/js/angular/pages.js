@@ -21,7 +21,7 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
 
    // create a blank object to hold our form information
    // $scope will allow this to pass between controller and view
-   $scope.specialities = [];
+   $scope.specialties = [];
 
    $scope.saveSpeciality = function(isValid) {
 
@@ -31,7 +31,7 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
       }else {
          $http({
             method  : 'POST',
-            url     : '/specialities',
+            url     : '/specialties',
             data    : $.param($scope.formData),  // pass in data as strings
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
          })
@@ -39,7 +39,7 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
             if(data.status == 'success') {
             // if not successful, bind errors to error variables
                 // $scope.errorName = data.errors.name;
-                $scope.specialities.push(data.json);
+                $scope.specialties.push(data.json);
 
                 $scope.showModal = false;
 
@@ -59,13 +59,13 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
    $scope.loadFeeds = function() {
       $http({
          method  : 'GET',
-         url     : '/specialities/get', //(not request payload)
+         url     : '/specialties/get', //(not request payload)
       })
       .success(function(data) {
          if(data.status == 'success') {
          // if not successful, bind errors to error variables
              // $scope.errorName = data.errors.name;
-             $scope.specialities = data.message;
+             $scope.specialties = data.message;
          } else {
              // if successful, bind success message to message
              $scope.message = data.message;
@@ -76,7 +76,7 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
    // editing form
    $scope.editSpeciality = function(specialityId) {
       $scope.editSpecialityModal = true;
-      $scope.formData = $scope.specialities[specialityId];
+      $scope.formData = $scope.specialties[specialityId];
    };
 
    //deleting form
@@ -86,7 +86,7 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
       if(confirm('Are you sure ?')){
          $http({
             method  : 'POST',
-            url     : '/specialities/'+specialityId,
+            url     : '/specialties/'+specialityId,
             data    : $scope.mData
          })
          .success(function(data) {
@@ -94,7 +94,7 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
                toaster.success({title: "Success", body:data.message});
             // if not successful, bind errors to error variables
                 // $scope.errorName = data.errors.name;
-                $scope.specialities = data.json;
+                $scope.specialties = data.json;
                 $scope.$apply();
             } else {
                 // if successful, bind success message to message
@@ -113,7 +113,7 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
       }else {
           $http({
              method  : 'PUT',
-             url     : '/specialities/'+$id,
+             url     : '/specialties/'+$id,
              data    : $.param($scope.formData),  // pass in data as strings
              headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
           })
@@ -122,7 +122,7 @@ app.controller('SpecialityController', function($scope , $http , toaster) {
              // if not successful, bind errors to error variables
                  // $scope.errorName = data.errors.name;
                  toaster.success({title: "Success", body:data.message});
-                 $scope.specialities =  data.json;
+                 $scope.specialties =  data.json;
                  $scope.editSpecialityModal = false;
                  $scope.$apply();
              } else {

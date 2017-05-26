@@ -1,5 +1,5 @@
 @extends('layouts.page')
-@section('title', 'Specialities')
+@section('title', 'Specialties')
 @section('content')
 
     <!-- start: DIV -->
@@ -23,7 +23,7 @@
 
                     <div class="pull-right">
 
-                        <a class="btn" href="{{ URL::route('specialities.create') }}"
+                        <a class="btn" href="{{ URL::route('specialties.create') }}"
                            style="background: whitesmoke">
                             <i class="fa fa-user fa-fw"></i> Nova Especialidade
                         </a>
@@ -60,7 +60,7 @@
                     </tr>
                     </thead>
 
-                    @foreach($specialities as $speciality)
+                    @foreach($specialties as $speciality)
 
                         <tbody>
                         <tr>
@@ -82,7 +82,7 @@
                                         Opções &nbsp;<span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" style="opacity:0.9;">
-                                        <li><a href="{{ URL::route('specialities.edit', $speciality->id) }}">
+                                        <li><a href="{{ URL::route('specialties.edit', $speciality->id) }}">
                                                 <small><i class="fa fa-pencil fa-fw"></i>&nbsp; Editar</small>
                                             </a></li>
                                         <li class="divider"></li>

@@ -38,7 +38,7 @@
     </script>
     --}}
     {{--
-    THIS ONE HAS ONLY DETAILS FOR SPECIALITIES
+    THIS ONE HAS ONLY DETAILS FOR SPECIALTIES
     <script type="text/javascript" src="{{ asset('js/angular/pages.js')}}"></script>
 
 

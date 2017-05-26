@@ -6,9 +6,9 @@
     <div style="margin: 15px 2px">
 
         <!-- start: FORM -->
-    {{ Form::open(['route' => 'specialities.store', 'class' => 'form']) }}
+    {{ Form::open(['route' => 'specialties.store', 'class' => 'form']) }}
 
-    @include('specialities.partials.form')
+    @include('specialties.partials.form')
 
     {{Form::close()}}
     <!-- end: FORM -->
@@ -19,6 +19,6 @@
 @endsection
 
 @section('extra_scripts')
-    @include('specialities.partials.scripts')
+    @include('specialties.partials.scripts')
 @endsection
 

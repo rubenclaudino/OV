@@ -57,7 +57,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Appointment');
     }
 
-    public function specialities()
+    public function specialties()
     {
         return $this->belongsToMany('App\Specialty');
     }

@@ -66,7 +66,7 @@
                             <button type="submit" class="btn btn-success">
                                 Salvar
                             </button>
-                            <a href="{{ url('/specialities.index')}}" class="btn btn-grey">
+                            <a href="{{ url('/specialties.index')}}" class="btn btn-grey">
                                 Voltar
                             </a>
                         </div>

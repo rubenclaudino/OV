@@ -70,7 +70,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="pSpec">Especialidades</label>
-                            {!! Form::select('specialty[]',$specialities,2,['class' => 'form-control
+                            {!! Form::select('specialty[]', $specialties, 2, ['class' => 'form-control
                             selectpicker','multiple' => 'true']) !!}
                         </div>
                     </div>

@@ -23,8 +23,8 @@ class ProceduresController extends Controller
 
     public function create()
     {
-        $specialities = Specialty::pluck('name', 'id');
-        return view('procedures.create',compact('specialities'));
+        $specialties = Specialty::pluck('name', 'id');
+        return view('procedures.create',compact('specialties'));
     }
 
     public function store(Request $request)

@@ -58,7 +58,7 @@ class CalendarController extends Controller
         $clinic_dental_plans = ClinicDentalPlan::where('clinic_id', Auth::user()->clinic_id)->orderBy('title')->pluck('title', 'id')->prepend('Não informado','');
         $appointments = Appointment::where('user_id', $id)->where('clinic_id', $user->clinic_id)->with(['patient', 'status'])->get();
         $report_models = CustomReport::pluck('name', 'id');
-        $specialities = Specialty::orderBy('name')->pluck('name', 'id');
+        $specialties = Specialty::orderBy('name')->pluck('name', 'id');
         $appointment_statuses = AppointmentStatus::pluck('name', 'id');
 
         $calendarArray = array();
@@ -128,7 +128,7 @@ class CalendarController extends Controller
 
         return view('calendar', compact('title', 'subtitle', 'activeClass', 'types', 'treatmentTypes',
             'calendarArray', 'professionals', 'dentist_id', 'treatmentTypesWithPrice', 'report_models', 'treatments', 'agendaSettings',
-            'holidays', 'appointment_statuses', 'user' , 'clinics', 'clinic_dental_plans', 'specialities'));
+            'holidays', 'appointment_statuses', 'user' , 'clinics', 'clinic_dental_plans', 'specialties'));
     }
 
     public function store(Request $request)

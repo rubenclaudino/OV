@@ -44,7 +44,7 @@
                     <div class="clearfix"></div>
 
                     <!-- start: PROCEDURE NAME -->
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="name">Procedimento</label>
                             {{ Form::text('name', null,['class' => 'form-control']) }}
@@ -52,11 +52,20 @@
                     </div>
                     <!-- end: PROCEDURE NAME -->
 
+                    <!-- start: PROCEDURE CODE -->
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="procedure_cod">Codígo TUSS</label>
+                            {{ Form::text('procedure_cod', null,['class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <!-- end: PROCEDURE CODE -->
+
                     <!-- start: SPECIALTY -->
-                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label for="specialty_id">Especialidade</label>
-                            {!! Form::select('specialty_id',$specialities,'',['class' => 'form-control']) !!}
+                            {!! Form::select('specialty_id',$specialties,'',['class' => 'form-control']) !!}
                         </div>
                     </div>
                     <!-- end: SPECIALTY -->

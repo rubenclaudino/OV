@@ -373,17 +373,17 @@ class UsersTableSeeder extends Seeder
         User::find(11)->roles()->attach([1]);
         User::find(12)->roles()->attach([10]);
 
-        User::find(2)->specialities()->attach([12]);
-        User::find(2)->specialities()->attach([2]);
-        User::find(3)->specialities()->attach([2]);
-        User::find(4)->specialities()->attach([8]);
-        User::find(4)->specialities()->attach([2]);
-        User::find(7)->specialities()->attach([11]);
-        User::find(7)->specialities()->attach([2]);
-        User::find(8)->specialities()->attach([2]);
-        User::find(9)->specialities()->attach([12]);
-        User::find(9)->specialities()->attach([2]);
-        User::find(10)->specialities()->attach([2]);
+        User::find(2)->specialties()->attach([12]);
+        User::find(2)->specialties()->attach([2]);
+        User::find(3)->specialties()->attach([2]);
+        User::find(4)->specialties()->attach([8]);
+        User::find(4)->specialties()->attach([2]);
+        User::find(7)->specialties()->attach([11]);
+        User::find(7)->specialties()->attach([2]);
+        User::find(8)->specialties()->attach([2]);
+        User::find(9)->specialties()->attach([12]);
+        User::find(9)->specialties()->attach([2]);
+        User::find(10)->specialties()->attach([2]);
 
     }
 }

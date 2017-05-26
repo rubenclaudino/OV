@@ -6,9 +6,9 @@
     <div class="row" style="margin-top: 15px">
 
         <!-- start: FORM -->
-        {{ Form::model($speciality, ['route' => ['specialities.update', $speciality->id], 'method' => 'PUT']) }}
+        {{ Form::model($speciality, ['route' => ['specialties.update', $speciality->id], 'method' => 'PUT']) }}
 
-        @include('specialities.partials.form')
+        @include('specialties.partials.form')
 
         {{Form::close()}}
 

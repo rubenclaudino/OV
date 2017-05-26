@@ -99,14 +99,14 @@
                 @endrole
             <!-- end: PROCEDURES -->
 
-                <!-- start: SPECIALITIES -->
+                <!-- start: SPECIALTIES -->
                 @role('admin')
-                <li class="@if(\Route::current()->getName() == 'specialities') {{'active'}}@endif">
-                    <a href="{{ route('specialities.index') }}"><i class="fa fa-tag fa-fw"></i> <span
+                <li class="@if(\Route::current()->getName() == 'specialties') {{'active'}}@endif">
+                    <a href="{{ route('specialties.index') }}"><i class="fa fa-tag fa-fw"></i> <span
                                 class="title"> Especialidades </span></a>
                 </li>
                 @endrole
-            <!-- end: SPECIALITIES -->
+            <!-- end: SPECIALTIES -->
 
                 <!-- start: DENTAL PLANS -->
                 <li class="@if(\Route::current()->getName() == 'dentalplans.index') {{'active'}}@endif">

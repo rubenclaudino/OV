@@ -188,7 +188,7 @@
                         </div>
                         <!-- end: CRO -->
 
-                        <!-- start: SPECIALITIES -->
+                        <!-- start: SPECIALTIES -->
                         <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
                             <div class="form-group">
                                 <label for="honors">Especialidades</label>
@@ -196,7 +196,7 @@
                                        value="{{ old('honors') }}">
                             </div>
                         </div>
-                        <!-- end: SPECIALITIES -->
+                        <!-- end: SPECIALTIES -->
 
                         <div class="clearfix"></div>
 

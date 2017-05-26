@@ -68,14 +68,14 @@
                     @foreach($procedures as $procedure)
                         <tbody>
                         <tr>
-                            <!-- ID -->
-                            <td class="hide"></td>
+                            <!-- PROCEDURE CODE -->
+                            <td>{{ $procedure->procedure_code }}</td>
                             <!-- TITLE -->
                             <td>{{ $procedure->name }}</td>
                             <!-- SPECIALTY -->
                             <td>
                                     <span class="label label-default"
-                                          style="@if($procedure->specialities != '')background:{{$procedure->specialities}} !important @endif;opacity: 0.8">{{ $procedure->specialities->name }}</span>
+                                          style="@if($procedure->specialties != '')background:{{ $procedure->specialties }} !important @endif;opacity: 0.8">{{ $procedure->specialties->name }}</span>
                             </td>
                         @role('admin' == false)
                             <!-- PRICE -->

@@ -311,7 +311,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::select('speciality',$specialities,'array($patient->gender)',['class' => 'select', 'placeholder' => 'Selecione Especialidade','style' => 'width:100%']) !!}
+                    {!! Form::select('speciality',$specialties,'array($patient->gender)',['class' => 'select', 'placeholder' => 'Selecione Especialidade','style' => 'width:100%']) !!}
                 </div>
 
                 <!-- start: CPF -->

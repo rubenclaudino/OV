@@ -100,9 +100,9 @@
                                         Clínica
                                     @endif
                                 </td>
-                                <!-- SPECIALITIES -->
+                                <!-- SPECIALTIES -->
                                 <td>
-                                    @foreach($patient->specialities as $specialty)
+                                    @foreach($patient->specialties as $specialty)
                                         <label class="label"
                                                style="background: {{$specialty->color}};opacity:0.7">{{ $specialty->name }}</label>
                                     @endforeach

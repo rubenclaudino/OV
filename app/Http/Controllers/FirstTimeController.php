@@ -10,11 +10,11 @@ class FirstTimeController extends Controller
 
     public function index()
     {
-        $specialities = Specialty::pluck('title', 'id');
+        $specialties = Specialty::pluck('title', 'id');
         if (Auth::user()->hasRole('dentistadmin')) {
             $user = Dentist::where('user_id', '=', Auth::user()->id)->first();
         }
-        return view('firsttime.index', compact('specialities', 'user'));
+        return view('firsttime.index', compact('specialties', 'user'));
     }
 
 }

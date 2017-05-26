@@ -15,8 +15,9 @@ class CreateProceduresTable extends Migration
     {
         Schema::create('procedures', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            // $table->string('description')->nullable();;
+            $table->string('name', 500);
+            $table->string('procedure_code');
+            //  $table->string('description')->nullable();;
             //  $table->integer('percentage')->nullable();;
             //  $table->integer('amount')->nullable();;
 
@@ -25,7 +26,7 @@ class CreateProceduresTable extends Migration
             //  $table->integer('clinic_id')->unsigned();
             //  $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
             $table->integer('specialty_id')->unsigned();
-            $table->foreign('specialty_id')->references('id')->on('specialities')->onDelete('cascade');
+            //  $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
 
             $table->timestamps();
         });

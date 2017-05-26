@@ -66,9 +66,9 @@ Route::group(['middleware' => ['auth', 'web' /*'subscriptions', 'permissions', '
     Route::post('procedures/getPatientTreatment', 'ProceduresController@getPatientTreatment');
     Route::resource('procedures', 'ProceduresController');
 
-    // SPECIALITIES
-    Route::get('specialities/get', 'SpecialitiesController@get');
-    Route::resource('specialities', 'SpecialitiesController');
+    // SPECIALTIES
+    Route::get('specialties/get', 'SpecialtiesController@get');
+    Route::resource('specialties', 'SpecialtiesController');
 
     // REVIEW --- POSSIBLE DELETE
     Route::resource('holidays', 'HolidaysController');
