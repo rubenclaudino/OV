@@ -75,7 +75,7 @@
                             <!-- SPECIALTY -->
                             <td>
                                     <span class="label label-default"
-                                          style="@if($procedure->specialties != '')background:{{ $procedure->specialties }} !important @endif;opacity: 0.8">{{ $procedure->specialties->name }}</span>
+                                          style="@if($procedure->specialties != '')background:{{ $procedure->specialties }} !important @endif;opacity: 0.8">{{ $procedure->specialty->name }}</span>
                             </td>
                         @role('admin' == false)
                             <!-- PRICE -->

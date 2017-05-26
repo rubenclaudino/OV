@@ -18,7 +18,7 @@ class Procedure extends Model
         return $this->belongsTo('App\Appointment');
     }
 
-    public function specialties()
+    public function specialty()
     {
         return $this->hasOne('App\Specialty');
     }
