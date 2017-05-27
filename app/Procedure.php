@@ -20,6 +20,6 @@ class Procedure extends Model
 
     public function specialties()
     {
-        return $this->hasOne('App\Specialty');
+        return $this->belongsTo('App\Specialty');
     }
 }
