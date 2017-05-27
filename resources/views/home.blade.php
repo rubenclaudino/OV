@@ -9,7 +9,6 @@
             <!-- start: USER WIDGETS -->
             <div class="row" style="margin-top: 10px;margin-right: -5px">
 
-
                 <!-- start: APPOINTMENTS BOOKED TODAY FOR THIS USER-->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
                     <div class="panel partition-green" style="text-align: center;padding: 10px">

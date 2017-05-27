@@ -141,6 +141,7 @@ class CalendarController extends Controller
     public function show($id)
     {
         $user = Auth::user();
+
         if ($user->isAdmin() || $user->hasRole('local_admin') || $user->hasRole('receptionist'))
             return $this->userAppointments($id);
         else

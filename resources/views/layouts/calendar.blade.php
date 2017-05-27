@@ -1140,7 +1140,7 @@
                         message: '<i class="fa fa-spinner fa-spin"></i> Salvando agendamento ...'
                     });
 
-                    if ($(".form-full-event .event-id").val() !== "") {
+                    /*if ($(".form-full-event .event-id").val() !== "") {
                         el = $(".form-full-event .event-id").val();
                         var actual_event = $('#full-calendar').fullCalendar('clientEvents', el);
                         actual_event = actual_event[0];
@@ -1173,7 +1173,7 @@
                             }
                         });
 
-                    } else {
+                    } else {*/
                         console.log('AJAX called without calendar user ID')
                         $.ajax({
                             url: APP_URL + '/calendar',
@@ -1201,7 +1201,7 @@
                     }
 
 
-                }
+                //}
             });
         };
         // on hide event's form destroy summernote and bootstrapSwitch plugins

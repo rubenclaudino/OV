@@ -53,7 +53,7 @@
 
                     <thead style="background: whitesmoke">
                     <tr>
-                        <th class="hide">#</th>
+                        <th>ANS</th>
                         <th>Procedimento</th>
                         <th>Especialidade</th>
                         @role('admin' == false)
@@ -75,10 +75,12 @@
                             <!-- SPECIALTY -->
                             <td>
                                     <span class="label label-default"
-                                          style="@if($procedure->specialties != '')background:{{ $procedure->specialties }} !important @endif;opacity: 0.8">}</span>
+                                          style="@if($procedure->specialties != '')background:{{ $procedure->specialties }} !important @endif;opacity: 0.8">
+                                        {{ $procedure->specialties }}
+                                    </span>
                             </td>
                         @role('admin' == false)
-                            <!-- PRICE -->
+                        <!-- PRICE -->
                             <td>R$ {{ $procedure->price }}</td>
                             <!-- PERCENTAGE -->
                             <td class="hide">{{ $procedure->default_percentage }}&nbsp;%</td>
@@ -89,7 +91,7 @@
                                 <small>{{ $procedure->tuss_code }}</small>
                             </td>
                         @endrole
-                            <!-- INTERACTIONS -->
+                        <!-- INTERACTIONS -->
                             <td>
                                 <div class="btn-group hidden-print">
                                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle"

@@ -20,7 +20,7 @@ class HomeController extends Controller
         $patients = Patient::where('clinic_id', (Auth::user()->clinic_id));
         $clinic = Clinic::with('appointments')->find(Auth::user()->clinic_id);
 
-        return view('home', compact('appointments', 'patients', 'clinic'));
+        return view('home', compact('appointments', 'patients', 'clinic', 'chart'));
     }
 
     public function joinus()
