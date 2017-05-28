@@ -48,7 +48,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 {!! Form::select('patient_dental_plans[clinic_dental_plan_id]', $clinic_dental_plans, null,['class' =>
-                                'form-control','placeholder' => 'Convênio']) !!}
+                                'form-control']) !!}
                             </div>
                         </div>
                         <!-- end: DENTAL PLAN -->

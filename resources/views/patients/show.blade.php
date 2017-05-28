@@ -86,18 +86,20 @@
 
                                 <!-- start: SPEACIAL TAGS INFO -->
                                 <p>
+                                    @isset($patient->specialties)
                                     @if($patient->specialties)
                                         @foreach($patient->specialties as $specialty)
                                             <label class="label label-warning"
-                                                   style="background: #{{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
+                                                   style="background: {{ $specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $specialty->name }}</label>
                                         @endforeach
                                     @endif
+                                    @endisset
                                 </p>
                                 <!-- start: SPEACIAL TAGS INFO -->
 
                                 <!-- start: AGE -->
                                 <h5>
-                                    <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;&nbsp;
+                                    <i class="fa fa-birthday-cake fa-fw"></i>&nbsp;
                                     {{ \Carbon\Carbon::parse($patient->date_of_birth)->age }} anos
                                     &nbsp;
                                 </h5>
@@ -106,9 +108,13 @@
                                 <!-- start: ADDRESS -->
                                 <h5>
                                     <i class="fa fa-map-marker fa-fw"></i>
+                                    @isset($patient->city)
                                     &nbsp;{{ $patient->address }} {{ $patient->street_number }},
                                     {{ $patient->borough }},
                                     {{ $patient->city->name }} {{ $patient->state->abbreviation }}
+                                    @else
+                                        &nbsp;-
+                                    @endisset
                                 </h5>
                                 <!-- end: ADDRESS -->
 
@@ -595,10 +601,10 @@
                                                style="background: {{ $appointment->specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $appointment->specialty->name }}</label>
                                     </td>
                                     <td>
-                                        {{ $appointment->plantype->title }}
+                                        {{ $appointment->clinic_dental_plan->title }}
                                     </td>
                                     <td>
-                                        {{ $appointment->type->name }}
+                                        {{ $appointment->appointment_type->name }}
                                     </td>
                                     <td>
                                         @if( $appointment->status->id == 1 )

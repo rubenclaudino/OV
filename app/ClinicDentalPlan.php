@@ -32,4 +32,9 @@ class ClinicDentalPlan extends Model
     {
         return $this->belongsTo('App\Clinic');
     }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = ucfirst($value);
+    }
 }

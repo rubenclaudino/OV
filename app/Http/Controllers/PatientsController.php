@@ -25,7 +25,7 @@ class PatientsController extends Controller
     {
         $patients = Patient::roleFilter()
             ->get()
-            ->sortBy('last_name');
+            ->sortBy('first_name');
         return view('patients.index', compact('patients'));
     }
 
@@ -54,12 +54,12 @@ class PatientsController extends Controller
             $diseases = array_keys(array_filter(json_decode($request->diseases, true)));
             $patient->diseases()->sync($diseases);
         }
-        /*
-                if ($request['patient_dental_plans']['clinic_dental_plan_id'] != null) {
-                    $new = array_merge($request->patient_dental_plans, ['patient_id' => $patient->id]);
-                    PatientDentalPlan::create($new);
-                }
-        */
+
+        if ($request['patient_dental_plans']['clinic_dental_plan_id'] != null) {
+            $new = array_merge($request->patient_dental_plans, ['patient_id' => $patient->id]);
+            PatientDentalPlan::create($new);
+        }
+
 
         $this->upload_image($request, $patient);
 
@@ -89,15 +89,15 @@ class PatientsController extends Controller
             $diseases = array_keys(array_filter(json_decode($request->diseases, true)));
             $patient->diseases()->sync($diseases);
         }
-        /*
-                if ($request['patient_dental_plans']['clinic_dental_plan_id'] != null) {
-                    $new = array_merge($request->patient_dental_plans, ['patient_id' => $patient->id]);
-                    PatientDentalPlan::create($new);
-                }
-        */
+
+        if ($request['patient_dental_plans']['clinic_dental_plan_id'] != null) {
+            $new = array_merge($request->patient_dental_plans, ['patient_id' => $patient->id]);
+            PatientDentalPlan::create($new);
+        }
+
 
         $this->upload_image($request, $patient);
-        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!",'data' => $patient,'first_name' => $patient->first_name,'last_name' => $patient->last_name,'id' => $patient->id]);
+        return response()->json(['status' => 'success', 'message' => "Paciente cadastrado com sucesso!", 'data' => $patient, 'first_name' => $patient->first_name, 'last_name' => $patient->last_name, 'id' => $patient->id]);
 
     }
 

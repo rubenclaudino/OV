@@ -49,7 +49,20 @@
             <div class="panel-body" id="mainInfo">
 
                 <!-- start: PROCEDURE TABLE DATA -->
-                <table class="table table-hover table-responsive">
+                <table class="table table-hover table-condensed table-responsive">
+
+                    <style>
+                        .table{
+                            border-collapse: separate !important;
+                        }
+                        .table th, .table td .table tr{
+                            border-top: none !important;
+                            border-bottom: none !important;
+                            padding: 10px !important;
+                            border: none !important;
+                            border-color: white;
+                        }
+                    </style>
 
                     <thead style="background: whitesmoke">
                     <tr>
@@ -75,8 +88,8 @@
                             <!-- SPECIALTY -->
                             <td>
                                     <span class="label label-default"
-                                          style="@if($procedure->specialties != '')background:{{ $procedure->specialties }} !important @endif;opacity: 0.8">
-                                        {{ $procedure->specialties }}
+                                          style="@if($procedure->specialties != '')background:{{ $procedure->specialties->color }} !important @endif;opacity: 0.8">
+                                        {{ $procedure->specialties->name }}
                                     </span>
                             </td>
                         @role('admin' == false)

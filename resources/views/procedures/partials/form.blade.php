@@ -55,8 +55,8 @@
                     <!-- start: PROCEDURE CODE -->
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label for="procedure_cod">Codígo TUSS</label>
-                            {{ Form::text('procedure_cod', null,['class' => 'form-control']) }}
+                            <label for="procedure_code">Codígo TUSS</label>
+                            {{ Form::text('procedure_code', null,['class' => 'form-control']) }}
                         </div>
                     </div>
                     <!-- end: PROCEDURE CODE -->

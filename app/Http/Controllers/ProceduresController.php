@@ -17,7 +17,7 @@ class ProceduresController extends Controller
 
     public function index()
     {
-        $procedures = Procedure::all();
+        $procedures = Procedure::orderBy('name', 'ASC')->get();
         return view('procedures.index', compact('procedures'));
     }
 
@@ -105,7 +105,7 @@ class ProceduresController extends Controller
     public function destroy($id)
     {
         Procedure::destroy($id);
-        return response()->json(['status' => 'success', 'message' => 'Procedure Deleted!']);
+        return response()->json(['status' => 'success', 'message' => 'Procedimento Excluido!']);
     }
 
     /**

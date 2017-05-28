@@ -448,6 +448,42 @@ $(document).ready(function () {
             });
 
     });
+    /**
+     * DELETE Contact
+     * */
+
+    $('body').on('click', '.deleteProcedure', function () {
+        $t = $(this);
+        $val = $(this).attr('data-id');
+
+        swal({
+                title: "Excluir Procedimento",
+                text: "Quer excluir esse procedimento?",
+                type: "info",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+            },
+            function () {
+                setTimeout(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: APP_URL + '/procedures/' + $val,
+                        data: {_method: 'DELETE', "id": $val, "_token": csrf_token},
+                        success: function (data) {
+                            if (data.status == "success") {
+                                swal(data.message, '', 'success');
+                                //deleting table row
+                                var row = $t.closest('tr');
+                                $('.dataTable').dataTable().fnDeleteRow(row);
+                            } else {
+                                swal(data.message, '', 'error')
+                            }
+                        }
+                    });
+                });
+            });
+    });
 
     /**
      * DELETE Contact

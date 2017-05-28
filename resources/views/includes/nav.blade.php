@@ -189,7 +189,7 @@
             <!-- end: SELECT LISTS AVIALBLE -->
 
                 <!-- start: INVESTORS -->
-                @role('admin' || 'investor')
+                @role('admin' | 'investor')
                 <li>
                     <a href="javascript:void(0)"><i class="fa fa-address-book-o fa-fw"></i><span
                                 class="title"> Investidores </span><i class="icon-arrow"></i> </a>
