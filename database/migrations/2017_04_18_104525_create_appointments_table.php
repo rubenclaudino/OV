@@ -48,6 +48,10 @@ class CreateAppointmentsTable extends Migration
             $table->integer('specialty_id')->unsigned();
             $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
 
+            // TODO: remove nullable after check
+            //$table->integer('procedure_id')->unsigned()->nullable();
+            //$table->foreign('procedure_id')->references('id')->on('procedures')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{$title}} | Odontovision</title>
+    <title>{{$user->full_name}} | Odontovision</title>
     @include('includes.stylesheets')
     <style>
         .appt_count {

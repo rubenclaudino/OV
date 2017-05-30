@@ -110,6 +110,7 @@ class CalendarController extends Controller
         }
 
         // getting current clinic dentists
+        // TODO: this query doesn't work as it should
         $dentist = Role::where('name', 'dentist')->first()->users()->orderBy('first_name', 'asc')->where('clinic_id', $user->clinic_id)->get();
 
         //$dentist = Role::with('users')->where('name', 'dentist')->orWhere('name', 'local_admin')->get();
