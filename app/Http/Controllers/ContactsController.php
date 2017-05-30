@@ -41,7 +41,7 @@ class ContactsController extends Controller
         $input['clinic_id'] = Auth::user()->clinic_id;
         $input['user_id'] = Auth::user()->id;
 
-        $contato = ContactEntity::create($input);
+        ContactEntity::create($input);
 
         return redirect('contacts')->with(
             [

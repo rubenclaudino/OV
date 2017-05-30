@@ -11,90 +11,117 @@
 
                 <!-- start: APPOINTMENTS BOOKED TODAY FOR THIS USER-->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendamentos</h4>
-                        <h1>{{$appointments->where('user_id', Auth::user()->id)->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
-                        <p>Hoje</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px;background: white">
+                        <h4>Agendamentos
+                            <br>
+                            <small style="text-align: center">Hoje</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $appointments_user->where('created_at', '>=', Carbon\Carbon::today())->count()}}</p>
                     </div>
                 </div>
                 <!-- end: APPOINTMENTS BOOKED TODAY FOR THIS USER-->
 
-                <!-- end: APPOINTMENTS BOOKED YESTERDAY -->
+                <!-- end: APPOINTMENTS BOOKED YESTERDAY FOR USER -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendamentos</h4>
-                        <h1>{{$appointments->where('user_id', Auth::user()->id)->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
-                        <p>Ontem</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px">
+                        <h4>Agendamentos
+                            <br>
+                            <small style="text-align: center">Ontem</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{$appointments_user->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</p>
                     </div>
                 </div>
-                <!-- end: APPOINTMENTS BOOKED YESTERDAY -->
+                <!-- end: APPOINTMENTS BOOKED YESTERDAY FOR USER -->
 
-                <!-- start: APPOINTMENTS BOOKED THIS WEEK -->
+                <!-- start: APPOINTMENTS BOOKED THIS WEEK FOR USER-->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendamentos</h4>
-                        <h1>{{$appointments->where('user_id', Auth::user()->id)->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
-                        <p>Essa semana</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px">
+                        <h4>Agendamentos
+                            <br>
+                            <small style="text-align: center">Essa semana</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{$appointments_user->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek())->where('created_at', '>', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</p>
                     </div>
                 </div>
-                <!-- end: APPOINTMENTS BOOKED THIS WEEK -->
+                <!-- end: APPOINTMENTS BOOKED THIS WEEK FOR USER-->
 
-                <!-- start: APPOINTMENTS BOOKED LAST WEEK -->
+                <!-- start: APPOINTMENTS BOOKED LAST WEEK FOR USER -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendamentos</h4>
-                        <h1>{{$appointments->where('user_id', Auth::user()->id)->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
-                        <p>Semana passada</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px">
+                        <h4>Agendamentos
+                            <br>
+                            <small style="text-align: center">Semana passada</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{$appointments_user->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</p>
                     </div>
                 </div>
-                <!-- end: APPOINTMENTS BOOKED LAST WEEK -->
+                <!-- end: APPOINTMENTS BOOKED LAST WEEK FOR USER -->
 
-                <!-- start: PATIENTS CONFIRMED THIS WEEK -->
+                <!-- start: PATIENTS CONFIRMED THIS WEEK FOR USER -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Confirmados</h4>
-                        <h1>{{ $appointments->where('user_id', Auth::user()->id)->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 2)->count() }}</h1>
-                        <p>Essa semana</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px">
+                        <h4>Confirmados
+                            <br>
+                            <small style="text-align: center">Essa semana</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $appointments_user->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 2)->count() }}</p>
                     </div>
                 </div>
-                <!-- end: PATIENTS CONFIRMED THIS WEEK -->
+                <!-- end: PATIENTS CONFIRMED THIS WEEK FOR USER -->
 
-                <!-- start: PATIENTS CANCELLED THIS WEEK -->
+                <!-- start: PATIENTS CANCELLED THIS WEEK FOR USER -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Desmarcados</h4>
-                        <h1>{{ $appointments->where('user_id', Auth::user()->id)->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 3)->count() }}</h1>
-                        <p>Essa semana</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px">
+                        <h4>Desmarcados
+                            <br>
+                            <small style="text-align: center">Essa semana</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $appointments_user->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->where('appointment_status_id', 3)->count() }}</p>
                     </div>
                 </div>
-                <!-- end: PATIENTS CANCELLED THIS WEEK -->
+                <!-- end: PATIENTS CANCELLED THIS WEEK FOR USER -->
 
                 <!-- start: DENTAL PLAN PATIENTS RATIO -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-white" style="text-align: center;padding: 10px">
-                        <h4>Convênio</h4>
-                        <h1>0</h1>
-                        <p>-</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px">
+                        <h4>Convênio
+                            <br>
+                            <small style="text-align: center">Atendidos essa semana</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $appointments_user->where('clinic_dental_plan_id', '>', 0)->where('start', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count() }}</p>
                     </div>
                 </div>
                 <!-- end: DENTAL PLAN PATIENTS RATIO -->
 
                 <!-- start: NON DENTAL PLAN PATIENTS RATIO -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-white" style="text-align: center;padding: 10px">
-                        <h4>Particular</h4>
-                        <h1>0</h1>
-                        <p>-</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px">
+                        <h4>Particular
+                            <br>
+                            <small style="text-align: center">Atendidos essa semana</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">0</p>
                     </div>
                 </div>
                 <!-- end: NON DENTAL PLAN PATIENTS RATIO -->
 
                 <!-- start : CAPTIVE PATIENTS -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-white" style="text-align: center;padding: 10px">
-                        <h4>Você tem</h4>
-                        <h1>{{ $patients->where('user_id', Auth::user()->id)->count() }}</h1>
-                        <p>pacientes cativos</p>
+                    <div class="panel partition-white" style="text-align: center;padding: 3px">
+                        <h4>Existem
+                            <br>
+                            <small style="text-align: center">pacientes cativos</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $patients_user->count() }}</p>
                     </div>
                 </div>
                 <!-- end : CAPTIVE PATIENTS -->
@@ -161,73 +188,104 @@
         <!-- start: CLINIC ADMIN WIDGETS -->
             <div class="row" style="margin-top: 10px;margin-right: -5px;">
 
-                <!-- start:  -->
+                <!-- start: ADMIN TITLE -->
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 nopadding">
-                    <div class="panel" style="text-align: center; padding-bottom: 2px;padding-top: 0.5px">
-                        <h3 style="color: #3d3d3d">Dados relacionados á clínica</h3>
+                    <div style="text-align: center; padding-bottom: 2px;padding-top: 12px; background: white">
+                        <p style="color: #3d3d3d; font-size: 20px">Dados relacionados á clínica</p>
                     </div>
                 </div>
-                <!-- end:  -->
+                <!-- end: ADMIN TITLE -->
 
                 <!-- start: BOOKED TODAY -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendados</h4>
-                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today())->count()}}</h1>
-                        <p>Hoje</p>
+                    <div class="panel partition-green" style="text-align: center;padding: 3px">
+                        <h4>Agendamentos
+                            <br>
+                            <small style="text-align: center;color: white">Hoje</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $appointments_clinic->where('created_at', '>=', Carbon\Carbon::today())->count() }}</p>
                     </div>
                 </div>
                 <!-- end: BOOKED TODAY -->
 
                 <!-- end: APPOINTMENTS BOOKED YESTERDAY -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendados</h4>
-                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count()}}</h1>
-                        <p>Ontem</p>
+                    <div class="panel partition-green" style="text-align: center;padding: 3px">
+                        <h4>Agendamentos
+                            <br>
+                            <small style="text-align: center;color: white">Ontem</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $appointments_clinic->where('created_at', '>=', Carbon\Carbon::yesterday())->where('created_at', '<', Carbon\Carbon::today())->count() }}</p>
                     </div>
                 </div>
                 <!-- end: APPOINTMENTS BOOKED YESTERDAY -->
 
                 <!-- start: APPOINTMENTS BOOKED THIS WEEK -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendados</h4>
-                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
-                        <p>Essa semana</p>
+                    <div class="panel partition-green" style="text-align: center;padding: 3px">
+                        <h4>Agendamentos
+                            <br>
+                            <small style="text-align: center;color: white">Essa semana</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $appointments_clinic->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek())->count() }}</p>
                     </div>
                 </div>
                 <!-- end: APPOINTMENTS BOOKED THIS WEEK -->
 
                 <!-- start: APPOINTMENTS BOOKED LAST WEEK -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Agendados</h4>
-                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
-                        <p>Semana passada</p>
+                    <div class="panel partition-green" style="text-align: center;padding: 3px">
+                        <h4>Agendamentos
+                            <br>
+                            <small style="text-align: center;color: white">Semana passada</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $appointments_clinic->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count() }}</p>
                     </div>
                 </div>
                 <!-- end: APPOINTMENTS BOOKED LAST WEEK -->
 
                 <!-- start: NEW PATIENTS THIS WEEK -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Pacientes Novos</h4>
-                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
-                        <p>Essa semana</p>
+                    <div class="panel partition-green" style="text-align: center;padding: 3px">
+                        <h4>Pacientes Novos
+                            <br>
+                            <small style="text-align: center;color: white">Essa semana</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $patients_clinic->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek())->where('created_at', '>', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</p>
                     </div>
                 </div>
                 <!-- end: NEW PATIENTS THIS WEEK -->
 
                 <!-- start: NEW PATIENTS LAST WEEK -->
                 <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
-                    <div class="panel partition-green" style="text-align: center;padding: 10px">
-                        <h4>Pacientes Novos</h4>
-                        <h1>{{$clinic->appointments->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count()}}</h1>
-                        <p>Semana passada</p>
+                    <div class="panel partition-green" style="text-align: center;padding: 3px">
+                        <h4>Pacientes Novos
+                            <br>
+                            <small style="text-align: center;color: white">Semana passada</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $patients_clinic->where('created_at', '>=', Carbon\Carbon::today()->subDay()->startOfWeek()->subWeek(1))->where('created_at', '<', Carbon\Carbon::today()->subDay()->startOfWeek())->count() }}</p>
                     </div>
                 </div>
                 <!-- end: NEW PATIENTS LAST WEEK -->
+
+                <!-- start: NUMBER OF PATIENTS REGISTERED -->
+                <div class="col-md-2 col-lg-2 col-sm-6 col-xs-6 nopadding">
+                    <div class="panel partition-green" style="text-align: center;padding: 3px">
+                        <h4>Pacientes
+                            <br>
+                            <small style="text-align: center;color: white">Cadastrados</small>
+                            <br style="margin-bottom: 20px">
+                        </h4>
+                        <p style="text-align: center;font-size: 30px">{{ $patients_clinic->count() }}</p>
+                    </div>
+                </div>
+                <!-- end: NUMBER OF PATIENTS REGISTERED -->
 
             </div>
             <!-- end: BOOKED TODAY -->

@@ -1,31 +1,63 @@
-<!-- start: SELECT CLINIC -->
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group {{ $errors->has('clinic_id') ? 'has-error' : '' }}">
-        <label for="clinic_id">Selecione Clinica</label>
-        {!! Form::select('clinic_id', $clinics, 'Select A Clinic',['class' => 'form-control']) !!}
+@if( Auth::user()->hasRole('admin'))
+    <!-- start: SELECT CLINIC -->
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="form-group {{ $errors->has('clinic_id') ? 'has-error' : '' }}">
+            <label for="clinic_id">Selecione Clinica</label>
+            {!! Form::select('clinic_id', $clinics, 'Selecione Clinica',['class' => 'form-control']) !!}
+        </div>
     </div>
-</div>
-<!-- end: SELECT CLINIC -->
+    <!-- end: SELECT CLINIC -->
 
-<!-- start: USER ROLE -->
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="form-group">
-        <label for="roles">Roles</label>
-        {!! Form::select('roles[]',$roles, isset($user_roles) ? $user_roles : null,['class' => 'form-control selectpicker','multiple' => 'true']) !!}
+    <!-- start: USER ROLE -->
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="form-group">
+            <label for="roles">Roles</label>
+            {!! Form::select('roles[]',$roles, isset($user_roles) ? $user_roles : null,['class' => 'form-control selectpicker','multiple' => 'true']) !!}
+        </div>
     </div>
-</div>
-<!-- end: USER ROLE -->
+    <!-- end: USER ROLE -->
+@endif
 
 <div class="clearfix"></div>
 
+<!-- start: IMAGE -->
+<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+        <div class="fileupload-new thumbnail" style="width:100%"></div>
+        <div style="line-height: 10px; width:100%"
+             class="fileupload-preview fileupload-exists thumbnail">
+        </div>
+        <div>
+                            <span class="btn btn-primary btn-file">
+                                <span class="fileupload-new">
+                                    <i class="fa fa-picture-o fa-fw"></i>
+                                    Selecione Foto
+                                </span>
+                                 <span class="fileupload-exists">
+                                    <i class="fa fa-picture-o fa-fw"></i>
+                                     Alterar
+                                 </span>
+                                <input name="profile_picture" id="profile_picture" type="file"
+                                       accept="image/x-png, image/gif, image/jpeg">
+                            </span>
+
+            <span class="btn fileupload-exists btn-danger" data-dismiss="fileupload">
+                                    <i class="fa fa-times fa-fw"></i> Remover
+                                </span>
+
+        </div>
+    </div>
+</div>
+<!-- end: IMAGE -->
+
 <!-- start: LOGIN TITLE -->
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
     <h3 class="custom_header1">Dados Usuário</h3>
 </div>
 <!-- end: LOGIN TITLE -->
 
 <!-- start: EMAIL -->
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
         <label for="fname">E-mail</label>
         {{ Form::text('email', null,['placeholder' => 'Email usado para seu login','class' => 'form-control']) }}

@@ -74,7 +74,7 @@
                 <!-- end: CLINICS -->
             @endrole
 
-            @role('local_admin' || 'admin')
+            @role('local_admin' | 'admin')
             <!-- start: USER MANAGEMENT -->
                 <li class="@if(\Route::current()->getName() == 'users.index') {{'active'}}@endif">
                     <a href="{{ route('users.index') }}"><i class="fa fa-user fa-fw"></i> <span

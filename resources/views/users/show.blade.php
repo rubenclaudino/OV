@@ -1,6 +1,6 @@
 @extends('layouts.page')
 @section('title')
-    {{$user->full_name}}
+    {{ $user->full_name }}
 @endsection
 @section('content')
 
@@ -30,23 +30,27 @@
                                  style="border-radius: 3px;background:#fff;">
 
                                 <!-- start: PHOTO AREA -->
-                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 nopadding">
-                                    <div class="center">
-                                        <div class="fileupload fileupload-new" data-provides="fileupload">
-                                            <div class="user-image">
-                                                <div class="fileupload-new thumbnail"
-                                                     style="border: white 1px solid;border-radius: 1px;height: 165px;padding-top:15px">
-                                                    @if($user->profile_url != '')
-                                                        <img src="{{ url('/')}}/{{$user->profile_url }}"
-                                                             alt="{{ $user->first_name }} {{ $user->last_name }}">
-                                                    @else
-                                                        <img src="http://placehold.it/130xx130"
-                                                             style="border-radius:100px;">
-                                                    @endif
-                                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 center nopadding">
+
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+
+                                        <div class="user-image">
+
+                                            <div class="fileupload-new thumbnail"
+                                                 style="border: white 1px solid;border-radius: 1px;padding-top:15px; width: 150px;">
+                                                @if($user->profile_picture != '')
+                                                    <img src="{{ url('/' . $user->profile_picture) }}"
+                                                         alt="{{ $user->first_name }} {{ $user->last_name }}">
+                                                @else
+                                                    <img src="http://placehold.it/130xx130"
+                                                         style="border-radius:0px;">
+                                                @endif
                                             </div>
+
                                         </div>
+
                                     </div>
+
                                 </div>
                                 <!-- end: PHOTO AREA -->
 
@@ -80,7 +84,8 @@
                                                 <ul class="dropdown-menu pull-right" style="opacity:0.9;">
                                                     <li>
                                                         <a href="{{ URL::route('users.edit', $user->id) }}">
-                                                            <small><i class="fa fa-pencil fa-fw"></i>&nbsp; Editar</small>
+                                                            <small><i class="fa fa-pencil fa-fw"></i>&nbsp; Editar
+                                                            </small>
                                                         </a>
                                                     </li>
                                                     <li class="hide">
@@ -128,10 +133,11 @@
                                                 @endif
                                             </p>
                                             <!-- start: SPEACIAL TAGS INFO -->
-
                                             <h5>
                                                 <i class="fa fa-folder-o fa-fw"></i> &nbsp;
-                                                -
+                                                @foreach($user->roles as $role)
+                                                    {{ $role->display_name }}
+                                                @endforeach
                                             </h5>
                                             <h5>
                                                 @if($user->phone_landline != null)<i
@@ -155,23 +161,25 @@
                                 </div>
                                 <!-- end: DENTIST MAIN INFO -->
 
+                            @if($user->hasRole('dentist'))
                                 <!-- start: QUICK STATS -->
-                                <div class="col-lg-3 col-md-3" style="margin-top: 13px;opacity:1">
+                                    <div class="col-lg-3 col-md-3" style="margin-top: 13px;opacity:1">
 
                      <span class="pull-right">
 
-                     <!-- start: CRO -->
-                     <div class="col-lg-12 col-md-12">
+                             <!-- start: CRO -->
+                                 <div class="col-lg-12 col-md-12">
                         <div class="panel panel-white" style="padding:10px; background: whitesmoke">
                               <i class="fa fa-user fa-fw"></i>
                                &nbsp;&nbsp;CRO
-                              <span class="pull-right" style="padding-right: 10px"><strong>{{ $user->dentist_unique_identifier }}</strong></span>
+                              <span class="pull-right"
+                                    style="padding-right: 10px"><strong>{{ $user->dentist_unique_identifier }}</strong></span>
                         </div>
                      </div>
                          <!-- end: CRO -->
 
                          <!-- start: BOOKINGS -->
-                     <div class="col-lg-12 col-md-12">
+                             <div class="col-lg-12 col-md-12">
                         <div class="panel panel-white" style="padding:10px; margin-top: 5px; background: whitesmoke">
                               <i class="fa fa-calendar-o fa-fw"></i>
                                &nbsp;&nbsp;Agendamentos
@@ -194,8 +202,9 @@
 
                   </span>
 
-                                </div>
-                                <!-- end: QUICK STATS -->
+                                    </div>
+                                    <!-- end: QUICK STATS -->
+                                @endif
 
                             </div>
                             <!-- end: MAIN INFO TAB -->
@@ -224,11 +233,13 @@
                                 <strong>Geral</strong>
                             </a>
                         </li>
-                        <li>
-                            <a data-toggle="tab" href="#appointments">
-                                <strong>Agendamentos</strong>
-                            </a>
-                        </li>
+                        @if($user->hasRole('dentist'))
+                            <li>
+                                <a data-toggle="tab" href="#appointments">
+                                    <strong>Agendamentos</strong>
+                                </a>
+                            </li>
+                        @endif
                         <li class="hide">
                             <a data-toggle="tab" href="#financeiro">
                                 <strong>Financeiro</strong>
@@ -281,31 +292,48 @@
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
                                                 Email
                                             </td>
-                                            <td style="font-size:1.1em">{{ $user->email }}</td>
+                                            <td style="font-size:1.1em">
+                                                @if($user->email != null)
+                                                    {{ $user->email }}
+                                                @else -
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
                                                 Data de Nascimento
                                             </td>
-                                            <td style="font-size:1.1em">{{ \Carbon\Carbon::parse($user->date_of_birth)->format('d/m/y') }}</td>
+                                            <td style="font-size:1.1em">@if( $user->date_of_birth > \Carbon\Carbon::today()->subYears(100)){{ \Carbon\Carbon::parse($user->date_of_birth)->format('d/m/y') }}@else
+                                                    - @endif</td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
                                                 CPF
                                             </td>
-                                            <td style="font-size:1.1em">{{ $user->cpf }}</td>
+                                            <td style="font-size:1.1em">
+                                                @if($user->cpf != null){{ $user->cpf }}
+                                                @else -
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
                                                 RG
                                             </td>
-                                            <td style="font-size:1.1em">{{ $user->personal_id_number }}</td>
+                                            <td style="font-size:1.1em">
+                                                @if($user->personal_id_number != null)
+                                                    {{ $user->personal_id_number }}
+                                                @else -
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td style="color: #383838;font-weight:bold;line-height:30px;font-size:1.1em">
-                                                Nacionalidade
+
                                             </td>
-                                            <td style="font-size:1.1em">{{ $user->nationality }}</td>
+                                            <td style="font-size:1.1em">
+
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -426,77 +454,77 @@
                         </div>
                         <!-- end: PERSONAL DETAILS -->
 
+                    @if($user->hasRole('dentist'))
                         <!-- start: APPOINTMENTS -->
-                        <div id="appointments" class="tab-pane fade"
-                             style="overflow-x:auto;max-height:292px;padding: 30px;">
+                            <div id="appointments" class="tab-pane fade"
+                                 style="overflow-x:auto;max-height:292px;padding: 30px;">
 
-                            <table class="table table-striped table-hover" id="sample-table-2">
+                                <table class="table table-striped table-hover" id="sample-table-2">
 
-                                <thead>
-                                <tr>
-                                    <th style="font-size:1.1em">Data</th>
-                                    <th class="hidden-xs" style="font-size:1.1em">Horário</th>
-                                    <th class="hidden-xs" style="font-size:1.1em">Paciente</th>
-                                    <th style="font-size:1.1em">Plano</th>
-                                    <th style="font-size:1.1em">Especialidade</th>
-                                    <th class="center" style="font-size:1.1em">Status</th>
-                                    <th class="center hidden-xs" style="font-size:1.1em"></th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                @foreach($user->appointments as $appointment)
-                                    <tr style="font-size:1.1em">
-                                        <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
-                                        <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
-                                        <td>{{ $appointment->patient->first_name }}  {{ $appointment->patient->last_name }}</td>
-                                        <td>
-                                            @if($appointment->dental_plan == 0)
-                                                Convênio
-                                            @elseif($appointment->dental_plan == 1)
-                                                Particular
-                                            @else
-                                                Não Informado
-                                            @endif
-                                        </td>
-                                        <td>{{ $appointment->specialty->name }}</td>
-                                        <td class="center">
-                                            @if( $appointment->status->id == 1 )
-                                                <span class="label"
-                                                      style="background: #5bc0de;opacity: 0.8">{{ $appointment->status->name }}</span>
-                                            @elseif( $appointment->status->id == 2 )
-                                                <span class="label"
-                                                      style="background: #5cb85c;opacity: 0.8">{{ $appointment->status->name }}</span>
-                                            @elseif( $appointment->status->id == 3 )
-                                                <span class="label"
-                                                      style="background: #f0ad4e;opacity: 0.8">{{ $appointment->status->name }}</span>
-                                            @elseif( $appointment->status->id == 4 )
-                                                <span class="label"
-                                                      style="background: #d9534f;opacity: 0.8">{{ $appointment->status->name }}</span>
-                                            @elseif( $appointment->status->id == 5 )
-                                                <span class="label"
-                                                      style="background: #5e5e5e;opacity: 0.8">{{ $appointment->status->name }}</span>
-                                            @endif
-                                        </td>
-                                        <td class="center hidden-xs">
-                                            <a>
-                                                <i class="fa fa-info" data-text="{{$appointment->observation}}"
-                                                   data-toggle="tooltip" data-placement="top"
-                                                   title="{{$appointment->observation}}">
-
-                                                </i>
-                                            </a>
-                                        </td>
+                                    <thead>
+                                    <tr>
+                                        <th style="font-size:1.1em">Data</th>
+                                        <th class="hidden-xs" style="font-size:1.1em">Horário</th>
+                                        <th class="hidden-xs" style="font-size:1.1em">Paciente</th>
+                                        <th style="font-size:1.1em">Plano</th>
+                                        <th style="font-size:1.1em">Especialidade</th>
+                                        <th class="center" style="font-size:1.1em">Status</th>
+                                        <th class="center hidden-xs" style="font-size:1.1em"></th>
                                     </tr>
-                                @endforeach
-                                </tbody>
+                                    </thead>
 
-                            </table>
+                                    <tbody>
+                                    @foreach($user->appointments->sortByDesc('startdate') as $appointment)
+                                        <tr style="font-size:1.1em">
+                                            <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
+                                            <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
+                                            <td>{{ $appointment->patient->first_name }}  {{ $appointment->patient->last_name }}</td>
+                                            <td>
+                                                @isset($appointment->clinic_dental_plan->title)
+                                                {{ $appointment->clinic_dental_plan->title }}
+                                                @else
+                                                    Não Informado
+                                                @endif
+                                            </td>
+                                            <td>{{ $appointment->specialty->name }}</td>
+                                            <td class="center">
+                                                @if( $appointment->status->id == 1 )
+                                                    <span class="label"
+                                                          style="background: #5bc0de;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                                @elseif( $appointment->status->id == 2 )
+                                                    <span class="label"
+                                                          style="background: #5cb85c;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                                @elseif( $appointment->status->id == 3 )
+                                                    <span class="label"
+                                                          style="background: #f0ad4e;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                                @elseif( $appointment->status->id == 4 )
+                                                    <span class="label"
+                                                          style="background: #d9534f;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                                @elseif( $appointment->status->id == 5 )
+                                                    <span class="label"
+                                                          style="background: #5e5e5e;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                                @endif
+                                            </td>
+                                            <td class="center hidden-xs">
+                                                <a>
+                                                    <i class="fa fa-info" data-text="{{$appointment->observation}}"
+                                                       data-toggle="tooltip" data-placement="top"
+                                                       title="{{$appointment->observation}}">
 
-                        </div>
-                        <!-- end: APPOINTMENTS -->
+                                                    </i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
 
-                        <!-- start: FINANCEIRO -->
+                                </table>
+
+                            </div>
+                            <!-- end: APPOINTMENTS -->
+                    @endif
+
+                    <!-- start: FINANCEIRO -->
                         <div id="financeiro" class="tab-pane fade">
 
                             <!-- start: ROW -->
@@ -798,7 +826,9 @@
                                                         style="font-weight:bold;line-height:30px;font-size:1.1em;width:40%">
                                                         Média de atendimentos por semana
                                                     </td>
-                                                    <td class="col-md-3" style="font-size:1.1em">-</td>
+                                                    <td class="col-md-3" style="font-size:1.1em">
+                                                        -
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-md-3"
@@ -979,59 +1009,61 @@
                                             <td style="color: #383838;font-weight:bold;line-height:30px;">
                                                 Data Cadastrado
                                             </td>
-                                            {{--
-                                            <td>{{ date('d/m/y', strtotime($appointment->created_at)) }}</td>
-                                            --}}
+                                            <td>{{ $user->created_at }}</td>
                                         </tr>
-                                        <!-- APPOINTMENT COUNT -->
-                                        <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                N&deg; Agendamentos
-                                            </td>
-                                            <td>{{ count($user->appointments)}}</td>
-                                        </tr>
-                                        <!-- NUMBER OF CATIVE PATIENTS -->
-                                        <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                N&deg; Pacientes
-                                            </td>
-                                            <td>{{ count($user->patients)}}</td>
-                                        </tr>
-                                        <!-- % QUOTES CLOSED -->
-                                        <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                Avaliações Fechadas
-                                            </td>
-                                            <td>-</td>
-                                        </tr>
-                                        <!-- AVG DAILY APPS -->
-                                        <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                Med. Atendimentos / dia
-                                            </td>
-                                            <td>-</td>
-                                        </tr>
-                                        <!-- AVG WEEKLY APPS -->
-                                        <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                Med. Atendimentos / semana
-                                            </td>
-                                            <td>-</td>
-                                        </tr>
-                                        <!-- AVG MONTHLY APPS -->
-                                        <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                Med. Atendimentos / mês
-                                            </td>
-                                            <td>-</td>
-                                        </tr>
-                                        <!-- AVG APPOINTMENT DURATION -->
-                                        <tr>
-                                            <td style="color: #383838;font-weight:bold;line-height:30px;">
-                                                Med. Duração de atendimento
-                                            </td>
-                                            <td>-</td>
-                                        </tr>
+                                        @if($user->hasRole('dentist'))
+                                            <!-- APPOINTMENT COUNT -->
+                                            <tr>
+                                                <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                    N&deg; Agendamentos
+                                                </td>
+                                                <td>{{ count($user->appointments)}}</td>
+                                            </tr>
+                                            <!-- NUMBER OF CATIVE PATIENTS -->
+                                            <tr>
+                                                <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                    N&deg; Pacientes
+                                                </td>
+                                                <td>{{ count($user->patients)}}</td>
+                                            </tr>
+                                            <!-- % QUOTES CLOSED -->
+                                            <tr>
+                                                <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                    Avaliações Fechadas
+                                                </td>
+                                                <td>-</td>
+                                            </tr>
+                                            <!-- AVG DAILY APPS -->
+                                            <tr>
+                                                <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                    Med. Atendimentos / dia
+                                                </td>
+                                                <td>
+                                                    -
+                                                </td>
+                                            </tr>
+                                            <!-- AVG WEEKLY APPS -->
+                                            <tr>
+                                                <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                    Med. Atendimentos / semana
+                                                </td>
+                                                <td>-</td>
+                                            </tr>
+                                            <!-- AVG MONTHLY APPS -->
+                                            <tr>
+                                                <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                    Med. Atendimentos / mês
+                                                </td>
+                                                <td>-</td>
+                                            </tr>
+                                            <!-- AVG APPOINTMENT DURATION -->
+                                            <tr>
+                                                <td style="color: #383838;font-weight:bold;line-height:30px;">
+                                                    Med. Duração de atendimento
+                                                </td>
+                                                <td>-</td>
+                                            </tr>
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>

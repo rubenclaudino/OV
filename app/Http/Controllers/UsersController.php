@@ -19,21 +19,21 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::roleFilter()->get();
+        $users = User::orderBy('first_name', 'ASC')->roleFilter()->get();
         return view('users.index', compact('users'));
     }
 
     public function create()
     {
         list($clinics, $roles, $states, $cities) = $this->import_related_models();
-        return view('users.create', compact('user', 'clinics', 'states', 'cities', 'roles'));
+        return view('users.create', compact('clinics', 'states', 'cities', 'roles'));
     }
 
     public function store(UserValidationRequest $request)
     {
         $user = User::create($request->except('password_confirmation'));
         $user->roles()->sync($request->roles);
-        return redirect('users')->with(['alert-type' => 'success', 'message' => 'User Created!']);
+        return redirect('users')->with(['alert-type' => 'success', 'message' => 'Usuário cadastrado com sucesso!']);
     }
 
     public function show(User $user)

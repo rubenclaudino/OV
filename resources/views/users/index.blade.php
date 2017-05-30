@@ -71,7 +71,7 @@
 
                     <thead style="background: whitesmoke">
                     <tr>
-                        <th class="center">#</th>
+                        <th class="center"></th>
                         @role('admin')
                         <th>Clínica</th>
                         @endrole
@@ -87,12 +87,17 @@
                     @if(!empty($users))
                         @foreach($users as $user)
                             <tr>
-                                <td class="hidden-print">
-                                    <div class="image_cont" style="opacity: 0.8;">
-                                        @if($user->profile_url != '')
-                                            {{ Html::image(url($user->profile_url), '', ['width' => 60, 'height' => 60]) }}
+                                <!-- PROFILE PICTURE -->
+                                <td>
+                                    <div class="hidden-print" style="opacity: 0.8">
+                                        @if($user->profile_picture != '')
+                                            {{ Html::image(url('/' . $user->profile_picture), '', ['width' => 30, 'height' => 30]) }}
                                         @else
-                                            {{ Html::image(url('/images/anonymous.jpg'), '', ['width' => 60, 'height' => 60]) }}
+                                            @if($user->gender == '1')
+                                                {{ Html::image(url('/images/user/female.png'), '', ['width' => 30, 'height' => 30]) }}
+                                            @else
+                                                {{ Html::image(url('/images/user/male.png'), '', ['width' => 30, 'height' => 30]) }}
+                                            @endif
                                         @endif
                                     </div>
                                 </td>
