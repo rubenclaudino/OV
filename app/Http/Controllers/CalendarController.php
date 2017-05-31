@@ -27,10 +27,22 @@ class CalendarController extends Controller
         $id = Auth::user()->id;
         // if dentist admin or receptionist is present there
         if (Auth::user()->hasRole('receptionist')) {
-            $dentists = Role::where('name', 'dentist')->first()->users()->get();
+            //We should only get dentists for a specific clinic which belongs to specific receptioist
+            
+            //Eloquent Method
+            $dentists = Role::where('name', 'dentist')->first()->users()->orderBy('first_name', 'asc')->where('clinic_id', Auth::user()->clinic_id)->get();
+            
+            //Another optimized way to do so, Query builder consumes less time
+            /*$dentists = \DB::table('users')
+            ->join('role_user', 'role_user.user_id', '=', 'users.id')
+            ->join('roles', 'roles.id', '=', 'role_user.role_id')
+            ->where(array(array('users.clinic_id', '=', Auth::user()->clinic_id), array('roles.name', '=', 'dentist')))
+            ->orderBy('users.first_name', 'asc')->select('users.*')->get();*/
 
-            if (isset($dentists[0]->user_id))
-                return redirect()->action('CalendarController@show', ['id' => $dentists[0]->user_id]);
+            //Role::where('name', 'dentist')->first()->users()->get();
+
+            if (isset($dentists[0]->id)) 
+                return redirect()->action('CalendarController@show', ['id' => $dentists[0]->id]);
 
             echo "Não existe nenhum usuário cadastrado tente cadastrar um.";
 
