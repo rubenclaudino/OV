@@ -12,7 +12,7 @@ class AppointmentStatusesTableSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;'); // Turn of Foriegn key check
-        DB::table('appointment_statuses')->truncate(); //Just to handle already seeded values
+        DB::table('appointment_statuses')->truncate(); //Just to handle already seeded values, first we empty then again seed
         DB::statement('SET FOREIGN_KEY_CHECKS=1;'); // Turn on Foriegn key check again
         DB::table('appointment_statuses')->insert([
             ['name' => 'Agendado', 'class_name'     => 'appointment-status-booked'],
