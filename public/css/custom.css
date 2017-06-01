@@ -963,6 +963,11 @@ a[class="option"]:hover i{
 	background-color: #5cb85c !important;
 	opacity: 0.85;
 }
+.appointment-status-waiting{
+	background-color: #20124d !important;
+	color: #FFF !important;
+	opacity: 0.85;
+}
 
 .event-category.event-booked::before {
     color: #00AEFF!important;

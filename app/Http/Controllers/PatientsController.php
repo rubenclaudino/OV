@@ -118,9 +118,20 @@ class PatientsController extends Controller
     public function update(PatientValidationRequest $request, Patient $patient)
     {
         $patient->update($request->except('specialty', 'diseases', 'clinic_dental_plan_id', 'dental_plan', 'patient_dental_plans'));
-
-        if ($request['patient_dental_plans']['clinic_dental_plan_id'] != null) {
-            PatientDentalPlan::where('patient_id', $patient->id)->update($request->patient_dental_plans);
+        
+        //We have to check maybe patient is updating first time and don't have any dental plan yet. So if he/she has entered the dental plan details we will insert new row into table.
+        if (isset($request['patient_dental_plans']['clinic_dental_plan_id'])) 
+        {
+            if(PatientDentalPlan::where('patient_id', $patient->id)->count() > 0)
+            {
+                PatientDentalPlan::where('patient_id', $patient->id)->update($request->patient_dental_plans);
+            }
+            else 
+            {
+                $insert     = $request->all()['patient_dental_plans']; //Getting multidemsional collection into simple array
+                $insert['patient_id'] = $patient->id; //Manually merging patient id into it so that it can be inserted into Patient Dental Plan
+                PatientDentalPlan::create($insert);
+            }
         }
 
         $this->upload_image($request, $patient);

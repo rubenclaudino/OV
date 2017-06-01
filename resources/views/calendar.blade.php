@@ -96,16 +96,25 @@
                                                    Faltou
                                                 </span>
                                         </div>
+                                        <!--
+                                        ## I have not seen any appointment status in DB named 'Não Agendar' So i am replacing it with 'Wating' status which is known as 'Esperando' according to Google Translate
                                         <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
                                                 <span class="label"
                                                       style="display:block!important;background-color:#20124d;opacity:0.8">
                                                    Não Agendar
                                                 </span>
                                         </div>
+                                        -->
                                         <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
                                                 <span class="label"
                                                       style="display:block!important;background-color:#5e5e5e;opacity:0.8">
                                                    Finalizado
+                                                </span>
+                                        </div>
+                                        <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
+                                                <span class="label"
+                                                      style="display:block!important;background-color:#20124d;opacity:0.8">
+                                                   Esperando
                                                 </span>
                                         </div>
 

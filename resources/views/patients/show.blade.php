@@ -626,6 +626,9 @@
                                         @elseif( $appointment->status->id == 5 )
                                             <span class="label"
                                                   style="background: #5e5e5e;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                        @elseif( $appointment->status->id == 6 )
+                                            <span class="label"
+                                                  style="background: #20124d;opacity: 0.8">{{ $appointment->status->name }}</span>
                                         @endif
                                     </td>
                                     <td class="center">
