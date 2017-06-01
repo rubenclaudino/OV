@@ -400,8 +400,8 @@
                                                 </td>
                                                 <td>
                                                     @if(count($patient->patient_dental_plans))
-                                                        @isset($patient->patient_dental_plans->first()->exp_date)
-                                                        {{ $patient->patient_dental_plans->first()->exp_date }}
+                                                        @isset($patient->patient_dental_plans->exp_date)
+                                                        {{ $patient->patient_dental_plans->exp_date }}
                                                         @endisset
                                                     @else
                                                         -
@@ -415,8 +415,8 @@
                                                 </td>
                                                 <td>
                                                     @if(count($patient->patient_dental_plans))
-                                                        @isset($patient->patient_dental_plans->first()->card_number)
-                                                        {{ $patient->patient_dental_plans->first()->card_number }}
+                                                        @isset($patient->patient_dental_plans->card_number)
+                                                        {{ $patient->patient_dental_plans->card_number }}
                                                         @endisset
                                                     @else
                                                         -
@@ -428,8 +428,8 @@
                                                 </td>
                                                 <td>
                                                     @if(count($patient->patient_dental_plans))
-                                                        @isset($patient->patient_dental_plans->first()->card_owner)
-                                                        {{ $patient->patient_dental_plans->first()->card_owner }}
+                                                        @isset($patient->patient_dental_plans->card_owner)
+                                                        {{ $patient->patient_dental_plans->card_owner }}
                                                         @endisset
                                                     @else
                                                         -
@@ -601,7 +601,11 @@
                                                style="background: {{ $appointment->specialty->color }} !important;opacity: 0.7;letter-spacing: 1px !important;">{{ $appointment->specialty->name }}</label>
                                     </td>
                                     <td>
+                                        @isset($appointment->clinic_dental_plan)
                                         {{ $appointment->clinic_dental_plan->title }}
+                                        @else
+                                            Não Informado
+                                        @endisset
                                     </td>
                                     <td>
                                         {{ $appointment->appointment_type->name }}
