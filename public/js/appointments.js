@@ -372,6 +372,9 @@ $(document).ready(function () {
                 if ($val == '5') {
                     $className = "appointment-status-finished";
                 }
+                if ($val == '6') {
+                    $className = "appointment-status-waiting";
+                }
                 cEvents[i].className = $className;
                 console.log(cEvents[i]._id);
                 eventId = cEvents[i];

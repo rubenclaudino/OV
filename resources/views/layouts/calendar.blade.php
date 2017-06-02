@@ -92,7 +92,7 @@
             <a href="#" data-id="5" style="color: #737373">Finalizado</a></span>
     </li>
     <li><span><i class="fa fa-square fa-fw" style="margin: 5px;opacity:0.7;color:#20124d;"></i>
-            <a href="#" data-id="6" style="color: #737373">Esperando</a></span>
+            <a href="#" data-id="6" style="color: purple">Esperando</a></span>
     </li>
 </ul>
 <!-- end: CALENDER RIGHT CONTEXT MENU -->

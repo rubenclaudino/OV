@@ -964,7 +964,12 @@ a[class="option"]:hover i{
 	opacity: 0.85;
 }
 .appointment-status-waiting{
-	background-color: #20124d !important;
+	background-color: purple !important;
+	color: #FFF !important;
+	opacity: 0.85;
+}
+.appointment-status-unavailable{
+	background-color: black !important;
 	color: #FFF !important;
 	opacity: 0.85;
 }
@@ -986,14 +991,17 @@ a[class="option"]:hover i{
 	opacity: 0.85;
 }
 .event-category.event-unavailable::before {
-    color: #20124d!important;
+    color: black!important;
 	opacity: 0.65;
 }
 .event-category.event-completed::before {
     color: #5e5e5e!important;
 	opacity: 0.85;
 }
-
+.event-category.event-waiting::before {
+	color: purple !important;
+	opacity: 0.85;
+}
 
 .form-control.speciality-select {
     padding: 0 !important;

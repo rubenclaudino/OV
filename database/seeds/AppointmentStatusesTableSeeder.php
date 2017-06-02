@@ -20,7 +20,8 @@ class AppointmentStatusesTableSeeder extends Seeder
             ['name' => 'Desmarcado', 'class_name'   => 'appointment-status-cancelled'],
             ['name' => 'Faltou', 'class_name'       => 'appointment-status-missed'],
             ['name' => 'Finalizado', 'class_name'   => 'appointment-status-finished'],
-            ['name' => 'Esperando', 'class_name'   => 'appointment-status-waiting']
+            ['name' => 'Esperando', 'class_name'   => 'appointment-status-waiting'],
+            ['name' => 'Não Agendar', 'class_name'   => 'appointment-status-unavailable'],
         ]);
     }
 }

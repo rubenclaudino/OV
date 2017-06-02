@@ -148,6 +148,7 @@
                                     Agendar
                                 </button>
                                 <a href="#" class="btn btn-info btn-light-grey close-subviews">Voltar</a>
+                                <a href="#" class="btn btn-info btn-dark-blue close-subviews pull-right" style="background: black;opacity: 0.8">Não agendar</a>
 
                             </div>
 

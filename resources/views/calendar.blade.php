@@ -72,51 +72,55 @@
                                     <!-- start: ROW -->
                                     <div class="row">
 
-                                        <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
+                                        <div class="col-lg-5">
+                                        <div class="col-sm-2 col-lg-4 col-md-4 nopadding">
                                                 <span class="label label-info"
                                                       style="display:block!important;opacity:0.8">
                                                    Agendado
                                                 </span>
                                         </div>
-                                        <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
+                                        <div class="col-sm-2 col-lg-4 col-md-4 nopadding">
                                                 <span class="label label-success"
                                                       style="display:block!important;opacity:0.8">
                                                    Confirmado
                                                 </span>
                                         </div>
-                                        <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
+                                        <div class="col-sm-2 col-lg-4 col-md-4 nopadding">
+                                                <span class="label"
+                                                      style="display:block!important;background-color:purple;opacity:0.8">
+                                                   Esperando
+                                                </span>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-lg-7">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 nopadding">
+                                                <span class="label"
+                                                      style="display:block!important;background-color:#9F9F9F;opacity:0.8">
+                                                   Finalizado
+                                                </span>
+                                        </div>
+                                        <div class="col-sm-3 col-lg-3 col-md-3 nopadding">
                                                 <span class="label label-warning"
                                                       style="display:block!important;opacity:0.8">
                                                    Desmarcou
                                                 </span>
                                         </div>
-                                        <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 nopadding">
                                                 <span class="label label-danger"
                                                       style="display:block!important;opacity:0.8">
                                                    Faltou
                                                 </span>
                                         </div>
-                                        <!--
-                                        ## I have not seen any appointment status in DB named 'Não Agendar' So i am replacing it with 'Wating' status which is known as 'Esperando' according to Google Translate
-                                        <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 nopadding">
                                                 <span class="label"
-                                                      style="display:block!important;background-color:#20124d;opacity:0.8">
+                                                      style="display:block!important;background-color:#000000;opacity:0.8">
                                                    Não Agendar
                                                 </span>
                                         </div>
-                                        -->
-                                        <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
-                                                <span class="label"
-                                                      style="display:block!important;background-color:#5e5e5e;opacity:0.8">
-                                                   Finalizado
-                                                </span>
                                         </div>
-                                        <div class="col-sm-2 col-lg-2 col-md-2 nopadding">
-                                                <span class="label"
-                                                      style="display:block!important;background-color:#20124d;opacity:0.8">
-                                                   Esperando
-                                                </span>
-                                        </div>
+
+
 
                                     </div>
                                     <!-- end: ROW -->
