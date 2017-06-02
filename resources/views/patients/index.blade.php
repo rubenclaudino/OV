@@ -104,7 +104,7 @@
                                 <td>
                                     @foreach($patient->specialties as $specialty)
                                         <label class="label"
-                                               style="background: {{$specialty->color}};opacity:0.7">{{ $specialty->name }}</label>
+                                               style="background: {{$specialty->color}} !important;opacity:0.7">{{ $specialty->name }}</label>
                                     @endforeach
                                 </td>
                                 <!-- DENTAL PLAN -->
