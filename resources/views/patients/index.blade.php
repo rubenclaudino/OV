@@ -101,7 +101,7 @@
                                     @endif
                                 </td>
                                 <!-- SPECIALTIES -->
-                                <td>
+                                <td >
                                     @foreach($patient->specialties as $specialty)
                                         <label class="label"
                                                style="background: {{$specialty->color}} !important;opacity:0.7">{{ $specialty->name }}</label>
