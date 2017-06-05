@@ -450,6 +450,7 @@ $(document).ready(function () {
                         $('.patient_name_dropdown').val(data.first_name + " " + data.last_name);
                         $('.getted_patient_id').val(data.id);
                         $('.patient_dropdown').remove();
+                        $('select[name="clinic_dental_plan_id"] option[value="'+formData["patient_dental_plans[clinic_dental_plan_id]"]+'"]').prop('selected', true);
 
                         // adding data to angular
                         angular.element(document.getElementById('appointment_profile')).scope().showData(data.data);

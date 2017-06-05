@@ -46,7 +46,7 @@ class CalendarController extends Controller
 
             echo "Não existe nenhum usuário cadastrado tente cadastrar um.";
 
-        } elseif (Auth::user()->hasRole('Local Admin')) {
+        } elseif (Auth::user()->hasRole('local_admin')) { // I don't know why you're using Local Admin When there is only a role with local_admin. So i am changing it.
 
             if (isset(Auth::user()->id))
                 return redirect()->action('CalendarController@show', ['id' => Auth::user()->id]);

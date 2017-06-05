@@ -158,10 +158,10 @@ class PatientsController extends Controller
     {
         $patients = Patient::where([['first_name', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
             ->orWhere([['phone_1', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
-            ->orWhere([['last_name', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
+            //->orWhere([['last_name', 'like', $request->name . '%'], ['clinic_id', Auth::user()->clinic_id]])
             /*->leftJoin('contact', 'contact.id', 'patients.contact_id')
            /* ->select('patients.*', 'contact.celular_1')*/
-            ->orderBy('first_name')
+            ->orderBy('first_name', '=', 'asc')
             ->get();
         $i = 0;
 
@@ -194,6 +194,9 @@ class PatientsController extends Controller
                 }
                 if ($data->appointments[$k]->status == '5') {
                     $s = "Finished";
+                }
+                if ($data->appointments[$k]->status == '6') {
+                    $s = "Waiting";
                 }
 
                 $data->appointments[$k]->status = $s;
@@ -239,6 +242,14 @@ class PatientsController extends Controller
         if ($request->hasFile('patient_profile_image')) {
             if (!file_exists('uploads/' . Auth::user()->clinic_id)) {
                 mkdir('uploads/' . Auth::user()->clinic_id, 0755, true);
+            }
+            if(!file_exists('uploads/' . Auth::user()->clinic_id . '/patients'))
+            {
+                mkdir('uploads/' . Auth::user()->clinic_id . '/patients', 0755, true); //Make Patients Directory
+            }
+            if(!file_exists('uploads/' . Auth::user()->clinic_id . '/patients/profile'))
+            {
+                mkdir('uploads/' . Auth::user()->clinic_id . '/patients/profile', 0755, true); //Make Patients Directory
             }
             if (!file_exists('uploads/' . Auth::user()->clinic_id . "/patients/profile/" . $patient->id)) {
                 mkdir('uploads/' . $patient->clinic_id . "/patients/profile/" . $patient->id, 0755, true);

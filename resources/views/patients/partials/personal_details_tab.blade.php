@@ -17,7 +17,9 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="fileupload fileupload-new" data-provides="fileupload">
 
-                            <div class="fileupload-new thumbnail" style="width:100%"></div>
+                            <div class="fileupload-new thumbnail" style="width:100%">
+                                {{ Html::image(url('/' . $patient->patient_profile_image), '', ['style' => 'max-height: 150px;']) }}
+                            </div>
                             <div style="line-height: 10px; width:100%"
                                  class="fileupload-preview fileupload-exists thumbnail">
                             </div>

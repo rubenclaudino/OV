@@ -7,8 +7,8 @@
     @include('patients.partials.health_tab')
     @include('patients.partials.orto_tab')
     @include('patients.partials.prosthetics_tab')
+	--}}
     @include('patients.partials.exams_tab')
---}}
     @include('patients.partials.button_interactions')
 </div>
 <!-- start: TAB CONTENT -->
