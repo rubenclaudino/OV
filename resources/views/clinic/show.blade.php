@@ -298,7 +298,7 @@
                             <tr>
                                 <td>{{ date('d/m/y', strtotime($appointment->startdate)) }}</td>
                                 <td>{{ date('H:i', $appointment->starttimestamp) }}</td>
-                                <td> {{ $appointment->user->fullName() }}</td>
+                                <td> {{ $appointment->user->getFullNameAttribute() }}</td>
                                 <td>{{ $appointment->patient->first_name }}  {{ $appointment->patient->last_name }}</td>
                                 <td>
                                     @if( $appointment->status->id == 1 )
@@ -316,6 +316,9 @@
                                     @elseif( $appointment->status->id == 5 )
                                         <span class="label"
                                               style="background: #5e5e5e;opacity: 0.8">{{ $appointment->status->name }}</span>
+                                    @elseif( $appointment->status->id == 6 )
+                                        <span class="label"
+                                              style="background: #20124d;opacity: 0.8">{{ $appointment->status->name }}</span>
                                     @endif
                                 </td>
                             </tr>

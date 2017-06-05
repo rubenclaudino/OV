@@ -43,12 +43,13 @@
     </a>
 </li>
 <!-- end: SPEC - IMPLANT -->
+--}}
 <!-- end: EXAMS -->
 <li>
     <a data-toggle="tab" href="#exam">
         <strong>Exames</strong>
     </a>
-</li>--}}
+</li>
 <!-- end: EXAMS -->
 
 </ul>

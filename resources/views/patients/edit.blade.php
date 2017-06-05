@@ -8,7 +8,7 @@
 
         @include('patients.partials.tabs')
 
-        {!! Form::model($patient, ['route' => ['patients.update', $patient->id], 'method' => 'PUT']) !!}
+        {!! Form::model($patient, ['route' => ['patients.update', $patient->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
         @include('patients.partials.form')
         {!! Form::close()!!}
 
